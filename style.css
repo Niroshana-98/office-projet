@@ -143,6 +143,7 @@
     height: 50px;
     border-bottom: 2px solid #2b2626;
     margin: 30px 0;
+    font-weight: 700;
 }
 
 .input-box input{
@@ -152,7 +153,7 @@
     border: none;
     outline: none;
     font-size: 16px;
-    color: #e4e4e4;
+    color: #000000;
     font-weight: 500;
     padding-right: 28px;
 }
@@ -162,10 +163,12 @@
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     pointer-events: none;
     transition: .5s ease;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .input-box input:focus~label,
@@ -204,10 +207,87 @@
 .login-register p a {
     color: #eb2424;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .login-register p a:hover {
+    text-decoration: underline;
+}
+
+/* REGISTER PAGE */
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%; /* Adjust as needed */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.5); /* White transparent background */
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #333;
+    backdrop-filter: blur(20px);
+}
+
+/* Rest of your form styling */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+}
+
+.input-box label {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.login-register {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-register a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-register a:hover {
     text-decoration: underline;
 }
 
