@@ -230,6 +230,7 @@
     align-items: flex-start;
     color: #333;
     backdrop-filter: blur(20px);
+    height: auto;
 }
 
 /* Rest of your form styling */
@@ -248,7 +249,7 @@
     padding: 10px;
     font-size: 16px;
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #3b3838;
     background: transparent;
     outline: none;
 }
