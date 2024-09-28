@@ -71,7 +71,7 @@
     width: 80%; /* Adjust as needed */
     padding: 40px;
     background: rgba(255, 255, 255, 0.5); /* White transparent background */
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
@@ -127,8 +127,8 @@
     height: 100%;
     background: transparent;
     backdrop-filter: blur(20px);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     color: #1a1616;
 }
 

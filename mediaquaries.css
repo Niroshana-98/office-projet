@@ -24,9 +24,9 @@
 
     .transparent-box {
         width: 90%; /* Reduce width for mobile */
-        height: 50%;
+        height: 60%;
         padding: 20px;
-        border-radius: 5px;
+        border-radius: 20px;
         background: transparent;
 
     }
