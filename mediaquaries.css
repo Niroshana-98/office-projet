@@ -79,4 +79,27 @@
         height: 70vh; 
         padding: 5px; 
     }
+
+    .transparent-box {
+        width: 90%; /* Full width for mobile */
+        padding: 15px;
+    }
+
+    .form-box {
+        background: rgba(255, 255, 255, 0.8); /* White transparent box */
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-box h2 {
+        font-size: 20px; /* Smaller heading size for mobile */
+    }
+
+    .input-box input {
+        font-size: 12px; /* Adjust input font size for mobile */
+    }
+
+    .btn {
+        font-size: 14px; /* Keep button size readable */
+    }
 }
