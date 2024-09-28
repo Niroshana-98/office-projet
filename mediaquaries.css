@@ -1,0 +1,82 @@
+/* Mobile Response */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; 
+        justify-content: space-between;
+        margin: 5px;
+        padding: 0.25rem;
+    }
+
+    .navbar-text {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
+    .hero-section {
+        height: 100vh;
+        width: 100%;
+        padding: 10px; 
+    }
+
+    .transparent-box {
+        width: 90%; /* Reduce width for mobile */
+        height: 50%;
+        padding: 20px;
+        border-radius: 5px;
+        background: transparent;
+
+    }
+
+    .container .content {
+        display: none; /* Hide the welcome section */
+    }
+
+    .container .logreg-box {
+        width: 100%; /* Form takes full width */
+    }
+
+    .form-box {
+        width: 100%;
+        padding: 20px; /* Reduce padding for mobile */
+        background: rgba(255, 255, 255, 0.8); /* White transparent background */
+    }
+
+    .form-box h2 {
+        font-size: 28px; /* Reduce font size for mobile */
+    }
+
+    .input-box input {
+        font-size: 14px; /* Adjust input font size */
+    }
+
+    .btn {
+        height: 45px;
+        font-size: 16px;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        margin: 5px; 
+        padding: 0.1rem; 
+    }
+
+    .navbar-text {
+        font-size: 12px; 
+        line-height: 1.2; 
+    }
+
+    .logo {
+        height: 35px; 
+    }
+
+    .hero-section {
+        height: 70vh; 
+        padding: 5px; 
+    }
+}
