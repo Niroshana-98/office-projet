@@ -33,7 +33,7 @@
 }
 
 .hero-section {
-    /*background: url(./images/1.jpg) no-repeat center;*/
+    background: url(../images/Galle-Fort.jpg) no-repeat center;
     background-size: cover;
     width: 100%;
     height: 100vh;
@@ -51,26 +51,16 @@
     margin-right: 10px;
 }
 
-.background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
 /*welcome*/
 
 .transparent-box {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%; /* Adjust as needed */
     padding: 40px;
-    background: rgba(255, 255, 255, 0.5); /* White transparent background */
+    background: rgba(255, 255, 255, 0.4); /* White transparent background */
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -78,6 +68,7 @@
     align-items: flex-start;
     color: #333;
     backdrop-filter: blur(20px); /* Ensures the blur effect */
+    height: 65%;
 }
 
 .container .content {
@@ -218,7 +209,7 @@
 
 .form-container {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40%; /* Adjust as needed */
@@ -230,7 +221,7 @@
     align-items: flex-start;
     color: #333;
     backdrop-filter: blur(20px);
-    height: auto;
+    height: 600px;
 }
 
 /* Rest of your form styling */
