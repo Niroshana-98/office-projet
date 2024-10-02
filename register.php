@@ -8,7 +8,6 @@
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/mediaquaries.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 <body>
 
@@ -42,7 +41,7 @@
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">සේවාව</h5>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="service" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -51,7 +50,7 @@
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">ශ්‍රේණිය</h5>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="grade" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -60,7 +59,7 @@
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">තනතුර</h5>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="position" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -69,11 +68,11 @@
             </div>
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
-                <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock"   title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long." required>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" aria-describedby="passwordHelpBlock"   title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long." required>
             </div>
             <div class="mb-3">
                 <h5 for="inputConfirmPassword" class="form-label">මුරපදය නැවත ඇතුලත් කරන්න</h5>
-                <input type="password" id="inputConfirmPassword" class="form-control" aria-describedby="passwordHelpBlock" placeholder="" required>
+                <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" class="form-control" aria-describedby="passwordHelpBlock" placeholder="" required>
                 <div id="passwordError" class="text-danger" style="display:none;">Passwords do not match!</div>
             </div>
             <div class="button-container">
