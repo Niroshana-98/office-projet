@@ -67,3 +67,4 @@ function setProgressBar(curStep) {
 $(".submit").click(function() {
     return false;
 });
+
