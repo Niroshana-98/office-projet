@@ -77,8 +77,8 @@
             </div>
             <div class="button-container">
                 <button type="submit" class="btn">SUBMIT</button>
-                <button type="reset" class="btnReset">RESET</button>
-                <button type="submit" class="btnExit" onclick="closeWindow()">EXIT</button>
+                <button type="reset" class="btnReset" onclick="resetForm()">RESET</button>
+                <button type="button" class="btnExit" onclick="closeWindow()">EXIT</button>
             </div>
             <div class="login-register">
                 <p>Already have an account? <a href="./index.html">Sign In</a></p>

@@ -104,7 +104,9 @@ h5, label {
 }
 
 
-input[type="text"] {
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -114,7 +116,9 @@ input[type="text"] {
     height: 40px;
 }
 
-.msform input[type="text"]:focus {
+.msform input[type="text"]:focus,
+.msform input[type="tel"]:focus,
+.msform input[type="email"]:focus {
     border-color: #007bff; 
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
     outline: none; 
