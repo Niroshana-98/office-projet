@@ -199,56 +199,63 @@
                             </div>
                             <p>(පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.)</p>
                         </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <h5 for="ball">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</h5>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>තෝරන්න</option>
+                                    <option value="1">ඇත</option>
+                                    <option value="2">නැත</option>
+                                </select>
+                            </div>
+                        </div>
                         <input type="button" name="next" class="next action-button" value="Next" />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
                     <!--Fieldset 4-->
                     <fieldset>
-                        <h3 class="fs-title">උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර:</h3>
+                        <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
                         <h2 class="steps">Step 3 - 4</h2>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
+                                <h5 for="ball">ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-6">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</h5>
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උ</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</h5>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-4">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව/ පුහුණු පාඨමාලාව ආරම්භ කරනු ලැබූ දිනය</h5>
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">සේවය ස්ථිර කිරීමේ ලිපියේ සහතික කරන ලද පිටපත</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව/ පුහුණු පාඨමාලාව අවසන් වීමට නියමිත දිනය</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">නිල දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කල පිටපත</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
-                                <h5 for="ball">ප්‍රතිපාදනයේ ප්‍රමාණය</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">නිල අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                            <p>පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.</p>
                         </div>
                         <input type="button" name="next" class="next action-button" value="Next" />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
