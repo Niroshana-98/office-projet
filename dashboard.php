@@ -14,18 +14,19 @@
             <div class="col-10">
                 <h1 id="heading">DASHBOARD</h1>
                 <form class="msform">
+                    <!-- Progress Bar-->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Personal</strong></li>
                         <li id="personal"><strong>Job Details</strong></li>
                         <li id="payment"><strong>Education</strong></li>
-                        <li id="payment"><strong>Upload</strong></li>
-                        <li id="finish"><strong>Finish</strong></li>
+                        <li id="finish"><strong>View</strong></li>
+                        <li id="upload"><strong>Upload</strong></li>
                     </ul>
                     
                     <!--Fieldset 1-->
                     <fieldset>
                         <h3 class="fs-title">Personal Details:</h3>
-                        <h2 class="steps">Step 1 - 4</h2>
+                        <h2 class="steps">Step 1 - 5</h2>
                         <div class="row">
                             <div class="col-12 col-md-7">
                             <h5 for="ball">සම්පූර්ණ නම (සිංහලෙන්)</h5>
@@ -88,7 +89,7 @@
                     <!--Fieldset 2-->
                     <fieldset>
                         <h3 class="fs-title">රැකියා විස්තර:</h3>
-                        <h2 class="steps">Step 2 - 4</h2>
+                        <h2 class="steps">Step 2 - 5</h2>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
@@ -155,7 +156,7 @@
                     <!--Fieldset 3-->
                     <fieldset>
                         <h3 class="fs-title">උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර:</h3>
-                        <h2 class="steps">Step 3 - 4</h2>
+                        <h2 class="steps">Step 3 - 5</h2>
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
@@ -202,13 +203,99 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" id="selectBox" aria-label="Default select example" onchange="toggleTextBox()">
                                     <option selected>තෝරන්න</option>
                                     <option value="1">ඇත</option>
                                     <option value="2">නැත</option>
                                 </select>
                             </div>
                         </div>
+                        <!-- Course Details with Plus Button -->
+                        <div class="rows" id="textBoxRow" style="display:none;">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <h5 for="ball">පාඨමාලාවේ නම</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">පාඨමාලාව ආරම්භ කල දිනය</h5>
+                                    <div class="mb-3">
+                                        <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button id="addCourseButton" class="btn btn-primary">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Course Details with Minus Button -->
+                        <div class="rows" id="textBoxRows" style="display:none;">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <h5 for="ball">පාඨමාලාවේ නම</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">පාඨමාලාව ආරම්භ කල දිනය</h5>
+                                    <div class="mb-3">
+                                        <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button id="removeCourseButton" class="btn btn-primary">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="courseDeatails"></div>
+
                         <input type="button" name="next" class="next action-button" value="Next" />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
@@ -216,7 +303,7 @@
                     <!--Fieldset 4-->
                     <fieldset>
                         <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
-                        <h2 class="steps">Step 3 - 4</h2>
+                        <h2 class="steps">Step 4 - 5</h2>
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</h5>

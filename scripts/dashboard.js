@@ -68,3 +68,38 @@ $(".submit").click(function() {
     return false;
 });
 
+function toggleTextBox() {
+    const selectBox = document.getElementById("selectBox");
+    const textBoxRow = document.getElementById("textBoxRow");
+
+    if (selectBox.value == "1") {
+        textBoxRow.style.display = "block";  // Show the text box
+    } else {
+        textBoxRow.style.display = "none";   // Hide the text box
+    }
+}
+
+// course Details plus button click
+document.getElementById('addCourseButton').addEventListener('click', function() {
+    if (!document.getElementById('courseDeatails').querySelector('.rows')) {
+        var newRows = document.getElementById('textBoxRows').cloneNode(true);
+
+        newRows.style.display = 'block'; // Show the new cloned rows
+
+        document.getElementById('courseDeatails').appendChild(newRows);
+    } else {
+        alert("Course details have already been added.");
+    }
+});
+
+// course Button remove button click
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.id === 'removeCourseButton') {
+        var rowsToRemove = event.target.closest('.rows');
+        if (rowsToRemove) {
+            rowsToRemove.remove();
+        }
+    }
+});
+
+
