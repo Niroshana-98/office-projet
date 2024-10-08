@@ -12,7 +12,7 @@
         <div class="row text-center">
             <div class="col-1"></div>
             <div class="col-10">
-                <h1 id="heading">DASHBOARD</h1>
+                <h3 id="heading"> සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</h3>
                 <form class="msform">
                     <!-- Progress Bar-->
                     <ul id="progressbar">
@@ -93,7 +93,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="service" id="service">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">නිලධාරියා අයත්වන ශ්‍රේණිය</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="grade" id="grade">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">පත්වීම ස්ථිරද? / නොමැතිද?</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="permenant" id="permenant">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -122,7 +122,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">තනතුර</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="job" id="job">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -131,13 +131,13 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">සේවා ස්ථානය</h5>
-                                <input type="text" class="form-control" id="exampleFormControlInput12" placeholder="">
+                                <input type="text" class="form-control" id="location" placeholder="" name="location">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">අයත්වන අමාත්‍යාංශය</h5>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="ministry" id="ministry">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කල දිනය</h5>
-                                <input type="date" class="form-control" id="exampleFormControlInput14" placeholder="">
+                                <input type="date" class="form-control" id="includeDate" name="includeDate" placeholder="">
                             </div>
                         </div>
                         <input type="button" name="next" class="next action-button" value="Next" />
@@ -161,7 +161,7 @@
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="university" name="university" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                         </div>
@@ -169,13 +169,13 @@
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="digree" name="digree" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="eno" name="eno" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                         </div>
@@ -183,19 +183,19 @@
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව ආරම්භ කරනු ලැබූ දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="date" class="form-control" id="sDate" name="sDate" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව අවසන් වීමට නියමිත දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="date" class="form-control" id="eDate" name="eDate" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">ප්‍රතිපාදනයේ ප්‍රමාණය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="provision" name="provision" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                 </div>
                             </div>
                             <p>(පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.)</p>
@@ -203,7 +203,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</h5>
-                                <select class="form-select" id="selectBox" aria-label="Default select example" onchange="toggleTextBox()">
+                                <select class="form-select" id="charges" name="charges" aria-label="Default select example" onchange="toggleTextBox()">
                                     <option selected>තෝරන්න</option>
                                     <option value="1">ඇත</option>
                                     <option value="2">නැත</option>
@@ -302,6 +302,123 @@
 
                     <!--Fieldset 4-->
                     <fieldset>
+
+                        <!-- Personal Details Table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered small-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">1) පෞද්ගලික විස්තර</h5></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-left">සම්පූර්ණ නම (සිංහලෙන්)</th>
+                                        <td class="text-left" colspan="3" id="fnameCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">මුලකුරු සමග නම (සිංහලෙන්)</th>
+                                        <td class="text-left" id="inameCell"></td>
+                                        <th class="text-left">මුලකුරු සමග නම (ඉංග්‍රීසියෙන්)</th>
+                                        <td class="text-left" id="ienameCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">හැදුනුම්පත් අංකය</th>
+                                        <td class="text-left" id="nicCell"></td>
+                                        <th class="text-left">පෞද්ගලික ලිපිනය</th>
+                                        <td class="text-left" id="addressCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">දුරකතන අංකය - ස්ථාවර</th>
+                                        <td class="text-left" id="telCell"></td>
+                                        <th class="text-left">දුරකතන අංකය - ජංගම</th>
+                                        <td class="text-left" id="htelCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">විද්‍යුත් තැපැල් ලිපිනය</th>
+                                        <td class="text-left" colspan="3" id="emailCell"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <!-- Job Details Table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" style="border: 1px solid;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">2) රැකියා විස්තර</h5></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-left">නිලධාරියා අයත් සේවාව</th>
+                                        <td class="text-left" colspan="3" id="serviceCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">නිලධාරියා අයත්වන ශ්‍රේණිය</th>
+                                        <td class="text-left" id="gradeCell"></td>
+                                        <th class="text-left">පත්වීම ස්ථිරද? / නොමැතිද?</td>
+                                        <td class="text-left" id="permenantCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">තනතුර</th>
+                                        <td class="text-left" id="jobCell"></td>
+                                        <th class="text-left">සේවා ස්ථානය</th>
+                                        <td class="text-left" id="locationCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">අයත්වන අමාත්‍යාංශය</th>
+                                        <td class="text-left" id="ministryCell"></td>
+                                        <th class="text-left">දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කල දිනය</td>
+                                        <td class="text-left" id="includeDateCell"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Education Details Table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" style="border: 1px solid;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</th>
+                                        <td class="text-left" colspan="3" id="universityCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</th>
+                                        <td class="text-left" id="digreeCell"></td>
+                                        <th class="text-left">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</td>
+                                        <td class="text-left" id="enoCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">පාඨමාලාව ආරම්භ කරනු ලැබූ දිනය</th>
+                                        <td class="text-left" id="sDateCell"></td>
+                                        <th class="text-left">පාඨමාලාව අවසන් වීමට නියමිත දිනය</th>
+                                        <td class="text-left" id="eDateCell"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left">ප්‍රතිපාදනයේ ප්‍රමාණය</th>
+                                        <td class="text-left" id="provisionCell"></td>
+                                        <th class="text-left">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</td>
+                                        <td class="text-left" id="chargesCell"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+
+                    <!--Fieldset 5-->
+                    <fieldset>
                         <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
                         <h2 class="steps">Step 4 - 5</h2>
                         <div class="row">
@@ -314,7 +431,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උ</h5>
+                                <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
@@ -330,7 +447,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <h5 for="ball">නිල දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කල පිටපත</h5>
+                                <h5 for="ball">නිලධාරියා දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කල පිටපත</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
@@ -338,7 +455,47 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <h5 for="ball">නිල අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5>
+                                <h5 for="ball">නිලධාරියා අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">විශ්ව විද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව විසින් අනුමත කරන ලද විශ්ව විද්‍යාලයක බව සහතික කරන ලද ලිපිය</h5>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">පාථමාලාව අවසන් කළ බවට සහතිකය</h5>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">මුදල් ගෙවූ රිසිට්පත්</h5>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">මුදල් ගෙවූ රිසිට්පත්</h5>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <h5 for="ball">වෙනත් </h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>

@@ -102,4 +102,37 @@ document.addEventListener('click', function(event) {
     }
 });
 
+//View 
+const fields = [
+    { input: 'fname', cell: 'fnameCell' },
+    { input: 'iname', cell: 'inameCell' },
+    { input: 'iename', cell: 'ienameCell' },
+    { input: 'nic', cell: 'nicCell' },
+    { input: 'address', cell: 'addressCell' },
+    { input: 'tel', cell: 'telCell' },
+    { input: 'htel', cell: 'htelCell' },
+    { input: 'email', cell: 'emailCell' },
+    { input: 'service', cell: 'serviceCell' },
+    { input: 'grade', cell: 'gradeCell' },
+    { input: 'permenant', cell: 'permenantCell' },
+    { input: 'job', cell: 'jobCell' },
+    { input: 'location', cell: 'locationCell' },
+    { input: 'ministry', cell: 'ministryCell' },
+    { input: 'includeDate', cell: 'includeDateCell' },
+    { input: 'university', cell: 'universityCell' },
+    { input: 'digree', cell: 'digreeCell' },
+    { input: 'eno', cell: 'enoCell' },
+    { input: 'sDate', cell: 'sDateCell' },
+    { input: 'eDate', cell: 'eDateCell' },
+    { input: 'provision', cell: 'provisionCell' },
+    { input: 'charges', cell: 'chargesCell' },
+];
+
+fields.forEach(function(field) {
+    document.getElementById(field.input).addEventListener('input', function() {
+        document.getElementById(field.cell).innerText = this.value;
+    });
+});
+
+
 
