@@ -69,13 +69,17 @@ $(".submit").click(function() {
 });
 
 function toggleTextBox() {
-    const selectBox = document.getElementById("selectBox");
+    const selectBox = document.getElementById("charges");
     const textBoxRow = document.getElementById("textBoxRow");
+    const textBoxRows = document.getElementById("textBoxRows");
 
     if (selectBox.value == "1") {
         textBoxRow.style.display = "block";  // Show the text box
+        nextFieldsetTableContainer.style.display = "block";
     } else {
         textBoxRow.style.display = "none";   // Hide the text box
+        textBoxRows.style.display = "none";
+        nextFieldsetTableContainer.style.display = "none";
     }
 }
 
@@ -85,6 +89,7 @@ document.getElementById('addCourseButton').addEventListener('click', function() 
         var newRows = document.getElementById('textBoxRows').cloneNode(true);
 
         newRows.style.display = 'block'; // Show the new cloned rows
+        nextFieldsetTableContainers.style.display = "block";
 
         document.getElementById('courseDeatails').appendChild(newRows);
     } else {
@@ -98,6 +103,7 @@ document.addEventListener('click', function(event) {
         var rowsToRemove = event.target.closest('.rows');
         if (rowsToRemove) {
             rowsToRemove.remove();
+            nextFieldsetTableContainers.style.display = "none";
         }
     }
 });
@@ -126,6 +132,16 @@ const fields = [
     { input: 'eDate', cell: 'eDateCell' },
     { input: 'provision', cell: 'provisionCell' },
     { input: 'charges', cell: 'chargesCell' },
+    { input: 'courseName1', cell: 'courseName1Cell'},
+    { input: 'universityName1', cell: 'universityName1Cell'},
+    { input: 'csDate1', cell: 'csDate1Cell'},
+    { input: 'loan1', cell: 'loan1Cell'},
+    { input: 'cFees1', cell: 'cFees1Cell'},
+    { input: 'courseName2', cell: 'courseName2Cell'},
+    { input: 'universityName2', cell: 'universityName2Cell'},
+    { input: 'csDate2', cell: 'csDate2Cell'},
+    { input: 'loan2', cell: 'loan2Cell'},
+    { input: 'cFees2', cell: 'cFees2Cell'},
 ];
 
 fields.forEach(function(field) {
@@ -133,6 +149,4 @@ fields.forEach(function(field) {
         document.getElementById(field.cell).innerText = this.value;
     });
 });
-
-
 

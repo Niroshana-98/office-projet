@@ -161,7 +161,7 @@
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="university" name="university" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="university" name="university" placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -169,13 +169,13 @@
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="digree" name="digree" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="digree" name="digree" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="eno" name="eno" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="eno" name="eno" placeholder=""  required>
                                 </div>
                             </div>
                         </div>
@@ -183,19 +183,19 @@
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව ආරම්භ කරනු ලැබූ දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="sDate" name="sDate" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="date" class="form-control" id="sDate" name="sDate" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව අවසන් වීමට නියමිත දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="eDate" name="eDate" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="date" class="form-control" id="eDate" name="eDate" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">ප්‍රතිපාදනයේ ප්‍රමාණය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="provision" name="provision" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                    <input type="text" class="form-control" id="provision" name="provision" placeholder="" required>
                                 </div>
                             </div>
                             <p>(පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.)</p>
@@ -216,13 +216,13 @@
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">පාඨමාලාවේ නම</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="courseName1" name="courseName" placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="universityName1" name="universityName" placeholder=""  required>
                                     </div>
                                 </div>
                             </div>
@@ -230,19 +230,19 @@
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලාව ආරම්භ කල දිනය</h5>
                                     <div class="mb-3">
-                                        <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="date" class="form-control" id="csDate1" name="csDate" placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="loan1" name="loan" placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="cFees1" name="cFees" placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -258,13 +258,13 @@
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">පාඨමාලාවේ නම</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="courseName2" name="courseName2" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="universityName2" name="universityName2" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                     </div>
                                 </div>
                             </div>
@@ -272,19 +272,19 @@
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලාව ආරම්භ කල දිනය</h5>
                                     <div class="mb-3">
-                                        <input type="date" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="date" class="form-control" id="csDate2" name="csDate2" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="loan2" name="loan2" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
+                                        <input type="text" class="form-control" id="cFees2" name="cFees2" placeholder="" pattern="^(?:මාධ්‍ය|සිරි|ගුණ|කොතා|ගුන්සේ|නී|බී|මි|නි|සි|නො|රා|තා|ආ|උ|කුව|කො|කු|නෙ|සෙ|චන්|චා|තා|මය|මී|සුර|කැ|කු|සේ|ගු|මි)?[\u0D80-\u0DFF\s]+$" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -412,7 +412,69 @@
                                 </tbody>
                             </table>
                         </div>
-                    
+
+                        <!-- Education Details Table extra #1 -->
+                        <div id="nextFieldsetTableContainer" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" style="border: 1px solid;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-left">පාඨමාලාවේ නම</th>
+                                            <td class="text-left" colspan="3" id="courseName1Cell"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                            <td class="text-left" id="universityName1Cell"></td>
+                                            <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
+                                            <td class="text-left" id="csDate1Cell"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                            <td class="text-left" id="loan1Cell"></td>
+                                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                            <td class="text-left" id="cFees1Cell"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Education Details Table extra #2 -->
+                        <div id="nextFieldsetTableContainers" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" style="border: 1px solid;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-left">පාඨමාලාවේ නම</th>
+                                            <td class="text-left" colspan="3" id="courseName2Cell"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                            <td class="text-left" id="universityName2Cell"></td>
+                                            <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
+                                            <td class="text-left" id="csDate2Cell"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                            <td class="text-left" id="loan2Cell"></td>
+                                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                            <td class="text-left" id="cFees2Cell"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <input type="button" name="next" class="next action-button" value="Next" />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
