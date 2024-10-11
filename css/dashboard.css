@@ -260,6 +260,7 @@ input[type="date"]{
 
 .table td{
     color: #616161;
+    font-weight: 500;
 }
 
 .table-head {
@@ -270,5 +271,15 @@ input[type="date"]{
     .small-table {
         font-size: 0.6em; 
     }
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
 }
 

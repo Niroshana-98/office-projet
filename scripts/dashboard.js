@@ -88,14 +88,37 @@ document.getElementById('addCourseButton').addEventListener('click', function() 
     if (!document.getElementById('courseDeatails').querySelector('.rows')) {
         var newRows = document.getElementById('textBoxRows').cloneNode(true);
 
-        newRows.style.display = 'block'; // Show the new cloned rows
-        nextFieldsetTableContainers.style.display = "block";
+        // Ensure that the cloned rows are displayed
+        newRows.style.display = 'block';
 
+        // Change the IDs of the cloned inputs to avoid ID conflicts
+        var clonedInputs = newRows.querySelectorAll('input');
+        clonedInputs.forEach(function(input, index) {
+            input.id = input.id + '_clone';  // Add '_clone' suffix or any unique identifier to the ID
+            input.name = input.name + '_clone'; // Modify the name if necessary
+        });
+
+        // Append the cloned rows to the course details section
         document.getElementById('courseDeatails').appendChild(newRows);
+
+        // Display the next fieldset table
+        document.getElementById('nextFieldsetTableContainers').style.display = 'block';
+
+        // Reattach event listeners for the cloned inputs
+        clonedInputs.forEach(function(input, index) {
+            input.addEventListener('input', function() {
+                var cellId = input.id.replace('_clone', 'Cell');  // Map to the corresponding table cell
+                var tableCell = document.getElementById(cellId);
+                if (tableCell) {
+                    tableCell.innerText = this.value;
+                }
+            });
+        });
     } else {
         alert("Course details have already been added.");
     }
 });
+
 
 // course Button remove button click
 document.addEventListener('click', function(event) {
@@ -149,4 +172,11 @@ fields.forEach(function(field) {
         document.getElementById(field.cell).innerText = this.value;
     });
 });
+
+document.getElementById('agreeCheckbox').addEventListener('change', function() {
+    var submitButton = document.getElementById('submitButton');
+    
+    submitButton.disabled = !this.checked;
+});
+
 

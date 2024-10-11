@@ -13,7 +13,7 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <h3 id="heading"> සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</h3>
-                <form class="msform">
+                <form class="msform" action="./api/dashboard_2db.php" method="POST">
                     <!-- Progress Bar-->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Personal</strong></li>
@@ -296,7 +296,7 @@
                         </div>
                         <div id="courseDeatails"></div>
 
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <input type="submit" name="next" class="next action-button" value="Next" />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
@@ -415,6 +415,7 @@
 
                         <!-- Education Details Table extra #1 -->
                         <div id="nextFieldsetTableContainer" style="display: none;">
+                            <h5 class="view-h5">මීට පෙර සේවා ව්‍යවස්ථාවට අදාළව පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලා ගාස්තු ලබා ගෙන ඇත්නම් ඒ පිළිබඳ තොරතුරු</h5>
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="border: 1px solid;">
                                     <thead>
@@ -474,8 +475,11 @@
                                 </table>
                             </div>
                         </div>
-
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="agreeCheckbox">
+                            <label for="agreeCheckbox">උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.</label>
+                        </div>
+                        <input type="submit" name="next" class="next action-button" id="submitButton" value="Submit" disabled />
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
@@ -484,23 +488,19 @@
                         <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
                         <h2 class="steps">Step 4 - 5</h2>
                         <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">සේවය ස්ථිර කිරීමේ ලිපියේ සහතික කරන ලද පිටපත</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
@@ -508,23 +508,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">නිලධාරියා දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කල පිටපත</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">නිලධාරියා අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">විශ්ව විද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව විසින් අනුමත කරන ලද විශ්ව විද්‍යාලයක බව සහතික කරන ලද ලිපිය</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
@@ -532,31 +528,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">පාථමාලාව අවසන් කළ බවට සහතිකය</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">මුදල් ගෙවූ රිසිට්පත්</h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
-                                <h5 for="ball">මුදල් ගෙවූ රිසිට්පත්</h5>
-                                <div class="mb-3">
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-4">
                                 <h5 for="ball">වෙනත් </h5>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
