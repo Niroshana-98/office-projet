@@ -176,7 +176,41 @@ fields.forEach(function(field) {
 document.getElementById('agreeCheckbox').addEventListener('change', function() {
     var submitButton = document.getElementById('submitButton');
     
-    submitButton.disabled = !this.checked;
+    if (this.checked) {
+        submitButton.disabled = false;
+        submitButton.style.backgroundColor = "#0000ff"; // Green when enabled
+        submitButton.style.color = "white";
+    } else {
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = "#ccc"; // Gray when disabled
+        submitButton.style.color = "black";
+    }
 });
 
+
+document.addEventListener('DOMContentLoaded', function(){
+    // Fetch the data from the PHP backend
+    fetch('./api/dashboard_2db.php')
+        .then(response => response.json())
+        .then(data => {
+            // service dropdown
+            let serviceDropdown = document.getElementById('service');
+            data.serviceNames.forEach(service_name => {
+                let option = document.createElement('option');
+                option.value = service_name;
+                option.text = service_name;
+                serviceDropdown.add(option);
+            });
+
+            // job dropdown
+            let jobDropdown = document.getElementById('job');
+            data.jobNames.forEach(desi_name => {
+                let option = document.createElement('option');
+                option.value = desi_name;
+                option.text = desi_name;
+                jobDropdown.add(option);
+            });
+        })
+        .catch(error => console.log('Error', error));
+});
 

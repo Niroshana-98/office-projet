@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
-$dbname = "project"; 
+$dbname = "sch_mgt_sys"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
