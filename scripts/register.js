@@ -36,3 +36,79 @@
         }
     }
 
+    //navigation bar transtion
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+    let timer = null;
+    
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer); 
+    
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+        if (scrollTop > lastScrollTop) {
+            navbar.style.top = '-120px';
+        } else {
+            navbar.style.top = '0';
+        }
+    
+        lastScrollTop = scrollTop;
+    
+        // Set a delay before hiding the navbar again
+        timer = setTimeout(function () {
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = '-120px';
+            }
+        }, 200); // Adjust delay time (in milliseconds)
+    });
+
+    document.addEventListener('DOMContentLoaded',function(){
+
+        fetchServices();
+
+        function fetchServices(){
+            fetch('./api/register_2db.php',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=fetchServices'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('service').innerHTML += data;
+            });
+        }
+
+        //fetch grade when a service is selected
+        document.getElementById('service').addEventListener('change', function(){
+            const service_id = this.value;
+            if(service_id !==''){
+                fetchGrades(service_id);
+            }else{
+                document.getElementById('grade').disabled = true;
+                document.getElementById('job').disabled = true;
+            }
+        });
+
+        function fetchGrades(service_id){
+            fetch('./api/register_2db.php',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body : 'action=fetchGrades&service_id=' + service_id
+            })
+            .then(response => response.text())
+            .then(data =>{
+                const gradeSelect = document.getElementById('grade');
+                gradeSelect.innerHTML = '<option value="">Select Grade</option>';
+                gradeSelect.innerHTML +=data;
+                gradeSelect.disabled = false;
+            });
+        }
+       
+    })
+    
+
+

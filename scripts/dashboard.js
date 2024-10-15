@@ -173,6 +173,7 @@ fields.forEach(function(field) {
     });
 });
 
+//submit button color change
 document.getElementById('agreeCheckbox').addEventListener('change', function() {
     var submitButton = document.getElementById('submitButton');
     
@@ -187,7 +188,7 @@ document.getElementById('agreeCheckbox').addEventListener('change', function() {
     }
 });
 
-
+//dropdown list data get dasabase
 document.addEventListener('DOMContentLoaded', function(){
     // Fetch the data from the PHP backend
     fetch('./api/dashboard_2db.php')
@@ -209,6 +210,15 @@ document.addEventListener('DOMContentLoaded', function(){
                 option.value = desi_name;
                 option.text = desi_name;
                 jobDropdown.add(option);
+            });
+
+            // ministry dropdown
+            let ministryDropdown = document.getElementById('ministry');
+            data.ministryNames.forEach(min_name => {
+                let option = document.createElement('option');
+                option.value = min_name;
+                option.text = min_name;
+                ministryDropdown.add(option);
             });
         })
         .catch(error => console.log('Error', error));

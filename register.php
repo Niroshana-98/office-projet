@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="http://www.cs.sp.gov.lk/index_en.html">
                 <img src="./images/logo.png" alt="logo" class="logo"/> 
@@ -20,9 +20,10 @@
         </div>
     </nav>
 
+
     <div class="form-container">
-        <form action="./api/register_2db.php" method="POST">
-            <h2>REGISTER</h2>
+        <form class="msform" action="./api/register_2db.php" method="POST">
+            <h2 class="tracking-in-contract">REGISTER</h2>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">මුලකුරු සමග නම</h5>
                 <input type="text" class="form-control" id="name" name="name" placeholder=""  title="Only letters, Sinhala characters, periods, and single spaces are allowed." required>
@@ -37,33 +38,24 @@
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">දුරකථන අංකය</h5>
-                <input type="number" class="form-control" id="tel" name="tel" placeholder="" pattern="^07\d{8}$" title="Please enter a valid Sri Lankan mobile number (starting with 07 and followed by 8 digits)." required>
+                <input type="tel" class="form-control" id="tel" name="tel" placeholder="" pattern="^07\d{8}$" title="Please enter a valid Sri Lankan mobile number (starting with 07 and followed by 8 digits)." required>
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">සේවාව</h5>
-                <select class="form-select" name="service" aria-label="Default select example">
+                <select class="form-select" name="service" id="service" aria-label="Default select example">
                     <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                 </select>
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">ශ්‍රේණිය</h5>
-                <select class="form-select" name="grade" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="form-select" name="grade" id="grade" aria-label="Default select example" disabled>
+                    <option selected>Please Select Service First</option>
                 </select>
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">තනතුර</h5>
-                <select class="form-select" name="position" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select class="form-select" name="position" id="job" aria-label="Default select example" disabled>
+                    <option selected>Please Select Grade First</option>
                 </select>
             </div>
             <div class="mb-3">

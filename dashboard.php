@@ -132,9 +132,6 @@
                                 <h5 for="ball">අයත්වන අමාත්‍යාංශය</h5>
                                 <select class="form-select" aria-label="Default select example" name="ministry" id="ministry">
                                     <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
@@ -479,7 +476,7 @@
                     <!--Fieldset 5-->
                     <fieldset>
                         <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
-                        <h2 class="steps">Step 4 - 5</h2>
+                        <h2 class="steps">Step 5 - 5</h2>
                         <div class="row">
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</h5>
@@ -488,7 +485,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</h5>
+                                <h5 for="ball">අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</h5><br>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>
@@ -508,7 +505,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <h5 for="ball">නිලධාරියා අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5>
+                                <h5 for="ball">නිලධාරියා අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</h5><br>
                                 <div class="mb-3">
                                     <input class="form-control" type="file" id="formFile">
                                 </div>

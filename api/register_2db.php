@@ -1,6 +1,38 @@
 <?php
 require 'connect.php';
 
+// Handle AJAX requests for fetching data
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+
+        // Fetch services
+        if ($action === 'fetchServices') {
+            $query = "SELECT service_id, service_name FROM service";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<option value="'.$row['service_id'].'">'.$row['service_name'].'</option>';
+            }
+        exit;
+        }
+
+        //Fetch Services
+        if($action === 'fetchGrades' && isset($_POST['service_id'])){
+            $service_id = $_POST['service_id'];
+            $query = "SELECT grade_id, grade_name FROM grade WHERE service_id =?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $service_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<option value="'.$row['grade_id'].'">'.$row['grade_name'].'</option>';
+            }
+        exit;
+        }
+    }
+}
+
+//handle registration
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $nic = $_POST['nic'];
@@ -40,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt->close();
 }
+
 
 $conn->close();
 ?>
