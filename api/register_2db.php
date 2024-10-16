@@ -1,4 +1,5 @@
 <?php
+
 require 'connect.php';
 
 // Handle AJAX requests for fetching data
@@ -13,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<option value="'.$row['service_id'].'">'.$row['service_name'].'</option>';
             }
-        exit;
+            exit;
         }
 
-        //Fetch Services
+        // Fetch Grades
         if($action === 'fetchGrades' && isset($_POST['service_id'])){
             $service_id = $_POST['service_id'];
-            $query = "SELECT grade_id, grade_name FROM grade WHERE service_id =?";
+            $query = "SELECT grade_id, grade_name FROM grade WHERE service_id = ?";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("i", $service_id);
             $stmt->execute();
@@ -27,20 +28,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<option value="'.$row['grade_id'].'">'.$row['grade_name'].'</option>';
             }
-        exit;
+            exit;
+        }
+
+        // Fetch Position
+        if($action === 'fetchPositions' && isset($_POST['grade_id'])){
+            $grade_id = $_POST['grade_id'];
+            $query = "SELECT desi_id, desi_name FROM desi WHERE grade_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $grade_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)){
+                echo '<option value="'.$row['desi_id'].'">'.$row['desi_name'].'</option>';
+            }
+            exit;
         }
     }
 }
 
-//handle registration
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Handle registration
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $nic = $_POST['nic'];
     $email = $_POST['email'];
     $tel = $_POST['tel'];
-    $service = $_POST['service'];
-    $grade = $_POST['grade'];
-    $position = $_POST['position'];
+    $service = $_POST['service']; 
+    $grade = $_POST['grade'];    
+    $position = $_POST['position']; 
     $password = $_POST['inputPassword'];
     $confirm_password = $_POST['inputConfirmPassword'];
 
@@ -72,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt->close();
 }
+
 
 
 $conn->close();

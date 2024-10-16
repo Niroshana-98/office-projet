@@ -43,20 +43,23 @@
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">සේවාව</h5>
                 <select class="form-select" name="service" id="service" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
+                    <option value="" selected>Open this select menu</option>
                 </select>
+                <input type="hidden" name="service" value="">
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">ශ්‍රේණිය</h5>
                 <select class="form-select" name="grade" id="grade" aria-label="Default select example" disabled>
-                    <option selected>Please Select Service First</option>
+                    <option value="" selected>Please Select Service First</option>
                 </select>
+                <input type="hidden" name="grade" value="">
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">තනතුර</h5>
                 <select class="form-select" name="position" id="job" aria-label="Default select example" disabled>
-                    <option selected>Please Select Grade First</option>
+                    <option value="" selected>Please Select Grade First</option>
                 </select>
+                <input type="hidden" name="position" value="">
             </div>
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
@@ -77,9 +80,7 @@
             </div>
         </form>
     </div>
-
-    <section class="hero-section">
-        
+    <section class="hero-section">    
     </section>
     
     <script src="./scripts/register.js"></script>

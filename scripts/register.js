@@ -62,12 +62,12 @@
         }, 200); // Adjust delay time (in milliseconds)
     });
 
-    document.addEventListener('DOMContentLoaded',function(){
-
+    //dependat select box
+    document.addEventListener('DOMContentLoaded', function () {
         fetchServices();
-
-        function fetchServices(){
-            fetch('./api/register_2db.php',{
+    
+        function fetchServices() {
+            fetch('./api/register_2db.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -79,36 +79,81 @@
                 document.getElementById('service').innerHTML += data;
             });
         }
-
-        //fetch grade when a service is selected
-        document.getElementById('service').addEventListener('change', function(){
+    
+        document.getElementById('service').addEventListener('change', function () {
             const service_id = this.value;
-            if(service_id !==''){
+            if (service_id !== '') {
                 fetchGrades(service_id);
-            }else{
+            } else {
                 document.getElementById('grade').disabled = true;
                 document.getElementById('job').disabled = true;
             }
         });
-
-        function fetchGrades(service_id){
-            fetch('./api/register_2db.php',{
+    
+        function fetchGrades(service_id) {
+            fetch('./api/register_2db.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body : 'action=fetchGrades&service_id=' + service_id
+                body: 'action=fetchGrades&service_id=' + service_id
             })
             .then(response => response.text())
-            .then(data =>{
+            .then(data => {
                 const gradeSelect = document.getElementById('grade');
                 gradeSelect.innerHTML = '<option value="">Select Grade</option>';
-                gradeSelect.innerHTML +=data;
+                gradeSelect.innerHTML += data;
                 gradeSelect.disabled = false;
             });
         }
-       
-    })
+    
+        document.getElementById('grade').addEventListener('change', function () {
+            const grade_id = this.value;
+            if (grade_id !== '') {
+                fetchPositions(grade_id);
+            } else {
+                document.getElementById('job').disabled = true;
+            }
+        });
+    
+        function fetchPositions(grade_id) {
+            fetch('./api/register_2db.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=fetchPositions&grade_id=' + grade_id
+            })
+            .then(response => response.text())
+            .then(data => {
+                const positionSelect = document.getElementById('job');
+                positionSelect.innerHTML = '<option value="">Select Position</option>';
+                positionSelect.innerHTML += data;
+                positionSelect.disabled = false;
+            });
+        }
+    
+        // Update form submission to pass names instead of IDs
+        // Update form submission to pass names instead of IDs
+document.querySelector('form').addEventListener('submit', function (event) {
+    const serviceSelect = document.getElementById('service');
+    const gradeSelect = document.getElementById('grade');
+    const positionSelect = document.getElementById('job');
+
+    // Get selected names
+    const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+    const gradeName = gradeSelect.options[gradeSelect.selectedIndex].text;
+    const positionName = positionSelect.options[positionSelect.selectedIndex].text;
+
+    // Append names to the hidden inputs before submission
+    this.querySelector('input[name="service"]').value = serviceName;
+    this.querySelector('input[name="grade"]').value = gradeName;
+    this.querySelector('input[name="position"]').value = positionName;
+
+    // Submit the form normally
+});
+
+    });
     
 
 
