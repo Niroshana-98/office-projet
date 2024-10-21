@@ -20,8 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
             $_SESSION['user_id'] = $user['id']; 
             $_SESSION['username'] = $user['name'];
+            $_SESSION['nic'] = $user['nic'];
 
-            header("Location: ../dashboard.php");
+            header("Location: ../loading.php");
             exit();
         } else {
             echo "<script>alert('Invalid username or password. Please try again.'); window.location.href = '../index.html';</script>";

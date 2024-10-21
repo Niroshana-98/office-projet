@@ -141,16 +141,13 @@ const fields = [
     { input: 'tel', cell: 'telCell' },
     { input: 'htel', cell: 'htelCell' },
     { input: 'email', cell: 'emailCell' },
-    { input: 'service', cell: 'serviceCell' },
-    { input: 'grade', cell: 'gradeCell' },
     { input: 'permenant', cell: 'permenantCell' },
-    { input: 'job', cell: 'jobCell' },
     { input: 'location', cell: 'locationCell' },
     { input: 'ministry', cell: 'ministryCell' },
     { input: 'includeDate', cell: 'includeDateCell' },
     { input: 'university', cell: 'universityCell' },
     { input: 'digree', cell: 'digreeCell' },
-    { input: 'eno', cell: 'enoCell' },
+    { input: 'eno', cell: 'enoCell' }, 
     { input: 'sDate', cell: 'sDateCell' },
     { input: 'eDate', cell: 'eDateCell' },
     { input: 'provision', cell: 'provisionCell' },
@@ -173,54 +170,68 @@ fields.forEach(function(field) {
     });
 });
 
+function fetchAndFillData() {
+    fetch('api/dashboard_2db.php')  // Adjust the path if needed
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                // Fill the readonly text inputs with fetched data
+                document.getElementById('service').value = data.service;
+                document.getElementById('grade').value = data.grade;
+                document.getElementById('job').value = data.position;
+
+                // Also fill the corresponding table cells
+                document.getElementById('serviceCell').innerText = data.service;
+                document.getElementById('gradeCell').innerText = data.grade;
+                document.getElementById('jobCell').innerText = data.position;
+            } else {
+                alert("Error: " + data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Call the function to fetch and fill data
+fetchAndFillData();
+
+
 //submit button color change
-document.getElementById('agreeCheckbox').addEventListener('change', function() {
+document.getElementById('terms-checkbox-37').addEventListener('change', function() {
     var submitButton = document.getElementById('submitButton');
-    
+
     if (this.checked) {
-        submitButton.disabled = false;
-        submitButton.style.backgroundColor = "#0000ff"; // Green when enabled
-        submitButton.style.color = "white";
+        submitButton.disabled = false; // Enable button
+        submitButton.classList.add('enabled'); // Add class for animation
+        submitButton.style.cursor = "pointer"; // Change cursor to pointer
     } else {
-        submitButton.disabled = true;
-        submitButton.style.backgroundColor = "#ccc"; // Gray when disabled
-        submitButton.style.color = "black";
+        submitButton.disabled = true; // Disable button
+        submitButton.classList.remove('enabled'); // Remove class for animation
+        submitButton.style.cursor = "not-allowed"; // Change cursor to not-allowed
     }
 });
 
-//dropdown list data get dasabase
-document.addEventListener('DOMContentLoaded', function(){
-    // Fetch the data from the PHP backend
-    fetch('./api/dashboard_2db.php')
+
+
+
+window.onload = function() {
+    fetch('api/dashboard_2db.php')  // Adjust the path if needed
         .then(response => response.json())
         .then(data => {
-            // service dropdown
-            let serviceDropdown = document.getElementById('service');
-            data.serviceNames.forEach(service_name => {
-                let option = document.createElement('option');
-                option.value = service_name;
-                option.text = service_name;
-                serviceDropdown.add(option);
-            });
-
-            // job dropdown
-            let jobDropdown = document.getElementById('job');
-            data.jobNames.forEach(desi_name => {
-                let option = document.createElement('option');
-                option.value = desi_name;
-                option.text = desi_name;
-                jobDropdown.add(option);
-            });
-
-            // ministry dropdown
-            let ministryDropdown = document.getElementById('ministry');
-            data.ministryNames.forEach(min_name => {
-                let option = document.createElement('option');
-                option.value = min_name;
-                option.text = min_name;
-                ministryDropdown.add(option);
-            });
+            if (!data.error) {
+                // Fill the readonly text inputs with fetched data
+                document.getElementById('service').value = data.service;
+                document.getElementById('grade').value = data.grade;
+                document.getElementById('job').value = data.position;
+            } else {
+                alert("Error: " + data.error);
+            }
         })
-        .catch(error => console.log('Error', error));
-});
+        .catch(error => console.error('Error:', error));
+};
+
+
+
+
+
+
 

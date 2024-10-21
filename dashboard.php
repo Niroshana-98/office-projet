@@ -93,18 +93,11 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
-                                <select class="form-select" aria-label="Default select example" name="service" id="service">
-                                    <option selected>Open this select menu</option>
-                                </select>
+                                <input type="text" class="form-control" name="service" id="service" readonly>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">නිලධාරියා අයත්වන ශ්‍රේණිය</h5>
-                                <select class="form-select" aria-label="Default select example" name="grade" id="grade">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <input type="text" class="form-control" name="grade" id="grade" readonly>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">පත්වීම ස්ථිරද? / නොමැතිද?</h5>
@@ -118,9 +111,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">තනතුර</h5>
-                                <select class="form-select" aria-label="Default select example" name="job" id="job">
-                                    <option selected>Open this select menu</option>
-                                </select>
+                                <input type="text" class="form-control" name="job" id="job"  readonly>
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">සේවා ස්ථානය</h5>
@@ -465,11 +456,38 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="checkbox-container">
-                            <input type="checkbox" id="agreeCheckbox">
-                            <label for="agreeCheckbox">උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.</label>
-                        </div>
-                        <input type="submit" name="next" class="next action-button" id="submitButton" value="Submit" disabled />
+                        <div class="checkbox-wrapper-37">
+                            <input type="checkbox" name="checkbox" id="terms-checkbox-37" />
+                            <label for="terms-checkbox-37" class="terms-label">
+                                <svg
+                                class="checkbox-svg"
+                                viewBox="0 0 200 200"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                >
+                                <mask id="path-1-inside-1_476_5-37" fill="white">
+                                    <rect width="200" height="200"></rect>
+                                </mask>
+                                <rect
+                                    width="200"
+                                    height="200"
+                                    class="checkbox-box"
+                                    stroke-width="40"
+                                    mask="url(#path-1-inside-1_476_5-37)"
+                                ></rect>
+                                <path
+                                    class="checkbox-tick"
+                                    d="M52 111.018L76.9867 136L149 64"
+                                    stroke-width="15"
+                                ></path>
+                                </svg>
+                                <span class="label-text">උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.</span>
+                            </label>
+                            </div>
+                        
+                            <button id="submitButton" class="next action" disabled> 
+            <span>Submit</span>
+        </button>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 

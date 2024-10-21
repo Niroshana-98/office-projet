@@ -1,44 +1,31 @@
 <?php
-include 'connect.php';
+session_start();
+require 'connect.php';
 
-//service
-$service ="SELECT service_name FROM service";
-$result = $conn->query($service);
-$serviceNames = [];
-if($result-> num_rows >0){
-    while($row = $result->fetch_assoc()){
-        $serviceNames[] = $row['service_name'];
-    }
+// Check if the user is logged in
+if (!isset($_SESSION['nic'])) {
+    echo json_encode(['error' => 'User not logged in']);
+    exit();
 }
 
-//job
-$job ="SELECT desi_name FROM desi";
-$result = $conn->query($job);
-$jobNames = [];
-if($result-> num_rows >0){
-    while($row = $result->fetch_assoc()){
-        $jobNames[] = $row['desi_name'];
-    }
+// Fetch user data based on NIC
+$nic = $_SESSION['nic'];
+$stmt = $conn->prepare("SELECT service, grade, position FROM users WHERE nic = ?");
+$stmt->bind_param("s", $nic);
+$stmt->execute();
+$result = $stmt->get_result(); 
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    echo json_encode([
+        'service' => $user['service'],
+        'grade' => $user['grade'],
+        'position' => $user['position']
+    ]);
+} else {
+    echo json_encode(['error' => 'No user data found']);
 }
 
-//ministry
-$ministry ="SELECT min_name FROM ministry";
-$result = $conn->query($ministry);
-$ministryNames = [];
-if($result-> num_rows >0){
-    while($row = $result->fetch_assoc()){
-        $ministryNames[] = $row['min_name'];
-    }
-}
-
-//connection close
+$stmt->close();
 $conn->close();
-$data = [
-    'serviceNames' => $serviceNames,
-    'jobNames' => $jobNames,
-    'ministryNames' => $ministryNames
-];
-
-// Output JSON
-echo json_encode($data);
 ?>
