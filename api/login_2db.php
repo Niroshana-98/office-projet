@@ -15,16 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
+        // Hash the password input and compare it with the stored hashed password
         if ($user['password'] === md5($password)) {
-            // Start session for the logged-in user
-            session_start();
-            $_SESSION['user_id'] = $user['id']; 
-            $_SESSION['username'] = $user['name'];
-            $_SESSION['nic'] = $user['nic'];
 
-            header("Location: ../loading.php");
-            exit();
+            // Check the user's status
+            if ($user['status'] == 1) {
+                // Redirect to OTP verification page
+                header("Location: ../otp.php?email=" . urlencode($user['email'])); // Pass the email for OTP verification
+                exit();
+            } else {
+                // Status != 1, proceed with login
+                session_start();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['name'];
+                $_SESSION['nic'] = $user['nic'];
+
+                // Redirect to loading page or dashboard
+                header("Location: ../loading.php");
+                exit();
+            }
+
         } else {
+            // Incorrect password
             echo "<script>alert('Invalid username or password. Please try again.'); window.location.href = '../index.html';</script>";
             exit();
         }

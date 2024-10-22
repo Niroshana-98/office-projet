@@ -1,6 +1,12 @@
 <?php
 
 require 'connect.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
 
 // Handle AJAX requests for fetching data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,24 +77,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         echo "<script>alert('A user with this NIC or email already exists.');</script>";
     } else {
+
+        //generate ramdom otp 
+        $otp = rand(100000, 999999);
+
         // Prepare statement for insertion
-        $stmt = $conn->prepare("INSERT INTO users (name, nic, email, tel, service, grade, position, password) 
-                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssss", $name, $nic, $email, $tel, $service, $grade, $position, $hashed_password);
+        $stmt = $conn->prepare("INSERT INTO users (name, nic, email, tel, service, grade, desi, password, otp, status) 
+                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)");
+        $stmt->bind_param("sssssssss", $name, $nic, $email, $tel, $service, $grade, $position, $hashed_password,$otp);
 
         if ($stmt->execute()) {
-            // Successful registration
-            echo "<script>alert('Registration Successfully!'); window.location.href = '../index.html';</script>";
-            exit();
+            // Send OTP via email
+            $mail = new PHPMailer(true);
+            try {
+                // Server settings
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'djpasinduniroshana@gmail.com'; 
+                $mail->Password   = 'wrxb kpcf miir faxi';            
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
+
+                // Recipients
+                $mail->setFrom('djpasinduniroshana@gmail.com', 'Chief Secretariat Southern Province');
+                $mail->addAddress($email);
+
+                // Content
+                $mail->isHTML(true);
+                $mail->Subject = 'Your Email Verification Code';
+                $mail->Body    = "Your OTP code is <b>$otp</b>";
+                
+                $mail->send();
+                
+                // Redirect to the OTP verification page
+                echo "<script>alert('Registration successful! Check your email for the OTP.'); window.location.href = '../otp.php?email=$email';</script>";
+            } catch (Exception $e) {
+                echo "<script>alert('OTP email could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+            }
         } else {
             echo "<script>alert('Error: " . $stmt->error . "');</script>";
         }
     }
-
     $stmt->close();
 }
-
-
-
 $conn->close();
 ?>

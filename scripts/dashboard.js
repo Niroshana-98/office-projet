@@ -178,12 +178,12 @@ function fetchAndFillData() {
                 // Fill the readonly text inputs with fetched data
                 document.getElementById('service').value = data.service;
                 document.getElementById('grade').value = data.grade;
-                document.getElementById('job').value = data.position;
+                document.getElementById('job').value = data.desi;
 
                 // Also fill the corresponding table cells
                 document.getElementById('serviceCell').innerText = data.service;
                 document.getElementById('gradeCell').innerText = data.grade;
-                document.getElementById('jobCell').innerText = data.position;
+                document.getElementById('jobCell').innerText = data.desi;
             } else {
                 alert("Error: " + data.error);
             }
@@ -221,13 +221,29 @@ window.onload = function() {
                 // Fill the readonly text inputs with fetched data
                 document.getElementById('service').value = data.service;
                 document.getElementById('grade').value = data.grade;
-                document.getElementById('job').value = data.position;
+                document.getElementById('job').value = data.desi;
             } else {
                 alert("Error: " + data.error);
             }
         })
         .catch(error => console.error('Error:', error));
 };
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('api/dashboard.php')  
+        .then(response => response.json())
+        .then(data => {
+            const ministrySelect = document.getElementById('ministry');
+            data.forEach(ministry => {
+                const option = document.createElement('option');
+                option.value = ministry.min_id; 
+                option.textContent = ministry.min_name; 
+                ministrySelect.appendChild(option); 
+            });
+        })
+        .catch(error => console.error('Error fetching ministries:', error));
+});
 
 
 

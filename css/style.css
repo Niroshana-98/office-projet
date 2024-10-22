@@ -145,6 +145,7 @@
     border-bottom: 2px solid #2b2626;
     margin: 30px 0;
     font-weight: 700;
+    
 }
 
 .input-box input{
@@ -157,9 +158,13 @@
     color: #000000;
     font-weight: 500;
     padding-right: 28px;
+    padding-left: 10px;
 }
 
-
+.form-box input {
+    outline: none; /* Remove outline */
+    border: none; /* Remove border */
+}
 
 .input-box label{
     position: absolute;
@@ -235,6 +240,49 @@
 .login-register p a:hover {
     text-decoration: underline;
 }
+
+/* Sign up */ 
+.button {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: #000000;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .button:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .button-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(
+      82.3deg,
+      rgba(150, 93, 233, 1) 10.8%,
+      rgba(99, 88, 238, 1) 94.3%
+    );
+    transition: all 0.475s;
+  }
 
 /* REGISTER PAGE */
 
@@ -424,46 +472,5 @@ select.form-select:focus {
     }
   }
   
-/* From Uiverse.io by Madflows */ 
-.button {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    height: 3rem;
-    padding: 0 2rem;
-    border-radius: 1.5rem;
-    background: #000000;
-    background-size: 400%;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .button:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .button-content {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    width: 100%;
-    height: inherit;
-    border-radius: inherit;
-    background: linear-gradient(
-      82.3deg,
-      rgba(150, 93, 233, 1) 10.8%,
-      rgba(99, 88, 238, 1) 94.3%
-    );
-    transition: all 0.475s;
-  }
+
   

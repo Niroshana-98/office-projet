@@ -10,7 +10,7 @@ if (!isset($_SESSION['nic'])) {
 
 // Fetch user data based on NIC
 $nic = $_SESSION['nic'];
-$stmt = $conn->prepare("SELECT service, grade, position FROM users WHERE nic = ?");
+$stmt = $conn->prepare("SELECT service, grade, desi FROM users WHERE nic = ?");
 $stmt->bind_param("s", $nic);
 $stmt->execute();
 $result = $stmt->get_result(); 
@@ -20,12 +20,15 @@ if ($result->num_rows > 0) {
     echo json_encode([
         'service' => $user['service'],
         'grade' => $user['grade'],
-        'position' => $user['position']
+        'desi' => $user['desi']
     ]);
 } else {
     echo json_encode(['error' => 'No user data found']);
 }
 
 $stmt->close();
+
+
+
 $conn->close();
 ?>
