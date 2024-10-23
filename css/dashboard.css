@@ -218,7 +218,16 @@ input[type="date"]{
 
 #removeCourseButton{
     width: 35px;
+    color: #ccc;
     background-color: #ff0000;
+    border: none;
+    font-weight: bold;
+}
+
+.btn.btn-primary{
+    width: 35px;
+    color: #ccc;
+    background-color: #007bff;
     border: none;
     font-weight: bold;
 }

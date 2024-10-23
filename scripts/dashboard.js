@@ -68,68 +68,69 @@ $(".submit").click(function() {
     return false;
 });
 
-function toggleTextBox() {
-    const selectBox = document.getElementById("charges");
+document.addEventListener('DOMContentLoaded', function() {
+    const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
     const textBoxRow = document.getElementById("textBoxRow");
+    const nextFieldsetTableContainer = document.getElementById("nextFieldsetTableContainer");
     const textBoxRows = document.getElementById("textBoxRows");
+    const nextFieldsetTableContainers = document.getElementById("nextFieldsetTableContainers");
+    const courseDetailsContainer = document.getElementById('courseDeatails'); // Ensure you have this ID in your HTML.
 
-    if (selectBox.value == "1") {
-        textBoxRow.style.display = "block";  // Show the text box
-        nextFieldsetTableContainer.style.display = "block";
-    } else {
-        textBoxRow.style.display = "none";   // Hide the text box
-        textBoxRows.style.display = "none";
-        nextFieldsetTableContainer.style.display = "none";
-    }
-}
+    // Function to toggle display based on the radio button selection
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.id === "flexRadioDefault1") { 
+                textBoxRow.style.display = "block"; 
+                nextFieldsetTableContainer.style.display = "block"; 
+            } else { 
+                textBoxRow.style.display = "none";   
+                nextFieldsetTableContainer.style.display = "none";
+                textBoxRows.style.display = "none"; 
+                nextFieldsetTableContainers.style.display = "none"; 
+            }
+        });
+    });
 
-// course Details plus button click
-document.getElementById('addCourseButton').addEventListener('click', function() {
-    if (!document.getElementById('courseDeatails').querySelector('.rows')) {
+    // Course Details plus button click
+    document.getElementById('addCourseButton').addEventListener('click', function() {
         var newRows = document.getElementById('textBoxRows').cloneNode(true);
+        newRows.style.display = 'block'; 
 
-        // Ensure that the cloned rows are displayed
-        newRows.style.display = 'block';
-
-        // Change the IDs of the cloned inputs to avoid ID conflicts
         var clonedInputs = newRows.querySelectorAll('input');
-        clonedInputs.forEach(function(input, index) {
-            input.id = input.id + '_clone';  // Add '_clone' suffix or any unique identifier to the ID
-            input.name = input.name + '_clone'; // Modify the name if necessary
+        clonedInputs.forEach(function(input) {
+            input.id = input.id + '_' + (courseDetailsContainer.children.length + 1);
+            input.name = input.name + '_' + (courseDetailsContainer.children.length + 1);
+            input.value = ''; 
         });
 
-        // Append the cloned rows to the course details section
-        document.getElementById('courseDeatails').appendChild(newRows);
+        courseDetailsContainer.appendChild(newRows);
 
         // Display the next fieldset table
-        document.getElementById('nextFieldsetTableContainers').style.display = 'block';
+        nextFieldsetTableContainers.style.display = 'block';
 
-        // Reattach event listeners for the cloned inputs
-        clonedInputs.forEach(function(input, index) {
+        clonedInputs.forEach(function(input) {
             input.addEventListener('input', function() {
-                var cellId = input.id.replace('_clone', 'Cell');  // Map to the corresponding table cell
+                var cellId = input.id.replace(/_[0-9]+$/, 'Cell'); // Map to the corresponding table cell
                 var tableCell = document.getElementById(cellId);
                 if (tableCell) {
                     tableCell.innerText = this.value;
                 }
             });
         });
-    } else {
-        alert("Course details have already been added.");
-    }
-});
+    });
 
-
-// course Button remove button click
-document.addEventListener('click', function(event) {
-    if (event.target && event.target.id === 'removeCourseButton') {
-        var rowsToRemove = event.target.closest('.rows');
-        if (rowsToRemove) {
-            rowsToRemove.remove();
-            nextFieldsetTableContainers.style.display = "none";
+    // Course Details remove button click
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'removeCourseButton') {
+            var rowsToRemove = event.target.closest('.rows');
+            if (rowsToRemove) {
+                rowsToRemove.remove();
+                nextFieldsetTableContainers.style.display = "none"; // Hide the next fieldset
+            }
         }
-    }
+    });
 });
+
 
 //View 
 const fields = [
@@ -152,24 +153,40 @@ const fields = [
     { input: 'eDate', cell: 'eDateCell' },
     { input: 'provision', cell: 'provisionCell' },
     { input: 'charges', cell: 'chargesCell' },
-    { input: 'courseName1', cell: 'courseName1Cell'},
-    { input: 'universityName1', cell: 'universityName1Cell'},
-    { input: 'csDate1', cell: 'csDate1Cell'},
-    { input: 'loan1', cell: 'loan1Cell'},
-    { input: 'cFees1', cell: 'cFees1Cell'},
-    { input: 'courseName2', cell: 'courseName2Cell'},
-    { input: 'universityName2', cell: 'universityName2Cell'},
-    { input: 'csDate2', cell: 'csDate2Cell'},
-    { input: 'loan2', cell: 'loan2Cell'},
-    { input: 'cFees2', cell: 'cFees2Cell'},
+    { input: 'courseName1', cell: 'courseName1Cell' },
+    { input: 'universityName1', cell: 'universityName1Cell' },
+    { input: 'csDate1', cell: 'csDate1Cell' },
+    { input: 'loan1', cell: 'loan1Cell' },
+    { input: 'cFees1', cell: 'cFees1Cell' },
+    { input: 'courseName2', cell: 'courseName2Cell' },
+    { input: 'universityName2', cell: 'universityName2Cell' },
+    { input: 'csDate2', cell: 'csDate2Cell' },
+    { input: 'loan2', cell: 'loan2Cell' },
+    { input: 'cFees2', cell: 'cFees2Cell' },
+    { input: 'flexRadioDefault', cell: 'chargesCell' },
 ];
 
+// Attach input event listeners
 fields.forEach(function(field) {
-    document.getElementById(field.input).addEventListener('input', function() {
-        document.getElementById(field.cell).innerText = this.value;
+    const inputElement = document.getElementById(field.input);
+    if (inputElement) {
+        inputElement.addEventListener('change', function() {
+            document.getElementById(field.cell).innerText = this.value;
+        });
+    }
+});
+
+const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
+radioButtons.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        // Update the chargesCell with the selected radio button value
+        document.getElementById('chargesCell').innerText = this.value;
     });
 });
 
+document.getElementById('chargesCell').innerText = 'නැත';
+
+// Fetch and fill data function
 function fetchAndFillData() {
     fetch('api/dashboard_2db.php')  // Adjust the path if needed
         .then(response => response.json())
@@ -191,6 +208,10 @@ function fetchAndFillData() {
         .catch(error => console.error('Error:', error));
 }
 
+// Call fetchAndFillData when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', fetchAndFillData);
+
+
 // Call the function to fetch and fill data
 fetchAndFillData();
 
@@ -211,17 +232,55 @@ document.getElementById('terms-checkbox-37').addEventListener('change', function
 });
 
 
-
-
 window.onload = function() {
-    fetch('api/dashboard_2db.php')  // Adjust the path if needed
+    fetch('api/dashboard_2db.php')  
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
-                // Fill the readonly text inputs with fetched data
-                document.getElementById('service').value = data.service;
-                document.getElementById('grade').value = data.grade;
-                document.getElementById('job').value = data.desi;
+                // Fill readonly text inputs with fetched data
+                document.getElementById('service').value = data.user.service;
+                document.getElementById('grade').value = data.user.grade;
+                document.getElementById('job').value = data.user.desi;
+
+                // Fill corresponding table cells
+                document.getElementById('serviceCell').innerText = data.user.service;
+                document.getElementById('gradeCell').innerText = data.user.grade;
+                document.getElementById('jobCell').innerText = data.user.desi;
+
+                // Populate ministry dropdown and select the current ministry
+                const ministrySelect = document.getElementById('ministry');
+                data.ministries.forEach(ministry => {
+                    const option = document.createElement('option');
+                    option.value = ministry.min_id;  // Set value to min_id
+                    option.textContent = ministry.min_name;  // Set display text to min_name
+                    
+                    // Check if this is the user's current ministry
+                    if (ministry.min_id === data.user.ministry_id) {
+                        option.selected = true;  // Auto-select the current ministry
+                    }
+
+                    ministrySelect.appendChild(option);  // Add option to dropdown
+                });
+
+                // Set the ministry value for autofill based on selected option
+                const selectedMinistryId = ministrySelect.value;
+                const selectedMinistry = data.ministries.find(ministry => ministry.min_id == selectedMinistryId);
+                if (selectedMinistry) {
+                    const selectedMinistryName = selectedMinistry.min_name;
+                    document.getElementById('ministry').value = selectedMinistryName;  // Autofill the ministry name
+                    document.getElementById('ministryCell').innerText = selectedMinistryName;  // Update the table cell
+                }
+
+                // Listen to changes in dropdown and update the ministry name in the readonly field and table cell
+                ministrySelect.addEventListener('change', function() {
+                    const selectedOption = ministrySelect.options[ministrySelect.selectedIndex];
+                    const selectedMinistryName = selectedOption.textContent;  // Get the selected ministry's name
+                    
+                    // Update readonly field and table with selected ministry's name
+                    document.getElementById('ministry').value = selectedMinistryName;
+                    document.getElementById('ministryCell').innerText = selectedMinistryName;
+                });
+
             } else {
                 alert("Error: " + data.error);
             }
@@ -230,20 +289,10 @@ window.onload = function() {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('api/dashboard.php')  
-        .then(response => response.json())
-        .then(data => {
-            const ministrySelect = document.getElementById('ministry');
-            data.forEach(ministry => {
-                const option = document.createElement('option');
-                option.value = ministry.min_id; 
-                option.textContent = ministry.min_name; 
-                ministrySelect.appendChild(option); 
-            });
-        })
-        .catch(error => console.error('Error fetching ministries:', error));
-});
+
+
+
+
 
 
 

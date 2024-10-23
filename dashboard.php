@@ -120,9 +120,9 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6">
-                                <h5 for="ball">අයත්වන අමාත්‍යාංශය</h5>
+                                <h5 for="ministry">අයත්වන අමාත්‍යාංශය</h5>
                                 <select class="form-select" aria-label="Default select example" name="ministry" id="ministry">
-                                    <option selected>Open this select menu</option>
+                                    <option value="" selected>Open this select menu</option>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
@@ -182,15 +182,25 @@
                             <p>(පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.)</p>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-6">
-                                <h5 for="ball">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</h5>
-                                <select class="form-select" id="charges" name="charges" aria-label="Default select example" onchange="toggleTextBox()">
-                                    <option selected>තෝරන්න</option>
-                                    <option value="1">ඇත</option>
-                                    <option value="2">නැත</option>
-                                </select>
+                            <div class="col-12 col-md-12">
+                                <div class="d-flex align-items-center">
+                                    <h5 for="ball" class="me-3">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</h5>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="ඇත">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            ඇත
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="නැත" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            නැත
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <!-- Course Details with Plus Button -->
                         <div class="rows" id="textBoxRow" style="display:none;">
                             <div class="row">
@@ -228,7 +238,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button id="addCourseButton" class="btn btn-primary">+</button>
+                                        <button id="addCourseButton" class="btn btn-primary">
+                                            +
+                                        </button>
                                     </div>
                                 </div>
                             </div>
