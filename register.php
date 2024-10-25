@@ -22,7 +22,7 @@
 
 
     <div class="form-container">
-        <form class="msform" action="./api/register_2db.php" method="POST">
+        <form class="msform" action="./register_to_db.php" method="POST">
             <h2 class="tracking-in-contract">REGISTER</h2>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">මුලකුරු සමග නම</h5>
@@ -83,7 +83,7 @@
     <section class="hero-section">    
     </section>
     
-    <script src="./scripts/register.js"></script>
+    <script src="./js/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

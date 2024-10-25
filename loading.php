@@ -14,6 +14,6 @@
         <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
         <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
     </svg>
-    <script src="./scripts/loading.js"></script>
+    <script src="./js/loading.js"></script>
 </body>
 </html>

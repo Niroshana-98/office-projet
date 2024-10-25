@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/otp.css">
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <script src="./scripts/otp.js" defer></script>
+    <script src="./js/otp.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -18,7 +18,7 @@
         <h4>Enter OTP Code</h4>
 
         <!-- Properly structured form -->
-        <form action="./api/otp_2db.php?email=<?php echo $_GET['email']; ?>" method="post">
+        <form action="./otp_to_db.php?email=<?php echo $_GET['email']; ?>" method="post">
           <div class="input-field">
             <input type="number" name="otp[]" />
             <input type="number" name="otp[]" disabled />

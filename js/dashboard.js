@@ -64,7 +64,9 @@ function setProgressBar(curStep) {
     $(".progress-bar").css("width", percent + "%");
 }
 
-
+$(".submit").click(function() {
+    return false;
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
@@ -186,7 +188,7 @@ document.getElementById('chargesCell').innerText = 'නැත';
 
 // Fetch and fill data function
 function fetchAndFillData() {
-    fetch('api/dashboard_2db.php')  // Adjust the path if needed
+    fetch('dashboard_to_db.php')  // Adjust the path if needed
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
@@ -215,7 +217,7 @@ fetchAndFillData();
 
 
 //submit button color change
-/*document.getElementById('terms-checkbox-37').addEventListener('change', function() {
+document.getElementById('terms-checkbox-37').addEventListener('change', function() {
     var submitButton = document.getElementById('submitButton');
 
     if (this.checked) {
@@ -227,11 +229,11 @@ fetchAndFillData();
         submitButton.classList.remove('enabled'); // Remove class for animation
         submitButton.style.cursor = "not-allowed"; // Change cursor to not-allowed
     }
-});*/
+});
 
 
 window.onload = function() {
-    fetch('api/dashboard_2db.php')  
+    fetch('dashboard_to_db.php')  
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
@@ -285,6 +287,8 @@ window.onload = function() {
         })
         .catch(error => console.error('Error:', error));
 };
+
+
 
 
 
