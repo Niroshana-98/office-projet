@@ -20,7 +20,6 @@
                         <li id="personal"><strong>Job Details</strong></li>
                         <li id="payment"><strong>Education</strong></li>
                         <li id="finish"><strong>View</strong></li>
-                        <li id="upload"><strong>Upload</strong></li>
                     </ul>
                     
                     <!--Fieldset 1-->
@@ -497,77 +496,12 @@
                             </label>
                             </div>
                         
-                            <button type="button" id="submitButton" class="next action" disabled> 
+                            <button type="submit" id="submitButton" class="next action" disabled> 
                                 <span>Submit</span>
                             </button>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
-                    <!--Fieldset 5-->
-                    <fieldset>
-                        <h3 class="fs-title">පරිලෝකන (scan) කර ඉදිරිපත් කරන ලේඛන:</h3>
-                        <h2 class="steps">Step 5 - 5</h2>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="uname">ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile1">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile2">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">සේවය ස්ථිර කිරීමේ ලිපියේ සහතික කරන ලද පිටපත</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile3">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">නිලධාරියා දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කල පිටපත</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile4">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">නිලධාරියා අදාල පාඨමාලාව සඳහා තොරා ගත් බවට වන ලිපිය</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile5">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">විශ්ව විද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව විසින් අනුමත කරන ලද විශ්ව විද්‍යාලයක බව සහතික කරන ලද ලිපිය</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile6">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">පාථමාලාව අවසන් කළ බවට සහතිකය</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile7">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">මුදල් ගෙවූ රිසිට්පත්</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile8">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="uname">වෙනත්</td>
-                                    <td>
-                                        <input class="form-control" type="file" id="formFile9">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <input type="button" name="next" class="next action-button" value="Next" />
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                    </fieldset>
                 </form>
             </div>
             <div class="col-1"></div>

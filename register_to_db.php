@@ -105,10 +105,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Content
                 $mail->isHTML(true);
-                $mail->Subject = 'Your Email Verification Code';
-                $mail->Body    = "Your OTP code is <b>$otp</b>";
-                
+                $mail->Subject = 'Verify Your Email Address';
+                $mail->Body = "
+                    <div style='font-family: Arial, sans-serif; color: #333; text-align: center; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;'>
+                        <h2 style='color: #4CAF50;'>Email Verification Code</h2>
+                        <p style='font-size: 16px; color: #555;'>Hello,</p>
+                        <p style='font-size: 16px; color: #555;'>Thank you for registering. Please use the following code to verify your email address:</p>
+                        
+                        <div style='font-size: 24px; color: #4CAF50; font-weight: bold; padding: 10px; border: 2px dashed #4CAF50; display: inline-block; margin: 20px 0;'>
+                            $otp
+                        </div>
+                        
+                        <p style='font-size: 16px; color: #555;'>If you didn’t request this, please ignore this email.</p>
+                        
+                        <p style='font-size: 14px; color: #999; margin-top: 20px;'>Best Regards,<br>Chief Secretariat Southern Province</p>
+                    </div>
+                ";
                 $mail->send();
+
                 
                 // Redirect to the OTP verification page
                 echo "<script>alert('Registration successful! Check your email for the OTP.'); window.location.href = './otp.php?email=$email';</script>";

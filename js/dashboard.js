@@ -186,98 +186,64 @@ radioButtons.forEach(function(radio) {
 
 document.getElementById('chargesCell').innerText = 'නැත';
 
-// Fetch and fill data function
-function fetchAndFillData() {
-    fetch('dashboard_to_db.php')  // Adjust the path if needed
-        .then(response => response.json())
-        .then(data => {
-            if (!data.error) {
-                // Fill the readonly text inputs with fetched data
-                document.getElementById('service').value = data.service;
-                document.getElementById('grade').value = data.grade;
-                document.getElementById('job').value = data.desi;
-
-                // Also fill the corresponding table cells
-                document.getElementById('serviceCell').innerText = data.service;
-                document.getElementById('gradeCell').innerText = data.grade;
-                document.getElementById('jobCell').innerText = data.desi;
-            } else {
-                alert("Error: " + data.error);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-// Call fetchAndFillData when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', fetchAndFillData);
-
-
-// Call the function to fetch and fill data
-fetchAndFillData();
-
-
 //submit button color change
 document.getElementById('terms-checkbox-37').addEventListener('change', function() {
     var submitButton = document.getElementById('submitButton');
 
     if (this.checked) {
-        submitButton.disabled = false; // Enable button
-        submitButton.classList.add('enabled'); // Add class for animation
-        submitButton.style.cursor = "pointer"; // Change cursor to pointer
+        submitButton.disabled = false; 
+        submitButton.classList.add('enabled');
+        submitButton.style.cursor = "pointer"; 
     } else {
-        submitButton.disabled = true; // Disable button
-        submitButton.classList.remove('enabled'); // Remove class for animation
-        submitButton.style.cursor = "not-allowed"; // Change cursor to not-allowed
+        submitButton.disabled = true; 
+        submitButton.classList.remove('enabled'); 
+        submitButton.style.cursor = "not-allowed"; 
     }
 });
 
 
+// Fetch user and ministry data when the page loads
 window.onload = function() {
-    fetch('dashboard_to_db.php')  
+    fetch('../dashboard_to_db.php')
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
-                // Fill readonly text inputs with fetched data
+                // Fill readonly text inputs with user data
+                document.getElementById('iname').value = data.user.name;
+                document.getElementById('nic').value = data.user.nic;
+                document.getElementById('htel').value = data.user.tel;
+                document.getElementById('email').value = data.user.email;
                 document.getElementById('service').value = data.user.service;
                 document.getElementById('grade').value = data.user.grade;
                 document.getElementById('job').value = data.user.desi;
 
-                // Fill corresponding table cells
+                // Fill table cells with user data
+                document.getElementById('inameCell').innerText = data.user.name;
+                document.getElementById('nicCell').innerText = data.user.nic;
+                document.getElementById('htelCell').innerText = data.user.tel;
+                document.getElementById('emailCell').innerText = data.user.email;
                 document.getElementById('serviceCell').innerText = data.user.service;
                 document.getElementById('gradeCell').innerText = data.user.grade;
                 document.getElementById('jobCell').innerText = data.user.desi;
 
-                // Populate ministry dropdown and select the current ministry
+                // Populate ministry dropdown
                 const ministrySelect = document.getElementById('ministry');
                 data.ministries.forEach(ministry => {
                     const option = document.createElement('option');
-                    option.value = ministry.min_id;  // Set value to min_id
-                    option.textContent = ministry.min_name;  // Set display text to min_name
-                    
-                    // Check if this is the user's current ministry
+                    option.value = ministry.min_id;
+                    option.textContent = ministry.min_name;
+
+                    // Auto-select user's current ministry
                     if (ministry.min_id === data.user.ministry_id) {
-                        option.selected = true;  // Auto-select the current ministry
+                        option.selected = true;
                     }
 
-                    ministrySelect.appendChild(option);  // Add option to dropdown
+                    ministrySelect.appendChild(option);
                 });
 
-                // Set the ministry value for autofill based on selected option
-                const selectedMinistryId = ministrySelect.value;
-                const selectedMinistry = data.ministries.find(ministry => ministry.min_id == selectedMinistryId);
-                if (selectedMinistry) {
-                    const selectedMinistryName = selectedMinistry.min_name;
-                    document.getElementById('ministry').value = selectedMinistryName;  // Autofill the ministry name
-                    document.getElementById('ministryCell').innerText = selectedMinistryName;  // Update the table cell
-                }
-
-                // Listen to changes in dropdown and update the ministry name in the readonly field and table cell
+                // Update display based on ministry dropdown selection
                 ministrySelect.addEventListener('change', function() {
-                    const selectedOption = ministrySelect.options[ministrySelect.selectedIndex];
-                    const selectedMinistryName = selectedOption.textContent;  // Get the selected ministry's name
-                    
-                    // Update readonly field and table with selected ministry's name
-                    document.getElementById('ministry').value = selectedMinistryName;
+                    const selectedMinistryName = ministrySelect.options[ministrySelect.selectedIndex].textContent;
                     document.getElementById('ministryCell').innerText = selectedMinistryName;
                 });
 

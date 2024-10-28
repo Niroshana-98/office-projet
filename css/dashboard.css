@@ -399,13 +399,6 @@ button:enabled:hover::before {
     transform: translate3d(100%, 0, 0);
 }
 
-.table-no-border {
-    border: none; /* Hide table border */
-}
-.table-no-border th, .table-no-border td {
-    border: none; /* Hide cell borders */
-}
-
 
 
 

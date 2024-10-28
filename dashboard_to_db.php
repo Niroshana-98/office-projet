@@ -3,7 +3,7 @@ session_start();
 require 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // FETCH DATA LOGIC
+    // Check if user is logged in
     if (!isset($_SESSION['nic'])) {
         echo json_encode(['error' => 'User not logged in']);
         exit();
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $nic = $_SESSION['nic'];
 
     // Fetch user data based on NIC
-    $stmt = $conn->prepare("SELECT service, grade, desi FROM users WHERE nic = ?");
+    $stmt = $conn->prepare("SELECT name, nic, email, tel, service, grade, desi FROM users WHERE nic = ?");
     $stmt->bind_param("s", $nic);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -31,21 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $ministries_result = $ministry_stmt->get_result();
 
     $ministries = [];
-    if ($ministries_result->num_rows > 0) {
-        while ($row = $ministries_result->fetch_assoc()) {
-            $ministries[] = $row;
-        }
+    while ($row = $ministries_result->fetch_assoc()) {
+        $ministries[] = $row;
     }
+
     $ministry_stmt->close();
 
-    // Convert both user data and ministries to JSON format
+    // Send a JSON response with both user data and ministries
     header('Content-Type: application/json');
     echo json_encode([
         'user' => $userData,
         'ministries' => $ministries
     ]);
 }
-/*
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect data from the POST request
     $name_full = $_POST['fname'];
@@ -105,11 +104,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmts->execute()) {
             echo "Error: " . $stmts->error;
         } else {
-            echo "<script>alert('Data inserted successfully!');</script>";
+            $update_stmt = $conn->prepare("UPDATE users SET status = ? WHERE nic = ?");
+            $new_status = 3; // Status to set
+            $update_stmt->bind_param("is", $new_status, $nic);
+        
+        if ($update_stmt->execute()) {
+            echo "<script>alert('Data inserted successfully! Navigating to upload page.'); window.location.href='upload.php';</script>";
+        } else {
+            echo "Error updating user status: " . $update_stmt->error;
         }
+        
+        $update_stmt->close();
     }
-    $stmts->close();
 }
-*/
+
+$stmts->close();
+}
+
 $conn->close();
 ?>

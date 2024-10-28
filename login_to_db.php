@@ -18,21 +18,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash the password input and compare it with the stored hashed password
         if ($user['password'] === md5($password)) {
 
-            // Check the user's status
+            // Start session and set session variables
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['name'];
+            $_SESSION['nic'] = $user['nic'];
+
+            // Check the user's status and redirect
             if ($user['status'] == 1) {
                 // Redirect to OTP verification page
-                header("Location: ./otp.php?email=" . urlencode($user['email'])); // Pass the email for OTP verification
+                header("Location: ./otp.php?email=" . urlencode($user['email']));
                 exit();
-            } else {
-                // Status != 1, proceed with login
-                session_start();
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['name'];
-                $_SESSION['nic'] = $user['nic'];
-
-                // Redirect to loading page or dashboard
+            } elseif ($user['status'] == 2) {
+                // Redirect to dashboard
                 header("Location: ./dashboard.php");
                 exit();
+            } elseif ($user['status'] == 3) {
+                // Redirect to upload page
+                header("Location: ./upload.php");
+                exit();
+            } else {
+                // Handle any other statuses if necessary
+                echo "<script>alert('Invalid user status'); window.location.href = './index.html';</script>";
             }
 
         } else {
