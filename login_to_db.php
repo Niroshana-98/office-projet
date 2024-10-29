@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Hash the password input and compare it with the stored hashed password
         if ($user['password'] === md5($password)) {
 
-            // Start session and set session variables
             session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['name'];
@@ -26,19 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Check the user's status and redirect
             if ($user['status'] == 1) {
-                // Redirect to OTP verification page
                 header("Location: ./otp.php?email=" . urlencode($user['email']));
                 exit();
             } elseif ($user['status'] == 2) {
-                // Redirect to dashboard
                 header("Location: ./dashboard.php");
                 exit();
             } elseif ($user['status'] == 3) {
-                // Redirect to upload page
                 header("Location: ./upload.php");
                 exit();
+            }elseif ($user['status'] == 4) {
+                header("Location: ./applicationView.php");
+                exit();
             } else {
-                // Handle any other statuses if necessary
                 echo "<script>alert('Invalid user status'); window.location.href = './index.html';</script>";
             }
 
@@ -48,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     } else {
-        // No user found with the provided username (email or NIC)
         echo "<script>alert('Invalid username or password. Please try again.'); window.location.href = './index.html';</script>";
         exit();
     }

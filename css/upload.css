@@ -40,7 +40,7 @@ main.table {
 
 
 .table__body {
-    width: 95%;
+    width: 60%;
     max-height: calc(89% - 1.6rem);
     background-color: #fffb;
 
@@ -193,29 +193,20 @@ tbody tr.hide td img {
     display: inline-flex; 
     align-items: center; 
     padding: 0.5rem 1rem; 
-    width: 120px;
-    vertical-align: middle; 
+    width: 110px;
+    vertical-align: middle;
+    font-size: 14px; /* Change this value to your desired font size */
 }
+
 
 .btn svg {
     margin-right: 0.5rem; 
     vertical-align: middle; 
 }
 
-#viewButton {
-    position: relative; /* Ensure the button is positioned correctly for hover effects */
-    transition: background-color 0.3s, color 0.3s; /* Transition effects for smoothness */
-}
 
-#viewButton:hover {
-    background-color: #28a745; /* Change the background color on hover */
-    color: white; /* Change text color on hover */
-}
 
-#viewButton[disabled] {
-    opacity: 0.6; /* Make disabled button semi-transparent */
-    cursor: not-allowed; /* Change cursor to indicate it's disabled */
-}
+
 
 
 
