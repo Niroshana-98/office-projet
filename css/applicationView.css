@@ -1,57 +1,17 @@
-* {
-    margin: 0;
-    padding: 0;
-
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-
-
-body {
-    background: url(../images/Galle-Fort.jpg) no-repeat center center fixed;
-    background-size: cover; 
+body, html {
     display: flex;
+    justify-content: center;
     height: 100vh; 
-    margin: 0; 
+    margin: -10px; 
+    background-color: #f4f4f4; 
 }
 
-.navbar {
-    background-color: rgba(255, 255, 255, 0.9);
-    height: auto;
-    margin: 20px;
-    margin-bottom: 200px;
-    display: flex;
-    border-radius: 16px;
-    padding: 0.5rem;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    transition: top 0.9s ease;
-}
-
-.navbar-brand {
-    font-weight: 500;
-    font-size: 24px;
-    transition: 0.3s color;
-    text-transform: uppercase;
-    gap: 10px;
-}
-
-.navbar-text {
-    font-weight: bold;
-    font-size: 24px;
-    font-style: bold;
-    text-transform: uppercase;
-    color: #009970;
+.container {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 20px;
 }
 
-.logo {
-    height: 60px; 
-    width: auto; 
-    margin-left: 20px;
+.logo img {
+    width: 40px; 
+    height: auto; 
 }

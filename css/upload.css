@@ -204,6 +204,98 @@ tbody tr.hide td img {
     vertical-align: middle; 
 }
 
+#complete,
+#complete_2,
+#complete_3,
+#complete_4,
+#complete_5,
+#complete_6,
+#complete_7,
+#complete_8,
+#complete_9 {
+    color: #009970;
+}
+
+#complete:hover,
+#complete_2:hover,
+#complete_3:hover,
+#complete_4:hover,
+#complete_5:hover,
+#complete_6:hover,
+#complete_7:hover,
+#complete_8:hover,
+#complete_9:hover {
+    color: #3ab84f; 
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.Documents-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: 45px;
+    border: none;
+    padding: 0px 15px;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0);
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px;
+    margin-left: auto;
+  }
+  .folderContainer {
+    width: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .fileBack {
+    z-index: 1;
+    width: 80%;
+    height: auto;
+  }
+  .filePage {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.3s ease-out;
+  }
+  .fileFront {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    z-index: 3;
+    opacity: 0.95;
+    transform-origin: bottom;
+    transition: all 0.3s ease-out;
+  }
+  .text {
+    color: white;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    margin-top:15px
+  }
+  .Documents-btn:hover .filePage {
+    transform: translateY(-5px);
+  }
+  .Documents-btn:hover {
+    background-color: rgb(19, 19, 20);
+  }
+  .Documents-btn:active {
+    transform: scale(0.95);
+  }
+  .Documents-btn:hover .fileFront {
+    transform: rotateX(30deg);
+  }
+  
+
 
 
 

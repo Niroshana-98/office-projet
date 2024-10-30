@@ -1,4 +1,4 @@
-function setupUploadButton(uploadButtonId, fileInputId, viewButtonId, fileKey) {
+function setupUploadButton(uploadButtonId, fileInputId, completeId, viewButtonId, fileKey) {
     document.getElementById(uploadButtonId).addEventListener('click', function() {
         const fileInput = document.getElementById(fileInputId);
         const file = fileInput.files[0];
@@ -31,8 +31,18 @@ function setupUploadButton(uploadButtonId, fileInputId, viewButtonId, fileKey) {
         .then(data => {
             if (data.success) {
                 alert("File uploaded successfully.");
-                document.getElementById(viewButtonId).disabled = false;
-                document.getElementById(uploadButtonId).disabled = true;
+                document.getElementById(uploadButtonId).style.display = 'none';
+                document.getElementById(fileInputId).style.display = 'none';
+
+                // Show view button and enable it
+                const viewButton = document.getElementById(viewButtonId);
+                viewButton.disabled = false;
+                viewButton.style.display = 'inline-block';
+
+                const complete = document.getElementById(completeId);
+                complete.style.display = 'inline-flex';
+                complete.style.alignItems='right'
+
                 document.getElementById(viewButtonId).addEventListener('click', function() {
                     window.open(data.filePath, '_blank');
                 });
@@ -54,30 +64,38 @@ window.onload = function() {
         })
         .then(data => {
             if (data.success) {
-                const handleFilePath = (filePath, uploadButtonId, fileInputId, viewButtonId) => {
+                const handleFilePath = (filePath, uploadButtonId, fileInputId, viewButtonId, completeId) => {
                     if (filePath) {
-                        document.getElementById(uploadButtonId).disabled = true;
-                        document.getElementById(fileInputId).disabled = true;
-                        document.getElementById(viewButtonId).disabled = false;
-                        document.getElementById(viewButtonId).addEventListener('click', function() {
+                        document.getElementById(uploadButtonId).style.display = 'none';
+                        document.getElementById(fileInputId).style.display = 'none';
+
+                        const viewButton = document.getElementById(viewButtonId);
+                        viewButton.style.display = 'inline-block';
+                        viewButton.disabled = false;
+
+                        const complete = document.getElementById(completeId);
+                        complete.style.display = 'inline-flex';
+
+                        viewButton.addEventListener('click', function() {
                             window.open(filePath, '_blank');
                         });
                     } else {
-                        document.getElementById(uploadButtonId).disabled = false;
-                        document.getElementById(fileInputId).disabled = false;
-                        document.getElementById(viewButtonId).disabled = true;
+                        document.getElementById(uploadButtonId).style.display = 'inline-block';
+                        document.getElementById(fileInputId).style.display = 'inline-block';
+                        document.getElementById(viewButtonId).style.display = 'none';
+                        document.getElementById(completeId).style.display = 'none';
                     }
                 };
 
-                handleFilePath(data.filePath1, 'uploadButton', 'up_porva_anu', 'viewButton');
-                handleFilePath(data.filePath2, 'uploadButton_2', 'up_service_minite', 'viewButton_2');
-                handleFilePath(data.filePath3, 'uploadButton_3', 'up_app_letter_confirm', 'viewButton_3');
-                handleFilePath(data.filePath4, 'uploadButton_4', 'up_attach_sp', 'viewButton_4');
-                handleFilePath(data.filePath5, 'uploadButton_5', 'up_course_selected', 'viewButton_5');
-                handleFilePath(data.filePath6, 'uploadButton_6', 'up_campus_confirm', 'viewButton_6');
-                handleFilePath(data.filePath7, 'uploadButton_7', 'up_course_complete', 'viewButton_7');
-                handleFilePath(data.filePath8, 'uploadButton_8', 'up_pay_recept', 'viewButton_8');
-                handleFilePath(data.filePath9, 'uploadButton_9', 'up_other', 'viewButton_9');
+                handleFilePath(data.filePath1, 'uploadButton', 'up_porva_anu', 'viewButton', 'complete');
+                handleFilePath(data.filePath2, 'uploadButton_2', 'up_service_minite', 'viewButton_2', 'complete_2');
+                handleFilePath(data.filePath3, 'uploadButton_3', 'up_app_letter_confirm', 'viewButton_3', 'complete_3');
+                handleFilePath(data.filePath4, 'uploadButton_4', 'up_attach_sp', 'viewButton_4', 'complete_4');
+                handleFilePath(data.filePath5, 'uploadButton_5', 'up_course_selected', 'viewButton_5', 'complete_5');
+                handleFilePath(data.filePath6, 'uploadButton_6', 'up_campus_confirm', 'viewButton_6', 'complete_6');
+                handleFilePath(data.filePath7, 'uploadButton_7', 'up_course_complete', 'viewButton_7', 'complete_7');
+                handleFilePath(data.filePath8, 'uploadButton_8', 'up_pay_recept', 'viewButton_8', 'complete_8');
+                handleFilePath(data.filePath9, 'uploadButton_9', 'up_other', 'viewButton_9', 'complete_9');
             } else {
                 console.error("Error fetching file path:", data.error);
             }
@@ -86,15 +104,15 @@ window.onload = function() {
 };
 
 // Setup upload button functionality
-setupUploadButton('uploadButton', 'up_porva_anu', 'viewButton', 'up_porva_anu');
-setupUploadButton('uploadButton_2', 'up_service_minite', 'viewButton_2', 'up_service_minite');
-setupUploadButton('uploadButton_3', 'up_app_letter_confirm', 'viewButton_3', 'up_app_letter_confirm');
-setupUploadButton('uploadButton_4', 'up_attach_sp', 'viewButton_4', 'up_attach_sp');
-setupUploadButton('uploadButton_5', 'up_course_selected', 'viewButton_5', 'up_course_selected');
-setupUploadButton('uploadButton_6', 'up_campus_confirm', 'viewButton_6', 'up_campus_confirm');
-setupUploadButton('uploadButton_7', 'up_course_complete', 'viewButton_7', 'up_course_complete');
-setupUploadButton('uploadButton_8', 'up_pay_recept', 'viewButton_8', 'up_pay_recept');
-setupUploadButton('uploadButton_9', 'up_other', 'viewButton_9', 'up_other');
+setupUploadButton('uploadButton', 'up_porva_anu','complete', 'viewButton', 'up_porva_anu');
+setupUploadButton('uploadButton_2', 'up_service_minite', 'complete_2', 'viewButton_2', 'up_service_minite');
+setupUploadButton('uploadButton_3', 'up_app_letter_confirm','complete_3', 'viewButton_3', 'up_app_letter_confirm');
+setupUploadButton('uploadButton_4', 'up_attach_sp','complete_4', 'viewButton_4', 'up_attach_sp');
+setupUploadButton('uploadButton_5', 'up_course_selected','complete_5', 'viewButton_5', 'up_course_selected');
+setupUploadButton('uploadButton_6', 'up_campus_confirm','complete_6', 'viewButton_6', 'up_campus_confirm');
+setupUploadButton('uploadButton_7', 'up_course_complete','complete_7', 'viewButton_7', 'up_course_complete');
+setupUploadButton('uploadButton_8', 'up_pay_recept','complete_8', 'viewButton_8', 'up_pay_recept');
+setupUploadButton('uploadButton_9', 'up_other','complete_9', 'viewButton_9', 'up_other');
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -133,6 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+function redirectApplicationView(){
+    window.location.href = "../applicationView.php";
+}
 
 
