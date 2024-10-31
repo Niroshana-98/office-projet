@@ -1,16 +1,23 @@
+.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
 
 /*Title Bar*/
 
 .navbar {
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.9);
     height: auto;
     margin: 20px;
     display: flex;
     border-radius: 16px;
     padding: 0.5rem;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    transition: top 0.9s ease;
 }
 
 .navbar-brand {
@@ -138,6 +145,7 @@
     border-bottom: 2px solid #2b2626;
     margin: 30px 0;
     font-weight: 700;
+    
 }
 
 .input-box input{
@@ -150,9 +158,13 @@
     color: #000000;
     font-weight: 500;
     padding-right: 28px;
+    padding-left: 10px;
 }
 
-
+.form-box input {
+    outline: none; /* Remove outline */
+    border: none; /* Remove border */
+}
 
 .input-box label{
     position: absolute;
@@ -160,16 +172,32 @@
     left: 0;
     transform: translateY(-50%);
     font-size: 20px;
-    font-weight: 500;
-    pointer-events: none;
-    transition: .5s ease;
     font-weight: 700;
-    margin-bottom: 10px;
+    pointer-events: none;
+    margin-bottom: -20px;
+    display: flex;
 }
 
-.input-box input:focus~label,
-.input-box input:valid~label{
-    top: -5px;
+.input-box label span {
+    transition: transform 0.3s ease;
+}
+
+.input-box input:focus~label span,
+.input-box input:valid~label span{
+    transform: translateY(-15px);
+}
+
+.input-box input:focus ~ label span:nth-child(1) { transition-delay: 0ms; }
+.input-box input:focus ~ label span:nth-child(2) { transition-delay: 50ms; }
+.input-box input:focus ~ label span:nth-child(3) { transition-delay: 100ms; }
+.input-box input:focus ~ label span:nth-child(4) { transition-delay: 150ms; }
+.input-box input:focus ~ label span:nth-child(5) { transition-delay: 200ms; }
+.input-box input:focus ~ label span:nth-child(6) { transition-delay: 250ms; }
+.input-box input:focus ~ label span:nth-child(7) { transition-delay: 300ms; }
+.input-box input:focus ~ label span:nth-child(8) { transition-delay: 350ms; }
+
+.input-box input:valid ~ label span {
+    transform: translateY(-15px);
 }
 
 .input-box .icon{
@@ -206,9 +234,55 @@
     text-decoration: underline;
 }
 
+.username{
+    border: transparent;
+}
 .login-register p a:hover {
     text-decoration: underline;
 }
+
+/* Sign up */ 
+.button {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: #000000;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .button:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .button-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(
+      82.3deg,
+      rgba(150, 93, 233, 1) 10.8%,
+      rgba(99, 88, 238, 1) 94.3%
+    );
+    transition: all 0.475s;
+  }
 
 /* REGISTER PAGE */
 
@@ -219,14 +293,15 @@
     transform: translate(-50%, -50%);
     width: 40%; /* Adjust as needed */
     padding: 40px;
-    background: rgba(255, 255, 255, 0.5); /* White transparent background */
+    background: rgba(255, 255, 255, 0.6); /* White transparent background */
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     justify-content: space-between;
     align-items: flex-start;
     color: #333;
     backdrop-filter: blur(20px);
-    height: 1100px;
+    height: 1010px;
+    margin-top: 10px;
 }
 
 /* Rest of your form styling */
@@ -333,3 +408,69 @@
     margin-left: 10px;
 }
 
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="tel"],
+input[type="password"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: none;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.msform input[type="text"]:focus,
+.msform input[type="tel"]:focus,
+.msform input[type="email"]:focus,
+.msform input[type="date"]:focus,
+.msform input[type="tel"]:focus,
+.msform input[type="password"]:focus{
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+    outline: none; 
+}
+
+select.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: none;
+    box-sizing: border-box;
+    background-color: white; /* Dropdown background */
+    color: #333; /* Text color */
+    font-size: 14px; /* Font size */
+    
+}
+
+/* Focus effect similar to other input fields */
+select.form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.tracking-in-contract {
+	animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+ @keyframes tracking-in-contract {
+    0% {
+      letter-spacing: 1em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      letter-spacing: normal;
+      opacity: 1;
+    }
+  }
+  
+
+  

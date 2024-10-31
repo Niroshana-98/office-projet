@@ -1,0 +1,304 @@
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media print {
+ .table, .table__body {
+  overflow: visible;
+  height: auto !important;
+  width: auto !important;
+ }
+}
+
+/*@page {
+    size: landscape;
+    margin: 0; 
+}*/
+
+body {
+    background: url(../images/Galle-Fort.jpg) center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.table {
+    width: 82vw;
+    height: 90vh;
+    background-color: #fff5;
+
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
+
+
+.table__body {
+    width: 60%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+
+    margin: 2rem auto;
+    margin-top: 160px;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+
+table {
+    width: 100%;
+}
+
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: .5rem;
+    border-radius: 50%;
+
+    vertical-align: middle;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+    transition: .2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+    padding: 0;
+    font: 0 / 0 sans-serif;
+    transition: .2s ease-in-out .5s;
+}
+
+tbody tr.hide td img {
+    width: 0;
+    height: 0;
+    transition: .2s ease-in-out .5s;
+}
+
+
+@media (max-width: 1000px) {
+    td:not(:first-of-type) {
+        min-width: 12.1rem;
+    }
+}
+
+.icon-small {
+    width: 24px;
+    height: 24px;
+}
+
+.icon {
+    color: #000000; /* Default color */
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for the row */
+.hover-row:hover .icon {
+    color: #007bff; /* Change to desired color on hover */
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+    height: auto;
+    margin: 20px;
+    margin-bottom: 200px;
+    display: flex;
+    border-radius: 16px;
+    padding: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    transition: top 0.9s ease;
+}
+
+.navbar-brand {
+    font-weight: 500;
+    font-size: 24px;
+    transition: 0.3s color;
+    text-transform: uppercase;
+    gap: 10px;
+}
+
+.navbar-text {
+    font-weight: bold;
+    font-size: 24px;
+    font-style: bold;
+    text-transform: uppercase;
+    color: #009970;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    height: 60px; 
+    width: auto; 
+    margin-left: 20px;
+}
+
+.btn {
+    display: inline-flex; 
+    align-items: center; 
+    padding: 0.5rem 1rem; 
+    width: 110px;
+    vertical-align: middle;
+    font-size: 14px; /* Change this value to your desired font size */
+}
+
+
+.btn svg {
+    margin-right: 0.5rem; 
+    vertical-align: middle; 
+}
+
+#complete,
+#complete_2,
+#complete_3,
+#complete_4,
+#complete_5,
+#complete_6,
+#complete_7,
+#complete_8,
+#complete_9 {
+    color: #009970;
+}
+
+#complete:hover,
+#complete_2:hover,
+#complete_3:hover,
+#complete_4:hover,
+#complete_5:hover,
+#complete_6:hover,
+#complete_7:hover,
+#complete_8:hover,
+#complete_9:hover {
+    color: #3ab84f; 
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.Documents-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: 45px;
+    border: none;
+    padding: 0px 15px;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0);
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px;
+    margin-left: auto;
+  }
+  .folderContainer {
+    width: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .fileBack {
+    z-index: 1;
+    width: 80%;
+    height: auto;
+  }
+  .filePage {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.3s ease-out;
+  }
+  .fileFront {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    z-index: 3;
+    opacity: 0.95;
+    transform-origin: bottom;
+    transition: all 0.3s ease-out;
+  }
+  .text {
+    color: white;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    margin-top:15px
+  }
+  .Documents-btn:hover .filePage {
+    transform: translateY(-5px);
+  }
+  .Documents-btn:hover {
+    background-color: rgb(19, 19, 20);
+  }
+  .Documents-btn:active {
+    transform: scale(0.95);
+  }
+  .Documents-btn:hover .fileFront {
+    transform: rotateX(30deg);
+  }
+  
+
+
+
+
+
+
+
