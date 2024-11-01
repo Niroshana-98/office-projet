@@ -126,6 +126,67 @@
                 </tbody>
             </table>
         </div>
+
+        <div id="nextFieldsetTableContainer">
+            <h6 class="view-h5">මීට පෙර සේවා ව්‍යවස්ථාවට අදාළව පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලා ගාස්තු ලබා ගෙන ඇත්නම් ඒ පිළිබඳ තොරතුරු</h6>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="border: 1px solid;">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-left">පාඨමාලාවේ නම</th>
+                            <td class="text-left" colspan="3"><input type="text" id="bf_01course_name" name="bf_01course_name" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                            <td class="text-left"><input type="text" name="bf_01ins_name" id="bf_01ins_name" disabled></td>
+                            <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
+                            <td class="text-left"><input type="text" name="bf_01start_date" id="bf_01start_date" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                            <td class="text-left"><input type="text" id="bf_01gov_paid" name="bf_01gov_paid" disabled></td>
+                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                            <td class="text-left"><input type="text" id="bf_01full_course_fee" name="bf_01full_course_fee" disabled></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="nextFieldsetTableContainers">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="border: 1px solid;">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-left">පාඨමාලාවේ නම</th>
+                            <td class="text-left" colspan="3"><input type="text" id="bf_02course_name" name="bf_02course_name" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                            <td class="text-left"><input type="text" name="bf_02ins_name" id="bf_02ins_name" disabled></td>
+                            <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
+                            <td class="text-left"><input type="text" name="bf_02start_date" id="bf_02start_date" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                            <td class="text-left"><input type="text" id="bf_02gov_paid" name="bf_02gov_paid" disabled></td>
+                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                            <td class="text-left"><input type="text" id="bf_02full_course_fee" name="bf_02full_course_fee" disabled></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <button class="Documents-btn" onclick="printPage()">
             <p class="text">Print Document</p>
         </button>

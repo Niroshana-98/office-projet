@@ -14,10 +14,10 @@ if (!isset($_SESSION['nic'])) {
 
 $nic = $_SESSION['nic'];
 
-$stmt = $conn->prepare("SELECT app_no, name_si, name_full, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved FROM application WHERE nic = ?");
+$stmt = $conn->prepare("SELECT app_no, name_si, name_full, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee,bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee FROM application WHERE nic = ?");
 $stmt->bind_param("s", $nic);
 $stmt->execute();
-$stmt->bind_result($appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved);
+$stmt->bind_result($appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee);
 $stmt->fetch();
 $stmt->close();
 
@@ -47,6 +47,16 @@ if ($appNo) {
         'course_end_date' => $course_end_date,
         'course_fee' => $course_fee,
         'before_recieved' => $before_recieved,
+        'bf_01course_name' => $bf_01course_name,
+        'bf_01ins_name' => $bf_01ins_name,
+        'bf_01start_date' => $bf_01start_date,
+        'bf_01gov_paid' => $bf_01gov_paid,
+        'bf_01full_course_fee' => $bf_01full_course_fee,
+        'bf_02course_name' => $bf_02course_name,
+        'bf_02ins_name' => $bf_02ins_name,
+        'bf_02start_date' => $bf_02start_date,
+        'bf_02gov_paid' => $bf_02gov_paid,
+        'bf_02full_course_fee' => $bf_02full_course_fee,
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
