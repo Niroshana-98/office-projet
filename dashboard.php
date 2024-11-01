@@ -237,7 +237,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button id="addCourseButton" class="btn btn-primary">
+                                        <button type="button" id="addCourseButton" class="btn btn-primary">
                                             +
                                         </button>
                                     </div>
