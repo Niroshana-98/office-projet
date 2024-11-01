@@ -1,17 +1,105 @@
 body, html {
     display: flex;
-    justify-content: center;
-    height: 100vh; 
-    margin: -10px; 
-    background-color: #f4f4f4; 
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-.container {
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-top: 20px;
+    margin: 20px;
+}
+
+.logo {
+    display: flex;            
+    justify-content: center;  
+    align-items: center;   
+    margin-top: 20px;     
 }
 
 .logo img {
     width: 40px; 
     height: auto; 
+    align-items: center;
+}
+
+.tableLayout {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table {
+    width: 900px; /* Set your desired width */
+    border-collapse: collapse; 
+    font-size: 0.9em;
+}
+
+.table th, .table td {
+    border: 1px solid black; 
+    text-align: left; 
+    vertical-align: middle;
+    padding: 5px;
+    height: 20px;
+}
+
+.table td {
+    font-weight: 500; 
+}
+
+.table-head {
+    font-size: 1.2em; 
+    font-weight: bold; 
+}
+
+.table-responsive {
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    margin: 0 10px; 
+}
+
+@media (max-width: 576px) {
+    .small-table {
+        font-size: 0.6em; 
+    }
+}
+
+input {
+    width: 100%; 
+    border: none; 
+}
+
+input:disabled {
+    color: #6c757d; 
+}
+
+@media print {
+    .table {
+        width: 100%; 
+        font-size: 0.6em; 
+        height: 100px;
+    }
+
+    .table th, .table td {
+        padding: 0px; 
+        height: 10px;
+        margin: 0px; 
+    }
+
+    .hero, .tableLayout {
+        margin: 0; 
+    }
+
+    body {
+        background-color: white; 
+    }
+
+    .Documents-btn {
+        display: none;
+    }
 }

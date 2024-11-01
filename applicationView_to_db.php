@@ -13,17 +13,41 @@ if (!isset($_SESSION['nic'])) {
 }
 
 $nic = $_SESSION['nic'];
-$appNo = null;
 
-$stmt = $conn->prepare("SELECT app_no FROM application WHERE nic = ?");
+$stmt = $conn->prepare("SELECT app_no, name_si, name_full, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved FROM application WHERE nic = ?");
 $stmt->bind_param("s", $nic);
 $stmt->execute();
-$stmt->bind_result($appNo);
+$stmt->bind_result($appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved);
 $stmt->fetch();
 $stmt->close();
 
 if ($appNo) {
-    echo json_encode(['success' => true, 'app_no' => $appNo]);
+    echo json_encode([
+        'success' => true,
+        'app_no' => $appNo,
+        'name_si' => $nameSi,
+        'name_full' => $nameFull,
+        'name_eng' => $nameEng,
+        'nic' => $nic,
+        'address_pri' => $addressPri,
+        'tel_land' => $telLand,
+        'tel_mob' => $telMob,
+        'email_pri' => $emailPri,
+        'service' => $service,
+        'grade' => $grade,
+        'upp_status' => $upp_status,
+        'desi' => $desi,
+        'c_w_p' => $c_w_p,
+        'min' => $min,
+        'date_att_sp' => $date_att_sp,
+        'ins_name' => $ins_name,
+        'course_name' => $course_name,
+        'service_minite_no' => $service_minite_no,
+        'course_start_date' => $course_start_date,
+        'course_end_date' => $course_end_date,
+        'course_fee' => $course_fee,
+        'before_recieved' => $before_recieved,
+    ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
 }
