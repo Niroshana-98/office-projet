@@ -64,21 +64,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_att_sp = $_POST['includeDate'];
     $ins_name = $_POST['university'];
     $course_name = $_POST['digree'];
-    $service_minite_no = $_POST['eno'];
+    $service_minite_no = $_POST['eno']; 
     $course_start_date = $_POST['sDate'];
     $course_end_date = $_POST['eDate'];
     $course_fee = $_POST['provision'];
     $before_recieved = $_POST['flexRadioDefault'];
+    
     $bf_01course_name = $_POST['courseName1'];
     $bf_01ins_name = $_POST['universityName1'];
     $bf_01start_date = $_POST['csDate1'];
     $bf_01gov_paid = $_POST['loan1'];
     $bf_01full_course_fee = $_POST['cFees1'];
+
     $bf_02course_name = $_POST['courseName2'];
     $bf_02ins_name = $_POST['universityName2'];
     $bf_02start_date = $_POST['csDate2'];
     $bf_02gov_paid = $_POST['loan2'];
     $bf_02full_course_fee = $_POST['cFees2'];
+
+    $app_status = "1";
+
 
     // Check for existing NIC or email
     $stmts = $conn->prepare("SELECT * FROM application WHERE nic=? OR email_pri=?");
@@ -90,22 +95,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>alert('A user with this NIC or email already exists.');</script>";
     } else {
         // Insert data into application table
-        $stmts = $conn->prepare("INSERT INTO application (name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmts = $conn->prepare("INSERT INTO application (name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, app_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmts->bind_param("sssssiisssssssssssssissssiisssii", 
+        $stmts->bind_param("sssssiisssssssssssssissssiisssiii", 
             $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, $service, $grade, 
             $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, $service_minite_no, 
             $course_start_date, $course_end_date, $course_fee, $before_recieved, $bf_01course_name, 
             $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, $bf_02course_name, 
-            $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee
+            $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, $app_status
         );
 
-        // Execute and check for errors
         if (!$stmts->execute()) {
             echo "Error: " . $stmts->error;
         } else {
             $update_stmt = $conn->prepare("UPDATE users SET status = ? WHERE nic = ?");
-            $new_status = 3; // Status to set
+            $new_status = 3; 
             $update_stmt->bind_param("is", $new_status, $nic);
         
         if ($update_stmt->execute()) {

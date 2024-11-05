@@ -74,8 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextFieldsetTableContainer = document.getElementById("nextFieldsetTableContainer");
     const textBoxRows = document.getElementById("textBoxRows");
     const nextFieldsetTableContainers = document.getElementById("nextFieldsetTableContainers");
-    const courseDetailsContainer = document.getElementById('courseDeatails'); // Ensure you have this ID in your HTML.
-
+    const courseDetailsContainer = document.getElementById('courseDeatails'); 
     // Function to toggle display based on the radio button selection
     radioButtons.forEach(radio => {
         radio.addEventListener('change', function() {
@@ -166,7 +165,6 @@ const fields = [
     { input: 'flexRadioDefault', cell: 'chargesCell' },
 ];
 
-// Attach input event listeners
 fields.forEach(function(field) {
     const inputElement = document.getElementById(field.input);
     if (inputElement) {
@@ -253,18 +251,3 @@ window.onload = function() {
         })
         .catch(error => console.error('Error:', error));
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

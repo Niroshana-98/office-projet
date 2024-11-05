@@ -26,22 +26,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("course_end_date").value = data.course_end_date;
                 document.getElementById("course_fee").value = data.course_fee;
                 document.getElementById("before_recieved").value = data.before_recieved;
-                document.getElementById("bf_01course_name").value = data.bf_01course_name;
-                document.getElementById("bf_01ins_name").value = data.bf_01ins_name;
-                document.getElementById("bf_01start_date").value = data.bf_01start_date;
-                document.getElementById("bf_01gov_paid").value = data.bf_01gov_paid;
-                document.getElementById("bf_01full_course_fee").value = data.bf_01full_course_fee;
-                document.getElementById("bf_02course_name").value = data.bf_02course_name;
-                document.getElementById("bf_02ins_name").value = data.bf_02ins_name;
-                document.getElementById("bf_02start_date").value = data.bf_02start_date;
-                document.getElementById("bf_02gov_paid").value = data.bf_02gov_paid;
-                document.getElementById("bf_02full_course_fee").value = data.bf_02full_course_fee;
+
+                if (data.bf_01course_name) {
+                    document.getElementById("bf_01course_name").value = data.bf_01course_name;
+                    document.getElementById("bf_01ins_name").value = data.bf_01ins_name;
+                    document.getElementById("bf_01start_date").value = data.bf_01start_date;
+                    document.getElementById("bf_01gov_paid").value = data.bf_01gov_paid;
+                    document.getElementById("bf_01full_course_fee").value = data.bf_01full_course_fee;
+
+                    document.getElementById("nextFieldsetTableContainer").style.display = 'block';
+                } else {
+                    document.getElementById("nextFieldsetTableContainer").style.display = 'none';
+                }
+
+                if (data.bf_02course_name) {
+                    document.getElementById("bf_02course_name").value = data.bf_02course_name;
+                    document.getElementById("bf_02ins_name").value = data.bf_02ins_name;
+                    document.getElementById("bf_02start_date").value = data.bf_02start_date;
+                    document.getElementById("bf_02gov_paid").value = data.bf_02gov_paid;
+                    document.getElementById("bf_02full_course_fee").value = data.bf_02full_course_fee;
+
+                    document.getElementById("nextFieldsetTableContainers").style.display = 'block';
+                } else{
+                    document.getElementById("nextFieldsetTableContainers").style.display = 'none';
+                }
+
             } else {
                 console.error(data.error);
             }
         })
         .catch(error => console.error("Error fetching application data:", error));
 });
+
 
 function printPage() {
     window.print(); // Opens the print dialog

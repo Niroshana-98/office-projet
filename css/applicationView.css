@@ -26,7 +26,6 @@ body, html {
 .logo img {
     width: 40px; 
     height: auto; 
-    align-items: center;
 }
 
 .tableLayout {
@@ -62,6 +61,10 @@ body, html {
     margin: 0 10px; 
 }
 
+.page-break {
+    page-break-before: always;
+}
+
 @media (max-width: 576px) {
     .small-table {
         font-size: 0.6em; 
@@ -78,27 +81,28 @@ input:disabled {
 }
 
 @media print {
+    /* Make table full width on print for better alignment */
     .table {
-        width: 100%; 
-        font-size: 0.6em; 
-        height: 100px;
+        width: 100%;
+        font-size: 0.6em;
     }
 
     .table th, .table td {
-        padding: 0px; 
-        height: 10px;
-        margin: 0px; 
+        padding: 5px;
     }
 
     .hero, .tableLayout {
-        margin: 0; 
+        margin: 0;
     }
 
-    body {
-        background-color: white; 
+    .page-break {
+        page-break-before: always; /* Ensure page break is applied */
     }
 
-    .Documents-btn {
-        display: none;
+    /* Remove margin, padding, and overflow adjustments */
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow: visible;
     }
 }

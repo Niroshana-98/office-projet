@@ -316,7 +316,38 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="Documents-btn" onclick="redirectApplicationView()" >
+        </form>
+        <form method="post" action="./status.php">
+            <div class="checkbox-wrapper-37">
+                <input type="checkbox" name="checkbox" id="terms-checkbox-37" />
+                <label for="terms-checkbox-37" class="terms-label">
+                    <svg
+                    class="checkbox-svg"
+                    viewBox="0 0 200 200"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <mask id="path-1-inside-1_476_5-37" fill="white">
+                        <rect width="200" height="200"></rect>
+                    </mask>
+                    <rect
+                        width="200"
+                        height="200"
+                        class="checkbox-box"
+                        stroke-width="40"
+                        mask="url(#path-1-inside-1_476_5-37)"
+                    ></rect>
+                    <path
+                        class="checkbox-tick"
+                        d="M52 111.018L76.9867 136L149 64"
+                        stroke-width="15"
+                    ></path>
+                    </svg>
+                    <span class="label-text">මෙම අයදුම්පත සඳහා කිරීමට අවශ්‍ය සියලු ලිපි හා ලේඛන කල බවට සහතික කරමි.</span>
+                </label>
+            </div>
+                                   
+            <button type="button" id="Documents-btn" class="Documents-btn" disabled >
                 <span class="folderContainer">
                     <svg
                     class="fileBack"
@@ -396,11 +427,11 @@
                     </defs>
                     </svg>
                 </span>
-                <p class="text">View Application</p>
+                <p class="text">Submit Application</p>
             </button>
-
         </form>
     </section>
+    
 
     <script src="./js/upload.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script><script  src="./script.js"></script>

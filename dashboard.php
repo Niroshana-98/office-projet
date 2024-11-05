@@ -25,15 +25,15 @@
                     <!--Fieldset 1-->
                     <fieldset>
                         <h3 class="fs-title">Personal Details:</h3>
-                        <h2 class="steps">Step 1 - 5</h2>
+                        <h2 class="steps">Step 1 - 4</h2>
                         <div class="row">
-                            <div class="col-12 col-md-7">
+                            <div class="col-12 col-md-6">
                             <h5 for="ball">සම්පූර්ණ නම (සිංහලෙන්)</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="fname" name="fname" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-5">
+                            <div class="col-12 col-md-6">
                                 <h5 for="ball">මුලකුරු සමග නම (සිංහලෙන්)</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="iname" name="iname" placeholder="">
@@ -55,26 +55,26 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-7">
+                            <div class="col-12 col-md-6">
                                 <h5 for="ball">පෞද්ගලික ලිපිනය</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="address" name="address" placeholder="" >
                                 </div>
                             </div>
-                            <div class="col-12 col-md-5">
+                            <div class="col-12 col-md-6">
                                 <h5 for="ball">දුරකථන අංකය (ස්ථාවර)</h5>
                                 <div class="mb-3">
                                     <input type="tel" class="form-control" id="tel" name="tel" placeholder="">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 col-md-5">
+                                <div class="col-12 col-md-6">
                                     <h5 for="ball">දුරකථන අංකය (ජංගම)</h5>
                                     <div class="mb-3">
                                         <input type="tel" class="form-control" id="htel" name="htel" placeholder="">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-5">
+                                <div class="col-12 col-md-6">
                                     <h5 for="ball">ඊමේල් ලිපිනය</h5>
                                     <div class="mb-3">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="">
@@ -88,7 +88,7 @@
                     <!--Fieldset 2-->
                     <fieldset>
                         <h3 class="fs-title">රැකියා විස්තර:</h3>
-                        <h2 class="steps">Step 2 - 5</h2>
+                        <h2 class="steps">Step 2 - 4</h2>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
@@ -136,7 +136,7 @@
                     <!--Fieldset 3-->
                     <fieldset>
                         <h3 class="fs-title">උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර:</h3>
-                        <h2 class="steps">Step 3 - 5</h2>
+                        <h2 class="steps">Step 3 - 4</h2>
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
@@ -494,11 +494,11 @@
                                 </svg>
                                 <span class="label-text">උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.</span>
                             </label>
-                            </div>
+                        </div>
                         
-                            <button type="submit" id="submitButton" class="next action" disabled> 
-                                <span>Submit</span>
-                            </button>
+                        <button type="submit" id="submitButton" class="next action" disabled> 
+                            <span>Submit</span>
+                        </button>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 

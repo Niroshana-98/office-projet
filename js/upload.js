@@ -151,8 +151,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function redirectApplicationView(){
-    window.location.href = "../applicationView.php";
-}
+
+
+document.getElementById('terms-checkbox-37').addEventListener('change', function() {
+    var submitButton = document.getElementById('Documents-btn');
+
+    if (this.checked) {
+        submitButton.disabled = false; 
+        submitButton.classList.add('enabled');
+        submitButton.style.cursor = "pointer"; 
+    } else {
+        submitButton.disabled = true; 
+        submitButton.classList.remove('enabled'); 
+        submitButton.style.cursor = "not-allowed"; 
+    }
+});
+
+
+document.getElementById('Documents-btn').disabled = false;
+
+document.getElementById("Documents-btn").addEventListener("click", function() {
+    fetch("../status.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "applicationView.php";
+        } else {
+            console.error("Error updating status:", data.error);
+            alert("Failed to update status. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("AJAX request failed:", error);
+        alert("An error occurred. Please try again.");
+    });
+});
+
+
+
+
 
 

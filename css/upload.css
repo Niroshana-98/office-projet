@@ -297,6 +297,57 @@ tbody tr.hide td img {
   
 
 
+/* check box */ 
+.checkbox-wrapper-37 input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-wrapper-37 .terms-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+  }
+  
+  .checkbox-wrapper-37 .terms-label .label-text {
+    margin-left: 10px;
+  }
+  
+  .checkbox-wrapper-37 .checkbox-svg {
+    width: 20px;
+    height: 30px;
+  }
+  
+  .checkbox-wrapper-37 .checkbox-box {
+    fill: #ffffff;
+    stroke: #000000;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.6s ease-in;
+  }
+  
+  .checkbox-wrapper-37 .checkbox-tick {
+    stroke: #000000;
+    stroke-dasharray: 172;
+    stroke-dashoffset: 172;
+    transition: stroke-dashoffset 0.6s ease-in;
+  }
+  
+  .checkbox-wrapper-37
+    input[type="checkbox"]:checked
+    + .terms-label
+    .checkbox-box,
+  .checkbox-wrapper-37
+    input[type="checkbox"]:checked
+    + .terms-label
+    .checkbox-tick {
+    stroke-dashoffset: 0;
+  }
+
+  .checkbox-wrapper-37{
+    margin-left: 50px;
+  }
+
 
 
 
