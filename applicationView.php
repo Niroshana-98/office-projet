@@ -6,6 +6,7 @@
     <title>Application View</title>
     <link rel="stylesheet" type="text/css" href="./css/applicationView.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 </head>
 <body>
     <div class="hero">
@@ -189,8 +190,102 @@
                 </div>
             </div>
         </div>
+
+        <div id="documentContainer" class="row-container" style="display: none;"></div>
+
+        <div class="tableLayouts">
+            <table class="tables" id="documentsTable">
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_porva_anu" id="viewButton">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_service_minite" id="viewButton_2">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>සේවය ස්ථීර කිරීමේ ලිපියේ සහතික කරන ලද පිටපත</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_app_letter_confirm" id="viewButton_3">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>නිලධාරියා දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කළ පිටපත</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_attach_sp" id="viewButton_4">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>නිලධාරියා අදාල පාඨමාලාව සඳහා තෝරා ගත් බවට වන ලිපිය</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_course_selected" id="viewButton_5">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>විශ්ව විද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව විසින් අනුමත කරන ලද විශ්ව විද්‍යාලයක බව සහතික කරන ලද ලිපිය</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_campus_confirm" id="viewButton_6">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>පාථමාලාව අවසන් කළ බවට සහතිකය</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_course_complete" id="viewButton_7">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>මුදල් ගෙවූ රිසිට්පත්</td>
+                        <td>
+                            <button class="action-btn" data-doc="up_pay_recept" id="viewButton_8">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>වෙනත් </td>
+                        <td>
+                            <button class="action-btn" data-doc="up_other" id="viewButton_9">
+                                View
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+               
+
         <button class="Documents-btn" onclick="printPage()">
-            <p class="text">Print Document</p>
+            Print Document
         </button>
     </div>  
                

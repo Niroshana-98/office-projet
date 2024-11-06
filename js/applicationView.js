@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Fill form fields with data
                 document.getElementById("appNoDisplay").innerText = data.app_no;
                 document.getElementById("name_si").value = data.name_si;
                 document.getElementById("name_full").value = data.name_full;
@@ -27,13 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("course_fee").value = data.course_fee;
                 document.getElementById("before_recieved").value = data.before_recieved;
 
+                // Show additional fieldsets if course information is available
                 if (data.bf_01course_name) {
                     document.getElementById("bf_01course_name").value = data.bf_01course_name;
                     document.getElementById("bf_01ins_name").value = data.bf_01ins_name;
                     document.getElementById("bf_01start_date").value = data.bf_01start_date;
                     document.getElementById("bf_01gov_paid").value = data.bf_01gov_paid;
                     document.getElementById("bf_01full_course_fee").value = data.bf_01full_course_fee;
-
                     document.getElementById("nextFieldsetTableContainer").style.display = 'block';
                 } else {
                     document.getElementById("nextFieldsetTableContainer").style.display = 'none';
@@ -45,11 +46,79 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("bf_02start_date").value = data.bf_02start_date;
                     document.getElementById("bf_02gov_paid").value = data.bf_02gov_paid;
                     document.getElementById("bf_02full_course_fee").value = data.bf_02full_course_fee;
-
                     document.getElementById("nextFieldsetTableContainers").style.display = 'block';
-                } else{
+                } else {
                     document.getElementById("nextFieldsetTableContainers").style.display = 'none';
                 }
+
+                function displayDocument(containerId, filePath) {
+                    const container = document.getElementById(containerId);
+
+                    if (filePath) {
+                        const card = document.createElement("div");
+                        card.className = "documentCard";
+
+                        if (filePath.endsWith(".pdf")) {
+                            card.innerHTML = `
+                                <div class="card">
+                                    <a href="${filePath}" target="_blank">View PDF Document</a>
+                                </div>`;
+                        } else {
+                            card.innerHTML = `
+                                <div class="card">
+                                    <img src="${filePath}" alt="Document Image" style="width: 100%;" />
+                                </div>`;
+                        }
+                        container.appendChild(card);
+                    }
+                }
+
+                const documentContainerId = "documentContainer";
+
+                // Display various documents if they exist
+                displayDocument(documentContainerId, data.up_porva_anu);
+                displayDocument(documentContainerId, data.up_service_minite);
+                displayDocument(documentContainerId, data.up_app_letter_confirm);
+                displayDocument(documentContainerId, data.up_attach_sp);
+                displayDocument(documentContainerId, data.up_course_selected);
+                displayDocument(documentContainerId, data.up_campus_confirm);
+                displayDocument(documentContainerId, data.up_course_complete);
+                displayDocument(documentContainerId, data.up_pay_recept);
+                displayDocument(documentContainerId, data.up_other);
+
+                // Function to open document in a new window
+                function openDocumentInNewWindow(filePath) {
+                    if (filePath) {
+                        window.open(filePath, "_blank", "width=auto,height=auto,scrollbars=yes");
+                    }
+                }
+
+                // Setup the view buttons to open documents in a new window
+                function setupViewButtons() {
+                    const viewButtons = [
+                        { id: "viewButton", filePath: data.up_porva_anu },
+                        { id: "viewButton_2", filePath: data.up_service_minite },
+                        { id: "viewButton_3", filePath: data.up_app_letter_confirm },
+                        { id: "viewButton_4", filePath: data.up_attach_sp },
+                        { id: "viewButton_5", filePath: data.up_course_selected },
+                        { id: "viewButton_6", filePath: data.up_campus_confirm },
+                        { id: "viewButton_7", filePath: data.up_course_complete },
+                        { id: "viewButton_8", filePath: data.up_pay_recept },
+                        { id: "viewButton_9", filePath: data.up_other }
+                    ];
+
+                    viewButtons.forEach(button => {
+                        const buttonElement = document.getElementById(button.id);
+                        if (buttonElement && button.filePath) {
+                            buttonElement.disabled = false;
+                            buttonElement.addEventListener("click", function () {
+                                openDocumentInNewWindow(button.filePath);
+                            });
+                        }
+                    });
+                }
+
+                setupViewButtons();
 
             } else {
                 console.error(data.error);
@@ -58,7 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error fetching application data:", error));
 });
 
-
 function printPage() {
-    window.print(); // Opens the print dialog
+    const documentContainer = document.getElementById("documentContainer");
+    documentContainer.style.display = 'grid';
+    window.print();
+    setTimeout(() => {
+        documentContainer.style.display = 'none';
+    }, 1000);
 }
