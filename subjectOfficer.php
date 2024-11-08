@@ -7,7 +7,7 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">    
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./css/subjectOfficer.css">
 </head>
 <body id="body-pd">
@@ -61,16 +61,21 @@
                     </a>
                 </div>
             </div>
-            <a href="#" class="nav_link">
+            <a href="#" class="nav_link" id="logout-link">
                 <i class='bx bx-log-out nav_icon'></i>
                 <span class="nav_name">SignOut</span>
             </a>
+            <button id="logout-button" style="display:none;"></button>
         </nav>
     </div>
     
-    <div class="height-100 bg-light">
-        <iframe name="content-frame" src="./subjectOfficerDashboard.php" width="100%" height="100%" frameborder="0"></iframe>
+    <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
+        <iframe name="content-frame" src="./subjectOfficerDashboard.php" 
+                style="width: 100%; height: 100%; overflow: hidden;" 
+                frameborder="0" scrolling="no">
+        </iframe>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

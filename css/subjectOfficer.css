@@ -256,4 +256,69 @@ a {
   .body-pd {
     padding-left: calc(var(--nav-width) + 188px);
   }
+
+  
 }
+
+
+.swal2-popup {
+  background-color: #f8f9fa;  /* Background color */
+  font-family: 'Arial', sans-serif;  /* Font */
+}
+
+/* Title Style */
+.swal2-title {
+  color: #343a40;  /* Dark title color */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Content/Text Style */
+.swal2-content {
+  color: #6c757d;  /* Lighter text color */
+  font-size: 18px;
+}
+
+/* Confirm Button Styling */
+.swal2-confirm {
+  background-color: #3085d6;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+/* Cancel Button Styling */
+.swal2-cancel {
+  background-color: #d33;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+/* Hover Effects */
+.swal2-confirm:hover {
+  background-color: #1c7ed6;
+}
+
+.swal2-cancel:hover {
+  background-color: #c82333;
+}
+
+/* Adjust the buttons' positions */
+.swal2-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.swal2-cancel {
+  margin-right: auto;  /* Position Cancel on the left */
+}
+
+.swal2-confirm {
+  margin-left: auto;  /* Position Confirm on the right */
+}
+
+
+

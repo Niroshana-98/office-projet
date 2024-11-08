@@ -55,5 +55,48 @@ function fetchUserDetails() {
 }
 fetchUserDetails();
 
+document.addEventListener("DOMContentLoaded", function(event) {
+    const logoutLink = document.getElementById("logout-link");
+    const logoutButton = document.getElementById("logout-button");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent immediate logout
+
+            // Programmatically click the hidden logout button
+            logoutButton.click();  // This will trigger the SweetAlert confirmation
+        });
+    }
+
+    logoutButton.addEventListener("click", function() {
+        Swal.fire({
+            title: "Are you sure you want to log out?",
+            text: "You will need to log back in to access your account.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out",
+            cancelButtonText: "Cancel",
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                content: 'swal2-content',
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel',
+                actions: 'swal2-actions' // Apply custom actions class for button positioning
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = './logout.php';  // Redirect to the logout page
+            }
+            // If "Cancel" is clicked, do nothing
+        });
+    });
+});
+
+
+
+
 
     

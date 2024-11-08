@@ -1,0 +1,49 @@
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card-body .btn {
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.bg-new-applications { background-color: #007bff; }
+.bg-approved { background-color: #28a745; }
+.bg-rejected { background-color: #dc3545; }
+
+.card-body .btn:hover {
+    background-color: #333;
+    color: #fff;
+}
