@@ -1,0 +1,239 @@
+body, html {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+
+.logo {
+    display: flex;            
+    justify-content: center;  
+    align-items: center;   
+    margin-top: 20px;     
+}
+
+.logo img {
+    width: 40px; 
+    height: auto; 
+}
+
+.tableLayout {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table {
+    width: 900px; 
+    border-collapse: collapse; 
+    font-size: 0.9em;
+}
+
+.table th, .table td {
+    border: 1px solid black; 
+    text-align: left; 
+    vertical-align: middle;
+}
+
+.table td {
+    font-weight: 500; 
+}
+
+.table-head {
+    font-size: 1.2em; 
+    font-weight: bold;
+    vertical-align: middle; 
+}
+
+.table-responsive {
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    margin: 0 10px; 
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+@media (max-width: 576px) {
+    .small-table {
+        font-size: 0.6em; 
+    }
+}
+
+input {
+    width: 100%; 
+    border: none; 
+}
+
+input:disabled {
+    color: #6c757d; 
+}
+
+#documentContainer {
+    display: none;
+}
+
+.row-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+    justify-content: center;
+}
+
+.documentCard .card {
+    width: 100%; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    justify-items: center;
+}
+
+/* ------DOCUMENT VIEW TABLE ------- */
+
+.tableLayouts {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.tables {
+    width: 60%;
+    font-size: 0.9em;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-spacing: 0 10px; 
+}
+
+.tables tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.tables th, .tables td {
+    padding: 15px 20px; 
+    vertical-align: middle;
+    color: #333;
+    line-height: 1.6;
+}
+
+.tables th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #555;
+}
+
+.tables tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+.action-btn {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;  
+}
+
+@media (max-width: 576px) {
+    .tables {
+        font-size: 0.8em; 
+    }
+
+    .tables th, .table td {
+        padding: 10px 12px;
+    }
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 50px;
+    flex-wrap: wrap; 
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    letter-spacing: 0.5px;
+}
+
+.btn.approve-btn {
+    background-color: #007bff;
+    background-image: linear-gradient(145deg, #007bff, #0069d9);
+}
+
+.btn.approve-btn:hover {
+    background-color: #0069d9;
+    background-image: linear-gradient(145deg, #0069d9, #0056b3); 
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+}
+
+.btn.reject-btn {
+    background-color: #dc3545;
+    background-image: linear-gradient(145deg, #dc3545, #c82333); 
+}
+
+.btn.reject-btn:hover {
+    background-color: #c82333;
+    background-image: linear-gradient(145deg, #c82333, #b21f2d);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3);
+}
+
+.btn:active {
+    transform: translateY(1px); 
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

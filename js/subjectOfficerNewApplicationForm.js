@@ -98,14 +98,46 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
             }
-
             setupViewButtons();
+
+            document.querySelector(".approve-btn").addEventListener("click", function() {
+                updateAppStatus(3); 
+            });
+
+            document.querySelector(".reject-btn").addEventListener("click", function() {
+                updateAppStatus(4); 
+            });
 
         } else {
             console.error(data.error);
         }
     })
     .catch(error => console.error("Error fetching application data:", error));
+
+
+    function updateAppStatus(status) {
+        const appNo = document.getElementById("appNoDisplay").innerText;
+        
+        if (!appNo) {
+            console.error("Application number is missing.");
+            return;
+        }
+    
+        fetch('../updateApplicationStatus.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ app_no: appNo, status: status })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+            } else {
+                alert('Failed to update status: ' + data.error);
+            }
+        })
+        .catch(error => console.error("Error updating app status:", error));
+    }
 });
 
 function printPage() {
@@ -116,3 +148,6 @@ function printPage() {
         documentContainer.style.display = 'none';
     }, 1000);
 }
+
+
+

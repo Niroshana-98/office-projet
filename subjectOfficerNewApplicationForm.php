@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application View</title>
-    <link rel="stylesheet" type="text/css" href="./css/applicationView.css">
+    <link rel="stylesheet" type="text/css" href="./css/subjectOfficerNewApplicationForm.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 </head>
@@ -279,6 +279,11 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="button-container">
+            <button class="btn approve-btn">Approve</button>
+            <button class="btn reject-btn">Reject</button>
         </div>
 
     </div>  
