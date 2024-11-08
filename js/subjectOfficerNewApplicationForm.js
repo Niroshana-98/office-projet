@@ -130,14 +130,21 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data); 
+    
             if (data.success) {
                 alert(data.message);
+    
+                window.location.href = 'subjectOfficerNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }
         })
-        .catch(error => console.error("Error updating app status:", error));
-    }
+        .catch(error => {
+            console.error("Error updating app status:", error);
+        });
+    }    
+    
 });
 
 function printPage() {

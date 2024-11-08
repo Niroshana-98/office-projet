@@ -282,8 +282,8 @@
         </div>
 
         <div class="button-container">
-            <button class="btn approve-btn">Approve</button>
-            <button class="btn reject-btn">Reject</button>
+            <button class="btn approve-btn" onclick="updateAppStatus(1)">Approve</button>
+            <button class="btn reject-btn" onclick="updateAppStatus(2)">Reject</button>
         </div>
 
     </div>  
