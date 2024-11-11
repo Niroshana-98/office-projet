@@ -100,14 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             setupViewButtons();
 
-            document.querySelector(".approve-btn").addEventListener("click", function() {
-                updateAppStatus(3); 
-            });
-
-            document.querySelector(".reject-btn").addEventListener("click", function() {
-                updateAppStatus(4); 
-            });
-
         } else {
             console.error(data.error);
         }
@@ -115,18 +107,35 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(error => console.error("Error fetching application data:", error));
 
 
-    function updateAppStatus(status) {
+    document.querySelector(".approve-btn").addEventListener("click", function() {
+        updateAppStatus(3); 
+    });
+
+    document.querySelector(".reject-btn").addEventListener("click", function() {
+        const comment = document.getElementById("comments").value.trim();
+        const nic = document.getElementById("nic").value.trim();
+        updateAppStatus(4, comment, nic); 
+    });
+
+    function updateAppStatus(status, comment = '' , nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
         
         if (!appNo) {
             console.error("Application number is missing.");
             return;
         }
+
+        const data = {
+            app_no: appNo,
+            status: status,
+            comment: comment,
+            nic: nic 
+        };
     
         fetch('../updateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ app_no: appNo, status: status })
+            body: JSON.stringify(data)
         })
         .then(response => response.json())
         .then(data => {
@@ -143,18 +152,26 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error updating app status:", error);
         });
-    }    
-    
+    }        
 });
 
-function printPage() {
-    const documentContainer = document.getElementById("documentContainer");
-    documentContainer.style.display = 'grid';
-    window.print();
-    setTimeout(() => {
-        documentContainer.style.display = 'none';
-    }, 1000);
-}
+const approvalSelect = document.getElementById('approvalSelect');
+const approveButton = document.getElementById('approveButton');
+const rejectButton = document.getElementById('rejectButton');
+const commentSection = document.getElementById('commentSection');
 
-
-
+approvalSelect.addEventListener('change', function() {
+    if (approvalSelect.value === "1") {
+        approveButton.style.display = "block";
+        rejectButton.style.display = "none";
+        commentSection.style.display = 'none'; 
+    } else if (approvalSelect.value === "2") {
+        approveButton.style.display = "none";
+        rejectButton.style.display = "block";
+        commentSection.style.display = 'block'; 
+    } else {
+        approveButton.style.display = "none";
+        rejectButton.style.display = "none";
+        commentSection.style.display = 'none'; 
+    }
+});

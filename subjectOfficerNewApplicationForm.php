@@ -281,9 +281,23 @@
             </table>
         </div>
 
+        <div style="display: flex; align-items: center;">
+            <span>ඉහත අයදුම්පතෙහි සඳහන් තොරතුරු හා ඇමුණුම්</span>
+            <select class="form-select" id="approvalSelect" aria-label="Default select example" style="margin-left: 10px; width: 300px;">
+                <option value="" selected>Open this select menu</option>
+                <option value="1">නිවරදි බවට සහතික කරමි</option>
+                <option value="2">නිවරදි නොවන බවට සහතික කරමි</option>
+            </select>
+        </div>
+
+        <div id="commentSection" style="display: none; margin-top: 10px;">
+            <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි නොවේ:</label>
+            <textarea id="comments" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+        </div>
+
         <div class="button-container">
-            <button class="btn approve-btn" onclick="updateAppStatus(1)">Approve</button>
-            <button class="btn reject-btn" onclick="updateAppStatus(2)">Reject</button>
+            <button class="btn approve-btn" id="approveButton" style="display: none;">Approve</button>
+            <button class="btn reject-btn" id="rejectButton" style="display: none;">Reject</button>
         </div>
 
     </div>  
