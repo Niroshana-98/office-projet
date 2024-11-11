@@ -42,7 +42,7 @@
                             <span class="approved-applications-count"></span> Applications
                         </h5>
                         <p class="card-text">View details of applications that have been approved.</p>
-                        <a href="#" class="btn btn-outline-success">View Approved Applications</a>
+                        <a href="./subjectOfficerApprovedApplication.php" class="btn btn-outline-success">View Approved Applications</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                             <span class="rejected-applications-count"></span> Applications
                         </h5>
                         <p class="card-text">View details of applications that have been rejected.</p>
-                        <a href="#" class="btn btn-outline-danger">View Rejected Applications</a>
+                        <a href="./subjectOfficerRejectApplication.php" class="btn btn-outline-danger">View Rejected Applications</a>
                     </div>
                 </div>
             </div>
