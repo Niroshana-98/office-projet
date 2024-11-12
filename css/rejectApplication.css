@@ -108,6 +108,7 @@ input:disabled {
     justify-content: center;
     align-items: center;
     margin: 50px;
+    width: 900px;
 }
 
 .tables {
