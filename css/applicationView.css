@@ -176,6 +176,32 @@ input:disabled {
     cursor: not-allowed;
 }
 
+button:disabled {
+    background-color: #c6c6c6;
+    cursor: not-allowed;
+}
+
+#updateButton{
+    margin-bottom: 50px;
+}
+
+#rejectMessage {
+    display: inline-block; 
+    background-color: #ffefeb; 
+    color: #d9534f; 
+    border: 1px solid #d9534f; 
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px; 
+    padding: 10px 15px; 
+    margin: 15px 0;
+    text-align: center; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif; 
+    margin-left: 30px;
+}
+
+
 
 @media (max-width: 576px) {
     .tables {

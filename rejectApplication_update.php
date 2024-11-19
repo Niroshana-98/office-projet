@@ -17,6 +17,7 @@ foreach ($fields as $field) {
 }
 
 if ($nic) {
+    // Update application table
     $sql = "
     UPDATE application 
     SET address_pri = ?, tel_mob = ?, date_att_sp = ?, ins_name = ?, course_name = ?, service_minite_no = ?, 
@@ -36,7 +37,24 @@ if ($nic) {
     );
 
     if ($stmt->execute()) {
-        echo "success";
+        // Update users table status to 4
+        $userSql = "UPDATE users SET status = 4 WHERE nic = ?";
+        $userStmt = $conn->prepare($userSql);
+        $userStmt->bind_param("s", $nic);
+
+        // Update application table status to 2
+        $appStatusSql = "UPDATE application SET app_status = 2 WHERE nic = ?";
+        $appStatusStmt = $conn->prepare($appStatusSql);
+        $appStatusStmt->bind_param("s", $nic);
+
+        if ($userStmt->execute() && $appStatusStmt->execute()) {
+            echo "success";
+        } else {
+            echo "error: Failed to update status.";
+        }
+
+        $userStmt->close();
+        $appStatusStmt->close();
     } else {
         echo "error: " . $stmt->error; 
     }

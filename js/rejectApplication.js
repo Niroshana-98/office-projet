@@ -3,6 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json()) // Parse the JSON from the response
         .then(data => {
             if (data.success) {
+
+                const rejectSpan = document.getElementById("rejectMessage");
+                if (data.rejected) {
+                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.rejected}`;
+                } else {
+                    rejectSpan.innerText = "No rejection information available.";
+                }
+
                 // Fill form fields with data
                 document.getElementById("appNoDisplay").innerText = data.app_no;
                 document.getElementById("name_si").value = data.name_si;
@@ -110,11 +118,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     viewButtons.forEach(button => {
                         const buttonElement = document.getElementById(button.id);
-                        if (buttonElement && button.filePath) {
-                            buttonElement.disabled = false;
-                            buttonElement.addEventListener("click", function () {
-                                openDocumentInNewWindow(button.filePath);
-                            });
+                        if (buttonElement) {
+                            // Enable button only if the filePath is valid
+                            if (button.filePath && button.filePath.trim() !== "") {
+                                buttonElement.disabled = false;
+                                buttonElement.addEventListener("click", function () {
+                                    openDocumentInNewWindow(button.filePath);
+                                });
+                            } else {
+                                buttonElement.disabled = true;
+                            }
                         }
                     });
                 }
@@ -152,7 +165,7 @@ document.getElementById("updateButton").addEventListener("click", function () {
             if (xhr.status === 200) {
                 if (xhr.responseText.trim() === "success") {
                     alert("Update successful!");
-                    location.reload(); 
+                    window.location.href = "applicationView.php"; 
                 } else {
                     console.error("Update failed:", xhr.responseText);
                     alert("Update failed: " + xhr.responseText);

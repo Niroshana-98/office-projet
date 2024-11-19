@@ -19,6 +19,7 @@
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
         </div>     
     </div> 
+        <span id="rejectMessage">කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න :</span>
         <div class="tableLayout">
             <div class="table-responsive">
                 <table class="table small-table" id="dataTable">
