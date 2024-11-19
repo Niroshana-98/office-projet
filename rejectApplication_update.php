@@ -1,30 +1,49 @@
 <?php
-session_start();  // Start the session to get NIC
+session_start();  
+require 'connect.php';
 
-include('connect.php');
-
-// Get NIC from session (it should be set after login)
 $nic = isset($_SESSION['nic']) ? mysqli_real_escape_string($conn, $_SESSION['nic']) : '';
 
-// Get the service_minite_no from POST
-$service_minite_no = isset($_POST['service_minite_no']) ? mysqli_real_escape_string($conn, $_POST['service_minite_no']) : '';
+$fields = [
+    'address_pri', 'tel_mob', 'date_att_sp', 'ins_name', 'course_name', 'service_minite_no',
+    'course_start_date', 'course_end_date', 'course_fee',
+    'bf_01course_name', 'bf_01ins_name', 'bf_01start_date', 'bf_01gov_paid', 'bf_01full_course_fee',
+    'bf_02course_name', 'bf_02ins_name', 'bf_02start_date', 'bf_02gov_paid', 'bf_02full_course_fee'
+];
 
-// Validate NIC and service_minite_no
-if ($nic && $service_minite_no) {
-    // Prepare SQL query to update based on NIC (primary key)
-    $sql = "UPDATE application SET service_minite_no = ? WHERE nic = ?";
+$data = [];
+foreach ($fields as $field) {
+    $data[$field] = isset($_POST[$field]) ? mysqli_real_escape_string($conn, $_POST[$field]) : null;
+}
+
+if ($nic) {
+    $sql = "
+    UPDATE application 
+    SET address_pri = ?, tel_mob = ?, date_att_sp = ?, ins_name = ?, course_name = ?, service_minite_no = ?, 
+        course_start_date = ?, course_end_date = ?, course_fee = ?, 
+        bf_01course_name = ?, bf_01ins_name = ?, bf_01start_date = ?, bf_01gov_paid = ?, bf_01full_course_fee = ?, 
+        bf_02course_name = ?, bf_02ins_name = ?, bf_02start_date = ?, bf_02gov_paid = ?, bf_02full_course_fee = ? 
+    WHERE nic = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $service_minite_no, $nic);
+
+    $stmt->bind_param(
+        "ssssssssssssssssssss", 
+        $data['address_pri'], $data['tel_mob'], $data['date_att_sp'], $data['ins_name'], $data['course_name'], 
+        $data['service_minite_no'], $data['course_start_date'], $data['course_end_date'], $data['course_fee'],
+        $data['bf_01course_name'], $data['bf_01ins_name'], $data['bf_01start_date'], 
+        $data['bf_01gov_paid'], $data['bf_01full_course_fee'], $data['bf_02course_name'], $data['bf_02ins_name'], 
+        $data['bf_02start_date'], $data['bf_02gov_paid'], $data['bf_02full_course_fee'], $nic
+    );
 
     if ($stmt->execute()) {
-        echo "success";  // Successfully updated
+        echo "success";
     } else {
-        echo "error: " . $stmt->error;  // Error occurred
+        echo "error: " . $stmt->error; 
     }
 
     $stmt->close();
 } else {
-    echo "error: Invalid input.";  // If NIC or service_minite_no is empty or invalid
+    echo "error: Invalid input."; 
 }
 
 $conn->close();

@@ -130,15 +130,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.getElementById("updateButton").addEventListener("click", function () {
-    // Get service_minite_no input value
-    const service_minite_no = document.getElementById("service_minite_no").value;
+    const fields = [
+        "address_pri", "tel_mob", "date_att_sp", "ins_name", "course_name", "service_minite_no",
+        "course_start_date", "course_end_date", "course_fee",
+        "bf_01course_name", "bf_01ins_name", "bf_01start_date", "bf_01gov_paid", "bf_01full_course_fee",
+        "bf_02course_name", "bf_02ins_name", "bf_02start_date", "bf_02gov_paid", "bf_02full_course_fee"
+    ];
 
-    // Ensure service_minite_no is provided
-    if (service_minite_no) {
-        // Get the NIC from the session (it's being sent from the server-side PHP)
-        const nic = document.getElementById("nic").value;
+    let postData = `nic=${encodeURIComponent(document.getElementById("nic").value)}`;
+    fields.forEach(field => {
+        const value = document.getElementById(field)?.value || "";
+        postData += `&${field}=${encodeURIComponent(value)}`;
+    });
 
-        // AJAX Request
+    if (postData.includes("nic=")) {        
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "../rejectApplication_update.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -147,7 +152,7 @@ document.getElementById("updateButton").addEventListener("click", function () {
             if (xhr.status === 200) {
                 if (xhr.responseText.trim() === "success") {
                     alert("Update successful!");
-                    location.reload(); // Reload the page to reflect the changes
+                    location.reload(); 
                 } else {
                     console.error("Update failed:", xhr.responseText);
                     alert("Update failed: " + xhr.responseText);
@@ -158,14 +163,102 @@ document.getElementById("updateButton").addEventListener("click", function () {
             }
         };
 
-        // Send service_minite_no and NIC to the backend
-        xhr.send(`nic=${encodeURIComponent(nic)}&service_minite_no=${encodeURIComponent(service_minite_no)}`);
+        xhr.send(postData);
     } else {
-        alert("Please enter a valid service minute number.");
+        alert("Please enter valid data.");
     }
+    
 });
 
 
+const uploadFields = [
+    { inputId: "up_porva_anu", buttonId: "uploadButton" },
+    { inputId: "up_service_minite", buttonId: "uploadButton_2" },
+    { inputId: "up_app_letter_confirm", buttonId: "uploadButton_3" },
+    { inputId: "up_attach_sp", buttonId: "uploadButton_4" },
+    { inputId: "up_course_selected", buttonId: "uploadButton_5" },
+    { inputId: "up_campus_confirm", buttonId: "uploadButton_6" },
+    { inputId: "up_course_complete", buttonId: "uploadButton_7" },
+    { inputId: "up_pay_recept", buttonId: "uploadButton_8" },
+    { inputId: "up_other", buttonId: "uploadButton_9" }
+];
 
+uploadFields.forEach(field => {
+    const fileInput = document.getElementById(field.inputId);
+    const uploadButton = document.getElementById(field.buttonId);
+
+    fileInput.addEventListener("change", function () {
+        if (this.files && this.files.length > 0) {
+            uploadButton.disabled = false;
+        } else {
+            uploadButton.disabled = true;
+        }
+    });
+});
+
+
+// General function to handle file uploads
+function handleFileUpload(fileInputId, uploadButtonId, viewButtonId, uploadUrl) {
+    document.getElementById(uploadButtonId).addEventListener('click', function() {
+        const fileInput = document.getElementById(fileInputId);
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please select a file to upload.");
+            return;
+        }
+
+        const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
+        if (!allowedTypes.includes(file.type)) {
+            alert("Only PDF, PNG, and JPG files are allowed.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append(fileInputId, file);
+
+        fetch(uploadUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("File uploaded successfully.");
+
+                // Hide the upload button and input
+                document.getElementById(uploadButtonId).style.display = 'none';
+                document.getElementById(fileInputId).style.display = 'none';
+
+                // Enable the View button
+                const viewButton = document.getElementById(viewButtonId);
+                viewButton.style.display = 'inline-block';
+                viewButton.disabled = false;
+
+                // Set up the view button to open the file
+                viewButton.addEventListener('click', function() {
+                    window.open(data.filePath, '_blank');
+                });
+            } else {
+                alert(data.error || "File upload failed.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred during the upload.");
+        });
+    });
+}
+
+
+handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', '../rejectApplicationUpload_to_db.php');
 
 

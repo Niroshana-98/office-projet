@@ -207,6 +207,11 @@
                                     View
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" class="action-btns" id="uploadButton" name="uploadButton" disabled>
+                                    Upload
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -215,6 +220,11 @@
                             <td>
                                 <button class="action-btn" data-doc="up_service_minite" id="viewButton_2">
                                     View
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_2" name="uploadButton_2" disabled>
+                                    Upload
                                 </button>
                             </td>
                         </tr>
@@ -227,6 +237,11 @@
                                     View
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_3" name="uploadButton_3" disabled>
+                                    Upload
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -235,6 +250,11 @@
                             <td>
                                 <button class="action-btn" data-doc="up_attach_sp" id="viewButton_4">
                                     View
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_4" name="uploadButton_4" disabled>
+                                    Upload
                                 </button>
                             </td>
                         </tr>
@@ -247,6 +267,11 @@
                                     View
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_5" name="uploadButton_5" disabled>
+                                    Upload
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>6</td>
@@ -255,6 +280,11 @@
                             <td>
                                 <button class="action-btn" data-doc="up_campus_confirm" id="viewButton_6">
                                     View
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_6" name="uploadButton_6" disabled>
+                                    Upload
                                 </button>
                             </td>
                         </tr>
@@ -267,6 +297,11 @@
                                     View
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_7" name="uploadButton_7" disabled>
+                                    Upload
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>8</td>
@@ -275,6 +310,11 @@
                             <td>
                                 <button class="action-btn" data-doc="up_pay_recept" id="viewButton_8">
                                     View
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_8" name="uploadButton_8" disabled>
+                                    Upload
                                 </button>
                             </td>
                         </tr>
@@ -287,13 +327,18 @@
                                     View
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" class="action-btns"  id="uploadButton_9" name="uploadButton_9" disabled>
+                                    Upload
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <button id="updateButton" type="button" class="btn btn-primary">
-    Update Application
-</button>
+                Update Application
+            </button>
         </div>
                
     <script src="./js/rejectApplication.js"></script>
