@@ -92,25 +92,25 @@
     }
 
     .transparent-box {
-        width: 90%; /* Full width for mobile */
+        width: 90%; 
         padding: 15px;
     }
 
     .form-box {
-        background: rgba(255, 255, 255, 0.8); /* White transparent box */
+        background: rgba(255, 255, 255, 0.8); 
         width: 100%;
         padding: 20px;
     }
 
     .form-box h2 {
-        font-size: 20px; /* Smaller heading size for mobile */
+        font-size: 20px; 
     }
 
     .input-box input {
-        font-size: 12px; /* Adjust input font size for mobile */
+        font-size: 12px; 
     }
 
     .btn {
-        font-size: 14px; /* Keep button size readable */
+        font-size: 14px; 
     }
 }

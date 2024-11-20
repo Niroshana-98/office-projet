@@ -195,7 +195,7 @@ tbody tr.hide td img {
     padding: 0.5rem 1rem; 
     width: 110px;
     vertical-align: middle;
-    font-size: 14px; /* Change this value to your desired font size */
+    font-size: 14px; 
 }
 
 
@@ -347,9 +347,3 @@ tbody tr.hide td img {
   .checkbox-wrapper-37{
     margin-left: 50px;
   }
-
-
-
-
-
-

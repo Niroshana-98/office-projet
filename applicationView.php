@@ -281,9 +281,6 @@
             </table>
         </div>
 
-
-               
-
         <button class="Documents-btn" onclick="printPage()">
             Print Document
         </button>
