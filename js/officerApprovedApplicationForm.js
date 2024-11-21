@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../subjectOfficerApprovedApplicationForm_to_db.php", {
+    fetch("../officerApprovedApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('../subjectOfficerUpdateApplicationStatus.php', {
+        fetch('../officerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'subjectOfficerApprovedApplication.php'; 
+                window.location.href = 'officerApprovedApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

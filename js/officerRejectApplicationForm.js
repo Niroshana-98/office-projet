@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../subjectOfficerApprovedApplicationForm_to_db.php", {
+    fetch("../officerRejectApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -108,13 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelector(".approve-btn").addEventListener("click", function() {
-        updateAppStatus(3); 
+        updateAppStatus(5); 
     });
 
     document.querySelector(".reject-btn").addEventListener("click", function() {
         const comment = document.getElementById("comments").value.trim();
         const nic = document.getElementById("nic").value.trim();
-        updateAppStatus(4, comment, nic); 
+        updateAppStatus(6, comment, nic); 
     });
 
     function updateAppStatus(status, comment = '' , nic = '') {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('../subjectOfficerUpdateApplicationStatus.php', {
+        fetch('../officerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'subjectOfficerApprovedApplication.php'; 
+                window.location.href = 'officerNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

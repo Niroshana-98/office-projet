@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('../officerApprovedApplication_to_db.php')
+    fetch('../officerRejectApplication_to_db.php')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('.table tbody');
@@ -32,7 +32,7 @@ function viewApplication(appNo) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `officerApprovedApplicationForm.php?app_no=${appNo}`;
+            window.location.href = `officerRejectApplicationForm.php?app_no=${appNo}`;
         } else {
             alert('Error setting session');
         }

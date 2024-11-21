@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function updateTime() {
     const currentTime = new Date().toLocaleTimeString();
     document.getElementById('login-time').textContent = currentTime;
-}
+} 
+
+setInterval(updateTime, 1000);
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const logoutLink = document.getElementById("logout-link");
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function fetchUserDetails() {
-    fetch('../Officer_to_db.php') 
+    fetch('../officer_to_db.php') 
         .then(response => response.json())  
         .then(data => {
             if (data.name && data.position) {

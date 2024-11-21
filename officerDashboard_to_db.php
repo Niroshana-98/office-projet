@@ -3,7 +3,7 @@ require 'connect.php';
 
 $response = ["success" => true];
 
-// count rows where app_status = 2
+// count rows where app_status = 3
 $query = "SELECT COUNT(*) AS count FROM application WHERE app_status = '3'";
 $result = mysqli_query($conn, $query);
 
@@ -15,7 +15,7 @@ if ($result) {
     exit;
 }
 
-// count rows where app_status = 3
+// count rows where app_status = 5
 $queryApprove = "SELECT COUNT(*) AS count FROM application WHERE app_status = '5'";
 $resultApprove = mysqli_query($conn, $queryApprove);
 
@@ -27,8 +27,8 @@ if ($resultApprove) {
     exit;
 }
 
-// count rows where app_status = 4
-$queryReject = "SELECT COUNT(*) AS count FROM application WHERE app_status = '4'";
+// count rows where app_status = 6
+$queryReject = "SELECT COUNT(*) AS count FROM application WHERE app_status = '6'";
 $resultReject = mysqli_query($conn, $queryReject);
 
 if ($resultReject) {

@@ -46,18 +46,18 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="./Officer.php" class="nav_logo">
+                <a href="./officer.php" class="nav_logo">
                 <i class='bx bx-home'></i>
                     <span class="nav_logo-name">Home</span>
                 </a>
                 <div class="nav_list">
-                    <a href="./OfficerDashboard.php" class="nav_link active" target="content-frame">
+                    <a href="./officerDashboard.php" class="nav_link active" target="content-frame">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <a href="application.html" class="nav_link" target="content-frame">
+                    <a href="./dashboard.php" class="nav_link" target="_blank">
                         <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">Users</span>
+                        <span class="nav_name">My Application</span>
                     </a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
     </div>
     
     <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
-        <iframe name="content-frame" src="./OfficerDashboard.php" 
+        <iframe name="content-frame" src="./officerDashboard.php" 
                 style="width: 100%; height: 100%; overflow: hidden;" 
                 frameborder="0" scrolling="no">
         </iframe>
