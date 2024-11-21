@@ -55,7 +55,7 @@
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <a href="./dashboard.php" class="nav_link" target="_blank">
+                    <a href="./dashboard.php" class="nav_link" target="content-frame">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">My Application</span>
                     </a>

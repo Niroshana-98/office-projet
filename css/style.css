@@ -2,6 +2,14 @@
     overflow: hidden;
     height: 100%;
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6fcdda, #ffffff); 
+    color: #333;
+    min-height: 100vh;
+}
 
 
 /*Title Bar*/
@@ -42,7 +50,6 @@
 
 
 .hero-section {
-    background: url(../images/Galle-Fort.jpg)  center;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
@@ -249,21 +256,13 @@
     height: 3rem;
     padding: 0 2rem;
     border-radius: 1.5rem;
-    background: #000000;
+    background: linear-gradient(45deg, #ff6a00, #ee0979, #ff6a00, #ee0979); 
     background-size: 400%;
     color: #fff;
     border: none;
     cursor: pointer;
     font-weight: bold;
-  }
-  
-  .button:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .button-content {
-    position: relative;
-    z-index: 1;
+    transition: background-position 0.8s ease, color 0.3s ease;
   }
   
   .button::before {
@@ -271,18 +270,28 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: scaleX(0);
-    transform-origin: 0 50%;
     width: 100%;
-    height: inherit;
-    border-radius: inherit;
-    background: linear-gradient(
-      82.3deg,
-      rgba(150, 93, 233, 1) 10.8%,
-      rgba(99, 88, 238, 1) 94.3%
-    );
-    transition: all 0.475s;
+    height: 100%;
+    background: #000; 
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform 0.3s ease-in-out;
   }
+  
+  .button:hover {
+    background-position: 100% 0; 
+    color: #fff;
+  }
+  
+  .button:hover::before {
+    transform: scaleX(1); 
+  }
+  
+  .button-content {
+    position: relative;
+    z-index: 1;
+  }
+ 
 
 /* REGISTER PAGE */
 
