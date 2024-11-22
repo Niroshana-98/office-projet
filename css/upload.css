@@ -20,10 +20,13 @@
 }*/
 
 body {
-    background: url(../images/Galle-Fort.jpg) center / cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6fcdda, #ffffff); 
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 main.table {

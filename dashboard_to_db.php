@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bf_02ins_name = $_POST['universityName2'];
     $bf_02start_date = $_POST['csDate2'];
     $bf_02gov_paid = $_POST['loan2'];
-    $bf_02full_course_fee = $_POST['cFees2'];
+    $bf_02full_course_fee = $_POST['cFees2']; 
 
     $app_status = "1";
 

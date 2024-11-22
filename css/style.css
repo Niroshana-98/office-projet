@@ -75,22 +75,22 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Adjust as needed */
+    width: 80%;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.5); /* White transparent background */
+    background: rgba(255, 255, 255, 0.5); 
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     color: #333;
-    backdrop-filter: blur(20px); /* Ensures the blur effect */
+    backdrop-filter: blur(20px); 
     height: 65%;
 }
 
 .container .content {
     width: 50%;
-    color: #333; /* Darker text to contrast with the white background */
+    color: #333; 
     padding: 20px;
 }
 
@@ -158,7 +158,7 @@ body {
 .input-box input{
     width: 100%;
     height: 100%;
-    background:transparent;
+    background:blue;
     border: none;
     outline: none;
     font-size: 16px;
@@ -169,8 +169,12 @@ body {
 }
 
 .form-box input {
-    outline: none; /* Remove outline */
-    border: none; /* Remove border */
+    outline: none; 
+    border: none; 
+}
+
+#username{
+    background: white;
 }
 
 .input-box label{

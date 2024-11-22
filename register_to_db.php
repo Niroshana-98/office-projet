@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("SELECT * FROM users WHERE nic=? OR email=?");
     $stmt->bind_param("ss", $nic, $email);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->get_result(); 
 
     if ($result->num_rows > 0) {
         echo "<script>alert('A user with this NIC or email already exists.');</script>";
@@ -136,4 +136,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 $conn->close();
-?>
+?> 

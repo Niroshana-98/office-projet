@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // Populate the form with fetched data
             document.getElementById("appNoDisplay").innerText = data.app_no;
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("bf_02gov_paid").value = data.bf_02gov_paid || "";
             document.getElementById("bf_02full_course_fee").value = data.bf_02full_course_fee || "";
 
+            // Function to display documents in a card format
             function displayDocument(containerId, filePath) {
                 const container = document.getElementById(containerId);
                 if (filePath) {
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
+            // Display documents for the various file paths
             const documentContainerId = "documentContainer";
             displayDocument(documentContainerId, data.up_porva_anu);
             displayDocument(documentContainerId, data.up_service_minite);
@@ -67,12 +70,14 @@ document.addEventListener("DOMContentLoaded", function () {
             displayDocument(documentContainerId, data.up_pay_recept);
             displayDocument(documentContainerId, data.up_other);
 
+            // Function to open documents in a new window
             function openDocumentInNewWindow(filePath) {
                 if (filePath) {
                     window.open(filePath, "_blank", "width=auto,height=auto,scrollbars=yes");
                 }
             }
 
+            // Setup view buttons for each document
             function setupViewButtons() {
                 const viewButtons = [
                     { id: "viewButton", filePath: data.up_porva_anu },
@@ -98,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
             }
+
             setupViewButtons();
 
         } else {
@@ -107,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(error => console.error("Error fetching application data:", error));
 
 
+    // Handle the approve and reject buttons
     document.querySelector(".approve-btn").addEventListener("click", function() {
         updateAppStatus(3); 
     });
@@ -117,7 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
         updateAppStatus(4, comment, nic); 
     });
 
-    function updateAppStatus(status, comment = '' , nic = '') {
+    // Function to update application status
+    function updateAppStatus(status, comment = '', nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
         
         if (!appNo) {
@@ -154,5 +162,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }        
 });
-
-
