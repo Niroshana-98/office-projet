@@ -119,7 +119,7 @@ if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Application and user status updated successfully']);
 
         } catch (Exception $e) {
-            echo json_encode(['success' => false, 'error' => 'OTP email could not be sent. Mailer Error: ' . $mail->ErrorInfo]);
+            echo json_encode(['success' => false, 'error' => 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo]);
             exit;
         }
     } else {
