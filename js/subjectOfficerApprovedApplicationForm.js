@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelector(".approve-btn").addEventListener("click", function() {
+        console.log("Approve button clicked");
         updateAppStatus(3); 
     });
 
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('../subjectOfficerUpdateApplicationStatus.php', {
+        fetch('../subjectOfficerUpdateApplicationStatus.php', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

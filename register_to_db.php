@@ -13,40 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-        // Fetch services
-        if ($action === 'fetchServices') {
-            $query = "SELECT service_id, service_name FROM service";
+        // Fetch office
+        if ($action === 'fetchOffices') {
+            $query = "SELECT offi_id, offi_name FROM office";
             $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<option value="'.$row['service_id'].'">'.$row['service_name'].'</option>';
-            }
-            exit;
-        }
-
-        // Fetch Grades
-        if($action === 'fetchGrades' && isset($_POST['service_id'])){
-            $service_id = $_POST['service_id'];
-            $query = "SELECT grade_id, grade_name FROM grade WHERE service_id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("i", $service_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<option value="'.$row['grade_id'].'">'.$row['grade_name'].'</option>';
-            }
-            exit;
-        }
-
-        // Fetch Position
-        if($action === 'fetchPositions' && isset($_POST['grade_id'])){
-            $grade_id = $_POST['grade_id'];
-            $query = "SELECT desi_id, desi_name FROM desi WHERE grade_id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("i", $grade_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)){
-                echo '<option value="'.$row['desi_id'].'">'.$row['desi_name'].'</option>';
+                echo '<option value="'.$row['offi_id'].'">'.$row['offi_name'].'</option>';
             }
             exit;
         }
@@ -59,9 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nic = $_POST['nic'];
     $email = $_POST['email'];
     $tel = $_POST['tel'];
-    $service = $_POST['service']; 
-    $grade = $_POST['grade'];    
-    $position = $_POST['position']; 
+    $office = $_POST['office']; 
     $password = $_POST['inputPassword'];
     $confirm_password = $_POST['inputConfirmPassword'];
 
@@ -82,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $otp = rand(100000, 999999);
 
         // Prepare statement for insertion
-        $stmt = $conn->prepare("INSERT INTO users (name, nic, email, tel, service, grade, desi, password, otp, status) 
-                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)");
-        $stmt->bind_param("sssssssss", $name, $nic, $email, $tel, $service, $grade, $position, $hashed_password,$otp);
+        $stmt = $conn->prepare("INSERT INTO users (name, nic, email, tel, offi_id, password, otp, status) 
+                                 VALUES (?, ?, ?, ?, ?, ?, ?, 1)");
+        $stmt->bind_param("sssssss", $name, $nic, $email, $tel, $office, $hashed_password,$otp);
 
         if ($stmt->execute()) {
             // Send OTP via email

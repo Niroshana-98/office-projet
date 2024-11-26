@@ -62,94 +62,41 @@
         }, 200); // Adjust delay time (in milliseconds)
     });
 
-    //dependat select box
+    //office select box
     document.addEventListener('DOMContentLoaded', function () {
-        fetchServices();
+        fetchOffices();
     
-        function fetchServices() {
+        function fetchOffices() {
             fetch('register_to_db.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'action=fetchServices'
+                body: 'action=fetchOffices'
             })
             .then(response => response.text())
             .then(data => {
-                document.getElementById('service').innerHTML += data;
+                document.getElementById('office').innerHTML += data;
             });
         }
     
-        document.getElementById('service').addEventListener('change', function () {
-            const service_id = this.value;
-            if (service_id !== '') {
-                fetchGrades(service_id);
-            } else {
-                document.getElementById('grade').disabled = true;
-                document.getElementById('job').disabled = true;
+        document.getElementById('office').addEventListener('change', function () {
+            const office_id = this.value;
+            if (office_id !== '') {
+                fetchGrades(office_id);
             }
         });
-    
-        function fetchGrades(service_id) {
-            fetch('register_to_db.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'action=fetchGrades&service_id=' + service_id
-            })
-            .then(response => response.text())
-            .then(data => {
-                const gradeSelect = document.getElementById('grade');
-                gradeSelect.innerHTML = '<option value="">Select Grade</option>';
-                gradeSelect.innerHTML += data;
-                gradeSelect.disabled = false;
-            });
-        }
-    
-        document.getElementById('grade').addEventListener('change', function () {
-            const grade_id = this.value;
-            if (grade_id !== '') {
-                fetchPositions(grade_id);
-            } else {
-                document.getElementById('job').disabled = true;
-            }
-        });
-    
-        function fetchPositions(grade_id) {
-            fetch('register_to_db.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'action=fetchPositions&grade_id=' + grade_id
-            })
-            .then(response => response.text())
-            .then(data => {
-                const positionSelect = document.getElementById('job');
-                positionSelect.innerHTML = '<option value="">Select Position</option>';
-                positionSelect.innerHTML += data;
-                positionSelect.disabled = false;
-            });
-        }
-    
+        
         // Update form submission to pass names instead of IDs
         document.querySelector('form').addEventListener('submit', function (event) {
-            const serviceSelect = document.getElementById('service');
-            const gradeSelect = document.getElementById('grade');
-            const positionSelect = document.getElementById('job');
+            const officeSelect = document.getElementById('office');
 
             // Get selected names
-            const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
-            const gradeName = gradeSelect.options[gradeSelect.selectedIndex].text;
-            const positionName = positionSelect.options[positionSelect.selectedIndex].text;
+            const officeName = officeSelect.options[officeSelect.selectedIndex].text;
 
             // Append names to the hidden inputs before submission
-            this.querySelector('input[name="service"]').value = serviceName;
-            this.querySelector('input[name="grade"]').value = gradeName;
-            this.querySelector('input[name="position"]').value = positionName;
+            this.querySelector('input[name="office"]').value = officeName;
 
-            // Submit the form normally
         });
 
     });

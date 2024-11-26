@@ -9,6 +9,8 @@
     <link href="./css/mediaquaries.css" rel="stylesheet">-->
     <link href="./css/register.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -42,25 +44,11 @@
                 <input type="tel" class="form-control" id="tel" name="tel" placeholder="" pattern="^07\d{8}$" title="Please enter a valid Sri Lankan mobile number (starting with 07 and followed by 8 digits)." required>
             </div>
             <div class="mb-3">
-                <h5 for="exampleFormControlInput1" class="form-label">සේවාව</h5>
-                <select class="form-select" name="service" id="service" aria-label="Default select example">
+                <h5 for="office" class="form-label">සේවා ස්ථානය</h5>
+                <select class="form-select" name="office" id="office" aria-label="searchable office">
                     <option value="" selected>Open this select menu</option>
                 </select>
-                <input type="hidden" name="service" value="">
-            </div>
-            <div class="mb-3">
-                <h5 for="exampleFormControlInput1" class="form-label">ශ්‍රේණිය</h5>
-                <select class="form-select" name="grade" id="grade" aria-label="Default select example" disabled>
-                    <option value="" selected>Please Select Service First</option>
-                </select>
-                <input type="hidden" name="grade" value="">
-            </div>
-            <div class="mb-3">
-                <h5 for="exampleFormControlInput1" class="form-label">තනතුර</h5>
-                <select class="form-select" name="position" id="job" aria-label="Default select example" disabled>
-                    <option value="" selected>Please Select Grade First</option>
-                </select>
-                <input type="hidden" name="position" value="">
+                <input type="hidden" name="office" value="">
             </div>
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
@@ -85,6 +73,7 @@
     </section>
     
     <script src="./js/register.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

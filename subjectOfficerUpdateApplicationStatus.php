@@ -43,6 +43,9 @@ if ($result->num_rows > 0) {
 if ($status == 4 && !empty($comment)) {
     $stmt = $conn->prepare("UPDATE application SET app_status = ?, rejected = ? WHERE app_no = ?");
     $stmt->bind_param("iss", $status, $comment, $app_no);
+}elseif($status == 3){
+    $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
+    $stmt->bind_param("is", $status, $app_no);
 } else {
     $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
     $stmt->bind_param("is", $status, $app_no);
@@ -52,10 +55,11 @@ if ($stmt->execute()) {
     // Update user status
     $stmt = $conn->prepare("UPDATE users SET status = 5 WHERE nic = ?");
     $stmt->bind_param("s", $nic); 
-    if ($stmt->execute()) {
+    $stmt->execute();
                 
-        // Send Email (PHPMailer)
-        $mail = new PHPMailer(true);
+        if ($status == 4) {
+            // Send Email (PHPMailer)
+            $mail = new PHPMailer(true);
         try {
             // Server settings
             $mail->isSMTP();
