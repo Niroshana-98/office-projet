@@ -14,7 +14,7 @@ if ($result) {
     echo json_encode(["success" => false, "error" => "Error fetching new application count"]);
     exit;
 }
-
+ 
 // count rows where app_status = 5
 $queryApprove = "SELECT COUNT(*) AS count FROM application WHERE app_status = '5'";
 $resultApprove = mysqli_query($conn, $queryApprove);

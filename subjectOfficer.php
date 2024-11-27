@@ -30,11 +30,11 @@
         </div>
         <div class="login-detail">
             <span class="label">Job Position:</span>
-            <span class="value" id="user-position"></span>
+            <span class="value" id="user-position">Subject Officer</span>
         </div>
         <div class="login-detail">
-            <span class="label">District:</span>
-            <span class="value" id="user-district">Southern Province</span>
+            <span class="label">Work Place:</span>
+            <span class="value" id="user-work-place"></span>
         </div>
         <div class="login-detail">
             <span class="label">Time:</span>

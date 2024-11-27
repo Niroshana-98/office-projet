@@ -19,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user['password'] === md5($password)) {
 
             session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['name'];
             $_SESSION['nic'] = $user['nic'];
 
             // Check the user's status and redirect

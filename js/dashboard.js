@@ -68,6 +68,143 @@ $(".submit").click(function() {
     return false;
 });
 
+// Fetch user and ministry data when the page loads
+window.onload = function() {
+    fetch('../dashboard_to_db.php')
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                // Fill readonly text inputs with user data
+                document.getElementById('iname').value = data.user.name;
+                document.getElementById('nic').value = data.user.nic;
+                document.getElementById('htel').value = data.user.tel;
+                document.getElementById('email').value = data.user.email;
+                document.getElementById('location').value = data.user.offi_name;
+
+                //hidden input field
+                document.getElementById('offi_id').value = data.user.offi_id;
+
+                // Fill table cells with user data
+                document.getElementById('inameCell').innerText = data.user.name;
+                document.getElementById('nicCell').innerText = data.user.nic;
+                document.getElementById('htelCell').innerText = data.user.tel;
+                document.getElementById('emailCell').innerText = data.user.email;
+                document.getElementById('locationCell').innerText = data.user.offi_name;
+
+                // Populate ministry dropdown
+                const ministrySelect = document.getElementById('ministry');
+                data.ministries.forEach(ministry => {
+                    const option = document.createElement('option');
+                    option.value = ministry.min_id;
+                    option.textContent = ministry.min_name;
+
+                    // Auto-select user's current ministry
+                    if (ministry.min_id === data.user.ministry_id) {
+                        option.selected = true;
+                    }
+
+                    ministrySelect.appendChild(option);
+                });
+
+                // Update display based on ministry dropdown selection
+                ministrySelect.addEventListener('change', function() {
+                    const selectedMinistryName = ministrySelect.options[ministrySelect.selectedIndex].textContent;
+                    document.getElementById('ministryCell').innerText = selectedMinistryName;
+                });
+
+            } else {
+                alert("Error: " + data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchServices();
+
+    function fetchServices() {
+        fetch('dashboard_to_db.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=fetchServices'
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('service').innerHTML += data;
+        });
+    }
+
+    document.getElementById('service').addEventListener('change', function () {
+        
+        const service_id = this.value;
+        const service_name = this.options[this.selectedIndex].text;
+        document.getElementById('serviceCell').textContent = service_name;
+
+        if (service_id !== '') {
+            fetchGrades(service_id);
+        } else {
+            document.getElementById('grade').disabled = true;
+            document.getElementById('job').disabled = true;
+        }
+    });
+
+    function fetchGrades(service_id) {
+        fetch('dashboard_to_db.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=fetchGrades&service_id=' + service_id
+        })
+        .then(response => response.text())
+        .then(data => {
+            const gradeSelect = document.getElementById('grade');
+            gradeSelect.innerHTML = '<option value="">Select Grade</option>';
+            gradeSelect.innerHTML += data;
+            gradeSelect.disabled = false;
+        });
+    }
+
+    document.getElementById('grade').addEventListener('change', function () {
+        const grade_id = this.value;
+        const grade_name = this.options[this.selectedIndex].text;
+        document.getElementById('gradeCell').textContent = grade_name;
+        if (grade_id !== '') {
+            fetchPositions(grade_id);
+        } else {
+            document.getElementById('job').disabled = true;
+        }
+    });
+
+    function fetchPositions(service_id) {
+        fetch('dashboard_to_db.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=fetchPositions&service_id=' + service_id
+        })
+        .then(response => response.text())
+        .then(data => {
+            const positionSelect = document.getElementById('job');
+            positionSelect.innerHTML = '<option value="">Select Position</option>';
+            positionSelect.innerHTML += data;
+            positionSelect.disabled = false;
+        });
+    }
+
+    document.getElementById('job').addEventListener('change', function () {
+        
+        const job_id = this.value;
+        const job_name = this.options[this.selectedIndex].text;
+        document.getElementById('jobCell').textContent = job_name;
+    });
+        
+
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');
     const textBoxRow = document.getElementById("textBoxRow");
@@ -142,8 +279,6 @@ const fields = [
     { input: 'htel', cell: 'htelCell' },
     { input: 'email', cell: 'emailCell' },
     { input: 'permenant', cell: 'permenantCell' },
-    { input: 'location', cell: 'locationCell' },
-    { input: 'ministry', cell: 'ministryCell' },
     { input: 'includeDate', cell: 'includeDateCell' },
     { input: 'university', cell: 'universityCell' },
     { input: 'digree', cell: 'digreeCell' },
@@ -200,54 +335,3 @@ document.getElementById('terms-checkbox-37').addEventListener('change', function
 });
 
 
-// Fetch user and ministry data when the page loads
-window.onload = function() {
-    fetch('../dashboard_to_db.php')
-        .then(response => response.json())
-        .then(data => {
-            if (!data.error) {
-                // Fill readonly text inputs with user data
-                document.getElementById('iname').value = data.user.name;
-                document.getElementById('nic').value = data.user.nic;
-                document.getElementById('htel').value = data.user.tel;
-                document.getElementById('email').value = data.user.email;
-                document.getElementById('service').value = data.user.service;
-                document.getElementById('grade').value = data.user.grade;
-                document.getElementById('job').value = data.user.desi;
-
-                // Fill table cells with user data
-                document.getElementById('inameCell').innerText = data.user.name;
-                document.getElementById('nicCell').innerText = data.user.nic;
-                document.getElementById('htelCell').innerText = data.user.tel;
-                document.getElementById('emailCell').innerText = data.user.email;
-                document.getElementById('serviceCell').innerText = data.user.service;
-                document.getElementById('gradeCell').innerText = data.user.grade;
-                document.getElementById('jobCell').innerText = data.user.desi;
-
-                // Populate ministry dropdown
-                const ministrySelect = document.getElementById('ministry');
-                data.ministries.forEach(ministry => {
-                    const option = document.createElement('option');
-                    option.value = ministry.min_id;
-                    option.textContent = ministry.min_name;
-
-                    // Auto-select user's current ministry
-                    if (ministry.min_id === data.user.ministry_id) {
-                        option.selected = true;
-                    }
-
-                    ministrySelect.appendChild(option);
-                });
-
-                // Update display based on ministry dropdown selection
-                ministrySelect.addEventListener('change', function() {
-                    const selectedMinistryName = ministrySelect.options[ministrySelect.selectedIndex].textContent;
-                    document.getElementById('ministryCell').innerText = selectedMinistryName;
-                });
-
-            } else {
-                alert("Error: " + data.error);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-};

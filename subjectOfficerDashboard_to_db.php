@@ -1,43 +1,66 @@
 <?php
 require 'connect.php'; 
+session_start();
+
+header('Content-Type: application/json'); // Ensure proper JSON header
 
 $response = ["success" => true];
 
-// count rows where app_status = 2
-$query = "SELECT COUNT(*) AS count FROM application WHERE app_status = '2'";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    $data = mysqli_fetch_assoc($result);
-    $response['new_applications'] = $data['count'];
-} else {
-    echo json_encode(["success" => false, "error" => "Error fetching new application count"]);
+// Check if the user is logged in
+if (!isset($_SESSION['nic'])) {
+    echo json_encode(["success" => false, "error" => "User not logged in"]);
     exit;
 }
 
-// count rows where app_status = 3
-$queryApprove = "SELECT COUNT(*) AS count FROM application WHERE app_status = '3'";
-$resultApprove = mysqli_query($conn, $queryApprove);
+$userNic = $_SESSION['nic'];
 
-if ($resultApprove) {
-    $data = mysqli_fetch_assoc($resultApprove);
-    $response['approved_applications'] = $data['count'];
-} else {
-    echo json_encode(["success" => false, "error" => "Error fetching approved application count"]);
+// Fetch the logged-in user's offi_id
+$userQuery = "SELECT offi_id FROM users WHERE nic = ?";
+$userStmt = $conn->prepare($userQuery);
+$userStmt->bind_param('s', $userNic);
+$userStmt->execute();
+$userStmt->bind_result($userOffiId);
+$userStmt->fetch();
+$userStmt->close();
+
+if (!$userOffiId) {
+    echo json_encode(["success" => false, "error" => "User office ID not found"]);
     exit;
 }
 
-// count rows where app_status = 4
-$queryReject = "SELECT COUNT(*) AS count FROM application WHERE app_status = '4'";
-$resultReject = mysqli_query($conn, $queryReject);
+// Initialize counts
+$newAppCount = $approvedAppCount = $rejectedAppCount = 0;
 
-if ($resultReject) {
-    $data = mysqli_fetch_assoc($resultReject);
-    $response['rejected_applications'] = $data['count'];
-} else {
-    echo json_encode(["success" => false, "error" => "Error fetching rejected application count"]);
-    exit;
-}
+// Count rows where app_status = 2 (new applications)
+$newAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 2";
+$newAppStmt = $conn->prepare($newAppQuery);
+$newAppStmt->bind_param('i', $userOffiId);
+$newAppStmt->execute();
+$newAppStmt->bind_result($newAppCount);
+$newAppStmt->fetch();
+$newAppStmt->close();
+$response['new_applications'] = $newAppCount;
 
+// Count rows where app_status = 3 (approved applications)
+$approvedAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 3";
+$approvedAppStmt = $conn->prepare($approvedAppQuery);
+$approvedAppStmt->bind_param('i', $userOffiId);
+$approvedAppStmt->execute();
+$approvedAppStmt->bind_result($approvedAppCount);
+$approvedAppStmt->fetch();
+$approvedAppStmt->close();
+$response['approved_applications'] = $approvedAppCount;
+
+// Count rows where app_status = 4 (rejected applications)
+$rejectedAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 4";
+$rejectedAppStmt = $conn->prepare($rejectedAppQuery);
+$rejectedAppStmt->bind_param('i', $userOffiId);
+$rejectedAppStmt->execute();
+$rejectedAppStmt->bind_result($rejectedAppCount);
+$rejectedAppStmt->fetch();
+$rejectedAppStmt->close();
+$response['rejected_applications'] = $rejectedAppCount;
+
+// Return the response as JSON
 echo json_encode($response);
 ?>

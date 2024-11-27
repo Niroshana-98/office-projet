@@ -2,6 +2,7 @@
 session_start();
 require 'connect.php';
 
+//Get Data Users Table
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Check if user is logged in
     if (!isset($_SESSION['nic'])) {
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $nic = $_SESSION['nic'];
 
     // Fetch user data based on NIC
-    $stmt = $conn->prepare("SELECT name, nic, email, tel, service, grade, desi FROM users WHERE nic = ?");
+    $stmt = $conn->prepare("SELECT name, nic, email, tel, offi_id FROM users WHERE nic = ?");
     $stmt->bind_param("s", $nic);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -25,6 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     $stmt->close();
 
+    // Fetch Office Name
+    $offi_id = $userData['offi_id'];
+    $office_stmt = $conn->prepare("SELECT offi_name FROM office WHERE offi_id = ?");
+    $office_stmt->bind_param("i", $offi_id);
+    $office_stmt->execute();
+    $office_result = $office_stmt->get_result();
+
+    if ($office_result->num_rows > 0) {
+        $officeData = $office_result->fetch_assoc();
+        $userData['offi_name'] = $officeData['offi_name'];
+    } else {
+        $userData['offi_name'] = 'Unknown';
+    }
+
+    $office_stmt->close();
+
     // Fetch ministries from the ministry table
     $ministry_stmt = $conn->prepare("SELECT min_id, min_name FROM ministry");
     $ministry_stmt->execute();
@@ -33,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $ministries = [];
     while ($row = $ministries_result->fetch_assoc()) {
         $ministries[] = $row;
-    }
+    } 
 
     $ministry_stmt->close();
 
@@ -43,6 +60,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'user' => $userData,
         'ministries' => $ministries
     ]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+    if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+
+        // Fetch services
+        if ($action === 'fetchServices') {
+            $query = "SELECT service_id, service_name FROM service";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<option value="'.$row['service_id'].'">'.$row['service_name'].'</option>';
+            }
+            exit;
+        }
+
+        // Fetch Grades
+        if($action === 'fetchGrades' && isset($_POST['service_id'])){
+            $service_id = $_POST['service_id'];
+            $query = "SELECT grade_id, grade_name FROM grade WHERE service_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $service_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<option value="'.$row['grade_id'].'">'.$row['grade_name'].'</option>';
+            }
+            exit;
+        }
+
+        // Fetch Position
+        if($action === 'fetchPositions' && isset($_POST['service_id'])){
+            $grade_id = $_POST['service_id'];
+            $query = "SELECT desi_id, desi_name FROM desi WHERE service_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $grade_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)){
+                echo '<option value="'.$row['desi_id'].'">'.$row['desi_name'].'</option>';
+            }
+            exit;
+        }
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $grade = $_POST['grade'];
     $upp_status = $_POST['permenant'];
     $desi = $_POST['job'];
-    $c_w_p = $_POST['location'];
+    $c_w_p = $_POST['offi_id'];
     $min = $_POST['ministry'];
     $date_att_sp = $_POST['includeDate'];
     $ins_name = $_POST['university'];

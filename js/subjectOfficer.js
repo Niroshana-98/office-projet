@@ -42,9 +42,9 @@ function fetchUserDetails() {
     fetch('../subjectOfficer_to_db.php') 
         .then(response => response.json())  
         .then(data => {
-            if (data.name && data.position) {
+            if (data.name && data.offi_name) {
                 document.getElementById('user-name').textContent = data.name;
-                document.getElementById('user-position').textContent = data.position;
+                document.getElementById('user-work-place').textContent = data.offi_name;
             } else {
                 console.error(data.error);
             }

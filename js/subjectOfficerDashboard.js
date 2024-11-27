@@ -1,14 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../subjectOfficerDashboard_to_db.php")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log("Received data:", data); // Debugging log
             if (data.success) {
-                document.querySelector(".card-title .new-applications-count").innerText = data.new_applications;
-                document.querySelector(".card-title .approved-applications-count").innerText = data.approved_applications;
-                document.querySelector(".card-title .rejected-applications-count").innerText = data.rejected_applications;
+                document.querySelector(".new-applications-count").innerText = data.new_applications || 0;
+                document.querySelector(".approved-applications-count").innerText = data.approved_applications || 0;
+                document.querySelector(".rejected-applications-count").innerText = data.rejected_applications || 0;
             } else {
-                console.error(data.error);
+                console.error("Error:", data.error);
+                alert("Error fetching application counts: " + data.error);
             }
         })
-        .catch(error => console.error("Error fetching application counts:", error));
+        .catch(error => console.error("Fetch error:", error));
 });

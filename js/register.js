@@ -67,13 +67,13 @@
         fetchOffices();
     
         function fetchOffices() {
-            fetch('register_to_db.php', {
+            fetch('../register_to_db.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: 'action=fetchOffices'
-            })
+            }) 
             .then(response => response.text())
             .then(data => {
                 document.getElementById('office').innerHTML += data;
@@ -95,11 +95,8 @@
             const officeName = officeSelect.options[officeSelect.selectedIndex].text;
 
             // Append names to the hidden inputs before submission
-            this.querySelector('input[name="office"]').value = officeName;
+            this.querySelector('input[name="offices"]').value = officeName;
 
         });
 
     });
-    
-
-

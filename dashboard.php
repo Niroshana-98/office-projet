@@ -36,7 +36,7 @@
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">මුලකුරු සමග නම (සිංහලෙන්)</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="iname" name="iname" placeholder="">
+                                    <input type="text" class="form-control" id="iname" name="iname" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">ජා.හැ. අංකය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="nic" name="nic" placeholder="">
+                                    <input type="text" class="form-control" id="nic" name="nic" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
@@ -71,13 +71,13 @@
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">දුරකථන අංකය (ජංගම)</h5>
                                     <div class="mb-3">
-                                        <input type="tel" class="form-control" id="htel" name="htel" placeholder="">
+                                        <input type="tel" class="form-control" id="htel" name="htel" placeholder="" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">ඊමේල් ලිපිනය</h5>
                                     <div class="mb-3">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -92,11 +92,15 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
-                                <input type="text" class="form-control" name="service" id="service" readonly>
+                                <select class="form-select" name="service" id="service">
+                                    <option selected>Open this select menu</option>
+                                </select>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">නිලධාරියා අයත්වන ශ්‍රේණිය</h5>
-                                <input type="text" class="form-control" name="grade" id="grade" readonly>
+                                <select class="form-select" name="grade" id="grade">
+                                    <option selected>Open this select menu</option>
+                                </select>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">පත්වීම ස්ථිරද? / නොමැතිද?</h5>
@@ -110,11 +114,17 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">තනතුර</h5>
-                                <input type="text" class="form-control" name="job" id="job"  readonly>
+                                <select class="form-select" name="job" id="job">
+                                    <option selected>Open this select menu</option>
+                                </select>
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">සේවා ස්ථානය</h5>
-                                <input type="text" class="form-control" id="location" placeholder="" name="location">
+                                <input type="text" class="form-control" id="location" placeholder="" name="location" readonly>
+                                
+                                <!-- Hidden input to store offi_id -->
+                                <input type="hidden" id="offi_id" name="offi_id">
+                                
                             </div>
                         </div>
                         <div class="row">

@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("nextFieldsetTableContainer").style.display = 'block';
                 } else {
                     document.getElementById("nextFieldsetTableContainer").style.display = 'none';
-                }
+                } 
 
                 if (data.bf_02course_name) {
                     document.getElementById("bf_02course_name").value = data.bf_02course_name;

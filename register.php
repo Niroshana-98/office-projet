@@ -48,7 +48,7 @@
                 <select class="form-select" name="office" id="office" aria-label="searchable office">
                     <option value="" selected>Open this select menu</option>
                 </select>
-                <input type="hidden" name="office" value="">
+                <input type="hidden" name="offices" value="">
             </div>
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
