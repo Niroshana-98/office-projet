@@ -8,133 +8,165 @@ require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require './vendor/phpmailer/phpmailer/src/SMTP.php';
 require './vendor/phpmailer/phpmailer/src/Exception.php';
 
-// Clean any previous output buffers
-ob_clean();
-
+ob_start(); // Clean any previous output buffers
 header('Content-Type: application/json');
 
-// Check if necessary data is passed from the frontend
 $data = json_decode(file_get_contents("php://input"), true);
-if (!isset($data['app_no']) || !isset($data['status']) || !isset($data['nic'])) {
-    echo json_encode(['success' => false, 'error' => 'Missing application number, status, or NIC']);
+
+// Validate input data
+if (!isset($data['app_no']) || !isset($data['status'])) {
+    echo json_encode(['success' => false, 'error' => 'Missing application number or status']);
     exit;
 }
 
 $app_no = $data['app_no'];
 $status = $data['status'];
-$comment = isset($data['comment']) ? $data['comment'] : ''; 
-$nic = $data['nic']; 
+$comment = isset($data['comment']) ? $data['comment'] : '';
+$nic = isset($data['nic']) ? $data['nic'] : '';
 
-// Debug: log NIC value to verify
-error_log("NIC Received: " . $nic);
-
-// Get the applicant's details from the session (assuming NIC is stored in session)
-$session_nic = isset($_SESSION['nic']) ? $_SESSION['nic'] : ''; // NIC stored in session for the logged-in user
-
-if (!$session_nic) {
-    echo json_encode(['success' => false, 'error' => 'No applicant session found']);
-    exit;
-}
-
-// Fetch the applicant's email from the database based on NIC (session)
-$stmt = $conn->prepare("SELECT email, name FROM users WHERE nic = ?");
-$stmt->bind_param("s", $session_nic); 
+// Fetch c_w_p for the given application number
+$stmt = $conn->prepare("SELECT c_w_p FROM application WHERE app_no = ?");
+$stmt->bind_param("s", $app_no);
 $stmt->execute();
-$result = $stmt->get_result();
+$stmt->bind_result($c_w_p);
+$stmt->fetch();
+$stmt->close();
 
-// Debug: Check if the NIC exists in the database
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $email = $row['email'];
-    $applicant_name = $row['name'];
-    // Debug: log fetched email and applicant name
-    error_log("Fetched Applicant Email: " . $email);
-    error_log("Fetched Applicant Name: " . $applicant_name);
-} else {
-    // NIC not found, return error response
-    echo json_encode(['success' => false, 'error' => 'Applicant email not found']);
+if (!$c_w_p) {
+    echo json_encode(['success' => false, 'error' => 'c_w_p not found for the given application']);
     exit;
 }
 
-// Get admin details from session (assuming admin details are stored in session)
-$admin_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin'; // default to 'Admin' if not set
-$admin_email = isset($_SESSION['admin_email']) ? $_SESSION['admin_email'] : 'admin@example.com'; // default admin email
+// Fetch offi_cat from the office table using c_w_p
+$stmt = $conn->prepare("SELECT offi_cat FROM office WHERE offi_id = ?");
+$stmt->bind_param("s", $c_w_p);
+$stmt->execute();
+$stmt->bind_result($offi_cat);
+$stmt->fetch();
+$stmt->close();
 
-// Update application status based on the given status
-if ($status == 4 && !empty($comment)) {
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, rejected = ? WHERE app_no = ?");
-    $stmt->bind_param("iss", $status, $comment, $app_no);
-} elseif ($status == 3) {
-    $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
-    $stmt->bind_param("is", $status, $app_no);
-} else {
-    $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
-    $stmt->bind_param("is", $status, $app_no);
+if (!$offi_cat) {
+    echo json_encode(['success' => false, 'error' => 'Office category not found']);
+    exit;
 }
+
+// Determine app_status based on offi_cat
+$app_status = null;
+switch ($offi_cat) {
+    case 1:
+        $app_status = 100;
+        break;
+    case 2:
+        $app_status = 110;
+        break;
+    case 3:
+        $app_status = 120;
+        break;
+    case 4:
+        $app_status = 130;
+        break;
+    case 5:
+        $app_status = 140;
+        break;
+    case 6:
+        $app_status = 150;
+        break;
+    default:
+        echo json_encode(['success' => false, 'error' => 'Invalid office category']);
+        exit;
+}
+
+// Update application table with the determined app_status
+$stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
+$stmt->bind_param("is", $app_status, $app_no);
 
 if ($stmt->execute()) {
-    // If application status is updated successfully, update user status only if the status is rejected (4)
-    if ($status == 4) {
-        $stmt = $conn->prepare("UPDATE users SET status = 5 WHERE nic = ?");
-        $stmt->bind_param("s", $nic); 
-        $stmt->execute();
-    }
+    $stmt->close();
 
-    // Send rejection email if the status is 4 (rejected)
-    if ($status == 4) {
-        $mail = new PHPMailer(true);
-        try {
-            // Server settings
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'djpasinduniroshana@gmail.com'; // Change to your email
-            $mail->Password   = 'wrxb kpcf miir faxi'; // Change to your email password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+    // Optional: Handle additional actions for rejected applications (status == 4)
+    if ($status == 4 && !empty($comment)) {
+        // Update rejection reason
+        $stmt = $conn->prepare("UPDATE application SET app_status = ?, rejected = ? WHERE app_no = ?");
+        $stmt->bind_param("iss", $status, $comment, $app_no);
+        if ($stmt->execute()) {
+            // Update user status to 5 (Rejected)
+            $stmt = $conn->prepare("UPDATE users SET status = 5 WHERE nic = ?");
+            $stmt->bind_param("s", $nic); 
+            $stmt->execute();
 
-            // Recipients
-            $mail->setFrom('djpasinduniroshana@gmail.com', 'Chief Secretariat Southern Province');
-            $mail->addAddress($email); // Using the fetched applicant email
+            // Send rejection email if the status is 4 (rejected)
+            $stmt = $conn->prepare("SELECT name_eng, email_pri FROM application WHERE app_no = ?");
+            $stmt->bind_param("s", $app_no); 
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = 'Application Rejected';
-            $mail->Body    = "
-                <div style='font-family: Arial, sans-serif; color: #333; text-align: center; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: linear-gradient(to right, #ff7e5f, #feb47b); animation: fadeIn 1.5s ease-in-out;'>
-                    <h2 style='color: #ffffff; font-size: 28px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);'>
-                        Application Rejected
-                    </h2>
-                    <p style='font-size: 18px; color: #f9f9f9;'>Hello, $applicant_name,</p>
-                    <p style='font-size: 16px; color: #f9f9f9;'>We regret to inform you that your application has been rejected. Below is the reason for rejection:</p>
-                    
-                    <div style='font-size: 18px; color: #ff6347; font-weight: bold; padding: 15px; border: 2px dashed #ff6347; background-color: #fff; border-radius: 5px; margin: 20px 0; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); animation: slideIn 1s ease-out;'>
-                        $comment
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $email = $row['email_pri'];
+                $applicant_name = $row['name_eng'];
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Applicant email not found']);
+                exit;
+            }
+
+            if (empty($email)) {
+                echo json_encode(['success' => false, 'error' => 'Recipient email is missing']);
+                exit;
+            }
+            $mail = new PHPMailer(true);
+            try {
+                // Server settings
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'djpasinduniroshana@gmail.com';
+                $mail->Password = 'wrxb kpcf miir faxi'; 
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
+
+                // Recipients
+                $mail->setFrom('djpasinduniroshana@gmail.com', 'Chief Secretariat Southern Province');
+                $mail->addAddress($email); 
+
+                // Content
+                $mail->isHTML(true);
+                $mail->Subject = 'Application Rejected';
+                $mail->Body    = "
+                    <div style='font-family: Arial, sans-serif; color: #333; text-align: center; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: linear-gradient(to right, #ff7e5f, #feb47b); animation: fadeIn 1.5s ease-in-out;'>
+                        <h2 style='color: #ffffff; font-size: 28px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);'>
+                            Application Rejected
+                        </h2>
+                        <p style='font-size: 18px; color: #f9f9f9;'>Hello, $applicant_name,</p>
+                        <p style='font-size: 16px; color: #f9f9f9;'>We regret to inform you that your application has been rejected. Below is the reason for rejection:</p>
+                        
+                        <div style='font-size: 18px; color: #ff6347; font-weight: bold; padding: 15px; border: 2px dashed #ff6347; background-color: #fff; border-radius: 5px; margin: 20px 0; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); animation: slideIn 1s ease-out;'>
+                            $comment
+                        </div>
+                        
+                        <p style='font-size: 16px; color: #f9f9f9;'>If you have any questions or would like further clarification, please contact us at [Your Contact Info].</p>
+                        
+                        <p style='font-size: 14px; color: #f9f9f9; margin-top: 20px;'>Best Regards,<br><br>Chief Secretariat Southern Province</p>
                     </div>
-                    
-                    <p style='font-size: 16px; color: #f9f9f9;'>If you have any questions or would like further clarification, please contact us at [Your Contact Info].</p>
-                    
-                    <p style='font-size: 14px; color: #f9f9f9; margin-top: 20px;'>Best Regards,<br>$admin_name<br>Chief Secretariat Southern Province</p>
-                </div>
-                <style>
-                    @keyframes fadeIn {
-                        from { opacity: 0; }
-                        to { opacity: 1; }
-                    }
+                    <style>
+                        @keyframes fadeIn {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
+                        }
 
-                    @keyframes slideIn {
-                        from { transform: translateX(-50%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                </style>
-            ";
+                        @keyframes slideIn {
+                            from { transform: translateX(-50%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                    </style>
+                ";
 
-            $mail->send();
-            echo json_encode(['success' => true, 'message' => 'Application and user status updated successfully']);
-
-        } catch (Exception $e) {
-            echo json_encode(['success' => false, 'error' => 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo]);
-            exit;
+                $mail->send();
+                echo json_encode(['success' => true, 'message' => 'Application and user status updated successfully']);
+            } catch (Exception $e) {
+                error_log("Mailer Error: " . $mail->ErrorInfo);
+                echo json_encode(['success' => false, 'error' => 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo]);
+                exit;
+            }
         }
     } else {
         echo json_encode(['success' => true, 'message' => 'Application status updated successfully']);
@@ -143,4 +175,5 @@ if ($stmt->execute()) {
     echo json_encode(['success' => false, 'error' => 'Failed to update application status']);
 }
 
+ob_end_flush();
 ?>

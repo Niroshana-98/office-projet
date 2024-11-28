@@ -32,7 +32,15 @@ if (!$userOffiId) {
 $newAppCount = $approvedAppCount = $rejectedAppCount = 0;
 
 // Count rows where app_status = 2 (new applications)
-$newAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 2";
+$newAppQuery = "
+    SELECT COUNT(*) AS count 
+    FROM application 
+    INNER JOIN desi 
+    ON application.desi = desi.desi_id
+    WHERE application.c_w_p = ? 
+    AND application.app_status = 2
+";
+
 $newAppStmt = $conn->prepare($newAppQuery);
 $newAppStmt->bind_param('i', $userOffiId);
 $newAppStmt->execute();
@@ -41,8 +49,17 @@ $newAppStmt->fetch();
 $newAppStmt->close();
 $response['new_applications'] = $newAppCount;
 
+
 // Count rows where app_status = 3 (approved applications)
-$approvedAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 3";
+$approvedAppQuery = "
+    SELECT COUNT(*) AS count 
+    FROM application 
+    INNER JOIN desi 
+    ON application.desi = desi.desi_id
+    WHERE application.c_w_p = ? 
+    AND application.app_status IN (100, 110, 120, 130, 140, 150)
+";
+
 $approvedAppStmt = $conn->prepare($approvedAppQuery);
 $approvedAppStmt->bind_param('i', $userOffiId);
 $approvedAppStmt->execute();
@@ -52,14 +69,22 @@ $approvedAppStmt->close();
 $response['approved_applications'] = $approvedAppCount;
 
 // Count rows where app_status = 4 (rejected applications)
-$rejectedAppQuery = "SELECT COUNT(*) AS count FROM application WHERE c_w_p = ? AND app_status = 4";
-$rejectedAppStmt = $conn->prepare($rejectedAppQuery);
-$rejectedAppStmt->bind_param('i', $userOffiId);
-$rejectedAppStmt->execute();
-$rejectedAppStmt->bind_result($rejectedAppCount);
-$rejectedAppStmt->fetch();
-$rejectedAppStmt->close();
-$response['rejected_applications'] = $rejectedAppCount;
+$newAppQuery = "
+    SELECT COUNT(*) AS count 
+    FROM application 
+    INNER JOIN desi 
+    ON application.desi = desi.desi_id
+    WHERE application.c_w_p = ? 
+    AND application.app_status = 4
+";
+
+$newAppStmt = $conn->prepare($newAppQuery);
+$newAppStmt->bind_param('i', $userOffiId);
+$newAppStmt->execute();
+$newAppStmt->bind_result($newAppCount);
+$newAppStmt->fetch();
+$newAppStmt->close();
+$response['rejected_applications'] = $newAppCount;
 
 // Return the response as JSON
 echo json_encode($response);

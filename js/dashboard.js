@@ -122,8 +122,9 @@ window.onload = function() {
 document.addEventListener('DOMContentLoaded', function () {
     fetchServices();
 
+    // Fetch services on page load
     function fetchServices() {
-        fetch('dashboard_to_db.php', {
+        fetch('../dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -136,22 +137,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle service change event
     document.getElementById('service').addEventListener('change', function () {
-        
         const service_id = this.value;
         const service_name = this.options[this.selectedIndex].text;
         document.getElementById('serviceCell').textContent = service_name;
 
         if (service_id !== '') {
             fetchGrades(service_id);
+            document.getElementById('grade').disabled = false;
         } else {
             document.getElementById('grade').disabled = true;
             document.getElementById('job').disabled = true;
         }
     });
 
+    // Fetch grades based on selected service
     function fetchGrades(service_id) {
-        fetch('dashboard_to_db.php', {
+        fetch('../dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -164,27 +167,36 @@ document.addEventListener('DOMContentLoaded', function () {
             gradeSelect.innerHTML = '<option value="">Select Grade</option>';
             gradeSelect.innerHTML += data;
             gradeSelect.disabled = false;
+
+            // Reset positions dropdown
+            const positionSelect = document.getElementById('job');
+            positionSelect.innerHTML = '<option value="">Select Position</option>';
+            positionSelect.disabled = true;
         });
     }
 
+    // Handle grade change event
     document.getElementById('grade').addEventListener('change', function () {
         const grade_id = this.value;
         const grade_name = this.options[this.selectedIndex].text;
+        const service_id = document.getElementById('service').value;
         document.getElementById('gradeCell').textContent = grade_name;
-        if (grade_id !== '') {
-            fetchPositions(grade_id);
+
+        if (grade_id !== '' && service_id !== '') {
+            fetchPositions(service_id, grade_id);
         } else {
             document.getElementById('job').disabled = true;
         }
     });
 
-    function fetchPositions(service_id) {
-        fetch('dashboard_to_db.php', {
+    // Fetch positions based on selected service and grade
+    function fetchPositions(service_id, grade_id) {
+        fetch('../dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: 'action=fetchPositions&service_id=' + service_id
+            body: 'action=fetchPositions&service_id=' + service_id + '&grade_id=' + grade_id
         })
         .then(response => response.text())
         .then(data => {
@@ -195,15 +207,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle position change event
     document.getElementById('job').addEventListener('change', function () {
-        
         const job_id = this.value;
         const job_name = this.options[this.selectedIndex].text;
         document.getElementById('jobCell').textContent = job_name;
     });
-        
-
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const radioButtons = document.querySelectorAll('input[name="flexRadioDefault"]');

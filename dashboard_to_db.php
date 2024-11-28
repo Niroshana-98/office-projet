@@ -92,10 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Fetch Position
         if($action === 'fetchPositions' && isset($_POST['service_id'])){
-            $grade_id = $_POST['service_id'];
+            $service_id = $_POST['service_id'];
             $query = "SELECT desi_id, desi_name FROM desi WHERE service_id = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("i", $grade_id);
+            $stmt->bind_param("i", $service_id);
             $stmt->execute();
             $result = $stmt->get_result();
             while ($row = mysqli_fetch_assoc($result)){

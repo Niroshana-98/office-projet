@@ -105,55 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     .catch(error => console.error("Error fetching application data:", error));
-
-
-    document.querySelector(".approve-btn").addEventListener("click", function() {
-        console.log("Approve button clicked");
-        updateAppStatus(3); 
-    });
-
-    document.querySelector(".reject-btn").addEventListener("click", function() {
-        const comment = document.getElementById("comments").value.trim();
-        const nic = document.getElementById("nic").value.trim();
-        updateAppStatus(4, comment, nic); 
-    });
-
-    function updateAppStatus(status, comment = '' , nic = '') {
-        const appNo = document.getElementById("appNoDisplay").innerText;
-        
-        if (!appNo) {
-            console.error("Application number is missing.");
-            return;
-        }
-
-        const data = {
-            app_no: appNo,
-            status: status,
-            comment: comment,
-            nic: nic 
-        };
-    
-        fetch('../subjectOfficerUpdateApplicationStatus.php', { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); 
-    
-            if (data.success) {
-                alert(data.message);
-    
-                window.location.href = 'subjectOfficerApprovedApplication.php'; 
-            } else {
-                alert('Failed to update status: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error("Error updating app status:", error);
-        });
-    }        
 });
 
 

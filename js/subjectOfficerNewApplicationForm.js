@@ -108,28 +108,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelector(".approve-btn").addEventListener("click", function() {
-        updateAppStatus(3); 
+        updateAppStatus(3); // Initial approval status
     });
-
+    
     document.querySelector(".reject-btn").addEventListener("click", function() {
         const comment = document.getElementById("comments").value.trim();
         const nic = document.getElementById("nic").value.trim();
-        updateAppStatus(4, comment, nic); 
+    
+        // Ensure that the comment is entered for rejection
+        if (status == 4 && !comment) {
+            alert("Please provide a comment for the rejection.");
+            return;
+        }
+    
+        updateAppStatus(4, comment, nic); // Rejection status
     });
-
-    function updateAppStatus(status, comment = '' , nic = '') {
+    
+    function updateAppStatus(status, comment = '', nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
-        
+    
         if (!appNo) {
             console.error("Application number is missing.");
             return;
         }
-
+    
         const data = {
             app_no: appNo,
             status: status,
             comment: comment,
-            nic: nic 
+            nic: nic
         };
     
         fetch('../subjectOfficerUpdateApplicationStatus.php', {
@@ -137,22 +144,28 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); 
-    
-            if (data.success) {
-                alert(data.message);
-    
-                window.location.href = 'subjectOfficerNewApplication.php'; 
-            } else {
-                alert('Failed to update status: ' + data.error);
+        .then(response => response.text())  // Get the raw response text
+        .then(text => {
+            console.log(text); // Log the raw response to see what's returned
+            try {
+                const data = JSON.parse(text); // Parse as JSON
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = 'subjectOfficerNewApplication.php';
+                } else {
+                    alert('Failed to update status: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                alert('There was an error processing the response.');
             }
         })
         .catch(error => {
-            console.error("Error updating app status:", error);
-        }); 
-    }        
+            console.error('There was a problem with the fetch operation:', error);
+        });
+        
+    }
+            
 });
 
 const approvalSelect = document.getElementById('approvalSelect');
