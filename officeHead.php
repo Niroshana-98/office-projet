@@ -18,7 +18,7 @@
         </div>
         <div class="header-text">
             <h1>CHIEF SECRETARIAT SOUTHERN PROVINCE</h1>
-            <h3>SCHOLARSHIP APPLICATION SYSTEM</h3>
+            <h3>SCHOLARSHIP APPLICATION SYSTEM</h3> 
         </div>
         <div class="header_img"></div>
     </header>
@@ -30,11 +30,11 @@
         </div>
         <div class="login-detail">
             <span class="label">Job Position:</span>
-            <span class="value" id="user-position"></span>
+            <span class="value" id="user-position">Office Head</span>
         </div>
         <div class="login-detail">
-            <span class="label">District:</span>
-            <span class="value" id="user-district">Southern Province</span>
+            <span class="label">Work Place:</span>
+            <span class="value" id="user-work-place"></span> 
         </div>
         <div class="login-detail">
             <span class="label">Time:</span>
@@ -46,7 +46,7 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="./officer.php" class="nav_logo">
+                <a href="./officeHead.php" class="nav_logo">
                 <i class='bx bx-home'></i>
                     <span class="nav_logo-name">Home</span>
                 </a>

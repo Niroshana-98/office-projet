@@ -106,6 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Assuming you have included the database connection file and established a connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect data from the POST request
     $name_full = $_POST['fname'];
@@ -143,8 +146,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bf_02gov_paid = $_POST['loan2'];
     $bf_02full_course_fee = $_POST['cFees2']; 
 
-    $app_status = "1";
+    $app_status = "1";  // Initial application status
 
+    // Additional variables for offi_cat and dist_offi_id
+    $offi_cat = null;
+    $dist_offi_id = null;
+
+    // Fetch offi_cat and dist_offi_id from the office table
+    $stmt_office = $conn->prepare("SELECT offi_cat, dist_offi_id FROM office WHERE offi_id = ?");
+    $stmt_office->bind_param("i", $c_w_p);
+    $stmt_office->execute();
+    $result_office = $stmt_office->get_result();
+
+    if ($result_office->num_rows > 0) {
+        $row_office = $result_office->fetch_assoc();
+        $offi_cat = $row_office['offi_cat'];
+        $dist_offi_id = $row_office['dist_offi_id'];
+    } else {
+        echo "<script>alert('Invalid office ID. Please check and try again.');</script>";
+        exit;
+    }
+
+    $stmt_office->close();
 
     // Check for existing NIC or email
     $stmts = $conn->prepare("SELECT * FROM application WHERE nic=? OR email_pri=?");
@@ -155,36 +178,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         echo "<script>alert('A user with this NIC or email already exists.');</script>";
     } else {
-        // Insert data into application table
-        $stmts = $conn->prepare("INSERT INTO application (name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, app_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-        $stmts->bind_param("sssssiisssssssssssssissssiisssiii", 
-            $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, $service, $grade, 
-            $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, $service_minite_no, 
-            $course_start_date, $course_end_date, $course_fee, $before_recieved, $bf_01course_name, 
-            $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, $bf_02course_name, 
-            $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, $app_status
-        );
+        // Insert data into application table (including offi_cat and dist_offi_id)
+        $stmts = $conn->prepare("INSERT INTO application (
+            name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, 
+            service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, 
+            service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, 
+            bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, 
+            bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, 
+            app_status, offi_cat, dist_offi_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
+        $stmts->bind_param(
+            "sssssiisssssssssssssissssiisssiiiii", 
+            $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, 
+            $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, 
+            $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, 
+            $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, 
+            $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, 
+            $app_status, $offi_cat, $dist_offi_id
+        );     
 
         if (!$stmts->execute()) {
             echo "Error: " . $stmts->error;
         } else {
+            // Update user status
             $update_stmt = $conn->prepare("UPDATE users SET status = ? WHERE nic = ?");
-            $new_status = 3; 
+            $new_status = 3;  // Set status to 3 after application insertion
             $update_stmt->bind_param("is", $new_status, $nic);
-        
-        if ($update_stmt->execute()) {
-            echo "<script>alert('Data inserted successfully! Navigating to upload page.'); window.location.href='upload.php';</script>";
-        } else {
-            echo "Error updating user status: " . $update_stmt->error;
+
+            if ($update_stmt->execute()) {
+                echo "<script>alert('Data inserted successfully! Navigating to upload page.'); window.location.href='upload.php';</script>";
+            } else {
+                echo "Error updating user status: " . $update_stmt->error;
+            }
+            
+            $update_stmt->close();
         }
-        
-        $update_stmt->close();
+
+        $stmts->close();
     }
 }
 
-$stmts->close();
-}
 
 $conn->close();
 ?>

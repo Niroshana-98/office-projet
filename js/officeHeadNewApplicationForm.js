@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
             document.getElementById("name_eng").value = data.name_eng;
-            document.getElementById("nic").value = data.nic;
+            document.getElementById("nic").value = data.nic; 
             document.getElementById("address_pri").value = data.address_pri;
             document.getElementById("tel_land").value = data.tel_land;
             document.getElementById("tel_mob").value = data.tel_mob;
@@ -108,13 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelector(".approve-btn").addEventListener("click", function() {
-        updateAppStatus(5); 
+        updateAppStatus(1); 
     });
 
     document.querySelector(".reject-btn").addEventListener("click", function() {
         const comment = document.getElementById("comments").value.trim();
         const nic = document.getElementById("nic").value.trim();
-        updateAppStatus(6, comment, nic); 
+        updateAppStatus(2, comment, nic); 
     });
 
     function updateAppStatus(status, comment = '' , nic = '') {

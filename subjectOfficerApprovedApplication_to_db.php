@@ -14,7 +14,7 @@ $query = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.app_status = '110'
+        application.app_status IN (100, 110, 120, 130, 140, 150)
 ";
 
 $result = mysqli_query($conn, $query);

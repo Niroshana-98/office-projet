@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     bodypd.classList.toggle('body-pd')
     headerpd.classList.toggle('body-pd')
     })
-    }
+    } 
     }
     
     showNavbar('header-toggle','nav-bar','body-pd','header')
@@ -36,6 +36,24 @@ function updateTime() {
 } 
 
 setInterval(updateTime, 1000);
+updateTime();
+
+function fetchUserDetails() {
+    fetch('../OfficeHead_to_db.php') 
+        .then(response => response.json())  
+        .then(data => {
+            if (data.name && data.offi_name) {
+                document.getElementById('user-name').textContent = data.name;
+                document.getElementById('user-work-place').textContent = data.offi_name;
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user details:', error);
+        });
+}
+fetchUserDetails();
 
 document.addEventListener("DOMContentLoaded", function(event) {
     const logoutLink = document.getElementById("logout-link");
@@ -69,25 +87,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = './logout.php'; 
+                window.location.href = './index.html'; 
             }
         });
     });
 });
-
-function fetchUserDetails() {
-    fetch('../officeHead_to_db.php') 
-        .then(response => response.json())  
-        .then(data => {
-            if (data.name && data.position) {
-                document.getElementById('user-name').textContent = data.name;
-                document.getElementById('user-position').textContent = data.position;
-            } else {
-                console.error(data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching user details:', error);
-        });
-}
-fetchUserDetails();

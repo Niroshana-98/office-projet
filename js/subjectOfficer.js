@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = './logout.php';  // Redirect to the logout page
+                window.location.href = './index.html';  // Redirect to the logout page
             }
             // If "Cancel" is clicked, do nothing
         });
