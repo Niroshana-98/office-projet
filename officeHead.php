@@ -51,7 +51,7 @@
                     <span class="nav_logo-name">Home</span>
                 </a>
                 <div class="nav_list">
-                    <a href="./officerDashboard.php" class="nav_link active" target="content-frame">
+                    <a href="./officeHeadDashboard.php" class="nav_link active" target="content-frame">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
@@ -70,7 +70,7 @@
     </div>
     
     <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
-        <iframe name="content-frame" src="./officerDashboard.php" 
+        <iframe name="content-frame" src="./officeHeadDashboard.php" 
                 style="width: 100%; height: 100%; overflow: hidden;" 
                 frameborder="0" scrolling="no">
         </iframe>
@@ -80,7 +80,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./js/officer.js"></script>
+    <script src="./js/officeHead.js"></script>
     
 </body>
 </html>

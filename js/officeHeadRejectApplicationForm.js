@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../officerNewApplicationForm_to_db.php", {
+    fetch("../officeHeadRejectApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('../officerUpdateApplicationStatus.php', {
+        fetch('../officeHeadUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'officerNewApplication.php'; 
+                window.location.href = 'officeHeadNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }
@@ -155,23 +155,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }        
 });
 
-const approvalSelect = document.getElementById('approvalSelect');
-const approveButton = document.getElementById('approveButton');
-const rejectButton = document.getElementById('rejectButton');
-const commentSection = document.getElementById('commentSection');
 
-approvalSelect.addEventListener('change', function() {
-    if (approvalSelect.value === "1") {
-        approveButton.style.display = "block";
-        rejectButton.style.display = "none";
-        commentSection.style.display = 'none'; 
-    } else if (approvalSelect.value === "2") {
-        approveButton.style.display = "none";
-        rejectButton.style.display = "block";
-        commentSection.style.display = 'block'; 
-    } else {
-        approveButton.style.display = "none";
-        rejectButton.style.display = "none";
-        commentSection.style.display = 'none'; 
-    }
-});

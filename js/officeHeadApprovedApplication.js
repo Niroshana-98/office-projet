@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('../officerNewApplication_to_db.php')
+    fetch('../officeHeadApprovedApplication_to_db.php')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('.table tbody');
-            tableBody.innerHTML = ''; 
+            tableBody.innerHTML = '';
 
             data.forEach(app => {
                 const row = document.createElement('tr');
@@ -32,7 +32,7 @@ function viewApplication(appNo) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `officerNewApplicationForm.php?app_no=${appNo}`;
+            window.location.href = `officeHeadApprovedApplicationForm.php?app_no=${appNo}`;
         } else {
             alert('Error setting session');
         }

@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function fetchUserDetails() {
-    fetch('../officer_to_db.php') 
+    fetch('../officeHead_to_db.php') 
         .then(response => response.json())  
         .then(data => {
             if (data.name && data.position) {

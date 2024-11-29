@@ -25,7 +25,7 @@
                             <span class="new-applications-count"></span> Applications
                         </h5>
                         <p class="card-text">View details of new applications waiting for approval.</p>
-                        <a href="./officerNewApplication.php" class="btn btn-outline-primary">View New Applications</a>
+                        <a href="./officeHeadNewApplication.php" class="btn btn-outline-primary">View New Applications</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                             <span class="approved-applications-count"></span> Applications
                         </h5>
                         <p class="card-text">View details of applications that have been approved.</p>
-                        <a href="./officerApprovedApplication.php" class="btn btn-outline-success">View Approved Applications</a>
+                        <a href="./officeHeadApprovedApplication.php" class="btn btn-outline-success">View Approved Applications</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                             <span class="rejected-applications-count"></span> Applications
                         </h5>
                         <p class="card-text">View details of applications that have been rejected.</p>
-                        <a href="./officerRejectApplication.php" class="btn btn-outline-danger">View Rejected Applications</a>
+                        <a href="./officeHeadRejectApplication.php" class="btn btn-outline-danger">View Rejected Applications</a>
                     </div>
                 </div>
             </div>
@@ -67,6 +67,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/officerDashboard.js"></script>
+    <script src="./js/officeHeadDashboard.js"></script>
 </body>
 </html>

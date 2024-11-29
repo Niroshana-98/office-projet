@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../officerDashboard_to_db.php")
+    fetch("../officeHeadDashboard_to_db.php")
         .then(response => response.json())
         .then(data => {
             if (data.success) {
