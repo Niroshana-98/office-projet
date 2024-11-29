@@ -26,15 +26,42 @@ $nic = isset($data['nic']) ? $data['nic'] : '';
 
 // Handle application approval
 if ($status == 1) {
-    $app_status = 130; // Approved status
+    // Fetch offi_cat for the given app_no
+    $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?");
+    $stmt->bind_param("i", $app_no);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $offi_cat = $row['offi_cat'];
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Application not found']);
+        exit();
+    }
+    
+    $stmt->close();
+
+    // Set app_status based on offi_cat
+    if ($offi_cat == 6) {
+        $app_status = 130; // Approved status for offi_cat = 6
+    } elseif ($offi_cat == 5) {
+        $app_status = 140; // Approved status for offi_cat = 5
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
+        exit();
+    }
+
+    // Update the application status
     $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
-    $stmt->bind_param("is", $app_status, $app_no);
+    $stmt->bind_param("ii", $app_status, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
     } else {
         echo json_encode(['success' => false, 'error' => 'Failed to update application status']);
     }
+
     $stmt->close();
     exit;
 }
