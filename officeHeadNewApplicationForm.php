@@ -293,6 +293,11 @@
         <div id="commentSection" style="display: none; margin-top: 10px;">
             <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි නොවේ:</label>
             <textarea id="comments" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+        </div> 
+
+        <div id="commentSectionA" style="display: none; margin-top: 10px;">
+            <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි වේ:</label>
+            <textarea id="commentsA" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
         </div>
 
         <div class="button-container">

@@ -13,11 +13,32 @@ header('Content-Type: application/json');
 // Read and decode JSON input
 $data = json_decode(file_get_contents("php://input"), true);
 
+if (!isset($_SESSION['nic'])) {
+    echo json_encode(['success' => false, 'error' => 'User not logged in']);
+    exit;
+}
+
+// Get the NIC from the session
+$nic = $_SESSION['nic'];
+
+// Fetch user_id for the logged-in NIC from the users table
+$stmt = $conn->prepare("SELECT user_id FROM users WHERE nic = ?");
+$stmt->bind_param("s", $nic);
+$stmt->execute();
+$stmt->bind_result($user_id);
+$stmt->fetch();
+$stmt->close();
+
+if (!$user_id) {
+    echo json_encode(['success' => false, 'error' => 'User not found']);
+    exit;
+}
+
 // Validate input data
 if (!isset($data['app_no']) || !isset($data['status'])) {
     echo json_encode(['success' => false, 'error' => 'Missing application number or status']);
     exit;
-}
+} 
 
 $app_no = $data['app_no'];
 $status = $data['status'];
@@ -53,8 +74,8 @@ if ($status == 1) {
     }
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
-    $stmt->bind_param("ii", $app_status, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Aprv_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ? WHERE app_no = ?");
+    $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
@@ -69,73 +90,11 @@ if ($status == 1) {
 // Handle application rejection
 if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
-    $stmt = $conn->prepare("
-        UPDATE application 
-        SET app_status = ?, rejected = ? 
-        WHERE app_no = ?
-    ");
-    $stmt->bind_param("iss", $status, $comment, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ? WHERE app_no = ?");
+    $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
-        // Update user status to "Rejected"
-        $stmt = $conn->prepare("UPDATE users SET status = 5 WHERE nic = ?");
-        $stmt->bind_param("s", $nic);
-        $stmt->execute();
-
-        // Fetch applicant's email
-        $stmt = $conn->prepare("SELECT name_eng, email_pri FROM application WHERE app_no = ?");
-        $stmt->bind_param("s", $app_no);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $email = $row['email_pri'];
-            $applicant_name = $row['name_eng'];
-
-            // Send rejection email
-            if (!empty($email)) {
-                $mail = new PHPMailer(true);
-                try {
-                    // SMTP server configuration
-                    $mail->isSMTP();
-                    $mail->Host       = 'smtp.gmail.com';
-                    $mail->SMTPAuth   = true;
-                    $mail->Username   = 'djpasinduniroshana@gmail.com'; // Secure storage for credentials
-                    $mail->Password   = 'wrxb kpcf miir faxi'; // Secure storage for credentials
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->Port       = 587;
-
-                    // Email details
-                    $mail->setFrom('djpasinduniroshana@gmail.com', 'Chief Secretariat Southern Province');
-                    $mail->addAddress($email);
-
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Application Rejected';
-                    $mail->Body = "
-                        <div style='font-family: Arial, sans-serif; text-align: center;'>
-                            <h2 style='color: red;'>Application Rejected</h2>
-                            <p>Dear $applicant_name,</p>
-                            <p>Your application has been rejected for the following reason:</p>
-                            <blockquote style='color: darkred; font-weight: bold;'>$comment</blockquote>
-                            <p>If you have any questions, please contact us.</p>
-                            <p>Best regards,</p>
-                            <p>Chief Secretariat Southern Province</p>
-                        </div>
-                    ";
-
-                    $mail->send();
-                    echo json_encode(['success' => true, 'message' => 'Application rejected and email sent']);
-                } catch (Exception $e) {
-                    error_log("Mailer Error: " . $mail->ErrorInfo);
-                    echo json_encode(['success' => false, 'error' => 'Failed to send rejection email.']);
-                }
-            } else {
-                echo json_encode(['success' => false, 'error' => 'Recipient email is missing']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Applicant email not found']);
-        }
+        echo json_encode(['success' => true, 'message' => 'Application rejected successfully']);
     } else {
         echo json_encode(['success' => false, 'error' => 'Failed to update rejection details']);
     }

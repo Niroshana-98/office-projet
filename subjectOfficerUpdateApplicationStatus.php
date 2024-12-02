@@ -8,10 +8,33 @@ require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require './vendor/phpmailer/phpmailer/src/SMTP.php';
 require './vendor/phpmailer/phpmailer/src/Exception.php';
 
-ob_start(); // Clean any previous output buffers
+ob_start();
 header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents("php://input"), true);
+
+if (!isset($_SESSION['nic'])) {
+    echo json_encode(['success' => false, 'error' => 'User not logged in']);
+    exit;
+}
+
+// Get the NIC from the session
+$nic = $_SESSION['nic'];
+
+// Fetch user_id for the logged-in NIC from the users table
+$stmt = $conn->prepare("SELECT user_id FROM users WHERE nic = ?");
+$stmt->bind_param("s", $nic);
+$stmt->execute();
+$stmt->bind_result($user_id);
+$stmt->fetch();
+$stmt->close();
+
+if (!$user_id) {
+    echo json_encode(['success' => false, 'error' => 'User not found']);
+    exit;
+}
+
+
 
 // Validate input data
 if (!isset($data['app_no']) || !isset($data['status'])) {
@@ -76,9 +99,10 @@ switch ($offi_cat) {
         exit;
 }
 
+
 // Update application table with the determined app_status
-$stmt = $conn->prepare("UPDATE application SET app_status = ? WHERE app_no = ?");
-$stmt->bind_param("is", $app_status, $app_no);
+$stmt = $conn->prepare("UPDATE application SET app_status = ?, Subject_Aprv_RM = ?, Subject_time_stamp = NOW(), Subject_user_id = ? WHERE app_no = ?");
+$stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
 if ($stmt->execute()) {
     $stmt->close();
@@ -86,8 +110,8 @@ if ($stmt->execute()) {
     // Optional: Handle additional actions for rejected applications (status == 4)
     if ($status == 4 && !empty($comment)) {
         // Update rejection reason
-        $stmt = $conn->prepare("UPDATE application SET app_status = ?, rejected = ? WHERE app_no = ?");
-        $stmt->bind_param("iss", $status, $comment, $app_no);
+        $stmt = $conn->prepare("UPDATE application SET app_status = ?, Subject_Reject_RM = ?, Subject_time_stamp = NOW(), Subject_user_id = ?  WHERE app_no = ?");
+        $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
         if ($stmt->execute()) {
             // Update user status to 5 (Rejected)
             $stmt = $conn->prepare("UPDATE users SET status = 5 WHERE nic = ?");

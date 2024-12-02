@@ -108,15 +108,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.querySelector(".approve-btn").addEventListener("click", function() {
-        updateAppStatus(1); 
+        const comment = document.getElementById("commentsA").value.trim();
+        const nic = document.getElementById("nic").value.trim();
+    
+        // Ensure that the comment is entered for rejection
+        if (status == 1 && !comment) {
+            alert("Please provide a comment for the Approved.");
+            return;
+        }
+    
+        updateAppStatus(1, comment, nic);
     });
 
     document.querySelector(".reject-btn").addEventListener("click", function() {
         const comment = document.getElementById("comments").value.trim();
         const nic = document.getElementById("nic").value.trim();
-        updateAppStatus(2, comment, nic); 
+    
+        // Ensure that the comment is entered for rejection
+        if (status == 2 && !comment) {
+            alert("Please provide a comment for the rejection.");
+            return;
+        }
+    
+        updateAppStatus(2, comment, nic); // Rejection status
     });
-
     function updateAppStatus(status, comment = '' , nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
         
@@ -159,18 +174,22 @@ const approvalSelect = document.getElementById('approvalSelect');
 const approveButton = document.getElementById('approveButton');
 const rejectButton = document.getElementById('rejectButton');
 const commentSection = document.getElementById('commentSection');
+const commentSectionA = document.getElementById('commentSectionA');
 
 approvalSelect.addEventListener('change', function() {
     if (approvalSelect.value === "1") {
         approveButton.style.display = "block";
+        commentSectionA.style.display = "block";
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
     } else if (approvalSelect.value === "2") {
         approveButton.style.display = "none";
+        commentSectionA.style.display = "none";
         rejectButton.style.display = "block";
         commentSection.style.display = 'block'; 
     } else {
         approveButton.style.display = "none";
+        commentSectionA.style.display = 'none';
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
     }

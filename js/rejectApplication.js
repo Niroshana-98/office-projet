@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
 
                 const rejectSpan = document.getElementById("rejectMessage");
-                if (data.rejected) {
-                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.rejected}`;
+                if (data.Subject_Reject_RM) {
+                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.Subject_Reject_RM}`;
                 } else {
                     rejectSpan.innerText = "No rejection information available.";
                 }
