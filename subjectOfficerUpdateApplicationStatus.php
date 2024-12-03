@@ -77,19 +77,19 @@ if (!$offi_cat) {
 $app_status = null;
 switch ($offi_cat) {
     case 1:
-        $app_status = 100;
-        break;
-    case 2:
         $app_status = 110;
         break;
-    case 3:
+    case 2:
         $app_status = 120;
         break;
-    case 4:
+    case 3:
         $app_status = 130;
         break;
-    case 5:
+    case 4:
         $app_status = 140;
+        break;
+    case 5:
+        $app_status = 150;
         break;
     case 6:
         $app_status = 150;
