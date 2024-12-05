@@ -46,12 +46,12 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="./DepartmentHead.php" class="nav_logo">
+                <a href="./MinistryHead.php" class="nav_logo">
                 <i class='bx bx-home'></i>
                     <span class="nav_logo-name">Home</span>
                 </a>
                 <div class="nav_list">
-                    <a href="./DepartmentHeadDashboard.php" class="nav_link active" target="content-frame">
+                    <a href="./MinistryHeadDashboard.php" class="nav_link active" target="content-frame">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
@@ -70,7 +70,7 @@
     </div>
     
     <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
-        <iframe name="content-frame" src="./DepartmentHeadDashboard.php" 
+        <iframe name="content-frame" src="./MinistryHeadDashboard.php" 
                 style="width: 100%; height: 100%; overflow: hidden;" 
                 frameborder="0" scrolling="no">
         </iframe>
@@ -80,7 +80,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./js/DepartmentHead.js"></script>
+    <script src="./js/MinistryHead.js"></script>
     
 </body>
 </html>

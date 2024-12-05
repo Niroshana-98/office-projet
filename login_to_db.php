@@ -49,6 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }elseif ($user['status'] == 16) {
                 header("Location: ./DepartmentHead.php");
                 exit();
+            }elseif ($user['status'] == 18) {
+                header("Location: ./MinistryHead.php");
+                exit();
             } else {
                 echo "<script>alert('Invalid user status'); window.location.href = './index.html';</script>";
             }

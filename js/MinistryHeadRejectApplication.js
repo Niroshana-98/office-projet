@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch data from the server
-    fetch('../DepartmentHeadApprovedApplication_to_db.php')
+    fetch('../MinistryHeadRejectApplication_to_db.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -72,7 +72,7 @@ function viewApplication(appNo) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `DepartmentHeadApplicationForm.php?app_no=${appNo}`;
+            window.location.href = `MinistryHeadRejectApplicationForm.php?app_no=${appNo}`;
         } else {
             alert('Error setting session');
         }
