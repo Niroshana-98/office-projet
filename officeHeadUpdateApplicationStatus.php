@@ -65,9 +65,9 @@ if ($status == 1) {
 
     // Set app_status based on offi_cat
     if ($offi_cat == 6) {
-        $app_status = 130; // Approved status for offi_cat = 6
+        $app_status = 120; // Approved status for offi_cat = 6
     } elseif ($offi_cat == 5) {
-        $app_status = 140; // Approved status for offi_cat = 5
+        $app_status = 130; // Approved status for offi_cat = 5
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();

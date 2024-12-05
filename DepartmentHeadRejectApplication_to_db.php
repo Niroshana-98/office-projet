@@ -25,20 +25,20 @@ if (!$userOffiId) {
 }
 
 // Fetch the dist_offi_id from the office table
-$officeQuery = "SELECT dist_offi_id FROM office WHERE offi_id = ?";
+$officeQuery = "SELECT dep_id FROM office WHERE offi_id = ?";
 $officeStmt = $conn->prepare($officeQuery);
 $officeStmt->bind_param('i', $userOffiId);
 $officeStmt->execute();
-$officeStmt->bind_result($distOffiId);
+$officeStmt->bind_result($depId);
 $officeStmt->fetch();
 $officeStmt->close();
 
-if (!$distOffiId) {
-    echo json_encode(["success" => false, "error" => "District office ID not found"]);
+if (!$depId) {
+    echo json_encode(["success" => false, "error" => "Department ID not found"]);
     exit;
 }
 
-// Step 2: Fetch applications where c_w_p matches admin offi_id and app_status = 140
+// Step 2: Fetch applications where c_w_p matches admin min_id and app_status = 2, 130
 $applicationsQuery = "
     SELECT 
         application.app_no, 
@@ -51,13 +51,13 @@ $applicationsQuery = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.dist_offi_id = ? 
-        AND application.app_status IN (200, 120, 110, 100)
+        application.dep_id = ? 
+        AND application.app_status IN (2, 130)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 
 if ($stmt) {
-    $stmt->bind_param("i", $distOffiId); // Bind admin offi_id parameter
+    $stmt->bind_param("i", $depId); // Bind admin dep_id parameter
     $stmt->execute();
     $result = $stmt->get_result();
 

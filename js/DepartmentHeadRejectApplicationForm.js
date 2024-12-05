@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../DistrictOfficerApprovedApplicationForm_to_db.php", {
+    fetch("../DepartmentHeadRejectApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -106,3 +106,5 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching application data:", error));
 });
+
+

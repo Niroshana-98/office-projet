@@ -48,10 +48,10 @@ $nic = isset($data['nic']) ? $data['nic'] : '';
 // Handle application approval
 if ($status == 1) {
 
-    $status = 120;
+    $status = 110;
     
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_offi_head_Aprv_RM = ?, Dist_offi_head_time_stamp = NOW(), Dist_offi_head_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_head_Aprv_RM = ?, Dep_head_time_stamp = NOW(), Dep_head_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
@@ -84,16 +84,20 @@ if ($status == 2 && !empty($comment)) {
     $stmt->close();
 
     // Set app_status based on offi_cat
-    if ($offi_cat == 5) {
-        $app_status = 140; // Approved status for offi_cat = 5
+    if ($offi_cat == 3) {
+        $app_status = 2; // Approved status for offi_cat = 3
     } elseif ($offi_cat == 4) {
-        $app_status = 2; // Approved status for offi_cat = 4
-    } else {
+        $app_status = 130; // Approved status for offi_cat = 4
+    } elseif ($offi_cat == 4) {
+        $app_status = 130; // Approved status for offi_cat = 5
+    }elseif ($offi_cat == 4) {
+        $app_status = 150; // Approved status for offi_cat = 6
+    }else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
     // Update application status and rejection reason
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_offi_head_Reject_RM = ?, Dist_offi_head_time_stamp = NOW(), Dist_offi_head_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_head_Reject_RM = ?, Dep_head_time_stamp = NOW(), Dep_head_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

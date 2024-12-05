@@ -29,15 +29,15 @@ if (!$userOffiId) {
 }
 
 // Fetch the dist_offi_id from the office table
-$officeQuery = "SELECT dist_offi_id FROM office WHERE offi_id = ?";
+$officeQuery = "SELECT dep_id FROM office WHERE offi_id = ?";
 $officeStmt = $conn->prepare($officeQuery);
 $officeStmt->bind_param('i', $userOffiId);
 $officeStmt->execute();
-$officeStmt->bind_result($distOffiId);
+$officeStmt->bind_result($depId);
 $officeStmt->fetch();
 $officeStmt->close();
 
-if (!$distOffiId) {
+if (!$depId) {
     echo json_encode(["success" => false, "error" => "District office ID not found"]);
     exit;
 }
@@ -49,12 +49,12 @@ $newAppCount = $approvedAppCount = $rejectedAppCount = 0;
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
-    WHERE dist_offi_id = ? 
-    AND app_status = 130
+    WHERE dep_id = ? 
+    AND app_status = 120
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
-$newAppStmt->bind_param('i', $distOffiId);
+$newAppStmt->bind_param('i', $depId);
 $newAppStmt->execute();
 $newAppStmt->bind_result($newAppCount);
 $newAppStmt->fetch();
@@ -66,12 +66,12 @@ $response['new_applications'] = $newAppCount;
 $approvedAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
-    WHERE dist_offi_id = ?  
-    AND application.app_status IN (100, 110, 120, 200)
+    WHERE dep_id = ?  
+    AND application.app_status IN (100, 110, 200)
 ";
 
 $approvedAppStmt = $conn->prepare($approvedAppQuery);
-$approvedAppStmt->bind_param('i', $distOffiId);
+$approvedAppStmt->bind_param('i', $depId);
 $approvedAppStmt->execute();
 $approvedAppStmt->bind_result($approvedAppCount);
 $approvedAppStmt->fetch();
@@ -82,12 +82,12 @@ $response['approved_applications'] = $approvedAppCount;
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
-    WHERE dist_offi_id = ? 
-    AND application.app_status IN (140, 2)
+    WHERE dep_id = ? 
+    AND application.app_status IN (150, 130, 2)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
-$newAppStmt->bind_param('i', $distOffiId);
+$newAppStmt->bind_param('i', $depId);
 $newAppStmt->execute();
 $newAppStmt->bind_result($newAppCount);
 $newAppStmt->fetch();
