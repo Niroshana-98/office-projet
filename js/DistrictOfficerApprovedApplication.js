@@ -72,7 +72,7 @@ function viewApplication(appNo) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `DistrictOfficerApplicationForm.php?app_no=${appNo}`;
+            window.location.href = `DistrictOfficerApprovedApplicationForm.php?app_no=${appNo}`;
         } else {
             alert('Error setting session');
         }

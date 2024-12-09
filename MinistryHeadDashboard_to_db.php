@@ -50,7 +50,7 @@ $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE min_id = ? 
-    AND app_status = 110
+    AND app_status IN (110, 111)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -83,7 +83,7 @@ $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE min_id = ? 
-    AND application.app_status IN (120, 2)
+    AND application.app_status IN (121)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -92,7 +92,24 @@ $newAppStmt->execute();
 $newAppStmt->bind_result($newAppCount);
 $newAppStmt->fetch();
 $newAppStmt->close();
-$response['rejected_applications'] = $newAppCount;
+
+// Count rows where app_status = 3 and c_w_p matches the logged-in user's offi_id
+$rejectedAppQueryCWP = "
+    SELECT COUNT(*) AS count 
+    FROM application 
+    WHERE c_w_p = ? 
+    AND app_status = 3
+";
+
+$rejectedAppStmtCWP = $conn->prepare($rejectedAppQueryCWP);
+$rejectedAppStmtCWP->bind_param('i', $userOffiId);
+$rejectedAppStmtCWP->execute();
+$rejectedAppStmtCWP->bind_result($rejectedAppCountCWP);
+$rejectedAppStmtCWP->fetch();
+$rejectedAppStmtCWP->close();
+
+// Combine both counts for rejected applications
+$response['rejected_applications'] = $newAppCount+ $rejectedAppCountCWP;
 
 // Return the response as JSON
 echo json_encode($response);

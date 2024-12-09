@@ -42,7 +42,8 @@ if ($approvedAppResult) {
 }
 
 // Count rows where app_status IN (110, 2) (rejected applications)
-$rejectedAppQuery = "SELECT COUNT(*) AS count FROM application WHERE app_status IN (110, 2)";
+$rejectedAppQuery = "SELECT COUNT(*) AS count FROM application 
+                    WHERE app_status IN (111, 3)";
 $rejectedAppResult = $conn->query($rejectedAppQuery);
 
 if ($rejectedAppResult) {

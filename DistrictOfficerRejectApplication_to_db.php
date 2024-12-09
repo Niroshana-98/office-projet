@@ -52,7 +52,7 @@ $applicationsQuery = "
         application.desi = desi.desi_id
     WHERE 
         application.dist_offi_id = ? 
-        AND application.app_status IN (2, 140)
+        AND application.app_status IN (3, 141)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 

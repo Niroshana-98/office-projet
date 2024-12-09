@@ -85,9 +85,9 @@ if ($status == 2 && !empty($comment)) {
 
     // Set app_status based on offi_cat
     if ($offi_cat == 5) {
-        $app_status = 140; // Approved status for offi_cat = 5
+        $app_status = 141; // Approved status for offi_cat = 5
     } elseif ($offi_cat == 4) {
-        $app_status = 2; // Approved status for offi_cat = 4
+        $app_status = 3; // Approved status for offi_cat = 4
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();

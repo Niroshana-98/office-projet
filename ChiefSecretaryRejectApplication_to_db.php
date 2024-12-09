@@ -8,37 +8,7 @@ if (!isset($_SESSION['nic'])) {
     exit;
 }
 
-$userNic = $_SESSION['nic'];
-
-// Fetch the logged-in user's offi_id
-$userQuery = "SELECT offi_id FROM users WHERE nic = ?";
-$userStmt = $conn->prepare($userQuery);
-$userStmt->bind_param('s', $userNic);
-$userStmt->execute();
-$userStmt->bind_result($userOffiId);
-$userStmt->fetch();
-$userStmt->close();
-
-if (!$userOffiId) {
-    echo json_encode(["success" => false, "error" => "User office ID not found"]);
-    exit;
-}
-
-// Fetch the dist_offi_id from the office table
-$officeQuery = "SELECT min_id FROM office WHERE offi_id = ?";
-$officeStmt = $conn->prepare($officeQuery);
-$officeStmt->bind_param('i', $userOffiId);
-$officeStmt->execute();
-$officeStmt->bind_result($minId);
-$officeStmt->fetch();
-$officeStmt->close();
-
-if (!$minId) {
-    echo json_encode(["success" => false, "error" => "Department ID not found"]);
-    exit;
-}
-
-// Step 2: Fetch applications where c_w_p matches admin min_id and app_status = 2, 130
+// Fetch applications where app_status = 100
 $applicationsQuery = "
     SELECT 
         application.app_no, 
@@ -51,31 +21,26 @@ $applicationsQuery = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.min_id = ? 
-        AND application.app_status IN (2, 120)
+        application.app_status IN (3, 111)
 ";
-$stmt = $conn->prepare($applicationsQuery);
 
-if ($stmt) {
-    $stmt->bind_param("i", $minId); // Bind admin dep_id parameter
-    $stmt->execute();
-    $result = $stmt->get_result();
+$result = $conn->query($applicationsQuery);
 
-    $applications = [];
+$applications = [];
 
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $applications[] = $row;
-        }
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $applications[] = $row;
     }
-
-    $stmt->close();
-    
-    // Return the applications as a JSON response
-    header('Content-Type: application/json');
-    echo json_encode($applications);
+    // Free result set
+    $result->free();
 } else {
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Query preparation failed.']);
+    // Handle query failure
+    echo json_encode(["success" => false, "error" => $conn->error]);
+    exit;
 }
+
+// Return the applications as a JSON response
+header('Content-Type: application/json');
+echo json_encode($applications);
 ?>

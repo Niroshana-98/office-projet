@@ -48,7 +48,7 @@ $applicationsQuery = "
         application.desi = desi.desi_id
     WHERE 
         application.c_w_p = ? 
-        AND application.app_status IN (130,120, 110, 100, 200)
+        AND application.app_status IN (100, 110, 111, 120, 121, 130, 131, 200)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 

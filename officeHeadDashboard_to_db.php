@@ -38,7 +38,7 @@ $newAppQuery = "
     INNER JOIN desi 
     ON application.desi = desi.desi_id
     WHERE application.c_w_p = ? 
-    AND application.app_status IN (150, 140)
+    AND application.app_status IN (151, 150, 141, 140)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -57,7 +57,7 @@ $approvedAppQuery = "
     INNER JOIN desi 
     ON application.desi = desi.desi_id
     WHERE application.c_w_p = ? 
-    AND application.app_status IN (100, 110, 120, 130, 200)
+    AND application.app_status IN (100, 110, 111, 120, 121, 130, 131, 200)
 ";
 
 $approvedAppStmt = $conn->prepare($approvedAppQuery);
@@ -75,7 +75,7 @@ $newAppQuery = "
     INNER JOIN desi 
     ON application.desi = desi.desi_id
     WHERE application.c_w_p = ? 
-    AND application.app_status = 2
+    AND application.app_status = 3
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);

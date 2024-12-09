@@ -85,15 +85,15 @@ if ($status == 2 && !empty($comment)) {
 
     // Set app_status based on offi_cat
     if ($offi_cat == 2) {
-        $app_status = 2; // Approved status for offi_cat = 2
+        $app_status = 3; // Approved status for offi_cat = 2
     } elseif ($offi_cat == 3) {
-        $app_status = 120; // Approved status for offi_cat = 3
+        $app_status = 121; // Approved status for offi_cat = 3
     } elseif ($offi_cat == 4) {
-        $app_status = 120; // Approved status for offi_cat = 4
+        $app_status = 121; // Approved status for offi_cat = 4
     }elseif ($offi_cat == 5) {
-        $app_status = 120; // Approved status for offi_cat = 5
+        $app_status = 121; // Approved status for offi_cat = 5
     }elseif ($offi_cat == 6) {
-        $app_status = 120; // Approved status for offi_cat = 6
+        $app_status = 121; // Approved status for offi_cat = 6
     }else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();

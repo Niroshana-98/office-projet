@@ -30,7 +30,7 @@
         </div>
         <div class="login-detail">
             <span class="label">Job Position:</span>
-            <span class="value" id="user-position">Department Head</span>
+            <span class="value" id="user-position">Ministry Head</span>
         </div>
         <div class="login-detail">
             <span class="label">Work Place:</span>

@@ -45,12 +45,12 @@ if (!$distOffiId) {
 // Initialize counts
 $newAppCount = $approvedAppCount = $rejectedAppCount = 0;
 
-// Count rows where app_status = 140 (new applications)
+// Count rows where app_status = 130, 131 (new applications)
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE dist_offi_id = ? 
-    AND app_status = 130
+    AND app_status IN (130, 131)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -62,12 +62,12 @@ $newAppStmt->close();
 $response['new_applications'] = $newAppCount;
 
 
-// Count rows where app_status = 140 (approved applications)
+// Count rows where app_status (approved applications)
 $approvedAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE dist_offi_id = ?  
-    AND application.app_status IN (100, 110, 120, 200)
+    AND application.app_status IN (100, 110, 111, 120, 121, 200)
 ";
 
 $approvedAppStmt = $conn->prepare($approvedAppQuery);
@@ -78,12 +78,12 @@ $approvedAppStmt->fetch();
 $approvedAppStmt->close();
 $response['approved_applications'] = $approvedAppCount;
 
-// Count rows where app_status = 100 (rejected applications)
+// Count rows where app_status = 141, 3 (rejected applications)
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE dist_offi_id = ? 
-    AND application.app_status IN (140, 2)
+    AND application.app_status IN (141)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -92,7 +92,24 @@ $newAppStmt->execute();
 $newAppStmt->bind_result($newAppCount);
 $newAppStmt->fetch();
 $newAppStmt->close();
-$response['rejected_applications'] = $newAppCount;
+
+// Count rows where app_status = 3 and c_w_p matches the logged-in user's offi_id
+$rejectedAppQueryCWP = "
+    SELECT COUNT(*) AS count 
+    FROM application 
+    WHERE c_w_p = ? 
+    AND app_status = 3
+";
+
+$rejectedAppStmtCWP = $conn->prepare($rejectedAppQueryCWP);
+$rejectedAppStmtCWP->bind_param('i', $userOffiId);
+$rejectedAppStmtCWP->execute();
+$rejectedAppStmtCWP->bind_result($rejectedAppCountCWP);
+$rejectedAppStmtCWP->fetch();
+$rejectedAppStmtCWP->close();
+
+// Combine both counts for rejected applications
+$response['rejected_applications'] = $newAppCount + $rejectedAppCountCWP;
 
 // Return the response as JSON
 echo json_encode($response);

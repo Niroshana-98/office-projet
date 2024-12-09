@@ -90,6 +90,8 @@ if ($status == 1) {
 // Handle application rejection
 if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
+
+    $status =3 ;
     $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
