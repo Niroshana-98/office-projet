@@ -39,7 +39,7 @@ if (!$depId) {
 }
 
 // Step 2: Fetch applications where c_w_p matches admin min_id and app_status = 2, 130
-$applicationsQuery = "
+$applicationsQuery1 = "
     SELECT 
         application.app_no, 
         application.name_eng, 
@@ -52,30 +52,46 @@ $applicationsQuery = "
         application.desi = desi.desi_id
     WHERE 
         application.dep_id = ? 
-        AND application.app_status IN (3, 131, 151)
+        AND application.app_status IN (131, 151)
 ";
-$stmt = $conn->prepare($applicationsQuery);
+$stmt1 = $conn->prepare($applicationsQuery1);
+$stmt1->bind_param("i", $depId);
+$stmt1->execute();
+$result1 = $stmt1->get_result();
+$applications1 = $result1->fetch_all(MYSQLI_ASSOC);
+$stmt1->close();
 
-if ($stmt) {
-    $stmt->bind_param("i", $depId); // Bind admin dep_id parameter
-    $stmt->execute();
-    $result = $stmt->get_result();
+// Fetch applications for c_w_p with status 3
+$applicationsQuery2 = "
+    SELECT 
+        application.app_no, 
+        application.name_eng, 
+        desi.desi_name 
+    FROM 
+        application 
+    INNER JOIN 
+        desi 
+    ON 
+        application.desi = desi.desi_id
+    WHERE 
+        application.c_w_p = ? 
+        AND application.app_status = 3
+";
+$stmt2 = $conn->prepare($applicationsQuery2);
+$stmt2->bind_param("i", $userOffiId);
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+$applications2 = $result2->fetch_all(MYSQLI_ASSOC);
+$stmt2->close();
 
-    $applications = [];
+// Merge both application arrays
+$allApplications = array_merge($applications1, $applications2);
 
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $applications[] = $row;
-        }
-    }
-
-    $stmt->close();
-    
-    // Return the applications as a JSON response
-    header('Content-Type: application/json');
-    echo json_encode($applications);
+// Return the applications as JSON
+header('Content-Type: application/json');
+if (empty($allApplications)) {
+    echo json_encode(["success" => true, "data" => [], "message" => "No new applications found."]);
 } else {
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Query preparation failed.']);
+    echo json_encode(["success" => true, "data" => $allApplications]);
 }
 ?>

@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return response.json();
         })
-        .then(data => {
-            // Get the table body element
-            const tableBody = document.querySelector('.table tbody');
+        .then(response => {
+            const { success, data, message } = response;
 
+            const tableBody = document.querySelector('.table tbody');
             if (!tableBody) {
                 console.error('Table body element not found.');
                 return;
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Clear the table body
             tableBody.innerHTML = '';
 
-            // Populate table rows with fetched data
-            if (Array.isArray(data) && data.length > 0) {
+            if (success && Array.isArray(data) && data.length > 0) {
+                // Populate table rows with fetched data
                 data.forEach(app => {
                     const row = document.createElement('tr');
 
@@ -37,11 +37,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     tableBody.appendChild(row);
                 });
-            } else {
+            } else if (success && Array.isArray(data) && data.length === 0) {
                 // Display a message if no applications are found
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="4" class="text-center">No new applications found.</td>
+                        <td colspan="4" class="text-center">${message || 'No Rejected applications found.'}</td>
+                    </tr>
+                `;
+            } else {
+                // Handle unexpected errors
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center text-danger">Failed to load applications. Please try again later.</td>
                     </tr>
                 `;
             }
@@ -49,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error('Error fetching data:', error);
 
-            //display an error message in the table
             const tableBody = document.querySelector('.table tbody');
             if (tableBody) {
                 tableBody.innerHTML = `
