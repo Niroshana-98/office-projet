@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../subjectOfficerNewApplicationForm_to_db.php", {
+    fetch("subjectOfficerNewApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic
         };
     
-        fetch('../subjectOfficerUpdateApplicationStatus.php', {
+        fetch('subjectOfficerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

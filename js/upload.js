@@ -18,7 +18,7 @@ function setupUploadButton(uploadButtonId, fileInputId, completeId, viewButtonId
         const formData = new FormData();
         formData.append(fileKey, file);
 
-        fetch('../upload_to_db.php', {
+        fetch('upload_to_db.php', {
             method: 'POST',
             body: formData
         })
@@ -55,7 +55,7 @@ function setupUploadButton(uploadButtonId, fileInputId, completeId, viewButtonId
 }
 
 window.onload = function() {
-    fetch('../check_file_path.php')
+    fetch('check_file_path.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Network response was not ok: " + response.statusText);
@@ -171,7 +171,7 @@ document.getElementById('terms-checkbox-37').addEventListener('change', function
 document.getElementById('Documents-btn').disabled = false;
 
 document.getElementById("Documents-btn").addEventListener("click", function() {
-    fetch("../status.php", {
+    fetch("status.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

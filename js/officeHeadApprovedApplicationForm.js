@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../officeHeadApprovedApplicationForm_to_db.php", {
+    fetch("officeHeadApprovedApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())

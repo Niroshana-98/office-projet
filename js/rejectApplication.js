@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../rejectApplication_to_db.php")
+    fetch("rejectApplication_to_db.php")
         .then(response => response.json()) // Parse the JSON from the response
         .then(data => {
             if (data.success) {
@@ -158,7 +158,7 @@ document.getElementById("updateButton").addEventListener("click", function () {
 
     if (postData.includes("nic=")) {        
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "../rejectApplication_update.php", true);
+        xhr.open("POST", "rejectApplication_update.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr.onload = function () {
@@ -264,14 +264,14 @@ function handleFileUpload(fileInputId, uploadButtonId, viewButtonId, uploadUrl) 
 }
 
 
-handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', '../rejectApplicationUpload_to_db.php');
-handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', '../rejectApplicationUpload_to_db.php');
+handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', 'rejectApplicationUpload_to_db.php');
 
 

@@ -39,7 +39,7 @@ setInterval(updateTime, 1000);
 updateTime();
 
 function fetchUserDetails() {
-    fetch('../DistrictOfficer_to_db.php') 
+    fetch('DistrictOfficer_to_db.php') 
         .then(response => response.json())  
         .then(data => {
             if (data.name && data.offi_name) {

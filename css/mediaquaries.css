@@ -28,17 +28,18 @@
         width: 90%; 
         height: 60%;
         padding: 20px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.5);;
+        background: rgba(255, 255, 255, 0.5);
 
     }
 
     .container .content {
-        display: none; 
+        display: none;
+        border-radius: 20px;
     }
 
     .container .logreg-box {
-        width: 100%; 
+        width: 100%;
+        border-radius: 20px;
     }
 
     .form-box {

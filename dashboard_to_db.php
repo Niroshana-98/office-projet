@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect data from the POST request
+    // Collect data from the POST request 
     $name_full = $_POST['fname'];
     $name_si = $_POST['iname'];
     $name_eng = $_POST['iename'];
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $course_end_date = $_POST['eDate'];
     $course_fee = $_POST['provision'];
     $before_recieved = $_POST['flexRadioDefault'];
-    
+
     $bf_01course_name = $_POST['courseName1'];
     $bf_01ins_name = $_POST['universityName1'];
     $bf_01start_date = $_POST['csDate1'];

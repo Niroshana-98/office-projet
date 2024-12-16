@@ -67,7 +67,7 @@
         fetchOffices();
     
         function fetchOffices() {
-            fetch('../register_to_db.php', {
+            fetch('register_to_db.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

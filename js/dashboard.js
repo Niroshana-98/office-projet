@@ -70,7 +70,7 @@ $(".submit").click(function() {
 
 // Fetch user and ministry data when the page loads
 window.onload = function() {
-    fetch('../dashboard_to_db.php')
+    fetch('dashboard_to_db.php')
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch services on page load
     function fetchServices() {
-        fetch('../dashboard_to_db.php', {
+        fetch('dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch grades based on selected service
     function fetchGrades(service_id) {
-        fetch('../dashboard_to_db.php', {
+        fetch('dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch positions based on selected service and grade
     function fetchPositions(service_id, grade_id) {
-        fetch('../dashboard_to_db.php', {
+        fetch('dashboard_to_db.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -341,7 +341,7 @@ document.getElementById('terms-checkbox-37').addEventListener('change', function
     } else {
         submitButton.disabled = true; 
         submitButton.classList.remove('enabled'); 
-        submitButton.style.cursor = "not-allowed"; 
+        submitButton.style.cursor = "not-allowed";  
     }
 });
 

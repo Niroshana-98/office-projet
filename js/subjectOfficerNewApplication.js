@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch data from the server
-    fetch('../subjectOfficerNewApplication_to_db.php')
+    fetch('subjectOfficerNewApplication_to_db.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("../subjectOfficerDashboard_to_db.php")
+    fetch("subjectOfficerDashboard_to_db.php")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Network response was not ok " + response.statusText);
