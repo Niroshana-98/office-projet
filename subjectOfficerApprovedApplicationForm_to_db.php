@@ -28,12 +28,28 @@ $stmt = $conn->prepare("
         o.offi_id, o.offi_name
     FROM 
         application a
-    LEFT JOIN service s ON a.service = s.service_id
-    LEFT JOIN grade g ON a.grade = g.grade_id
-    LEFT JOIN desi d ON a.desi = d.desi_id
-    LEFT JOIN ministry m ON a.min = m.min_id
-    LEFT JOIN office o ON a.c_w_p = o.offi_id 
-    WHERE a.app_no = ?
+    LEFT JOIN 
+        service s 
+    ON 
+        a.service = s.service_id
+    LEFT JOIN 
+        grade g 
+    ON 
+        a.grade = g.grade_id
+    LEFT JOIN 
+        desi d 
+    ON 
+        a.desi = d.desi_id
+    LEFT JOIN 
+        ministry m 
+    ON 
+        a.min = m.min_id
+    LEFT JOIN 
+        office o 
+    ON 
+        a.c_w_p = o.offi_id 
+    WHERE 
+        a.app_no = ?
 ");
 
 $stmt->bind_param("s", $app_no);
@@ -102,3 +118,4 @@ if ($appNo) {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
 }
 ?>
+
