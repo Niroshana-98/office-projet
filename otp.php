@@ -21,7 +21,7 @@
         <form action="./otp_to_db.php?email=<?php echo $_GET['email']; ?>" method="post">
           <div class="input-field">
             <input type="number" name="otp[]" />
-            <input type="number" name="otp[]" disabled />
+            <input type="number" name="otp[]" disabled /> 
             <input type="number" name="otp[]" disabled />
             <input type="number" name="otp[]" disabled />
             <input type="number" name="otp[]" disabled />

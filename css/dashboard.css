@@ -319,9 +319,10 @@ input[type="date"]{
     height: 30px;
   }
   
-  .checkbox-wrapper-37 .checkbox-box {
-    fill: #ffffff;
+  .checkbox-wrapper-37 .checkbox-box { 
+    fill: rgb(122, 120, 120);
     stroke: #000000;
+    stroke-width: 10px;
     stroke-dasharray: 800;
     stroke-dashoffset: 800;
     transition: stroke-dashoffset 0.6s ease-in;
@@ -346,7 +347,7 @@ input[type="date"]{
   }
   
 /* Submit Button */
-button {
+#submitButton{
     width: 100px;
     outline: none;
     cursor: not-allowed;
@@ -362,28 +363,28 @@ button {
     float: right;
 }
 
-button:enabled {
+#submitButton:enabled {
     cursor: pointer; 
     background: #66ff66;
     color: ghostwhite;
 }
 
-button:enabled span {
+#submitButton:enabled span {
     color: white; 
 }
 
-button span {
+#submitButton span {
     position: relative;
     z-index: 10;
     transition: color 0.4s;
 }
 
-button:hover span {
+#submitButton:hover span {
     color: black;
 }
 
-button::before,
-button::after {
+#submitButton::before,
+#submitButton::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -392,7 +393,7 @@ button::after {
     z-index: 0;
 }
 
-button::before {
+#submitButton::before {
     content: "";
     background: #000;
     width: 120%;
@@ -401,7 +402,12 @@ button::before {
     transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-button:enabled:hover::before {
+#submitButton:enabled:hover::before {
     transform: translate3d(100%, 0, 0);
+}
+
+#addCourseButton:hover {
+    background-color: #007bff; /* Keep the same blue background */
+    color: white; /* Keep the same white text */
 }
 

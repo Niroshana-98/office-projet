@@ -15,13 +15,14 @@
     }
 
     .logo {
-        height: 40px;
+        height: 50px;
     }
 
     .hero-section {
         height: 100vh;
         width: 100%;
-        padding: 10px; 
+        padding: 15px;
+        font-size: 1.5rem; 
     }
 
     .transparent-box {
@@ -31,6 +32,10 @@
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.5);;
 
+    }
+
+    .logreg-box .form-box{
+        border-radius: 20px;
     }
 
     .container .content {

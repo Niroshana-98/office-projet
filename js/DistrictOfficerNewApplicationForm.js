@@ -88,13 +88,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 viewButtons.forEach(button => {
                     const buttonElement = document.getElementById(button.id);
-                    if (buttonElement && button.filePath) {
-                        buttonElement.disabled = false;
-                        buttonElement.addEventListener("click", function () {
-                            openDocumentInNewWindow(button.filePath);
-                        });
-                    } else if (buttonElement) {
-                        buttonElement.disabled = true;
+                    if (buttonElement) {
+                        if (button.filePath) {
+                            buttonElement.disabled = false;
+                            buttonElement.addEventListener("click", function () {
+                                window.open(button.filePath, "_blank", "width=auto,height=auto,scrollbars=yes");
+                            });
+                        } else {
+                            buttonElement.disabled = true;
+                            buttonElement.title = "Document not available";
+                        }
                     }
                 });
             }

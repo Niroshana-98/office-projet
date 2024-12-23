@@ -13,6 +13,9 @@
         <div class="logo">
             <img src="./images/logo.png" alt="Logo">
         </div>
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button type="button" id="logout-btn" class="logout-btn" onclick="logout()">Logout</button>
+        </div>
         <div>
             <h4><b>දකුණු පළාත් ප්‍රධාන ලේකම් කාර්යාලය<b></h4>
             <h5><b>සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</b></h5>

@@ -140,3 +140,7 @@ function printPage() {
         documentContainer.style.display = 'none';
     }, 1000);
 }
+
+function logout() {
+    window.location.href = 'index.html';
+}

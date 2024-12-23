@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 
                 // Redirect to the OTP verification page
-                echo "<script>alert('Registration successful! Check your email for the OTP.'); window.location.href = './otp.php?email=$email';</script>";
+                echo "<script>alert('Registration successful! Check your email for the OTP.'); window.location.href = './otp.php?email=" . urlencode($email) . "';</script>";
             } catch (Exception $e) {
                 echo "<script>alert('OTP email could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
             }
