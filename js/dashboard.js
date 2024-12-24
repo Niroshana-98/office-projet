@@ -68,6 +68,7 @@ $(".submit").click(function() {
     return false;
 });
 
+
 // Fetch user and ministry data when the page loads
 window.onload = function() {
     fetch('dashboard_to_db.php')

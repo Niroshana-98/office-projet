@@ -6,9 +6,27 @@
         <title>Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
-        <link rel="stylesheet" href="./css/dashboard.css"> <!-- External CSS -->
+        <link rel="stylesheet" href="./css/dashboard.css">
+        <link rel="stylesheet" href="./css/register.css"> <!-- External CSS -->
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container-fluid">
+            <!-- Left-Aligned Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="http://www.cs.sp.gov.lk/index_en.html">
+                <img src="./images/logo.png" alt="logo" class="logo">
+            </a>
+
+            <!-- Center-Aligned Text -->
+            <div class="navbar-text text-center flex-grow-1">Chief Secretariat Southern Province</div>
+
+            <!-- Right-Aligned Logout Button -->
+            <div class="d-flex">
+                <a href="index.html" class="btn btn-outline-danger me-2">Logout</a>
+            </div>
+        </div>
+    </nav>
+
         <div class="row text-center">
             <div class="col-1"></div>
             <div class="col-10">
@@ -67,7 +85,8 @@
                                     <input type="tel" class="form-control" id="tel" name="tel" placeholder="">
                                 </div>
                             </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
                                 <div class="col-12 col-md-6">
                                     <h5 for="ball">දුරකථන අංකය (ජංගම)</h5>
                                     <div class="mb-3">
@@ -81,7 +100,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <input type="button" name="next" class="next action-button" value="Next"/>
                     </fieldset>
 
@@ -520,5 +538,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="./js/dashboard.js"></script>
+        <script src="./js/register.js"></script>
     </body>
 </html>
