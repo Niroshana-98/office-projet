@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Upload</title>
     <link rel="stylesheet" type="text/css" href="./css/upload.css">
+    <link rel="stylesheet" type="text/css" href="./css/dashboard.css">
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -14,13 +15,21 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand d-flex align-items-center" href="http://www.cs.sp.gov.lk/index_en.html">
-            <img src="./images/logo.png" alt="logo" class="logo"/> 
-          </a>
-          <div class="navbar-text mx-auto">Chief Secretariat Southern Province</div>
-        </div> 
+            <!-- Left-Aligned Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="http://www.cs.sp.gov.lk/index_en.html">
+                <img src="./images/logo.png" alt="logo" class="logo">
+            </a>
+
+            <!-- Center-Aligned Text -->
+            <div class="navbar-text text-center flex-grow-1">Chief Secretariat Southern Province</div>
+
+            <!-- Right-Aligned Logout Button -->
+            <div class="d-flex">
+                <a href="index.html" class="btn btn-outline-danger me-2" id="logout">Logout</a>
+            </div>
+        </div>
     </nav>
     <section class="table__body">
         <form id="uploadForm" enctype="multipart/form-data">
@@ -434,6 +443,7 @@
     
 
     <script src="./js/upload.js"></script>
+    <script src="./js/register.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script><script  src="./script.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

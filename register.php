@@ -28,24 +28,29 @@
         <form class="msform" action="./register_to_db.php" method="POST">
             <h2 class="tracking-in-contract">REGISTER</h2>
             <div class="mb-3">
-                <h5 for="exampleFormControlInput1" class="form-label">මුලකුරු සමග නම</h5>
+                <h5 for="exampleFormControlInput1" class="form-label">මුලකුරු සමග නම (සිංහලෙන්)</h5>
                 <input type="text" class="form-control" id="name" name="name" placeholder=""  title="Only letters, Sinhala characters, periods, and single spaces are allowed." required>
-            </div>
+            </div> 
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">ජා.හැ. අංකය</h5>
-                <input type="text" class="form-control" id="nic" name="nic" placeholder="" pattern="^(\d{9}[vV]|\b(19|20)\d{10}\b)$" title="Please enter a valid NIC (9 digits followed by 'V' or 12 digits starting with '19' or '20')." required>
+                <input type="text" class="form-control" id="nic" name="nic" placeholder="" 
+                    title="Please enter a valid NIC (9 digits followed by 'V' or 12 digits starting with '19' or '20')." 
+                    required>
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">ඊමේල් ලිපිනය</h5>
-                <input type="email" class="form-control" id="email" name="email" placeholder="" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Only letters, Sinhala characters, periods, and single spaces are allowed." required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="" 
+                    title="Please enter a valid email address." required>
             </div>
             <div class="mb-3">
                 <h5 for="exampleFormControlInput1" class="form-label">දුරකථන අංකය</h5>
-                <input type="tel" class="form-control" id="tel" name="tel" placeholder="" pattern="^07\d{8}$" title="Please enter a valid Sri Lankan mobile number (starting with 07 and followed by 8 digits)." required>
+                <input type="tel" class="form-control" id="tel" name="tel" placeholder="" 
+                    title="Please enter a valid Sri Lankan mobile number (starting with 07 and followed by 8 digits)." 
+                    required>
             </div>
             <div class="mb-3">
                 <h5 for="office" class="form-label">සේවා ස්ථානය</h5>
-                <select class="form-select" name="office" id="office" aria-label="searchable office">
+                <select class="form-select" name="office" id="office" aria-label="searchable office" required>
                     <option value="" selected>Open this select menu</option>
                 </select>
                 <input type="hidden" name="offices" value="">
@@ -73,7 +78,7 @@
     </section>
     
     <script src="./js/register.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

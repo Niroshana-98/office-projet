@@ -76,7 +76,7 @@ window.onload = function() {
         .then(data => {
             if (!data.error) {
                 // Fill readonly text inputs with user data
-                document.getElementById('iname').value = data.user.name;
+                document.getElementById('iname').value = data.user.name; 
                 document.getElementById('nic').value = data.user.nic;
                 document.getElementById('htel').value = data.user.tel;
                 document.getElementById('email').value = data.user.email;

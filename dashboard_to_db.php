@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'connect.php';
-
+ 
 //Get Data Users Table
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Check if user is logged in

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./css/register.css"> <!-- External CSS -->
     </head>
     <body>
+        
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container-fluid">
             <!-- Left-Aligned Logo -->
@@ -22,7 +23,7 @@
 
             <!-- Right-Aligned Logout Button -->
             <div class="d-flex">
-                <a href="index.html" class="btn btn-outline-danger me-2">Logout</a>
+                <a href="index.html" class="btn btn-outline-danger me-2" id="logout">Logout</a>
             </div>
         </div>
     </nav>

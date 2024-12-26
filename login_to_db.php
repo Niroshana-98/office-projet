@@ -1,72 +1,91 @@
 <?php
 require 'connect.php';
+header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check if the username is an email or NIC, and fetch user details
+    // Prepare and execute the query to get the user data
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? OR nic = ?");
     $stmt->bind_param("ss", $username, $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Check if any user exists with the given username (email or NIC)
+    // Check if the user exists
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // Hash the password input and compare it with the stored hashed password
+        // Check if the provided password matches the stored password
         if ($user['password'] === md5($password)) {
-
             session_start();
             $_SESSION['nic'] = $user['nic'];
 
-            // Check the user's status and redirect
-            if ($user['status'] == 1) {
-                header("Location: ./otp.php?email=" . urlencode($user['email']));
-                exit();
-            } elseif ($user['status'] == 2) {
-                header("Location: ./dashboard.php");
-                exit();
-            } elseif ($user['status'] == 3) {
-                header("Location: ./upload.php");
-                exit();
-            }elseif ($user['status'] == 4) {
-                header("Location: ./applicationView.php");
-                exit();
-            }elseif ($user['status'] == 5) {
-                header("Location: ./rejectApplication.php");
-                exit();
-            }elseif ($user['status'] == 11) {
-                header("Location: ./subjectOfficer.php");
-                exit();
-            }elseif ($user['status'] == 12) {
-                header("Location: ./OfficeHead.php");
-                exit();
-            }elseif ($user['status'] == 14) {
-                header("Location: ./DistrictOfficer.php");
-                exit();
-            }elseif ($user['status'] == 16) {
-                header("Location: ./DepartmentHead.php");
-                exit();
-            }elseif ($user['status'] == 18) {
-                header("Location: ./MinistryHead.php");
-                exit();
-            }elseif ($user['status'] == 20) {
-                header("Location: ./ChiefSecretary.php");
-                exit();
-            } else {
-                echo "<script>alert('Invalid user status'); window.location.href = './index.html';</script>";
+            // Initialize the redirect URL
+            $redirect_url = '';
+
+            // Switch statement to determine the redirect URL based on the user's status
+            switch ($user['status']) {
+                case 1:
+                    $redirect_url = './otp.php?email=' . urlencode($user['email']);
+                    break;
+                case 2:
+                    $redirect_url = './dashboard.php';
+                    break;
+                case 3:
+                    $redirect_url = './upload.php';
+                    break;
+                case 4:
+                    $redirect_url = './applicationView.php';
+                    break;
+                case 5:
+                    $redirect_url = './rejectApplication.php';
+                    break;
+                case 11:
+                    $redirect_url = './subjectOfficer.php';
+                    break;
+                case 12:
+                    $redirect_url = './officeHead/OfficeHead.php';
+                    break;
+                case 14:
+                    $redirect_url = './DistrictOfficer.php';
+                    break;
+                case 16:
+                    $redirect_url = './DepartmentHead.php';
+                    break;
+                case 18:
+                    $redirect_url = './MinistryHead.php';
+                    break;
+                case 20:
+                    $redirect_url = './ChiefSecretary.php';
+                    break;
+                default:
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Invalid user status!',
+                    ]);
+                    exit();
             }
 
+            // Return success response with redirect URL
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Welcome, ' . $user['name'],
+                'redirect_url' => $redirect_url,
+            ]);
         } else {
             // Incorrect password
-            echo "<script>alert('Invalid username or password. Please try again.'); window.location.href = './index.html';</script>";
-            exit();
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Incorrect password. Please try again!',
+            ]);
         }
     } else {
-        echo "<script>alert('Invalid username or password. Please try again.'); window.location.href = './index.html';</script>";
-        exit();
+        // User not found
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'User not found. Please try again!',
+        ]);
     }
 
     $stmt->close();
