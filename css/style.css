@@ -180,7 +180,7 @@ body {
 
 .input-box label{
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 0;
     transform: translateY(-50%);
     font-size: 20px;
@@ -225,11 +225,11 @@ body {
     right: 20px;  /* Adjusted for better placement */
     font-size: 19px;
     cursor: pointer;
-  }
+}
 
-  .input-box .icons:hover {
+.input-box .icons:hover {
     color: #555;
-  }
+}
 
 .btn {
     width: 100%;
