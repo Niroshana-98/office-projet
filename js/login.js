@@ -62,3 +62,36 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         });
     }
 });
+
+function handlePasswordVisibility() {
+    const passwordInput = document.getElementById("password");
+    const toggleWrapper = document.getElementById("toggleWrapper");
+
+    // Show the toggle icon when there is input, otherwise hide it
+    if (passwordInput.value.trim() !== "") {
+        toggleWrapper.style.display = "inline";
+    } else {
+        toggleWrapper.style.display = "none";
+    }
+}
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.getElementById("toggleIcon");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text"; // Show the password
+        toggleIcon.classList.remove("bx-show");
+        toggleIcon.classList.add("bx-hide");
+    } else {
+        passwordInput.type = "password"; // Hide the password
+        toggleIcon.classList.remove("bx-hide");
+        toggleIcon.classList.add("bx-show");
+    }
+}
+
+
+
+
+
+  

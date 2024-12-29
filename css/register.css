@@ -337,3 +337,22 @@ footer a:hover {
         font-size: 0.7rem;
     }
 }
+
+
+#toggleWrapper i {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+#toggleWrapper:hover i {
+    color: #343a40;
+}
+
+.bx-hide:before {
+    content: "\f071"; 
+}
+
+.bx-show:before {
+    content: "\f070";
+}
+

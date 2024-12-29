@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (passwordError) passwordError.style.display = 'none';
             }
         });
-    }
+    } 
 
     // Reset form
     const resetForm = () => {
@@ -152,8 +152,38 @@ document.addEventListener('DOMContentLoaded', function () {
                     "- At least one number\n" +
                     "- At least one special character\n" +
                     "- Be at least 8 characters long");
-                this.value = '';
             }
         });
     }
 });
+
+//password show
+function handlePasswordVisibility() {
+    const passwordInput = document.getElementById("inputPassword");
+    const toggleWrapper = document.getElementById("toggleWrapper");
+
+    if (passwordInput.value.trim() !== "") {
+        // Show the toggle icon when there is input
+        toggleWrapper.style.display = "inline";
+    } else {
+        // Hide the toggle icon when the field is empty
+        toggleWrapper.style.display = "none";
+        passwordInput.type = "password"; // Default to hidden
+    }
+}
+
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("inputPassword");
+    const toggleIcon = document.getElementById("toggleIcon");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text"; // Show the password
+        toggleIcon.classList.remove("bx-show");
+        toggleIcon.classList.add("bx-hide");
+    } else {
+        passwordInput.type = "password"; // Hide the password
+        toggleIcon.classList.remove("bx-hide");
+        toggleIcon.classList.add("bx-show");
+    }
+}
+

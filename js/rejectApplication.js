@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("tel_land").value = data.tel_land;
                 document.getElementById("tel_mob").value = data.tel_mob;
                 document.getElementById("email_pri").value = data.email_pri;
-                document.getElementById("service").value = data.service;
+                document.getElementById("service").value = data.service_name;
                 document.getElementById("grade").value = data.grade;
                 document.getElementById("upp_status").value = data.upp_status;
                 document.getElementById("desi").value = data.desi;

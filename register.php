@@ -57,7 +57,23 @@
             </div>
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
-                <input type="password" id="inputPassword" name="inputPassword" class="form-control" aria-describedby="passwordHelpBlock"   title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long." required>
+                <div style="position: relative;">
+                    <input 
+                        type="password" 
+                        id="inputPassword" 
+                        name="inputPassword" 
+                        class="form-control" 
+                        aria-describedby="passwordHelpBlock" 
+                        title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long." 
+                        required 
+                        oninput="handlePasswordVisibility()">
+                    <span 
+                        id="toggleWrapper" 
+                        onclick="togglePasswordVisibility()" 
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; display: none;">
+                        <i class="bx bx-show" id="toggleIcon"></i>
+                    </span>
+                </div>
             </div>
             <div class="mb-3">
                 <h5 for="inputConfirmPassword" class="form-label">මුරපදය නැවත ඇතුලත් කරන්න</h5>

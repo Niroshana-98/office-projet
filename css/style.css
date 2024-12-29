@@ -227,6 +227,27 @@ body {
     cursor: pointer;
 }
 
+.icons {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.icons i {
+    font-size: 20px;
+    color: #555;
+}
+
+.icons i:hover {
+    color: #000;
+}
+
+.icons.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
 .input-box .icons:hover {
     color: #555;
 }
