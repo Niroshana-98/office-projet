@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            document.getElementById("date").innerText = data.created;
             document.getElementById("appNoDisplay").innerText = data.app_no;
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;

@@ -50,7 +50,7 @@ $applicationsQuery = "
         application.c_w_p = ? 
         AND application.app_status IN (2 , 3)
 ";
-$stmt = $conn->prepare($applicationsQuery);
+$stmt = $conn->prepare($applicationsQuery); 
 
 if ($stmt) {
     $stmt->bind_param("i", $admin_offi_id); // Bind admin offi_id parameter

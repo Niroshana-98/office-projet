@@ -19,6 +19,10 @@
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
         </div>     
     </div> 
+    <div class="date">
+        <span>අයදුම්පත යොමුකල දිනය :</span>
+        <span id="date" name="date"></span>
+    </div>
     <div class="tableLayout">
         <div class="table-responsive">
             <table class="table small-table" id="dataTable">

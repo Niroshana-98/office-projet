@@ -1,0 +1,91 @@
+/* Container styling */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Label styling */
+.search-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Label hover effect */
+.search-container:hover .search-label {
+    color: #007BFF;
+}
+
+/* Input wrapper for styling effects */
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Input field styling */
+.search-input {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input hover effect */
+.search-input:hover {
+    border-color: #007BFF;
+}
+
+/* Input focus effect */
+.search-input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
+}
+
+/* Animated placeholder */
+.search-input::placeholder {
+    color: #aaa;
+    font-size: 1rem;
+    font-style: italic;
+    animation: typing-animation 4s steps(30, end) infinite;
+}
+
+/* Placeholder typing animation */
+@keyframes typing-animation {
+    0% {
+        content: "Search by Application ID, Name, or Position";
+    }
+    33% {
+        content: "Search by Application ID";
+    }
+    66% {
+        content: "Search by Name";
+    }
+    100% {
+        content: "Search by Position";
+    }
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .search-container {
+        margin: 10px 0;
+    }
+
+    .search-label {
+        font-size: 1rem;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+    }
+}

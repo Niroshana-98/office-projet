@@ -74,7 +74,7 @@
     <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
         <iframe name="content-frame" src="./subjectOfficerDashboard.php" 
                 style="width: 100%; height: 100%; overflow: hidden;" 
-                frameborder="0" scrolling="no">
+                frameborder="0" scrolling="yes">
         </iframe>
     </div>
 
