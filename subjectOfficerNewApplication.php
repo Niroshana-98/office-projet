@@ -12,17 +12,18 @@
         <h2>Application Page</h2>
         <p>Welcome to the Application Page! Here you can manage user applications and view details.</p>
 
-        <div class="search-container">
-            <label for="searchInput" class="search-label">Search Applications:</label>
-            <div class="search-input-wrapper">
+        <div class="search-bar">
+            <label for="searchInput" class="sr-only">Search Applications:</label>
+            <div class="search-bar-container">
+                <span class="search-icon">&#128269;</span> <!-- Unicode for search icon -->
                 <input 
                     type="text" 
                     id="searchInput" 
-                    class="search-input" 
+                    class="search-bar-input" 
                     placeholder="Search by Application ID, Name, or Position">
             </div>
         </div>
-        
+
         <table class="table table-striped mt-3">
             <thead>
                 <tr>

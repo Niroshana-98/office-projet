@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById("date").innerText = data.created;
-            document.getElementById("appNoDisplay").innerText = data.app_no;
+            document.getElementById("appNoDisplay").innerText = data.app_no; 
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
             document.getElementById("name_eng").value = data.name_eng;
@@ -29,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("course_end_date").value = data.course_end_date;
             document.getElementById("course_fee").value = data.course_fee;
             document.getElementById("before_recieved").value = data.before_recieved;
+
+            document.getElementById("applicateName").value = data.name_si;
+            document.getElementById("applicateDesi").value = data.desi;
+            document.getElementById("applicateDate").value = data.created;
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';

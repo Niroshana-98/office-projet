@@ -95,4 +95,4 @@ function viewApplication(appNo) {
         }
     })
     .catch(error => console.error('Error setting session:', error));
-}
+} 

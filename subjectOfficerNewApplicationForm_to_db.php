@@ -61,7 +61,7 @@ if ($appNo) {
         'name_full' => $nameFull,
         'name_eng' => $nameEng,
         'nic' => $nic,
-        'address_pri' => $addressPri,
+        'address_pri' => $addressPri, 
         'tel_land' => $telLand,
         'tel_mob' => $telMob,
         'email_pri' => $emailPri,

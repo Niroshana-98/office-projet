@@ -18,10 +18,6 @@
             <h5><b>සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</b></h5>
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
         </div>     
-    </div> 
-    <div class="date">
-        <span>අයදුම්පත යොමුකල දිනය :</span>
-        <span id="date" name="date"></span>
     </div>
     <div class="tableLayout">
         <div class="table-responsive">
@@ -283,6 +279,24 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div>
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateName" id="applicateName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateDesi" id="applicateDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateDate" id="applicateDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div style="display: flex; align-items: center;">

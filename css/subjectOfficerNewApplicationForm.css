@@ -264,3 +264,14 @@ button:not([disabled]):hover {
         gap: 15px;
     }
 }
+
+#tableApplicate {
+    margin-top: 20px;
+    border: none; 
+}
+
+#tableApplicate th,
+#tableApplicate td {
+    border: none;
+}
+

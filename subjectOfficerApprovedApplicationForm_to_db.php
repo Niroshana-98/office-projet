@@ -25,7 +25,7 @@ $stmt = $conn->prepare("
         a.up_porva_anu, a.up_service_minite, a.up_app_letter_confirm, a.up_attach_sp, a.up_course_selected, 
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
-        o.offi_id, o.offi_name
+        o.offi_id, o.offi_name, a.created, a.Subject_time_stamp
     FROM 
         application a
     LEFT JOIN 
@@ -62,7 +62,7 @@ $stmt->bind_result(
     $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, 
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
-    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name
+    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $Subject_time_stamp
 );
 
 $stmt->fetch();
@@ -112,7 +112,9 @@ if ($appNo) {
         'up_campus_confirm' => $up_campus_confirm,
         'up_course_complete' => $up_course_complete,
         'up_pay_recept' => $up_pay_recept,
-        'up_other' => $up_other
+        'up_other' => $up_other,
+        'created' => $created,
+        'Subject_time_stamp' => $Subject_time_stamp
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);

@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("course_fee").value = data.course_fee;
                 document.getElementById("before_recieved").value = data.before_recieved;
 
+                document.getElementById("applicateName").value = data.name_si;
+                document.getElementById("applicateDesi").value = data.desi;
+                document.getElementById("applicateDate").value = data.created;
+
+                document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
+
                 // Show additional fieldsets if course information is available
                 if (data.bf_01course_name) {
                     document.getElementById("bf_01course_name").value = data.bf_01course_name;
