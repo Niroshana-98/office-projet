@@ -32,7 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("applicateDesi").value = data.desi;
                 document.getElementById("applicateDate").value = data.created;
 
+                const remarkDiv = document.getElementById("remark");
+
+                if (!data.Subject_Aprv_Rm) {
+                    remarkDiv.style.display = "none";
+                } else {
+                    document.getElementById("Remark").value = data.Subject_Aprv_Rm;
+                }
+                
+                document.getElementById("subDesi").value = data.designation;
                 document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
+                document.getElementById("subName").value = data.subject_officer_name;
 
                 // Show additional fieldsets if course information is available
                 if (data.bf_01course_name) {

@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("course_fee").value = data.course_fee;
             document.getElementById("before_recieved").value = data.before_recieved;
 
+            document.getElementById("applicateName").value = data.name_si;
+            document.getElementById("applicateDesi").value = data.desi;
+            document.getElementById("applicateDate").value = data.created;
+            document.getElementById("Reject").value = data.Subject_Reject_RM;
+
+
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
             document.getElementById("bf_01course_name").value = data.bf_01course_name || "";

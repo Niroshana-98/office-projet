@@ -280,7 +280,35 @@
                 </tbody>
             </table>
         </div>
-    </div>  
+    </div> 
+    
+    <div>
+        <span>
+            උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+        </span> 
+        <div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
+                        <td class="text-left"><input type="text" name="Reject" id="Reject" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table" id="tableApplicate">
+                <tr>
+                    <th scope="row" class="text-left">Name</th>
+                    <td class="text-left" colspan="3"><input type="text" name="applicateName" id="applicateName" disabled></td>
+                    <th scope="row" class="text-left">Designation</th>
+                    <td class="text-left" colspan="3"><input type="text" name="applicateDesi" id="applicateDesi" disabled></td>
+                    <th scope="row" class="text-left">Date</th>
+                    <td class="text-left" colspan="3"><input type="text" name="applicateDate" id="applicateDate" disabled></td>
+                </tr>
+            </table>
+        </div>
+    </div>
                
     <script src="./js/subjectOfficerRejectApplicationForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -1,6 +1,6 @@
 <?php
 include 'connect.php';
-session_start(); // Start session to access admin data
+session_start();
 
 // Check if admin NIC is set in the session
 if (!isset($_SESSION['nic'])) {
@@ -9,9 +9,9 @@ if (!isset($_SESSION['nic'])) {
     exit;
 }
 
-$admin_nic = $_SESSION['nic']; // Get admin NIC from session
+$admin_nic = $_SESSION['nic']; 
 
-// Step 1: Fetch admin offi_id using admin NIC
+//Fetch admin offi_id using admin NIC
 $offiIdQuery = "SELECT offi_id FROM users WHERE nic = ?";
 $stmt = $conn->prepare($offiIdQuery);
 
@@ -34,7 +34,7 @@ if ($stmt) {
     exit;
 }
 
-// Step 2: Fetch applications where c_w_p matches admin offi_id and app_status = 2
+// Fetch applications where c_w_p matches admin offi_id and app_status = 2
 $applicationsQuery = "
     SELECT 
         application.app_no, 
