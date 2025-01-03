@@ -41,22 +41,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 5:
                     $redirect_url = './rejectApplication.php';
                     break;
-                case 11:
+                case 10:
                     $redirect_url = './subjectOfficer.php';
                     break;
-                case 12:
+                case 18:
+                    $redirect_url = './officeRecommondOfficer.php';
+                    break;
+                case 22:
                     $redirect_url = './OfficeHead.php';
                     break;
-                case 14:
+                case 34:
                     $redirect_url = './DistrictOfficer.php';
                     break;
-                case 16:
+                case 46:
                     $redirect_url = './DepartmentHead.php';
                     break;
-                case 18:
+                case 58:
                     $redirect_url = './MinistryHead.php';
                     break;
-                case 20:
+                case 62:
                     $redirect_url = './ChiefSecretary.php';
                     break;
                 default:
