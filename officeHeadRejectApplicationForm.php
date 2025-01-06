@@ -21,7 +21,7 @@
     </div> 
     <div class="tableLayout">
         <div class="table-responsive">
-            <table class="table small-table" id="dataTable">
+            <table class="table small-table" id="dataTable"> 
                 <thead>
                     <tr>
                         <th scope="col" colspan="4" class="text-left">
@@ -279,6 +279,117 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div>
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateName" id="applicateName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateDesi" id="applicateDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="applicateDate" id="applicateDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+        
+        <div>
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="remark">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="Remark" id="Remark" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="subName" id="subName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="subDesi" id="subDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="subjectOfficerDate" id="subjectOfficerDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+        
+        <div>
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="remarkRec">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="RemarkRec" id="RemarkRec" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="recName" id="recName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="recDesi" id="recDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="recommendOfficerDate" id="recommendOfficerDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="rejectOfficeHead">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
+                            <td class="text-left"><input type="text" name="rejectOffiHead" id="rejectOffiHead" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="offiHeadName" id="offiHeadName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="offiHeadDesi" id="offiHeadDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="offiHeadDate" id="offiHeadDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>  
                

@@ -55,9 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
                 }
                 
+                document.getElementById("recName").value = data.recommend_officer_name;
                 document.getElementById("recDesi").value = data.recDesignation;
                 document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
-                document.getElementById("recName").value = data.recommend_officer_name;
+                
 
                 // Show additional fieldsets if course information is available
                 if (data.bf_01course_name) {

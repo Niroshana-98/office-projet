@@ -101,7 +101,7 @@ switch ($offi_cat) {
 
 
 // Update application table with the determined app_status
-$stmt = $conn->prepare("UPDATE application SET app_status = ?, Subject_Aprv_RM = ?, Subject_time_stamp = NOW(), Subject_user_id = ? WHERE app_no = ?");
+$stmt = $conn->prepare("UPDATE application SET app_status = ?, Subject_Aprv_RM = ?, Subject_time_stamp = NOW(), Subject_user_id = ?, office_Rec_Reject_RM = NULL WHERE app_no = ?");
 $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
 if ($stmt->execute()) {

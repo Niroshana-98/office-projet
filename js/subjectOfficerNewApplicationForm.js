@@ -33,6 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateDesi").value = data.desi;
             document.getElementById("applicateDate").value = data.created;
 
+            const rejectByRecDiv = document.getElementById("rejectBySub");
+
+            if (!data.office_Rec_Reject_RM) {
+                rejectByRecDiv.style.display = "none";
+            } else {
+                document.getElementById("rejectRec").value = data.office_Rec_Reject_RM;
+                document.getElementById("recName").value = data.recommend_officer_name;
+                document.getElementById("recDesi").value = data.recDesignation;
+                document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
+            }
+
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
             document.getElementById("bf_01course_name").value = data.bf_01course_name || "";

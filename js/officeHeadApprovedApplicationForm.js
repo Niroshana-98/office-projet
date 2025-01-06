@@ -29,6 +29,49 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("course_fee").value = data.course_fee;
             document.getElementById("before_recieved").value = data.before_recieved;
 
+            //Applicate Details
+            document.getElementById("applicateName").value = data.name_si;
+            document.getElementById("applicateDesi").value = data.desi;
+            document.getElementById("applicateDate").value = data.created;
+
+            //Subject Officer Details
+            const remarkDiv = document.getElementById("remark");
+
+            if (!data.Subject_Aprv_Rm) {
+                remarkDiv.style.display = "none";
+            } else {
+                document.getElementById("Remark").value = data.Subject_Aprv_Rm;
+            }
+            
+            document.getElementById("subDesi").value = data.designation;
+            document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
+            document.getElementById("subName").value = data.subject_officer_name;
+
+            //Recommend Officer Details
+            const remarkRecDiv = document.getElementById("remarkRec");
+
+            if (!data.office_Rec_Aprv_RM) {
+                remarkRecDiv.style.display = "none";
+            } else {
+                document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
+            }
+            
+            document.getElementById("recName").value = data.recommend_officer_name;
+            document.getElementById("recDesi").value = data.recDesignation;
+            document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
+
+            //Office head Details
+            const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+
+            if(!data.Office_head_Aprv_RM) {
+                remarkOfficeHeadDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
+                document.getElementById("offiHeadName").value = data.office_head_name;
+                document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
+                document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
+            }
+
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
             document.getElementById("bf_01course_name").value = data.bf_01course_name || "";

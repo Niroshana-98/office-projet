@@ -32,8 +32,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("applicateName").value = data.name_si;
             document.getElementById("applicateDesi").value = data.desi;
-            document.getElementById("applicateDate").value = data.created;
-            document.getElementById("Reject").value = data.Subject_Reject_RM;
+            document.getElementById("applicateDate").value = data.created; 
+
+            const remarkDiv = document.getElementById("remark");
+
+            if (!data.Subject_Aprv_Rm) {
+                remarkDiv.style.display = "none";
+            } else {
+                document.getElementById("Remark").value = data.Subject_Aprv_Rm;
+            }
+            
+            document.getElementById("subDesi").value = data.designation;
+            document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
+            document.getElementById("subName").value = data.subject_officer_name;
+
+            //Recommend Officer Details
+            
+            document.getElementById("rejectRec").value = data.office_Rec_Reject_RM;
+            
+            
+            document.getElementById("recName").value = data.recommend_officer_name;
+            document.getElementById("recDesi").value = data.recDesignation;
+            document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
 
 
             // Show additional fieldsets if course information is available

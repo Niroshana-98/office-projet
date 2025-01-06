@@ -25,9 +25,9 @@ $stmt = $conn->prepare("
         a.up_porva_anu, a.up_service_minite, a.up_app_letter_confirm, a.up_attach_sp, a.up_course_selected, 
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
-        o.offi_id, o.offi_name, a.created, a.Subject_time_stamp,
-        u1.name AS subject_officer_name, u1.desi AS designation,  a.Subject_Aprv_Rm,
-        u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM, a.office_Rec_time_stamp 
+        o.offi_id, o.offi_name, a.created,
+        a.Subject_time_stamp, u1.name AS subject_officer_name, u1.desi AS designation,  a.Subject_Aprv_Rm,
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM 
     FROM 
         application a
     LEFT JOIN 

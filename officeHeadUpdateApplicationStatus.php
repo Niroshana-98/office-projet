@@ -45,29 +45,31 @@ $status = $data['status'];
 $comment = isset($data['comment']) ? $data['comment'] : '';
 $nic = isset($data['nic']) ? $data['nic'] : '';
 
+// Fetch offi_cat for the given app_no
+$stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?");
+$stmt->bind_param("i", $app_no);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $offi_cat = $row['offi_cat'];
+} else {
+    echo json_encode(['success' => false, 'error' => 'Application not found']);
+    exit();
+}
+
+$stmt->close();
+
+
 // Handle application approval
 if ($status == 1) {
-    // Fetch offi_cat for the given app_no
-    $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?");
-    $stmt->bind_param("i", $app_no);
-    $stmt->execute();
-    $result = $stmt->get_result();
     
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $offi_cat = $row['offi_cat'];
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Application not found']);
-        exit();
-    }
-    
-    $stmt->close();
-
     // Set app_status based on offi_cat
     if ($offi_cat == 6) {
-        $app_status = 120; // Approved status for offi_cat = 6
+        $app_status = 124; // Approved status for offi_cat = 6
     } elseif ($offi_cat == 5) {
-        $app_status = 130; // Approved status for offi_cat = 5
+        $app_status = 134; // Approved status for offi_cat = 5
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
@@ -91,7 +93,15 @@ if ($status == 1) {
 if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
 
-    $status =3 ;
+    // Set app_status based on offi_cat
+    if ($offi_cat == 6) {
+        $status = 151; // Approved status for offi_cat = 6
+    } elseif ($offi_cat == 5) {
+        $status = 141; // Approved status for offi_cat = 5
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
+        exit();
+    }
     $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 

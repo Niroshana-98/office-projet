@@ -25,14 +25,34 @@ $stmt = $conn->prepare("
         a.up_porva_anu, a.up_service_minite, a.up_app_letter_confirm, a.up_attach_sp, a.up_course_selected, 
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
-        o.offi_id, o.offi_name, a.created
+        o.offi_id, o.offi_name, a.created,
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Reject_RM
     FROM 
         application a
-    LEFT JOIN service s ON a.service = s.service_id
-    LEFT JOIN grade g ON a.grade = g.grade_id
-    LEFT JOIN desi d ON a.desi = d.desi_id
-    LEFT JOIN ministry m ON a.min = m.min_id
-    LEFT JOIN office o ON a.c_w_p = o.offi_id 
+    LEFT JOIN 
+        service s 
+    ON 
+        a.service = s.service_id
+    LEFT JOIN 
+        grade g 
+    ON 
+        a.grade = g.grade_id
+    LEFT JOIN 
+        desi d 
+    ON 
+        a.desi = d.desi_id
+    LEFT JOIN 
+        ministry m 
+    ON 
+        a.min = m.min_id
+    LEFT JOIN 
+        office o 
+    ON 
+        a.c_w_p = o.offi_id
+    LEFT JOIN
+        users u2
+    ON
+        a.office_Rec_user_id = u2.user_id
     WHERE a.app_no = ?
 ");
 
@@ -46,7 +66,8 @@ $stmt->bind_result(
     $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, 
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
-    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created
+    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, 
+    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM
 );
 
 $stmt->fetch();
@@ -97,7 +118,12 @@ if ($appNo) {
         'up_campus_confirm' => $up_campus_confirm,
         'up_course_complete' => $up_course_complete,
         'up_pay_recept' => $up_pay_recept,
-        'up_other' => $up_other
+        'up_other' => $up_other,
+        'office_Rec_time_stamp' => $office_Rec_time_stamp,
+        'recommend_officer_name' => $recommend_officer_name,
+        'recDesignation' => $recDesignation,
+        'office_Rec_Reject_RM' => $office_Rec_Reject_RM
+
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);

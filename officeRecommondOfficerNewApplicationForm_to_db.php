@@ -26,7 +26,8 @@ $stmt = $conn->prepare("
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
         o.offi_id, o.offi_name, a.created , a.Subject_time_stamp,
-        u.name AS subject_officer_name, u.desi AS designation,  a.Subject_Aprv_Rm
+        u.name AS subject_officer_name, u.desi AS designation,  a.Subject_Aprv_Rm,
+        a.Office_head_time_stamp, u3.name AS office_head_name, u3.desi AS offiHeadDesignation, a.Office_head_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -53,6 +54,10 @@ $stmt = $conn->prepare("
         users u
     ON
         a.Subject_user_id = u.user_id
+    LEFT JOIN
+        users u3
+    ON
+        a.office_Rec_user_id = u3.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -68,7 +73,8 @@ $stmt->bind_result(
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $Subject_time_stamp,
-    $subject_officer_name, $designation, $Subject_Aprv_Rm
+    $subject_officer_name, $designation, $Subject_Aprv_Rm,
+    $Office_head_time_stamp, $office_head_name, $offiHeadDesignation, $Office_head_Reject_RM
 );
 
 $stmt->fetch();
@@ -123,7 +129,11 @@ if ($appNo) {
         'Subject_time_stamp' => $Subject_time_stamp,
         'subject_officer_name' => $subject_officer_name,
         'designation' => $designation,
-        'Subject_Aprv_Rm' => $Subject_Aprv_Rm
+        'Subject_Aprv_Rm' => $Subject_Aprv_Rm,
+        'Office_head_time_stamp' => $Office_head_time_stamp,
+        'office_head_name' => $office_head_name,
+        'offiHeadDesignation' => $offiHeadDesignation,
+        'Office_head_Reject_RM' => $Office_head_Reject_RM
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
