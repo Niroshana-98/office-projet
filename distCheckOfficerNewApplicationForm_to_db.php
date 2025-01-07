@@ -149,6 +149,6 @@ if ($appNo) {
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
-} 
+}
 ?>
 

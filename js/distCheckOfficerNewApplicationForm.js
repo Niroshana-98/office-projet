@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("officeHeadApprovedApplicationForm_to_db.php", {
+    fetch("distCheckOfficerNewApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
             document.getElementById("name_eng").value = data.name_eng;
-            document.getElementById("nic").value = data.nic;
+            document.getElementById("nic").value = data.nic; 
             document.getElementById("address_pri").value = data.address_pri;
             document.getElementById("tel_land").value = data.tel_land;
             document.getElementById("tel_mob").value = data.tel_mob;
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             document.getElementById("recName").value = data.recommend_officer_name;
             document.getElementById("recDesi").value = data.recDesignation;
-            document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
+            document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp; 
 
             //Office head Details
             const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
@@ -67,11 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 remarkOfficeHeadDiv.style.display = "none";
             } else {
                 document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
+                document.getElementById("offiHeadName").value = data.office_head_name;
+                document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
+                document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
             }
-
-            document.getElementById("offiHeadName").value = data.office_head_name;
-            document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
-            document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
@@ -152,4 +151,92 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     .catch(error => console.error("Error fetching application data:", error));
+
+
+    document.querySelector(".approve-btn").addEventListener("click", function() {
+        const comment = document.getElementById("commentsA").value.trim();
+        const nic = document.getElementById("nic").value.trim();
+    
+        // Ensure that the comment is entered for rejection
+        if (status == 1 && !comment) {
+            alert("Please provide a comment for the Approved.");
+            return;
+        }
+    
+        updateAppStatus(1, comment, nic);
+    });
+
+    document.querySelector(".reject-btn").addEventListener("click", function() {
+        const comment = document.getElementById("comments").value.trim();
+        const nic = document.getElementById("nic").value.trim();
+    
+        // Ensure that the comment is entered for rejection
+        if (status == 2 && !comment) {
+            alert("Please provide a comment for the rejection.");
+            return;
+        }
+    
+        updateAppStatus(2, comment, nic); // Rejection status
+    });
+    function updateAppStatus(status, comment = '' , nic = '') {
+        const appNo = document.getElementById("appNoDisplay").innerText;
+        
+        if (!appNo) {
+            console.error("Application number is missing.");
+            return;
+        }
+
+        const data = {
+            app_no: appNo,
+            status: status,
+            comment: comment,
+            nic: nic 
+        };
+    
+        fetch('distCheckOfficerUpdateApplicationStatus.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); 
+    
+            if (data.success) {
+                alert(data.message);
+    
+                window.location.href = 'distCheckOfficerNewApplication.php'; 
+            } else {
+                alert('Failed to update status: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Error updating app status:", error);
+        });
+    }        
+});
+
+const approvalSelect = document.getElementById('approvalSelect');
+const approveButton = document.getElementById('approveButton');
+const rejectButton = document.getElementById('rejectButton');
+const commentSection = document.getElementById('commentSection');
+const commentSectionA = document.getElementById('commentSectionA');
+
+approvalSelect.addEventListener('change', function() {
+    if (approvalSelect.value === "1") {
+        approveButton.style.display = "block";
+        commentSectionA.style.display = "block";
+        rejectButton.style.display = "none";
+        commentSection.style.display = 'none'; 
+    } else if (approvalSelect.value === "2") {
+        approveButton.style.display = "none";
+        commentSectionA.style.display = "none";
+        rejectButton.style.display = "block";
+        commentSection.style.display = 'block'; 
+    } else {
+        approveButton.style.display = "none";
+        commentSectionA.style.display = 'none';
+        rejectButton.style.display = "none";
+        commentSection.style.display = 'none'; 
+    }
 });

@@ -30,7 +30,7 @@
         </div>
         <div class="login-detail">
             <span class="label">Job Position:</span>
-            <span class="value" id="user-position">District Office Head</span>
+            <span class="value" id="user-position">District Check Officer</span>
         </div>
         <div class="login-detail">
             <span class="label">Work Place:</span>
@@ -46,16 +46,16 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="./DistrictOfficer.php" class="nav_logo">
+                <a href="./distCheckOfficer.php" class="nav_logo">
                 <i class='bx bx-home'></i>
                     <span class="nav_logo-name">Home</span>
                 </a>
                 <div class="nav_list">
-                    <a href="./DistrictOfficerDashboard.php" class="nav_link active" target="content-frame">
+                    <a href="./distCheckOfficerDashboard.php" class="nav_link active" target="content-frame">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <a href="./dashboard.php" class="nav_link" target="content-frame">
+                    <a href="./Dashboard.php" class="nav_link" target="content-frame">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">My Application</span>
                     </a>
@@ -70,9 +70,9 @@
     </div>
     
     <div class="height-100 bg-light" style="width: 100%; height: 100vh; overflow: hidden;">
-        <iframe name="content-frame" src="./DistrictOfficerDashboard.php" 
+        <iframe name="content-frame" src="./distCheckOfficerDashboard.php" 
                 style="width: 100%; height: 100%; overflow: hidden;" 
-                frameborder="0" scrolling="yes">
+                frameborder="0" scrolling="yes"> 
         </iframe>
     </div>
 
@@ -80,7 +80,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./js/DistrictOfficer.js"></script>
+    <script src="./js/distCheckOfficer.js"></script>
     
 </body>
 </html>

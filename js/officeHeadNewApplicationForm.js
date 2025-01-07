@@ -60,6 +60,22 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("recDesi").value = data.recDesignation;
             document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
 
+            //District Check Officer Details
+            const rejectDistChkOfficerDiv = document.getElementById("rejectByDistChk");
+            const rejectHR = document.getElementById("rejectHR");
+
+            if(!data.Dist_Chk_Offi_Reject_RM) {
+                rejectDistChkOfficerDiv.style.display = "none";
+                rejectHR = document.style.display = "none";
+            } else {
+                document.getElementById("rejectDistChkOfficer").value = data.Dist_Chk_Offi_Reject_RM;
+                document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;
+                document.getElementById("distChkOffiDesi").value = data.distChkOffiDesignation;
+                document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
+            }
+
+            
+
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
             document.getElementById("bf_01course_name").value = data.bf_01course_name || "";

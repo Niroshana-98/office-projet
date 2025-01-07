@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("officeHeadApprovedApplicationForm_to_db.php", {
+    fetch("distCheckOfficerRejectApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("course_start_date").value = data.course_start_date;
             document.getElementById("course_end_date").value = data.course_end_date;
             document.getElementById("course_fee").value = data.course_fee;
-            document.getElementById("before_recieved").value = data.before_recieved;
+            document.getElementById("before_recieved").value = data.before_recieved; 
 
             //Applicate Details
             document.getElementById("applicateName").value = data.name_si;
@@ -67,11 +67,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 remarkOfficeHeadDiv.style.display = "none";
             } else {
                 document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
-            }
+            } 
 
             document.getElementById("offiHeadName").value = data.office_head_name;
             document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
             document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
+
+            //District Check Officer Details
+            const rejectDistChkOfficerDiv = document.getElementById("rejectDistChkOfficerDiv");
+
+            if(!data.Dist_Chk_Offi_Reject_RM) {
+                rejectDistChkOfficerDiv.style.display = "none";
+            } else {
+                document.getElementById("rejectDistChkOfficer").value = data.Dist_Chk_Offi_Reject_RM;
+            }
+
+            document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;
+            document.getElementById("distChkOffiDesi").value = data.distChkOffiDesignation;
+            document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
+
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
@@ -153,3 +167,5 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching application data:", error));
 });
+
+

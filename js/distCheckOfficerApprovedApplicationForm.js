@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("officeHeadApprovedApplicationForm_to_db.php", {
+    fetch("distCheckOfficerApprovedApplicationForm_to_db.php", {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -72,6 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("offiHeadName").value = data.office_head_name;
             document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
             document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
+
+            //District Check Officer Details
+            const remarkDistChkOfficerDiv = document.getElementById("remarkDistChkOfficerDiv");
+
+            if(!data.Dist_Chk_Offi_Aprv_Rm) {
+                remarkDistChkOfficerDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkDistChkOfficer").value = data.Dist_Chk_Offi_Aprv_Rm;
+            }
+
+            document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;
+            document.getElementById("distChkOffiDesi").value = data.distChkOffiDesignation;
+            document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';

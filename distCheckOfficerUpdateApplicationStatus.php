@@ -66,17 +66,15 @@ $stmt->close();
 if ($status == 1) {
     
     // Set app_status based on offi_cat
-    if ($offi_cat == 6) {
-        $app_status = 124; // Approved status for offi_cat = 6
-    } elseif ($offi_cat == 5) {
-        $app_status = 134; // Approved status for offi_cat = 5
+    if ($offi_cat == 5) {
+        $app_status = 130; // Approved status for offi_cat = 6
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Aprv_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ?, Dist_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Aprv_Rm = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
@@ -94,15 +92,13 @@ if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
 
     // Set app_status based on offi_cat
-    if ($offi_cat == 6) {
-        $status = 151; // Approved status for offi_cat = 6
-    } elseif ($offi_cat == 5) {
-        $status = 141; // Approved status for offi_cat = 5
+    if ($offi_cat == 5) {
+        $status = 145; // Approved status for offi_cat = 5
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Reject_RM = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

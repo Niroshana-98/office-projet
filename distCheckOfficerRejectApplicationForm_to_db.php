@@ -28,7 +28,8 @@ $stmt = $conn->prepare("
         o.offi_id, o.offi_name, a.created,
         a.Subject_time_stamp, u1.name AS subject_officer_name, u1.desi AS designation,  a.Subject_Aprv_Rm,
         a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM,
-        a.Office_head_time_stamp, u3.name AS office_head_name, u3.desi AS offiHeadDesignation, a.Office_head_Aprv_RM 
+        a.Office_head_time_stamp, u3.name AS office_head_name, u3.desi AS offiHeadDesignation, a.Office_head_Aprv_RM,
+        a.Dist_Chk_Offi_time_stamp, u4.name AS dist_chk_officer_name, u4.desi AS distChkOffiDesignation, a.Dist_Chk_Offi_Reject_RM 
     FROM 
         application a
     LEFT JOIN 
@@ -63,6 +64,10 @@ $stmt = $conn->prepare("
         users u3
     ON
         a.Office_head_user_id = u3.user_id
+    LEFT JOIN
+        users u4
+    ON
+        a.Dist_Chk_Offi_user_id = u4.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -80,7 +85,9 @@ $stmt->bind_result(
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $Subject_time_stamp,
     $subject_officer_name, $designation, $Subject_Aprv_Rm, $office_Rec_time_stamp,
     $recommend_officer_name, $recDesignation, $office_Rec_Aprv_RM,
-    $Office_head_time_stamp, $office_head_name, $offiHeadDesignation, $Office_head_Aprv_RM
+    $Office_head_time_stamp, $office_head_name, $offiHeadDesignation, $Office_head_Aprv_RM,
+    $Dist_Chk_Offi_time_stamp, $dist_chk_officer_name, $distChkOffiDesignation, $Dist_Chk_Offi_Reject_RM
+    
 
 );
 
@@ -145,10 +152,14 @@ if ($appNo) {
         'Office_head_time_stamp' => $Office_head_time_stamp,
         'office_head_name' => $office_head_name,
         'offiHeadDesignation' => $offiHeadDesignation,
-        'Office_head_Aprv_RM' => $Office_head_Aprv_RM
+        'Office_head_Aprv_RM' => $Office_head_Aprv_RM,
+        'Dist_Chk_Offi_time_stamp' => $Dist_Chk_Offi_time_stamp,
+        'dist_chk_officer_name' => $dist_chk_officer_name,
+        'distChkOffiDesignation' => $distChkOffiDesignation,
+        'Dist_Chk_Offi_Reject_RM' => $Dist_Chk_Offi_Reject_RM
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
-} 
+}
 ?>
 
