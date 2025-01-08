@@ -2,7 +2,7 @@
 include 'connect.php';
 session_start();
 
-// Check if admin NIC is set in the session
+// Check if admin NIC is set in the session 
 if (!isset($_SESSION['nic'])) {
     echo json_encode(["success" => false, "error" => "User not logged in"]);
     exit;
@@ -52,7 +52,7 @@ $applicationsQuery = "
         application.desi = desi.desi_id
     WHERE 
         application.dist_offi_id = ? 
-        AND application.app_status IN (134, 135)
+        AND application.app_status IN (3,135)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 

@@ -299,7 +299,7 @@
             </div>
         </div>
 
-        <hr>
+        <hr id = "applicateHR">
         
         <div id = "subjectOfficerDiv">
             <span>
@@ -330,7 +330,7 @@
             </div>
         </div>
 
-        <hr>
+        <hr id = "subjectOfficerHR">
         
         <div id ="offiRecOfficerDiv">
             <span>
@@ -361,7 +361,7 @@
             </div>
         </div>
 
-        <hr>
+        <hr id = "offiRecOfficerHR">
 
         <div id="offiHeadDiv">
             <span>
@@ -394,30 +394,30 @@
 
         <hr id="offiHeadHR">
 
-        <div id ="distRecOffiDiv">
+        <div id ="distChkOffiDiv">
             <span>
                 උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
             </span>
 
-            <div id="rejectDistRecOfficerDiv">
+            <div id="remarkDistChkOfficerDiv">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
                             <th scope="row" class="text-left" style="width: 150px;">Remark</th>
-                            <td class="text-left"><input type="text" name="rejectDistRecOfficer" id="rejectDistRecOfficer" disabled></td>
+                            <td class="text-left"><input type="text" name="remarkDistChkOfficer" id="remarkDistChkOfficer" disabled></td>
                         </tr>
-                    </table>  
+                    </table> 
                 </div>
             </div>
             <div class="table-responsive">
                 <table class="table" id="tableApplicate">
                     <tr>
                         <th scope="row" class="text-left">Name</th>
-                        <td class="text-left" colspan="3"><input type="text" name="distRecOffiName" id="distRecOffiName" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distChkOffiName" id="distChkOffiName" disabled></td>
                         <th scope="row" class="text-left">Designation</th>
-                        <td class="text-left" colspan="3"><input type="text" name="distRecOffiDesi" id="distRecOffiDesi" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distChkOffiDesi" id="distChkOffiDesi" disabled></td>
                         <th scope="row" class="text-left">Date</th>
-                        <td class="text-left" colspan="3"><input type="text" name="distRecOffiDate" id="distRecOffiDate" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distChkOffiDate" id="distChkOffiDate" disabled></td>
                     </tr>
                 </table>
             </div>
@@ -447,9 +447,9 @@
             <button class="btn reject-btn" id="rejectButton" style="display: none;">Reject</button>
         </div>
 
-    </div>  
+    </div>    
                
-    <script src="./js/distCheckOfficerNewApplicationForm.js"></script>
+    <script src="./js/distRecommendOfficerNewApplicationForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

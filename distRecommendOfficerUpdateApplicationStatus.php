@@ -46,7 +46,7 @@ $comment = isset($data['comment']) ? $data['comment'] : '';
 $nic = isset($data['nic']) ? $data['nic'] : '';
 
 // Fetch offi_cat for the given app_no
-$stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?");
+$stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?"); 
 $stmt->bind_param("i", $app_no);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -66,15 +66,11 @@ $stmt->close();
 if ($status == 1) {
     
     // Set app_status based on offi_cat
-    if ($offi_cat == 5) {
-        $app_status = 130; // Approved status for offi_cat = 5
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
-        exit();
-    }
+    $app_status = 138; 
+    
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Aprv_Rm = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ?, Dist_Rec_Offi_Reject_RM = NULL WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Aprv_Rm = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
@@ -93,12 +89,14 @@ if ($status == 2 && !empty($comment)) {
 
     // Set app_status based on offi_cat
     if ($offi_cat == 5) {
-        $status = 145; // Approved status for offi_cat = 5
+        $status = 135; // Approved status for offi_cat = 5
+    }else if ($offi_cat == 4) {
+        $status = 3; // Approved status for offi_cat = 4
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Reject_RM = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Reject_RM = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

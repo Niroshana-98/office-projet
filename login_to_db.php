@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 26:
                     $redirect_url = './distCheckOfficer.php';
                     break;
+                case 30:
+                    $redirect_url = './distRecommendOfficer.php';
+                    break;
                 case 34:
                     $redirect_url = './DistrictOfficer.php';
                     break;

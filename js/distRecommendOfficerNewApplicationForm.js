@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("distCheckOfficerNewApplicationForm_to_db.php", {
-        credentials: 'include'
-    })
+    fetch("distRecommendOfficerNewApplicationForm_to_db.php")
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
-            document.getElementById("appNoDisplay").innerText = data.app_no;
+        if (data.success) { 
+            document.getElementById("appNoDisplay").innerText = data.app_no; 
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
             document.getElementById("name_eng").value = data.name_eng;
@@ -30,9 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("before_recieved").value = data.before_recieved;
 
             //Applicate Details
-            document.getElementById("applicateName").value = data.name_si;
+            document.getElementById("applicateName").value = data.name_si; 
             document.getElementById("applicateDesi").value = data.desi;
             document.getElementById("applicateDate").value = data.created;
+            console.log(data.offi_cat);
 
             //Subject Officer Details
             const remarkDiv = document.getElementById("remark");
@@ -47,43 +46,62 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
             document.getElementById("subName").value = data.subject_officer_name;
 
-            //Recommend Officer Details
-            const remarkRecDiv = document.getElementById("remarkRec");
+            //div
+            const offiRecOfficerDiv = document.getElementById("offiRecOfficerDiv");
+            const offiHeadDiv = document.getElementById("offiHeadDiv");
+            const distChkOffiDiv = document.getElementById("distChkOffiDiv");
 
-            if (!data.office_Rec_Aprv_RM) {
-                remarkRecDiv.style.display = "none";
-            } else {
-                document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
-            }
-            
-            document.getElementById("recName").value = data.recommend_officer_name;
-            document.getElementById("recDesi").value = data.recDesignation;
-            document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp; 
-
-            //Office head Details
-            const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
-
-            if(!data.Office_head_Aprv_RM) {
-                remarkOfficeHeadDiv.style.display = "none";
-            } else {
-                document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
-                document.getElementById("offiHeadName").value = data.office_head_name;
-                document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
-                document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
-            }
-
-            //District Recommend Officer Details
-            const rejectDistRecOfficerDiv = document.getElementById("distRecOffiDiv");
+            //HR
+            const subjectOfficerHR = document.getElementById("subjectOfficerHR");
+            const offiRecOfficerHR = document.getElementById("offiRecOfficerHR");
             const offiHeadHR = document.getElementById("offiHeadHR");
 
-            if(!data.Dist_Rec_Offi_Reject_RM) {
-                rejectDistRecOfficerDiv.style.display = "none";
+
+            if(data.offi_cat === 4){
+                offiRecOfficerDiv.style.display = "none";
+                offiHeadDiv.style.display = "none";
+                distChkOffiDiv.style.display = "none";
+                subjectOfficerHR.style.display = "none";
+                offiRecOfficerHR.style.display = "none";
                 offiHeadHR.style.display = "none";
-            } else {
-                document.getElementById("rejectDistRecOfficer").value = data.Dist_Rec_Offi_Reject_RM;
-                document.getElementById("distRecOffiName").value = data.dist_rec_officer_name;
-                document.getElementById("distRecOffiDesi").value = data.distRecOffiDesignation;
-                document.getElementById("distRecOffiDate").value = data.Dist_Rec_Offi_time_stamp;
+            } else{
+                //Recommend Officer Details
+                const remarkRecDiv = document.getElementById("remarkRec");
+
+                if (!data.office_Rec_Aprv_RM) {
+                    remarkRecDiv.style.display = "none";
+                } else {
+                    document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
+                }
+
+                document.getElementById("recName").value = data.recommend_officer_name;
+                document.getElementById("recDesi").value = data.recDesignation;
+                document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp; 
+
+                //Office head Details
+                const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+
+                if(!data.Office_head_Aprv_RM) {
+                    remarkOfficeHeadDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
+                    document.getElementById("offiHeadName").value = data.office_head_name;
+                    document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
+                    document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
+                }
+
+                //District Check Officer Details
+                const remarkDistChkOfficerDiv = document.getElementById("remarkDistChkOfficerDiv");
+
+                if(!data.Dist_Chk_Offi_Aprv_Rm) {
+                    remarkDistChkOfficerDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDistChkOfficer").value = data.Dist_Chk_Offi_Aprv_Rm;
+                }
+
+                document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;
+                document.getElementById("distChkOffiDesi").value = data.distChkOffiDesignation;
+                document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
             }
 
             // Show additional fieldsets if course information is available
@@ -207,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('distCheckOfficerUpdateApplicationStatus.php', {
+        fetch('distRecommendOfficerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -219,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'distCheckOfficerNewApplication.php'; 
+                window.location.href = 'distRecommendOfficerNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

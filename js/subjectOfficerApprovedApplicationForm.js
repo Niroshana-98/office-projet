@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("email_pri").value = data.email_pri;
                 document.getElementById("service").value = data.service;
                 document.getElementById("grade").value = data.grade;
-                document.getElementById("upp_status").value = data.upp_status;
+                document.getElementById("upp_status").value = data.upp_status; 
                 document.getElementById("desi").value = data.desi;
                 document.getElementById("c_w_p").value = data.c_w_p;
                 document.getElementById("min").value = data.min;

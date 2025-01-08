@@ -45,12 +45,12 @@ if (!$distOffiId) {
 // Initialize counts
 $newAppCount = $approvedAppCount = $rejectedAppCount = 0;
 
-// Count rows where app_status = 150 (new applications)
+// Count rows where app_status (new applications)
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     WHERE dist_offi_id = ? 
-    AND app_status IN (134, 135) 
+    AND app_status IN (130, 131) 
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);
@@ -62,13 +62,13 @@ $newAppStmt->close();
 $response['new_applications'] = $newAppCount;
 
 
-// Count rows where app_status = 140 (approved applications)
+// Count rows where app_status (approved applications)
 $approvedAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application
     WHERE application.dist_offi_id = ? 
     AND application.app_status IN (100, 101, 110, 111, 114, 115,118, 119, 120, 121, 124, 125, 128, 129
-        , 130, 131, 138, 139, 200, 201, 210, 211, 220, 221
+        , 138, 139, 200, 201, 210, 211, 220, 221
         , 230, 231, 240, 241, 250, 260) 
 ";
 
@@ -80,14 +80,14 @@ $approvedAppStmt->fetch();
 $approvedAppStmt->close();
 $response['approved_applications'] = $approvedAppCount;
 
-// Count rows where app_status = 100 (rejected applications)
+// Count rows where app_status (rejected applications)
 $newAppQuery = "
     SELECT COUNT(*) AS count 
     FROM application 
     INNER JOIN desi 
     ON application.desi = desi.desi_id
     WHERE application.dist_offi_id = ? 
-    AND application.app_status IN (145)
+    AND application.app_status IN (3, 135)
 ";
 
 $newAppStmt = $conn->prepare($newAppQuery);

@@ -247,7 +247,7 @@ button:not([disabled]):hover {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-#Reject, #rejectRec, #rejectOffiHead, #rejectDistChkOfficer{
+#Reject, #rejectRec, #rejectOffiHead, #rejectDistChkOfficer, #rejectDistRecOfficer{
     display: inline-block; 
     background-color: #ffefeb; 
     color: #da2b25; 
@@ -257,7 +257,7 @@ button:not([disabled]):hover {
     padding-left: 20px;
 }
 
-#Remark,#RemarkRec, #remarkOffiHead, #remarkDistChkOfficer{
+#Remark,#RemarkRec, #remarkOffiHead, #remarkDistChkOfficer, #remarkDistRecOfficer{
     display: inline-block; 
     background-color: #ffefeb; 
     color: #25da6a; 
