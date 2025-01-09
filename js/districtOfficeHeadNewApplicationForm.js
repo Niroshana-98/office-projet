@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("distRecommendOfficerNewApplicationForm_to_db.php")
+    fetch("districtOfficeHeadNewApplicationForm_to_db.php")
     .then(response => response.json())
     .then(data => {
         if (data.success) { 
@@ -104,21 +104,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
             }
 
-            //District Office Head Details
-            const rejectDistOffiHeadDiv = document.getElementById("distRecOffiDiv");
-            const distChkOffiHR = document.getElementById("distChkOffiHR");
+            //District Recommend Officer Details
+            const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
 
-            if(!data.Dist_offi_head_Reject_RM) {
-                rejectDistOffiHeadDiv.style.display = "none";
-                distChkOffiHR.style.display = "none";
+            if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                remarkDistRecOfficerDiv.style.display = "none";
             } else {
-                document.getElementById("rejectDistOfficeHead").value = data.Dist_offi_head_Reject_RM;
-                document.getElementById("distOffiHeadName").value = data.dist_offi_head_name;
-                document.getElementById("distOffiHeadDesi").value = data.distOffiHeadDesignation;
-                document.getElementById("distOffiHeadDate").value = data.Dist_offi_head_time_stamp;
+                document.getElementById("remarkDistRecOfficer").value = data.Dist_Rec_Offi_Aprv_Rm;
             }
 
-            
+            document.getElementById("distRecOffiName").value = data.dist_rec_officer_name;
+            document.getElementById("distRecOffiDesi").value = data.distRecOffiDesignation;
+            document.getElementById("distRecOffiDate").value = data.Dist_Rec_Offi_time_stamp;
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
@@ -241,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('distRecommendOfficerUpdateApplicationStatus.php', {
+        fetch('districtOfficeHeadUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -253,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'distRecommendOfficerNewApplication.php'; 
+                window.location.href = 'districtOfficeHeadNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }
@@ -288,3 +285,4 @@ approvalSelect.addEventListener('change', function() {
         commentSection.style.display = 'none'; 
     }
 });
+ 
