@@ -31,7 +31,9 @@ $stmt = $conn->prepare("
         a.Office_head_time_stamp, u3.name AS office_head_name, u3.desi AS offiHeadDesignation, a.Office_head_Aprv_RM,
         a.Dist_Chk_Offi_time_stamp, u4.name AS dist_chk_officer_name, u4.desi AS distChkOffiDesignation, a.Dist_Chk_Offi_Aprv_Rm,
         a.Dist_Rec_Offi_time_stamp, u5.name AS dist_rec_officer_name, u5.desi AS distRecOffiDesignation, a.Dist_Rec_Offi_Aprv_Rm,
-        a.Dep_Chk_Offi_time_stamp , u7.name AS dep_chk_officer_name, u7.desi AS depChkOffiDesignation, a.Dep_Chk_Offi_Reject_RM  
+        a.Dist_offi_head_time_stamp	, u6.name AS dist_offi_head_name, u6.desi AS distOffiHeadDesignation, a.Dist_offi_head_Aprv_RM,
+        a.Dep_Chk_Offi_time_stamp , u7.name AS dep_chk_officer_name, u7.desi AS depChkOffiDesignation, a.Dep_Chk_Offi_Aprv_RM,
+        a.Dep_Rec_Offi_time_stamp , u8.name AS dep_rec_officer_name, u8.desi AS depRecOffiDesignation, a.Dep_Rec_Offi_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -75,9 +77,17 @@ $stmt = $conn->prepare("
     ON
         a.Dist_Rec_Offi_user_id = u5.user_id
     LEFT JOIN
+        users u6
+    ON
+        a.Dist_offi_head_user_id = u6.user_id
+    LEFT JOIN
         users u7
     ON
         a.Dep_Chk_Offi_user_id = u7.user_id
+    LEFT JOIN
+        users u8
+    ON
+        a.Dep_Rec_Offi_user_id = u8.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -98,7 +108,9 @@ $stmt->bind_result(
     $Office_head_time_stamp, $office_head_name, $offiHeadDesignation, $Office_head_Aprv_RM,
     $Dist_Chk_Offi_time_stamp, $dist_chk_officer_name, $distChkOffiDesignation, $Dist_Chk_Offi_Aprv_Rm,
     $Dist_Rec_Offi_time_stamp, $dist_rec_officer_name, $distRecOffiDesignation, $Dist_Rec_Offi_Aprv_Rm,
-    $Dep_Chk_Offi_time_stamp , $dep_chk_officer_name, $depChkOffiDesignation, $Dep_Chk_Offi_Reject_RM
+    $Dist_offi_head_time_stamp	, $dist_offi_head_name, $distOffiHeadDesignation, $Dist_offi_head_Aprv_RM,
+    $Dep_Chk_Offi_time_stamp , $dep_chk_officer_name, $depChkOffiDesignation, $Dep_Chk_Offi_Aprv_RM,
+    $Dep_Rec_Offi_time_stamp , $dep_rec_officer_name, $depRecOffiDesignation, $Dep_Rec_Offi_Reject_RM
     
 
 );
@@ -174,10 +186,19 @@ if ($appNo) {
         'dist_rec_officer_name' => $dist_rec_officer_name,
         'distRecOffiDesignation' => $distRecOffiDesignation,
         'Dist_Rec_Offi_Aprv_Rm' => $Dist_Rec_Offi_Aprv_Rm,
+        'Dist_offi_head_time_stamp' => $Dist_offi_head_time_stamp,
+        'dist_offi_head_name' => $dist_offi_head_name,
+        'distOffiHeadDesignation' => $distOffiHeadDesignation,
+        'Dist_offi_head_Aprv_RM' => $Dist_offi_head_Aprv_RM,
         'Dep_Chk_Offi_time_stamp' => $Dep_Chk_Offi_time_stamp,
         'dep_chk_officer_name' => $dep_chk_officer_name,
         'depChkOffiDesignation' => $depChkOffiDesignation,
-        'Dep_Chk_Offi_Reject_RM' => $Dep_Chk_Offi_Reject_RM
+        'Dep_Chk_Offi_Aprv_RM' => $Dep_Chk_Offi_Aprv_RM,
+        'Dep_Rec_Offi_time_stamp' => $Dep_Rec_Offi_time_stamp,
+        'dep_rec_officer_name' => $dep_rec_officer_name,
+        'depRecOffiDesignation' => $depRecOffiDesignation,
+        'Dep_Rec_Offi_Reject_RM' => $Dep_Rec_Offi_Reject_RM
+
     ]); 
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);

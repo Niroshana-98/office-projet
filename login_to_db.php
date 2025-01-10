@@ -59,8 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 34:
                     $redirect_url = './districtOfficeHead.php';
                     break;
+                case 38:
+                    $redirect_url = './depCheckOfficer.php';
+                    break;
+                case 42:
+                    $redirect_url = './depRecOfficer.php';
+                    break;
                 case 46:
-                    $redirect_url = './DepartmentHead.php';
+                    $redirect_url = './depHeadOfficer.php';
                     break;
                 case 58:
                     $redirect_url = './MinistryHead.php';

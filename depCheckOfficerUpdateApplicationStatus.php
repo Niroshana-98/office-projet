@@ -53,7 +53,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $offi_cat = $row['offi_cat'];
+    $offi_cat = $row['offi_cat']; 
 } else {
     echo json_encode(['success' => false, 'error' => 'Application not found']);
     exit();
@@ -66,11 +66,11 @@ $stmt->close();
 if ($status == 1) {
     
     // Set app_status based on offi_cat
-    $app_status = 124; 
+    $app_status = 120; 
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_offi_head_Aprv_RM = ?, Dist_offi_head_time_stamp = NOW(), Dist_offi_head_user_id = ?, Dep_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_Chk_Offi_Aprv_RM = ?, Dep_Chk_Offi_time_stamp = NOW(), Dep_Chk_Offi_user_id = ?, Dep_Rec_Offi_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
@@ -88,8 +88,15 @@ if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
 
     // Set app_status based on offi_cat
-    $status = 131;
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_offi_head_Reject_RM = ?, Dist_offi_head_time_stamp = NOW(), Dist_offi_head_user_id = ? WHERE app_no = ?");
+    if($offi_cat == 4){
+        $status = 139;
+    }else if($offi_cat == 5){
+        $status = 139;
+    }else{
+        $status = 155;
+    }
+
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_Chk_Offi_Reject_RM = ?, Dep_Chk_Offi_time_stamp = NOW(), Dep_Chk_Offi_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

@@ -1,8 +1,8 @@
 <?php
-include 'connect.php'; 
+include 'connect.php';
 session_start();
 
-// Check if admin NIC is set in the session
+// Check if admin NIC is set in the session 
 if (!isset($_SESSION['nic'])) {
     echo json_encode(["success" => false, "error" => "User not logged in"]);
     exit;
@@ -34,7 +34,7 @@ $officeStmt->fetch();
 $officeStmt->close();
 
 if (!$depId) {
-    echo json_encode(["success" => false, "error" => "District office ID not found"]);
+    echo json_encode(["success" => false, "error" => "Department ID not found"]);
     exit;
 }
 
@@ -51,13 +51,13 @@ $applicationsQuery = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.dist_offi_id = ? 
-        AND application.app_status IN (134, 135)
+        application.dep_id = ? 
+        AND application.app_status IN (3, 125)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 
 if ($stmt) {
-    $stmt->bind_param("i", $distOffiId); // Bind admin offi_id parameter
+    $stmt->bind_param("i", $depId); // Bind admin offi_id parameter
     $stmt->execute();
     $result = $stmt->get_result();
 

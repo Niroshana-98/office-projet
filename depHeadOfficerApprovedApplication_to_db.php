@@ -1,5 +1,5 @@
 <?php
-include 'connect.php'; 
+include 'connect.php';
 session_start();
 
 // Check if admin NIC is set in the session
@@ -13,7 +13,7 @@ $userNic = $_SESSION['nic'];
 // Fetch the logged-in user's offi_id
 $userQuery = "SELECT offi_id FROM users WHERE nic = ?";
 $userStmt = $conn->prepare($userQuery);
-$userStmt->bind_param('s', $userNic);
+$userStmt->bind_param('s', $userNic); 
 $userStmt->execute();
 $userStmt->bind_result($userOffiId);
 $userStmt->fetch();
@@ -34,7 +34,7 @@ $officeStmt->fetch();
 $officeStmt->close();
 
 if (!$depId) {
-    echo json_encode(["success" => false, "error" => "District office ID not found"]);
+    echo json_encode(["success" => false, "error" => "Department ID not found"]);
     exit;
 }
 
@@ -42,7 +42,7 @@ if (!$depId) {
 $applicationsQuery = "
     SELECT 
         application.app_no, 
-        application.name_eng, 
+        application.name_eng,  
         desi.desi_name 
     FROM 
         application 
@@ -51,13 +51,15 @@ $applicationsQuery = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.dist_offi_id = ? 
-        AND application.app_status IN (134, 135)
+        application.dep_id = ? 
+        AND application.app_status IN (100, 101, 110, 111, 114, 115,118, 119
+        , 200, 201, 210, 211, 220, 221
+        , 230, 231, 240, 241, 250, 260)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 
 if ($stmt) {
-    $stmt->bind_param("i", $distOffiId); // Bind admin offi_id parameter
+    $stmt->bind_param("i", $depId); // Bind admin offi_id parameter
     $stmt->execute();
     $result = $stmt->get_result();
 

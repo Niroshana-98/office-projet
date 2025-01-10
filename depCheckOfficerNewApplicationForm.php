@@ -452,21 +452,21 @@
                     </tr>
                 </table>
             </div>
-        </div> 
+        </div>
 
         <hr id="distRecOffiHR">
 
-        <div id ="depChkOffiDiv">
+        <div id ="distOffiHeadDiv">
             <span>
                 උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
             </span>
 
-            <div id="rejectDepChkOffiDiv">
+            <div id="remarkDistOffiHeadDiv">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
                             <th scope="row" class="text-left" style="width: 150px;">Remark</th>
-                            <td class="text-left"><input type="text" name="rejectDepChkOffi" id="rejectDepChkOffi" disabled></td>
+                            <td class="text-left"><input type="text" name="remarkDistOfficeHead" id="remarkDistOfficeHead" disabled></td>
                         </tr>
                     </table> 
                 </div>
@@ -475,15 +475,48 @@
                 <table class="table" id="tableApplicate">
                     <tr>
                         <th scope="row" class="text-left">Name</th>
-                        <td class="text-left" colspan="3"><input type="text" name="depChkOffiName" id="depChkOffiName" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distOffiHeadName" id="distOffiHeadName" disabled></td>
                         <th scope="row" class="text-left">Designation</th>
-                        <td class="text-left" colspan="3"><input type="text" name="depChkOffiDesi" id="depChkOffiDesi" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distOffiHeadDesi" id="distOffiHeadDesi" disabled></td>
                         <th scope="row" class="text-left">Date</th>
-                        <td class="text-left" colspan="3"><input type="text" name="depChkOffiDate" id="depChkOffiDate" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="distOffiHeadDate" id="distOffiHeadDate" disabled></td>
                     </tr>
                 </table>
             </div>
         </div>
+
+        <hr id="distOffiHeadHR">
+
+        <div id ="depRecOffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="rejectDepRecOffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
+                            <td class="text-left"><input type="text" name="rejectDepRecOffi" id="rejectDepRecOffi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="depRecOffiName" id="depRecOffiName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="depRecOffiDesi" id="depRecOffiDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="depRecOffiDate" id="depRecOffiDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        
 
         <div style="display: flex; align-items: center;">
             <span>ඉහත අයදුම්පතෙහි සඳහන් තොරතුරු හා ඇමුණුම්</span>
@@ -511,7 +544,7 @@
 
     </div>    
                
-    <script src="./js/districtOfficeHeadNewApplicationForm.js"></script>
+    <script src="./js/depCheckOfficerNewApplicationForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

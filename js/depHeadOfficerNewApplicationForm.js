@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("districtOfficeHeadNewApplicationForm_to_db.php")
+    fetch("depHeadOfficerNewApplicationForm_to_db.php")
     .then(response => response.json())
     .then(data => {
         if (data.success) { 
@@ -50,21 +50,78 @@ document.addEventListener("DOMContentLoaded", function () {
             const offiRecOfficerDiv = document.getElementById("offiRecOfficerDiv");
             const offiHeadDiv = document.getElementById("offiHeadDiv");
             const distChkOffiDiv = document.getElementById("distChkOffiDiv");
+            const distRecOffiDiv = document.getElementById("distRecOffiDiv");
+            const distOffiHeadDiv = document.getElementById("distOffiHeadDiv");
+            const depChkOffiDiv = document.getElementById("depChkOffiDiv");
 
             //HR
             const subjectOfficerHR = document.getElementById("subjectOfficerHR");
             const offiRecOfficerHR = document.getElementById("offiRecOfficerHR");
             const offiHeadHR = document.getElementById("offiHeadHR");
+            const distChkOffiHR = document.getElementById("distChkOffiHR");
+            const distRecOffiHR = document.getElementById("distRecOffiHR");
+            const distOffiHeadHR = document.getElementById("distOffiHeadHR");
 
+            if(data.offi_cat === 3){
+                offiRecOfficerDiv.style.display = "none";
+                offiHeadDiv.style.display = "none";
+                distChkOffiDiv.style.display = "none";
+                distRecOffiDiv.style.display = "none";
+                distOffiHeadDiv.style.display = "none";
+                depChkOffiDiv.style.display = "none";
 
-            if(data.offi_cat === 4){
+                subjectOfficerHR.style.display = "none";
+                offiRecOfficerHR.style.display = "none";
+                offiHeadHR.style.display = "none";
+                distRecOffiHR.style.display = "none";
+                offiHeadHR.style.display = "none";
+                distOffiHeadHR.style.display = "none";
+
+            }else if(data.offi_cat === 4){
                 offiRecOfficerDiv.style.display = "none";
                 offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 subjectOfficerHR.style.display = "none";
                 offiRecOfficerHR.style.display = "none";
                 offiHeadHR.style.display = "none";
-            } else{
+
+                const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
+
+                if(!data.Dist_Rec_Offi_Aprv_Rm){
+                    remarkDistRecOfficerDiv.style.display = "none";
+                }else{
+                    document.getElementById("remarkDistRecOfficer").value = data.Dist_Rec_Offi_Aprv_Rm;
+                }
+                document.getElementById("distRecOffiName").value = data.dist_rec_officer_name;
+                document.getElementById("distRecOffiDesi").value = data.distRecOffiDesignation;
+                document.getElementById("distRecOffiDate").value = data.Dist_Rec_Offi_time_stamp;
+
+                //District Office Head Details
+                const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
+
+                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                    remarkDistOffiHeadDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
+                }
+
+                document.getElementById("distOffiHeadName").value = data.dist_offi_head_name;
+                document.getElementById("distOffiHeadDesi").value = data.distOffiHeadDesignation;
+                document.getElementById("distOffiHeadDate").value = data.Dist_offi_head_time_stamp;
+
+                //Department Check Officer Details
+                const remarkDepChkOffiDiv = document.getElementById("remarkDepChkOffiDiv");
+
+                if(!data.Dep_Chk_Offi_Aprv_RM) {
+                    remarkDepChkOffiDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDepChkOffi").value = data.Dep_Chk_Offi_Aprv_RM;
+                    document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
+                    document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
+                    document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
+                }
+
+            } else if(data.offi_cat === 5){
                 //Recommend Officer Details
                 const remarkRecDiv = document.getElementById("remarkRec");
 
@@ -102,35 +159,106 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;
                 document.getElementById("distChkOffiDesi").value = data.distChkOffiDesignation;
                 document.getElementById("distChkOffiDate").value = data.Dist_Chk_Offi_time_stamp;
-            }
 
-            //District Recommend Officer Details
-            const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
+                //District Recommend Officer Details
+                const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
 
-            if(!data.Dist_Rec_Offi_Aprv_Rm) {
-                remarkDistRecOfficerDiv.style.display = "none";
-            } else {
-                document.getElementById("remarkDistRecOfficer").value = data.Dist_Rec_Offi_Aprv_Rm;
-            }
+                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                    remarkDistRecOfficerDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDistRecOfficer").value = data.Dist_Rec_Offi_Aprv_Rm;
+                }
 
-            document.getElementById("distRecOffiName").value = data.dist_rec_officer_name;
-            document.getElementById("distRecOffiDesi").value = data.distRecOffiDesignation;
-            document.getElementById("distRecOffiDate").value = data.Dist_Rec_Offi_time_stamp;
+                document.getElementById("distRecOffiName").value = data.dist_rec_officer_name;
+                document.getElementById("distRecOffiDesi").value = data.distRecOffiDesignation;
+                document.getElementById("distRecOffiDate").value = data.Dist_Rec_Offi_time_stamp;
 
-            //Department Check Officer Details
-            const rejectDepChkOffiDiv = document.getElementById("depChkOffiDiv");
-            const distRecOffiHR = document.getElementById("distRecOffiHR");
+                //District Office Head Details
+                const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-            if(!data.Dep_Chk_Offi_Reject_RM) {
-                rejectDepChkOffiDiv.style.display = "none";
+                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                    remarkDistOffiHeadDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
+                }
+
+                document.getElementById("distOffiHeadName").value = data.dist_offi_head_name;
+                document.getElementById("distOffiHeadDesi").value = data.distOffiHeadDesignation;
+                document.getElementById("distOffiHeadDate").value = data.Dist_offi_head_time_stamp;
+                
+                //Department Check Officer Details
+                const remarkDepChkOffiDiv = document.getElementById("remarkDepChkOffiDiv");
+
+                if(!data.Dep_Chk_Offi_Aprv_RM) {
+                    remarkDepChkOffiDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDepChkOffi").value = data.Dep_Chk_Offi_Aprv_RM;
+                    document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
+                    document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
+                    document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
+                }
+            }else{
+
+                offiRecOfficerDiv.style.display = "none";
+                offiHeadDiv.style.display = "none";
+                distChkOffiDiv.style.display = "none";
+                distRecOffiDiv.style.display = "none";
+                distOffiHeadDiv.style.display = "none";
+
+                offiHeadHR.style.display = "none";
+                distChkOffiHR.style.display = "none";
                 distRecOffiHR.style.display = "none";
-            } else {
-                document.getElementById("rejectDepChkOffi").value = data.Dep_Chk_Offi_Reject_RM;
-                document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
-                document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
-                document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
+
+                //Recommend Officer Details
+                const remarkRecDiv = document.getElementById("remarkRec");
+
+                if (!data.office_Rec_Aprv_RM) {
+                    remarkRecDiv.style.display = "none";
+                } else {
+                    document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
+                }
+
+                document.getElementById("recName").value = data.recommend_officer_name;
+                document.getElementById("recDesi").value = data.recDesignation;
+                document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp; 
+
+                //Office head Details
+                const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+
+                if(!data.Office_head_Aprv_RM) {
+                    remarkOfficeHeadDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
+                }
+
+                document.getElementById("offiHeadName").value = data.office_head_name;
+                document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
+                document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
+
+                //Department Check Officer Details
+                const remarkDepChkOffiDiv = document.getElementById("remarkDepChkOffiDiv");
+
+                if(!data.Dep_Chk_Offi_Aprv_RM) {
+                    remarkDepChkOffiDiv.style.display = "none";
+                } else {
+                    document.getElementById("remarkDepChkOffi").value = data.Dep_Chk_Offi_Aprv_RM;
+                    document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
+                    document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
+                    document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
+                }
             }
 
+            //Department Recommend Officer Details
+            const remarkDepRecOffiDiv = document.getElementById("remarkRecChkOffiDiv");
+
+            if(!data.Dep_Chk_Offi_Aprv_RM) {
+                remarkDepRecOffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkDepRecOffi").value = data.Dep_Rec_Offi_Aprv_RM;
+                document.getElementById("depRecOffiName").value = data.dep_rec_officer_name;
+                document.getElementById("depRecOffiDesi").value = data.depRecOffiDesignation;
+                document.getElementById("depRecOffiDate").value = data.Dep_Rec_Offi_time_stamp;
+            }
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
@@ -253,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('districtOfficeHeadUpdateApplicationStatus.php', {
+        fetch('depHeadOfficerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -265,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'districtOfficeHeadNewApplication.php'; 
+                window.location.href = 'depHeadOfficerNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

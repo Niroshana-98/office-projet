@@ -1,5 +1,5 @@
 <?php
-include 'connect.php'; 
+include 'connect.php';
 session_start();
 
 // Check if admin NIC is set in the session
@@ -38,7 +38,7 @@ if (!$depId) {
     exit;
 }
 
-// Step 2: Fetch applications where c_w_p matches admin offi_id and app_status = 140
+// Step 2: Fetch applications where dep_id matches admin offi_id and app_status 
 $applicationsQuery = "
     SELECT 
         application.app_no, 
@@ -51,13 +51,13 @@ $applicationsQuery = "
     ON 
         application.desi = desi.desi_id
     WHERE 
-        application.dist_offi_id = ? 
-        AND application.app_status IN (134, 135)
+        application.dep_id = ? 
+        AND application.app_status IN (124, 125)
 ";
 $stmt = $conn->prepare($applicationsQuery);
 
 if ($stmt) {
-    $stmt->bind_param("i", $distOffiId); // Bind admin offi_id parameter
+    $stmt->bind_param("i", $depId); // Bind admin offi_id parameter
     $stmt->execute();
     $result = $stmt->get_result();
 
