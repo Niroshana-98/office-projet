@@ -26,7 +26,7 @@
                 <a href="index.html" class="btn btn-outline-danger me-2" id="logout">Logout</a>
             </div>
         </div>
-    </nav>
+    </nav> 
 
         <div class="row text-center">
             <div class="col-1"></div>
@@ -149,9 +149,11 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ministry">අයත්වන අමාත්‍යාංශය</h5>
-                                <select class="form-select" aria-label="Default select example" name="ministry" id="ministry">
+                                <!--<select class="form-select" aria-label="Default select example" name="ministry" id="ministry">
                                     <option value="" selected>Open this select menu</option>
-                                </select>
+                                </select>-->
+                                <input type="text" class="form-control" id="ministry" placeholder="" name="ministry" readonly>
+                                <input type="hidden" id="min_id" name="min_id">
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කල දිනය</h5>

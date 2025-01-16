@@ -516,7 +516,7 @@
             </div>
         </div>
 
-        <hr id="depChkOffiHR">
+        <hr id="depChkOffiHR"> 
 
         <div id ="depRecOffiDiv">
             <span>
@@ -542,6 +542,37 @@
                         <td class="text-left" colspan="3"><input type="text" name="depRecOffiDesi" id="depRecOffiDesi" disabled></td>
                         <th scope="row" class="text-left">Date</th>
                         <td class="text-left" colspan="3"><input type="text" name="depRecOffiDate" id="depRecOffiDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr id="depRecOffiHR">
+
+        <div id ="minChkOffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="rejectMinChkOffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
+                            <td class="text-left"><input type="text" name="rejectMinChkOffi" id="rejectMinChkOffi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="minChkName" id="minChkName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="minChkDesi" id="minChkDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="minChkDate" id="minChkDate" disabled></td>
                     </tr>
                 </table>
             </div>

@@ -34,9 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateDate").value = data.created;
 
             const rejectByRecDiv = document.getElementById("rejectBySub");
+            const appliHR = document.getElementById("appliHR");
 
             if (!data.office_Rec_Reject_RM) {
                 rejectByRecDiv.style.display = "none";
+                appliHR.style.display = "none";
             } else {
                 document.getElementById("rejectRec").value = data.office_Rec_Reject_RM;
                 document.getElementById("recName").value = data.recommend_officer_name;

@@ -53,7 +53,7 @@ $stmt = $conn->prepare("
         users u2
     ON
         a.office_Rec_user_id = u2.user_id
-    WHERE a.app_no = ?
+    WHERE a.app_no = ? 
 ");
 
 $stmt->bind_param("s", $app_no);
@@ -67,7 +67,7 @@ $stmt->bind_result(
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, 
-    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM
+    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM 
 );
 
 $stmt->fetch();

@@ -33,7 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateName").value = data.name_si;
             document.getElementById("applicateDesi").value = data.desi;
             document.getElementById("applicateDate").value = data.created;
-            document.getElementById("Reject").value = data.Subject_Reject_RM;
+
+            const rejectDiv = document.getElementById("reject");
+
+            if (!data.Subject_Reject_RM) {
+                rejectDiv.style.display = "none";
+            } else {
+                document.getElementById("Reject").value = data.Subject_Reject_RM;
+                document.getElementById("subDesi").value = data.designation;
+                document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
+                document.getElementById("subName").value = data.subject_officer_name; 
+            }
 
 
             // Show additional fieldsets if course information is available

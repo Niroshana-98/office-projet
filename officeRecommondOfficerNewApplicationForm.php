@@ -330,7 +330,7 @@
             </div>
         </div>
 
-        <hr id="rejectHR">
+        <hr id="rejectHR"> 
 
         <div id = "rejectByOffiHead">
             <span>

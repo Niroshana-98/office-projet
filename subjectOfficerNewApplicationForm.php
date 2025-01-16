@@ -299,7 +299,7 @@
             </div>
         </div>
 
-        <hr>
+        <hr id="appliHR">
 
         <div id="rejectBySub">
             <span>

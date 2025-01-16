@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(!data.Dist_Chk_Offi_Reject_RM) {
                 rejectDistChkOfficerDiv.style.display = "none";
-                rejectHR = document.style.display = "none";
+                rejectHR.style.display = "none";
             } else {
                 document.getElementById("rejectDistChkOfficer").value = data.Dist_Chk_Offi_Reject_RM;
                 document.getElementById("distChkOffiName").value = data.dist_chk_officer_name;

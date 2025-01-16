@@ -14,7 +14,7 @@ if (isset($_SESSION['nic'])) {
 
     if ($stmt->affected_rows > 0) {
         // update the application table status
-        $stmtApp = $conn->prepare("UPDATE application SET app_status = 2 WHERE nic = ?");
+        $stmtApp = $conn->prepare("UPDATE application SET app_status = 2 , created = NOW() WHERE nic = ?");
         $stmtApp->bind_param("s", $nic);
         $stmtApp->execute();
 

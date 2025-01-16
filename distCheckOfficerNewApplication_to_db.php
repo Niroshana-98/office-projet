@@ -25,15 +25,15 @@ if (!$userOffiId) {
 }
 
 // Fetch the dist_offi_id from the office table
-$officeQuery = "SELECT dep_id FROM office WHERE offi_id = ?";
+$officeQuery = "SELECT dist_offi_id FROM office WHERE offi_id = ?";
 $officeStmt = $conn->prepare($officeQuery);
 $officeStmt->bind_param('i', $userOffiId);
 $officeStmt->execute();
-$officeStmt->bind_result($depId);
+$officeStmt->bind_result($distOffiId);
 $officeStmt->fetch();
 $officeStmt->close();
 
-if (!$depId) {
+if (!$distOffiId) {
     echo json_encode(["success" => false, "error" => "District office ID not found"]);
     exit;
 }

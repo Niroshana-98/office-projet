@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!data.Office_head_Reject_RM) {
                 rejectByOffiHeadDiv.style.display = "none";
-                rejectHR = document.style.display = "none";
+                rejectHR.style.display = "none";
             } else {
                 document.getElementById("rejectOffiHead").value = data.Office_head_Reject_RM;
                 document.getElementById("offiHeadName").value = data.office_head_name;

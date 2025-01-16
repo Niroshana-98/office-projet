@@ -81,9 +81,11 @@ window.onload = function() {
                 document.getElementById('htel').value = data.user.tel;
                 document.getElementById('email').value = data.user.email;
                 document.getElementById('location').value = data.user.offi_name;
+                document.getElementById('ministry').value = data.user.min_name;
 
                 //hidden input field
                 document.getElementById('offi_id').value = data.user.offi_id;
+                document.getElementById('min_id').value = data.user.min_id;
 
                 // Fill table cells with user data
                 document.getElementById('inameCell').innerText = data.user.name;
@@ -91,9 +93,10 @@ window.onload = function() {
                 document.getElementById('htelCell').innerText = data.user.tel;
                 document.getElementById('emailCell').innerText = data.user.email;
                 document.getElementById('locationCell').innerText = data.user.offi_name;
+                document.getElementById('ministryCell').innerText = data.user.min_name;
 
                 // Populate ministry dropdown
-                const ministrySelect = document.getElementById('ministry');
+                /*const ministrySelect = document.getElementById('ministry');
                 data.ministries.forEach(ministry => {
                     const option = document.createElement('option');
                     option.value = ministry.min_id;
@@ -111,7 +114,7 @@ window.onload = function() {
                 ministrySelect.addEventListener('change', function() {
                     const selectedMinistryName = ministrySelect.options[ministrySelect.selectedIndex].textContent;
                     document.getElementById('ministryCell').innerText = selectedMinistryName;
-                });
+                });*/
 
             } else {
                 alert("Error: " + data.error);

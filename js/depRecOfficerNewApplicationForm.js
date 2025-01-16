@@ -116,10 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     remarkDepChkOffiDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDepChkOffi").value = data.Dep_Chk_Offi_Aprv_RM;
-                    document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
-                    document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
-                    document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
                 }
+
+                document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
+                document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;
+                document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
 
             } else if(data.offi_cat === 5){
                 //Recommend Officer Details

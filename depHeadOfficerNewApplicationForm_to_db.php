@@ -33,7 +33,8 @@ $stmt = $conn->prepare("
         a.Dist_Rec_Offi_time_stamp, u5.name AS dist_rec_officer_name, u5.desi AS distRecOffiDesignation, a.Dist_Rec_Offi_Aprv_Rm,
         a.Dist_offi_head_time_stamp	, u6.name AS dist_offi_head_name, u6.desi AS distOffiHeadDesignation, a.Dist_offi_head_Aprv_RM,
         a.Dep_Chk_Offi_time_stamp , u7.name AS dep_chk_officer_name, u7.desi AS depChkOffiDesignation, a.Dep_Chk_Offi_Aprv_RM,
-        a.Dep_Rec_Offi_time_stamp , u8.name AS dep_rec_officer_name, u8.desi AS depRecOffiDesignation, a.Dep_Rec_Offi_Aprv_RM
+        a.Dep_Rec_Offi_time_stamp , u8.name AS dep_rec_officer_name, u8.desi AS depRecOffiDesignation, a.Dep_Rec_Offi_Aprv_RM,
+        a.Min_Chk_Offi_time_stamp , u10.name AS min_chk_name, u10.desi AS minChkDesignation, a.Min_Chk_Offi_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -87,7 +88,11 @@ $stmt = $conn->prepare("
     LEFT JOIN
         users u8
     ON
-        a.Dep_Chk_Offi_user_id = u8.user_id
+        a.Dep_Rec_Offi_user_id = u8.user_id
+    LEFT JOIN
+        users u10
+    ON
+        a.Min_Chk_Offi_user_id = u10.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -110,7 +115,8 @@ $stmt->bind_result(
     $Dist_Rec_Offi_time_stamp, $dist_rec_officer_name, $distRecOffiDesignation, $Dist_Rec_Offi_Aprv_Rm,
     $Dist_offi_head_time_stamp	, $dist_offi_head_name, $distOffiHeadDesignation, $Dist_offi_head_Aprv_RM,
     $Dep_Chk_Offi_time_stamp , $dep_chk_officer_name, $depChkOffiDesignation, $Dep_Chk_Offi_Aprv_RM,
-    $Dep_Rec_Offi_time_stamp , $dep_rec_officer_name, $depRecOffiDesignation, $Dep_Rec_Offi_Aprv_RM
+    $Dep_Rec_Offi_time_stamp , $dep_rec_officer_name, $depRecOffiDesignation, $Dep_Rec_Offi_Aprv_RM,
+    $Min_Chk_Offi_time_stamp , $min_chk_name, $minChkDesignation, $Min_Chk_Offi_Reject_RM
     
 
 );
@@ -197,7 +203,11 @@ if ($appNo) {
         'Dep_Rec_Offi_time_stamp' => $Dep_Rec_Offi_time_stamp,
         'dep_rec_officer_name' => $dep_rec_officer_name,
         'depRecOffiDesignation' => $depRecOffiDesignation,
-        'Dep_Rec_Offi_Aprv_RM' => $Dep_Rec_Offi_Aprv_RM
+        'Dep_Rec_Offi_Aprv_RM' => $Dep_Rec_Offi_Aprv_RM,
+        'Min_Chk_Offi_time_stamp' => $Min_Chk_Offi_time_stamp,
+        'min_chk_name' => $min_chk_name,
+        'minChkDesignation' => $minChkDesignation,
+        'Min_Chk_Offi_Reject_RM' => $Min_Chk_Offi_Reject_RM
 
     ]); 
 } else {

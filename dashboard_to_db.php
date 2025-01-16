@@ -12,55 +12,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $nic = $_SESSION['nic'];
 
-    // Fetch user data based on NIC
-    $stmt = $conn->prepare("SELECT name, nic, email, tel, offi_id FROM users WHERE nic = ?");
+    // Fetch user data along with office and ministry details in one go
+    $stmt = $conn->prepare("
+        SELECT 
+            u.name, u.nic, u.email, u.tel, u.offi_id, o.offi_name, m.min_id, m.min_name
+        FROM 
+            users u
+        LEFT JOIN 
+            office o ON u.offi_id = o.offi_id
+        LEFT JOIN 
+            ministry m ON o.min_id = m.min_id
+        WHERE 
+            u.nic = ?
+    ");
     $stmt->bind_param("s", $nic);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $userData = $result->fetch_assoc();
+        $userData['offi_name'] = $userData['offi_name'] ?? 'Unknown';
+        $userData['min_name'] = $userData['min_name'] ?? 'Unknown';
+        $userData['offi_id'] = $userData['offi_id'] ?? 'Unknown';
+        $userData['min_id'] = $userData['min_id'] ?? 'Unknown';
     } else {
         echo json_encode(['error' => 'No user data found']);
         exit();
     }
     $stmt->close();
 
-    // Fetch Office Name
-    $offi_id = $userData['offi_id'];
-    $office_stmt = $conn->prepare("SELECT offi_name FROM office WHERE offi_id = ?");
-    $office_stmt->bind_param("i", $offi_id);
-    $office_stmt->execute();
-    $office_result = $office_stmt->get_result();
-
-    if ($office_result->num_rows > 0) {
-        $officeData = $office_result->fetch_assoc();
-        $userData['offi_name'] = $officeData['offi_name'];
-    } else {
-        $userData['offi_name'] = 'Unknown';
-    }
-
-    $office_stmt->close();
-
-    // Fetch ministries from the ministry table
-    $ministry_stmt = $conn->prepare("SELECT min_id, min_name FROM ministry");
-    $ministry_stmt->execute();
-    $ministries_result = $ministry_stmt->get_result();
-
-    $ministries = [];
-    while ($row = $ministries_result->fetch_assoc()) {
-        $ministries[] = $row;
-    } 
-
-    $ministry_stmt->close();
-
-    // Send a JSON response with both user data and ministries
+    // Send JSON response
     header('Content-Type: application/json');
-    echo json_encode([
-        'user' => $userData,
-        'ministries' => $ministries
-    ]);
+    echo json_encode(['user' => $userData]);
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
     if (isset($_POST['action'])) {
@@ -124,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $upp_status = $_POST['permenant'];
     $desi = $_POST['job'];
     $c_w_p = $_POST['offi_id'];
-    $min = $_POST['ministry'];
+    $min = $_POST['min_id'];
     $date_att_sp = $_POST['includeDate'];
     $ins_name = $_POST['university'];
     $course_name = $_POST['digree'];
@@ -146,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bf_02gov_paid = $_POST['loan2'];
     $bf_02full_course_fee = $_POST['cFees2']; 
 
+    $created = date('Y-m-d H:i:s');
     $app_status = "1";  // Initial application status
 
     // Additional variables for offi_cat and dist_offi_id
@@ -155,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dep_id = null ;
 
     // Fetch offi_cat and dist_offi_id from the office table
-    $stmt_office = $conn->prepare("SELECT offi_cat, min_id, dep_id, dist_offi_id FROM office WHERE offi_id = ?");
+    $stmt_office = $conn->prepare("SELECT offi_cat, dist_offi_id, min_id, dep_id FROM office WHERE offi_id = ?");
     $stmt_office->bind_param("i", $c_w_p);
     $stmt_office->execute();
     $result_office = $stmt_office->get_result();
@@ -180,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $stmts->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('A user with this NIC or email already exists.');</script>";
+        echo "<script>alert('A user with this NIC or email already exists.');</script>"; 
     } else {
         // Insert data into application table (including offi_cat and dist_offi_id)
         $stmts = $conn->prepare("INSERT INTO application (
@@ -188,17 +174,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, 
             service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, 
             bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, 
-            bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, 
+            bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, created, 
             app_status, offi_cat, min_id, dep_id, dist_offi_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
         $stmts->bind_param(
-            "sssssiisssssssssssssissssiisssiiiiiii", 
+            "sssssiisssssssssssssissssiisssiiiiiiii", 
             $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, 
             $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, 
             $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, 
             $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, 
-            $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, 
+            $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, $created,
             $app_status, $offi_cat, $min_id, $dep_id, $dist_offi_id
         );     
 

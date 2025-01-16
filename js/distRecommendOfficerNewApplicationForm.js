@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             //District Office Head Details
-            const rejectDistOffiHeadDiv = document.getElementById("distRecOffiDiv");
+            const rejectDistOffiHeadDiv = document.getElementById("distOffiHeadDiv");
             const distChkOffiHR = document.getElementById("distChkOffiHR");
 
             if(!data.Dist_offi_head_Reject_RM) {

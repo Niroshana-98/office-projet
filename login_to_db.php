@@ -68,11 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 46:
                     $redirect_url = './depHeadOfficer.php';
                     break;
+                case 50:
+                    $redirect_url = './minCheckOfficer.php';
+                    break;
+                case 54:
+                    $redirect_url = './minRecOfficer.php';
+                    break;
                 case 58:
-                    $redirect_url = './MinistryHead.php';
+                    $redirect_url = './minHeadOfficer.php';
                     break;
                 case 62:
-                    $redirect_url = './ChiefSecretary.php';
+                    $redirect_url = './csCheckOfficer.php';
                     break;
                 default:
                     echo json_encode([
