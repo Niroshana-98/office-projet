@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 subjectOfficerHR.style.display = "none";
                 offiRecOfficerHR.style.display = "none";
                 offiHeadHR.style.display = "none";
+                distChkOffiHR.style.display = "none";
                 distRecOffiHR.style.display = "none";
-                offiHeadHR.style.display = "none";
                 distOffiHeadHR.style.display = "none";
 
             }else if(data.offi_cat === 4){
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             //Department Recommend Officer Details
-            const remarkDepRecOffiDiv = document.getElementById("remarkRecChkOffiDiv");
+            const remarkDepRecOffiDiv = document.getElementById("remarkDepRecOffiDiv");
 
             if(!data.Dep_Rec_Offi_Aprv_RM) {
                 remarkDepRecOffiDiv.style.display = "none";

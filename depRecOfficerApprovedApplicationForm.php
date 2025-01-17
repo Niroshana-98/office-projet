@@ -516,7 +516,7 @@
             </div>
         </div>
 
-        <hr id="depRecOffiHR">
+        <hr id="depChkOffiHR">
 
         <div id ="depRecOffiDiv">
             <span>

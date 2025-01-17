@@ -514,7 +514,7 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div> 
 
         <hr id="depChkOffiHR"> 
 

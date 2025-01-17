@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 remarkDepChkOffiDiv.style.display = "none";
             } else {
                 document.getElementById("remarkDepChkOffi").value = data.Dep_Chk_Offi_Aprv_RM;
-            }
+            } 
 
             document.getElementById("depChkOffiName").value = data.dep_chk_officer_name;
             document.getElementById("depChkOffiDesi").value = data.depChkOffiDesignation;

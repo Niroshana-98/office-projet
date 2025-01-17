@@ -88,7 +88,7 @@ $stmt = $conn->prepare("
     LEFT JOIN
         users u8
     ON
-        a.Dep_Chk_Offi_user_id = u8.user_id
+        a.Dep_Rec_Offi_user_id = u8.user_id
     LEFT JOIN
         users u9
     ON

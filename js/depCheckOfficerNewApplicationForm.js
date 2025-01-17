@@ -159,8 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("distOffiHeadDate").value = data.Dist_offi_head_time_stamp;
             }else{
 
-                offiRecOfficerDiv.style.display = "none";
-                offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 distRecOffiDiv.style.display = "none";
                 distOffiHeadDiv.style.display = "none";

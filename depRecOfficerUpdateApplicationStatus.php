@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $offi_cat = $row['offi_cat']; 
 } else {
-    echo json_encode(['success' => false, 'error' => 'Application not found']);
+    echo json_encode(['success' => false, 'error' => 'Application not found']); 
     exit();
 }
 
