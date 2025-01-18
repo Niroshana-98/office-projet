@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 subjectOfficerHR.style.display = "none";
                 offiRecOfficerHR.style.display = "none";
                 offiHeadHR.style.display = "none";
+                distChkOffiHR.style.display = "none";
                 distRecOffiHR.style.display = "none";
-                offiHeadHR.style.display = "none";
                 distOffiHeadHR.style.display = "none";
 
             }else if(data.offi_cat === 4){
@@ -204,8 +204,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
             }else{
 
-                offiRecOfficerDiv.style.display = "none";
-                offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 distRecOffiDiv.style.display = "none";
                 distOffiHeadDiv.style.display = "none";

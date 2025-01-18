@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -206,8 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
             }else{
 
-                offiRecOfficerDiv.style.display = "none";
-                offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 distRecOffiDiv.style.display = "none";
                 distOffiHeadDiv.style.display = "none";

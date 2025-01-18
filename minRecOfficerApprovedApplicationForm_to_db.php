@@ -12,7 +12,7 @@ if (!isset($_SESSION['app_no'])) {
     exit;
 }
 
-$app_no = $_SESSION['app_no'];
+$app_no = $_SESSION['app_no']; 
 
 // Updated query to join with the corresponding tables to get names
 $stmt = $conn->prepare("

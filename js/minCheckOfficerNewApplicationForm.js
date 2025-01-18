@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 subjectOfficerHR.style.display = "none";
                 offiRecOfficerHR.style.display = "none";
                 offiHeadHR.style.display = "none";
+                distChkOffiHR.style.display = "none";
                 distRecOffiHR.style.display = "none";
-                offiHeadHR.style.display = "none";
                 distOffiHeadHR.style.display = "none";
 
             }else if(data.offi_cat === 4){
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -201,8 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
             }else{
 
-                offiRecOfficerDiv.style.display = "none";
-                offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 distRecOffiDiv.style.display = "none";
                 distOffiHeadDiv.style.display = "none";
@@ -279,10 +277,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Ministry Recommend Officer Details
 
-            const rejectMinRecOffiDiv = document.getElementById("rejectMinRecOffiDiv");
+            const rejectMinRecOffiDiv = document.getElementById("minRecOffiDiv");
+            const depHeadHR = document.getElementById("depHeadHR");
 
             if(!data.Min_Rec_Offi_Reject_RM) {
                 rejectMinRecOffiDiv.style.display = "none";
+                depHeadHR.style.display = "none";
             } else {
                 document.getElementById("rejectMinRecOffi").value = data.Min_Rec_Offi_Reject_RM;
                 document.getElementById("minRecName").value = data.min_rec_name;

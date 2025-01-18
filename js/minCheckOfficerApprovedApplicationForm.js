@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
 
-                if(!data.Dist_Rec_Offi_Aprv_Rm) {
+                if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkDistOfficeHead").value = data.Dist_offi_head_Aprv_RM;
@@ -206,8 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
             }else{
 
-                offiRecOfficerDiv.style.display = "none";
-                offiHeadDiv.style.display = "none";
                 distChkOffiDiv.style.display = "none";
                 distRecOffiDiv.style.display = "none";
                 distOffiHeadDiv.style.display = "none";
@@ -294,7 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("minChkName").value = data.min_chk_name;
             document.getElementById("minChkDesi").value = data.minChkDesignation;
-            document.getElementById("minChkDate").value = data.Min_Chk_Offi_time_stamp;
+            document.getElementById("minChkDate").value = data.Min_Chk_Offi_time_stamp; 
+
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
