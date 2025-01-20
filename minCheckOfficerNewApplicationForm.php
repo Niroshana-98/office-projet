@@ -578,7 +578,7 @@
             </div>
         </div>
 
-        <hr id="depHeadHR">
+        <hr id="depHeadHR"> 
 
         <div id ="minRecOffiDiv">
             <span>

@@ -249,7 +249,7 @@ button:not([disabled]):hover {
 
 #Reject, #rejectRec, #rejectOffiHead, #rejectDistChkOfficer, #rejectDistRecOfficer,
 #rejectDistOfficeHead, #rejectDepChkOffi, #rejectDepRecOffi, #rejectDepHead, #rejectMinChkOffi,
-#rejectMinRecOffi, #rejectMinHeadOffi, #rejectCSChkOffi{
+#rejectMinRecOffi, #rejectMinHeadOffi, #rejectCSChkOffi, #rejectAOOffi, #rejectACSOffi{
     display: inline-block; 
     background-color: #ffefeb; 
     color: #da2b25; 
@@ -261,7 +261,7 @@ button:not([disabled]):hover {
 
 #Remark,#RemarkRec, #remarkOffiHead, #remarkDistChkOfficer, #remarkDistRecOfficer,
 #remarkDistOfficeHead, #remarkDepChkOffi, #remarkDepRecOffi, #remarkDepHead, #remarkMinChkOffi
-,#remarkMinRecOffi, #remarkMinHeadOffi, #remarkCSChkOffi{
+,#remarkMinRecOffi, #remarkMinHeadOffi, #remarkCSChkOffi, #remarkAOOffi{
     display: inline-block; 
     background-color: #ffefeb; 
     color: #25da6a; 

@@ -70,7 +70,7 @@ if ($status == 1) {
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, CS_Chk_Offi_Aprv_RM = ?, CS_Chk_Offi_time_stamp = NOW(), CS_Chk_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, CS_Chk_Offi_Aprv_RM = ?, CS_Chk_Offi_time_stamp = NOW(), CS_Chk_Offi_user_id = ?, AO_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

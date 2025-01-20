@@ -37,7 +37,8 @@ $stmt = $conn->prepare("
         a.Dep_head_time_stamp , u9.name AS dep_head_name, u9.desi AS depHeadDesignation, a.Dep_head_Aprv_RM,
         a.Min_Chk_Offi_time_stamp , u10.name AS min_chk_name, u10.desi AS minChkDesignation, a.Min_Chk_Offi_Aprv_RM,
         a.Min_Rec_Offi_time_stamp , u11.name AS min_rec_name, u11.desi AS minRecDesignation, a.Min_Rec_Offi_Aprv_RM,
-        a.Min_head_time_stamp , u12.name AS min_head_name, u12.desi AS minHeadDesignation, a.Min_head_Aprv_RM
+        a.Min_head_time_stamp , u12.name AS min_head_name, u12.desi AS minHeadDesignation, a.Min_head_Aprv_RM,
+        a.AO_time_stamp, u14.name AS ao_name, u14.desi AS aoDesignation, a.AO_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -108,6 +109,10 @@ $stmt = $conn->prepare("
         users u12
     ON
         a.Min_head_user_id = u12.user_id
+    LEFT JOIN
+        users u14
+    ON
+        a.AO_user_id = u14.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -134,7 +139,8 @@ $stmt->bind_result(
     $Dep_head_time_stamp , $dep_head_name, $depHeadDesignation, $Dep_head_Aprv_RM,
     $Min_Chk_Offi_time_stamp , $min_chk_name, $minChkDesignation, $Min_Chk_Offi_Aprv_RM,
     $Min_Rec_Offi_time_stamp , $min_rec_name, $minRecDesignation, $Min_Rec_Offi_Aprv_RM,
-    $Min_head_time_stamp , $min_head_name, $minHeadDesignation, $Min_head_Aprv_RM
+    $Min_head_time_stamp , $min_head_name, $minHeadDesignation, $Min_head_Aprv_RM,
+    $AO_time_stamp, $ao_name, $aoDesignation, $AO_Reject_RM 
     
 );
 
@@ -236,7 +242,11 @@ if ($appNo) {
         'Min_head_time_stamp' => $Min_head_time_stamp,
         'min_head_name' => $min_head_name,
         'minHeadDesignation' => $minHeadDesignation,
-        'Min_head_Aprv_RM' => $Min_head_Aprv_RM
+        'Min_head_Aprv_RM' => $Min_head_Aprv_RM,
+        'AO_time_stamp' => $AO_time_stamp,
+        'ao_name' => $ao_name,
+        'aoDesignation' => $aoDesignation,
+        'AO_Reject_RM' => $AO_Reject_RM
 
     ]); 
 } else {
