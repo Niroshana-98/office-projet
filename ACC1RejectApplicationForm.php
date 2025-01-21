@@ -19,9 +19,9 @@
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
         </div>     
     </div> 
-    <div class="tableLayout"> 
+    <div class="tableLayout">
         <div class="table-responsive">
-            <table class="table small-table" id="dataTable">
+            <table class="table small-table" id="dataTable"> 
                 <thead>
                     <tr>
                         <th scope="col" colspan="4" class="text-left">
@@ -483,7 +483,7 @@
                     </tr>
                 </table>
             </div>
-        </div> 
+        </div>
 
         <hr id="distOffiHeadHR">
 
@@ -516,7 +516,7 @@
             </div>
         </div>
 
-        <hr id="depChkOffiHR"> 
+        <hr id="depChkOffiHR">
 
         <div id ="depRecOffiDiv">
             <span>
@@ -527,7 +527,7 @@
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
-                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
                             <td class="text-left"><input type="text" name="remarkDepRecOffi" id="remarkDepRecOffi" disabled></td>
                         </tr>
                     </table> 
@@ -558,7 +558,7 @@
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
-                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
                             <td class="text-left"><input type="text" name="remarkDepHead" id="remarkDepHead" disabled></td>
                         </tr>
                     </table> 
@@ -589,7 +589,7 @@
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
-                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <th scope="row" class="text-left" style="width: 150px;">Reject Reason</th>
                             <td class="text-left"><input type="text" name="remarkMinChkOffi" id="remarkMinChkOffi" disabled></td>
                         </tr>
                     </table> 
@@ -638,8 +638,8 @@
                     </tr>
                 </table>
             </div>
-        </div>
-        
+        </div> 
+
         <hr id="minRecOffiHR">
 
         <div id ="minHeadOffiDiv">
@@ -669,7 +669,7 @@
                     </tr>
                 </table>
             </div>
-        </div> 
+        </div>
 
         <hr id="minHeadOffiHR">
 
@@ -700,7 +700,7 @@
                     </tr>
                 </table>
             </div>
-        </div> 
+        </div>
 
         <hr id="csChkOffiHR">
 
@@ -735,17 +735,48 @@
 
         <hr id="csAOOffiHR">
 
+        <div id ="csACSOffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="remarkACSOffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="remarkACSOffi" id="remarkACSOffi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSName" id="ACSName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSDesi" id="ACSDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSDate" id="ACSDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr id="csACSOffiHR">
+
         <div id ="csDCSOffiDiv">
             <span>
                 උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
             </span>
 
-            <div id="rejectDCSOffiDiv">
+            <div id="remarkDCSOffiDiv">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
                             <th scope="row" class="text-left" style="width: 150px;">Remark</th>
-                            <td class="text-left"><input type="text" name="rejectDCSOffi" id="rejectDCSOffi" disabled></td>
+                            <td class="text-left"><input type="text" name="remarkDCSOffi" id="remarkDCSOffi" disabled></td>
                         </tr>
                     </table> 
                 </div>
@@ -764,33 +795,71 @@
             </div>
         </div>
 
-        <div style="display: flex; align-items: center;">
-            <span>ඉහත අයදුම්පතෙහි සඳහන් තොරතුරු හා ඇමුණුම්</span>
-            <select class="form-select" id="approvalSelect" aria-label="Default select example" style="margin-left: 10px; width: 300px;">
-                <option value="" selected>Open this select menu</option>
-                <option value="1">නිවරදි බවට සහතික කරමි</option>
-                <option value="2">නිවරදි නොවන බවට සහතික කරමි</option>
-            </select>
+        <hr id ="csDCSOffiHR">
+
+        <div id ="CSOffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="remarkCSOffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="remarkCSOffi" id="remarkCSOffi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSName" id="CSName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSDesi" id="CSDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSDate" id="CSDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <div id="commentSection" style="display: none; margin-top: 10px;">
-            <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි නොවේ:</label>
-            <textarea id="comments" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-        </div> 
+        <hr id = "CSOffiHR">
 
-        <div id="commentSectionA" style="display: none; margin-top: 10px;">
-            <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි වේ:</label>
-            <textarea id="commentsA" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+        <div id ="ACC1OffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="rejectACC1OffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="rejectACC1Offi" id="rejectACC1Offi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACC1Name" id="ACC1Name" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACC1Desi" id="ACC1Desi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="ACC1Date" id="ACC1Date" disabled></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <div class="button-container">
-            <button class="btn approve-btn" id="approveButton" style="display: none;">Approve</button>
-            <button class="btn reject-btn" id="rejectButton" style="display: none;">Reject</button>
-        </div>
-
-    </div>    
+    </div>   
                
-    <script src="./js/ACSOfficerNewApplicationForm.js"></script>
+    <script src="./js/ACC1RejectApplicationForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

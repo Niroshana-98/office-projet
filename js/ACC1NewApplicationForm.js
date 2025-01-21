@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("ACSOfficerNewApplicationForm_to_db.php")
+    fetch("ACC1NewApplicationForm_to_db.php")
     .then(response => response.json())
     .then(data => {
         if (data.success) { 
@@ -494,19 +494,61 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("AODesi").value = data.aoDesignation;
             document.getElementById("AODate").value = data.AO_time_stamp;
 
+            //CS ACS Officer Details
+
+            const remarkACSOffiDiv = document.getElementById("remarkACSOffiDiv");
+
+            if(!data.ACS_Aprv_RM) {
+                remarkACSOffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkACSOffi").value = data.ACS_Aprv_RM;
+            }
+
+            document.getElementById("ACSName").value = data.acs_name;
+            document.getElementById("ACSDesi").value = data.acsDesignation;
+            document.getElementById("ACSDate").value = data.ACS_time_stamp; 
+
             //CS DCS Officer Details
 
-            const csDCSOffiDiv = document.getElementById("csDCSOffiDiv");
-            const csAOOffiHR = document.getElementById("csAOOffiHR");
+            const remarkDCSOffiDiv = document.getElementById("remarkDCSOffiDiv");
 
-            if(!data.DCS_Reject_RM) {
-                csDCSOffiDiv.style.display = "none";
-                csAOOffiHR.style.display = "none";
+            if(!data.DCS_Aprv_RM) {
+                remarkDCSOffiDiv.style.display = "none";
             } else {
-                document.getElementById("rejectDCSOffi").value = data.DCS_Reject_RM;
-                document.getElementById("DCSName").value = data.dcs_name;
-                document.getElementById("DCSDesi").value = data.dcsDesignation;
-                document.getElementById("DCSDate").value = data.DCS_time_stamp;
+                document.getElementById("remarkDCSOffi").value = data.DCS_Aprv_RM;
+            }
+
+            document.getElementById("DCSName").value = data.dcs_name;
+            document.getElementById("DCSDesi").value = data.dcsDesignation;
+            document.getElementById("DCSDate").value = data.DCS_time_stamp;
+
+            //CS CS Officer Details
+
+            const remarkCSOffiDiv = document.getElementById("remarkCSOffiDiv");
+
+            if(!data.CS_Aprv_RM) {
+                remarkCSOffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkCSOffi").value = data.CS_Aprv_RM;
+            }
+            
+            document.getElementById("CSName").value = data.cs_name;
+            document.getElementById("CSDesi").value = data.csDesignation;
+            document.getElementById("CSDate").value = data.CS_time_stamp;
+
+            //CS ACC2 Details
+
+            const rejectACC2OffiDiv = document.getElementById("rejectACC2OffiDiv");
+            const CSOffiHR = document.getElementById("CSOffiHR");
+
+            if(!data.ACC2_Reject_RM) {
+                rejectACC2OffiDiv.style.display = "none";
+                CSOffiHR.style.display = "none";
+            } else {
+                document.getElementById("rejectACC2Offi").value = data.ACC2_Reject_RM;
+                document.getElementById("ACC2Name").value = data.acc2_name;
+                document.getElementById("ACC2Desi").value = data.acc2Designation;
+                document.getElementById("ACC2Date").value = data.ACC2_time_stamp;
             }
 
             // Show additional fieldsets if course information is available
@@ -630,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('ACSOfficerUpdateApplicationStatus.php', {
+        fetch('ACC1UpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -642,7 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'ACSOfficerNewApplication.php'; 
+                window.location.href = 'ACC1NewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

@@ -86,6 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 70:
                     $redirect_url = './ACSOfficer.php';
                     break;
+                case 74:
+                    $redirect_url = './DCSOfficer.php';
+                    break;
+                case 78:
+                    $redirect_url = './CSec.php';
+                    break;
+                case 82:
+                    $redirect_url = './ACC1.php';
+                    break;
+                case 86:
+                    $redirect_url = './ACC2.php';
+                    break;
                 default:
                     echo json_encode([
                         'status' => 'error',

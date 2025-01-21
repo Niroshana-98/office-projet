@@ -40,7 +40,10 @@ $stmt = $conn->prepare("
         a.Min_head_time_stamp , u12.name AS min_head_name, u12.desi AS minHeadDesignation, a.Min_head_Aprv_RM,
         a.CS_Chk_Offi_time_stamp , u13.name AS cs_chk_name, u13.desi AS csChkDesignation, a.CS_Chk_Offi_Aprv_RM,
         a.AO_time_stamp, u14.name AS ao_name, u14.desi AS aoDesignation, a.AO_Aprv_RM,
-        a.DCS_time_stamp, u16.name AS dcs_name, u16.desi AS dcsDesignation, a.DCS_Reject_RM
+        a.ACS_time_stamp, u15.name AS acs_name, u15.desi AS acsDesignation, a.ACS_Aprv_RM,
+        a.DCS_time_stamp, u16.name AS dcs_name, u16.desi AS dcsDesignation, a.DCS_Aprv_RM,
+        a.CS_time_stamp, u17.name AS cs_name, u17.desi AS csDesignation, a.CS_Aprv_RM,
+        a.ACC2_time_stamp, u19.name AS acc2_name, u19.desi AS acc2Designation, a.ACC2_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -120,9 +123,21 @@ $stmt = $conn->prepare("
     ON
         a.AO_user_id = u14.user_id
     LEFT JOIN
+        users u15
+    ON
+        a.ACS_user_id = u15.user_id
+    LEFT JOIN
         users u16
     ON
         a.DCS_user_id = u16.user_id
+    LEFT JOIN
+        users u17
+    ON
+        a.CS_user_id = u17.user_id
+    LEFT JOIN
+        users u19
+    ON
+        a.ACC2_user_id = u19.user_id
     WHERE 
         a.app_no = ?
 ");
@@ -151,9 +166,11 @@ $stmt->bind_result(
     $Min_Rec_Offi_time_stamp , $min_rec_name, $minRecDesignation, $Min_Rec_Offi_Aprv_RM,
     $Min_head_time_stamp , $min_head_name, $minHeadDesignation, $Min_head_Aprv_RM,
     $CS_Chk_Offi_time_stamp , $cs_chk_name, $csChkDesignation, $CS_Chk_Offi_Aprv_RM,
-    $AO_time_stamp, $ao_name, $aoDesignation, $AO_Aprv_RM,
-    $DCS_time_stamp, $dcs_name, $dcsDesignation, $DCS_Reject_RM
-    
+    $AO_time_stamp, $ao_name, $aoDesignation, $AO_Aprv_RM ,
+    $ACS_time_stamp, $acs_name, $acsDesignation, $ACS_Aprv_RM,
+    $DCS_time_stamp, $dcs_name, $dcsDesignation, $DCS_Aprv_RM,
+    $CS_time_stamp, $cs_name, $csDesignation, $CS_Aprv_RM,
+    $ACC2_time_stamp, $acc2_name, $acc2Designation, $ACC2_Reject_RM   
 );
 
 $stmt->fetch();
@@ -263,11 +280,22 @@ if ($appNo) {
         'ao_name' => $ao_name,
         'aoDesignation' => $aoDesignation,
         'AO_Aprv_RM' => $AO_Aprv_RM,
+        'ACS_time_stamp' => $ACS_time_stamp,
+        'acs_name' => $acs_name,
+        'acsDesignation' => $acsDesignation,
+        'ACS_Aprv_RM' => $ACS_Aprv_RM,
         'DCS_time_stamp' => $DCS_time_stamp,
         'dcs_name' => $dcs_name,
         'dcsDesignation' => $dcsDesignation,
-        'DCS_Reject_RM' => $DCS_Reject_RM
-
+        'DCS_Aprv_RM' => $DCS_Aprv_RM,
+        'CS_time_stamp' => $CS_time_stamp,
+        'cs_name' => $cs_name,
+        'csDesignation' => $csDesignation,
+        'CS_Aprv_RM' => $CS_Aprv_RM,
+        'ACC2_time_stamp' => $ACC2_time_stamp,
+        'acc2_name' => $acc2_name,
+        'acc2Designation' => $acc2Designation,
+        'ACC2_Reject_RM' => $ACC2_Reject_RM
     ]); 
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);

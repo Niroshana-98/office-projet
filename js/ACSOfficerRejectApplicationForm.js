@@ -498,10 +498,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //CS ACS Officer Details
 
-            const remarkACSOffiDiv = document.getElementById("remarkACSOffiDiv");
+            const rejectACSOffiDiv = document.getElementById("rejectACSOffiDiv");
 
             if(!data.ACS_Reject_RM) {
-                remarkACSOffiDiv.style.display = "none";
+                rejectACSOffiDiv.style.display = "none";
             } else {
                 document.getElementById("rejectACSOffi").value = data.ACS_Reject_RM;
                 document.getElementById("ACSName").value = data.acs_name;

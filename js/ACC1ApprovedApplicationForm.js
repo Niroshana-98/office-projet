@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("ACSOfficerNewApplicationForm_to_db.php")
+    fetch("ACC1ApprovedApplicationForm_to_db.php", {
+        credentials: 'include'
+    })
     .then(response => response.json())
     .then(data => {
-        if (data.success) { 
-            document.getElementById("appNoDisplay").innerText = data.app_no; 
+        if (data.success) {
+            document.getElementById("appNoDisplay").innerText = data.app_no;
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
             document.getElementById("name_eng").value = data.name_eng;
-            document.getElementById("nic").value = data.nic; 
+            document.getElementById("nic").value = data.nic;
             document.getElementById("address_pri").value = data.address_pri;
             document.getElementById("tel_land").value = data.tel_land;
             document.getElementById("tel_mob").value = data.tel_mob;
@@ -67,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const depChkOffiHR = document.getElementById("depChkOffiHR");
             const depRecOffiHR = document.getElementById("depRecOffiHR");
             const depHeadHR = document.getElementById("depHeadHR");
+            const minChkOffiHR = document.getElementById("minCheckOffi");
 
             if(data.offi_cat === 2){
                 offiRecOfficerDiv.style.display = "none";
@@ -88,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 depChkOffiHR.style.display = "none";
                 depRecOffiHR.style.display = "none";
                 depHeadHR.style.display = "none";
+                minChkOffiHR.style.display = "none";
 
             }else if(data.offi_cat === 3){
                 offiRecOfficerDiv.style.display = "none";
@@ -464,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("minHeadName").value = data.min_head_name;
             document.getElementById("minHeadDesi").value = data.minHeadDesignation;
-            document.getElementById("minHeadDate").value = data.Min_head_time_stamp; 
+            document.getElementById("minHeadDate").value = data.Min_head_time_stamp;
 
             //CS Check Officer Details
 
@@ -478,7 +482,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("CSChkName").value = data.cs_chk_name;
             document.getElementById("CSChkDesi").value = data.csChkDesignation;
-            document.getElementById("CSChkDate").value = data.CS_Chk_Offi_time_stamp; 
+            document.getElementById("CSChkDate").value = data.CS_Chk_Offi_time_stamp;
 
             //CS AO Officer Details
 
@@ -494,20 +498,61 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("AODesi").value = data.aoDesignation;
             document.getElementById("AODate").value = data.AO_time_stamp;
 
+            //CS ACS Officer Details
+
+            const remarkACSOffiDiv = document.getElementById("remarkACSOffiDiv");
+
+            if(!data.ACS_Aprv_RM) {
+                remarkACSOffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkACSOffi").value = data.ACS_Aprv_RM;
+            }
+
+            document.getElementById("ACSName").value = data.acs_name;
+            document.getElementById("ACSDesi").value = data.acsDesignation;
+            document.getElementById("ACSDate").value = data.ACS_time_stamp;
+
             //CS DCS Officer Details
 
-            const csDCSOffiDiv = document.getElementById("csDCSOffiDiv");
-            const csAOOffiHR = document.getElementById("csAOOffiHR");
+            const remarkDCSOffiDiv = document.getElementById("remarkDCSOffiDiv");
 
-            if(!data.DCS_Reject_RM) {
-                csDCSOffiDiv.style.display = "none";
-                csAOOffiHR.style.display = "none";
+            if(!data.DCS_Aprv_RM) {
+                remarkDCSOffiDiv.style.display = "none";
             } else {
-                document.getElementById("rejectDCSOffi").value = data.DCS_Reject_RM;
-                document.getElementById("DCSName").value = data.dcs_name;
-                document.getElementById("DCSDesi").value = data.dcsDesignation;
-                document.getElementById("DCSDate").value = data.DCS_time_stamp;
+                document.getElementById("remarkDCSOffi").value = data.DCS_Aprv_RM;
             }
+
+            document.getElementById("DCSName").value = data.dcs_name;
+            document.getElementById("DCSDesi").value = data.dcsDesignation;
+            document.getElementById("DCSDate").value = data.DCS_time_stamp;
+
+            //CS CS Officer Details
+
+            const remarkCSOffiDiv = document.getElementById("remarkCSOffiDiv");
+
+            if(!data.CS_Aprv_RM) {
+                remarkCSOffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkCSOffi").value = data.CS_Aprv_RM;
+            }
+            
+            document.getElementById("CSName").value = data.cs_name;
+            document.getElementById("CSDesi").value = data.csDesignation;
+            document.getElementById("CSDate").value = data.CS_time_stamp;
+
+            //CS ACC1 Details
+
+            const remarkACC1OffiDiv = document.getElementById("remarkACC1OffiDiv");
+
+            if(!data.ACC1_Aprv_RM) {
+                remarkACC1OffiDiv.style.display = "none";
+            } else {
+                document.getElementById("remarkACC1Offi").value = data.ACC1_Aprv_RM;
+            }
+
+            document.getElementById("ACC1Name").value = data.acc1_name;
+            document.getElementById("ACC1Desi").value = data.acc1Designation;
+            document.getElementById("ACC1Date").value = data.ACC1_time_stamp;
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';
@@ -588,93 +633,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     .catch(error => console.error("Error fetching application data:", error));
-
-
-    document.querySelector(".approve-btn").addEventListener("click", function() {
-        const comment = document.getElementById("commentsA").value.trim();
-        const nic = document.getElementById("nic").value.trim();
-    
-        // Ensure that the comment is entered for rejection
-        if (status == 1 && !comment) {
-            alert("Please provide a comment for the Approved.");
-            return;
-        }
-    
-        updateAppStatus(1, comment, nic);
-    });
-
-    document.querySelector(".reject-btn").addEventListener("click", function() {
-        const comment = document.getElementById("comments").value.trim();
-        const nic = document.getElementById("nic").value.trim();
-    
-        // Ensure that the comment is entered for rejection
-        if (status == 2 && !comment) {
-            alert("Please provide a comment for the rejection.");
-            return;
-        }
-    
-        updateAppStatus(2, comment, nic); // Rejection status
-    });
-    function updateAppStatus(status, comment = '' , nic = '') {
-        const appNo = document.getElementById("appNoDisplay").innerText;
-        
-        if (!appNo) {
-            console.error("Application number is missing.");
-            return;
-        }
-
-        const data = {
-            app_no: appNo,
-            status: status,
-            comment: comment,
-            nic: nic 
-        };
-    
-        fetch('ACSOfficerUpdateApplicationStatus.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); 
-    
-            if (data.success) {
-                alert(data.message);
-    
-                window.location.href = 'ACSOfficerNewApplication.php'; 
-            } else {
-                alert('Failed to update status: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error("Error updating app status:", error);
-        });
-    }        
 });
-
-const approvalSelect = document.getElementById('approvalSelect');
-const approveButton = document.getElementById('approveButton');
-const rejectButton = document.getElementById('rejectButton');
-const commentSection = document.getElementById('commentSection');
-const commentSectionA = document.getElementById('commentSectionA');
-
-approvalSelect.addEventListener('change', function() {
-    if (approvalSelect.value === "1") {
-        approveButton.style.display = "block";
-        commentSectionA.style.display = "block";
-        rejectButton.style.display = "none";
-        commentSection.style.display = 'none'; 
-    } else if (approvalSelect.value === "2") {
-        approveButton.style.display = "none";
-        commentSectionA.style.display = "none";
-        rejectButton.style.display = "block";
-        commentSection.style.display = 'block'; 
-    } else {
-        approveButton.style.display = "none";
-        commentSectionA.style.display = 'none';
-        rejectButton.style.display = "none";
-        commentSection.style.display = 'none'; 
-    }
-});
- 

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("ACSOfficerNewApplicationForm_to_db.php")
+    fetch("DCSOfficerNewApplicationForm_to_db.php")
     .then(response => response.json())
     .then(data => {
         if (data.success) { 
@@ -494,19 +494,33 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("AODesi").value = data.aoDesignation;
             document.getElementById("AODate").value = data.AO_time_stamp;
 
-            //CS DCS Officer Details
+            //CS ACS Officer Details
 
-            const csDCSOffiDiv = document.getElementById("csDCSOffiDiv");
-            const csAOOffiHR = document.getElementById("csAOOffiHR");
+            const remarkACSOffiDiv = document.getElementById("remarkACSOffiDiv");
 
-            if(!data.DCS_Reject_RM) {
-                csDCSOffiDiv.style.display = "none";
-                csAOOffiHR.style.display = "none";
+            if(!data.ACS_Aprv_RM) {
+                remarkACSOffiDiv.style.display = "none";
             } else {
-                document.getElementById("rejectDCSOffi").value = data.DCS_Reject_RM;
-                document.getElementById("DCSName").value = data.dcs_name;
-                document.getElementById("DCSDesi").value = data.dcsDesignation;
-                document.getElementById("DCSDate").value = data.DCS_time_stamp;
+                document.getElementById("remarkACSOffi").value = data.ACS_Aprv_RM;
+            }
+
+            document.getElementById("ACSName").value = data.acs_name;
+            document.getElementById("ACSDesi").value = data.acsDesignation;
+            document.getElementById("ACSDate").value = data.ACS_time_stamp;
+
+            //CS CS Officer Details
+
+            const CSOffiDiv = document.getElementById("CSOffiDiv");
+            const csACSOffiHR = document.getElementById("csACSOffiHR");
+
+            if(!data.CS_Reject_RM) {
+                CSOffiDiv.style.display = "none";
+                csACSOffiHR.style.display = "none";
+            } else {
+                document.getElementById("rejectCSOffi").value = data.CS_Reject_RM;
+                document.getElementById("CSName").value = data.cs_name;
+                document.getElementById("CSDesi").value = data.csDesignation;
+                document.getElementById("CSDate").value = data.CS_time_stamp;
             }
 
             // Show additional fieldsets if course information is available
@@ -630,7 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nic: nic 
         };
     
-        fetch('ACSOfficerUpdateApplicationStatus.php', {
+        fetch('DCSOfficerUpdateApplicationStatus.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -642,7 +656,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 alert(data.message);
     
-                window.location.href = 'ACSOfficerNewApplication.php'; 
+                window.location.href = 'DCSOfficerNewApplication.php'; 
             } else {
                 alert('Failed to update status: ' + data.error);
             }

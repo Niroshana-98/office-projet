@@ -731,21 +731,21 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div> 
 
         <hr id="csAOOffiHR">
 
-        <div id ="csDCSOffiDiv">
+        <div id ="csACSOffiDiv">
             <span>
                 උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
             </span>
 
-            <div id="rejectDCSOffiDiv">
+            <div id="remarkACSOffiDiv">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">
                         <tr>
                             <th scope="row" class="text-left" style="width: 150px;">Remark</th>
-                            <td class="text-left"><input type="text" name="rejectDCSOffi" id="rejectDCSOffi" disabled></td>
+                            <td class="text-left"><input type="text" name="remarkACSOffi" id="remarkACSOffi" disabled></td>
                         </tr>
                     </table> 
                 </div>
@@ -754,11 +754,42 @@
                 <table class="table" id="tableApplicate">
                     <tr>
                         <th scope="row" class="text-left">Name</th>
-                        <td class="text-left" colspan="3"><input type="text" name="DCSName" id="DCSName" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSName" id="ACSName" disabled></td>
                         <th scope="row" class="text-left">Designation</th>
-                        <td class="text-left" colspan="3"><input type="text" name="DCSDesi" id="DCSDesi" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSDesi" id="ACSDesi" disabled></td>
                         <th scope="row" class="text-left">Date</th>
-                        <td class="text-left" colspan="3"><input type="text" name="DCSDate" id="DCSDate" disabled></td>
+                        <td class="text-left" colspan="3"><input type="text" name="ACSDate" id="ACSDate" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr id="csACSOffiHR">
+
+        <div id ="CSOffiDiv">
+            <span>
+                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            </span>
+
+            <div id="rejectCSOffiDiv">
+                <div class="table-responsive">
+                    <table class="table" id="tableApplicate">
+                        <tr>
+                            <th scope="row" class="text-left" style="width: 150px;">Remark</th>
+                            <td class="text-left"><input type="text" name="rejectCSOffi" id="rejectCSOffi" disabled></td>
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="tableApplicate">
+                    <tr>
+                        <th scope="row" class="text-left">Name</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSName" id="CSName" disabled></td>
+                        <th scope="row" class="text-left">Designation</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSDesi" id="CSDesi" disabled></td>
+                        <th scope="row" class="text-left">Date</th>
+                        <td class="text-left" colspan="3"><input type="text" name="CSDate" id="CSDate" disabled></td>
                     </tr>
                 </table>
             </div>
@@ -790,7 +821,7 @@
 
     </div>    
                
-    <script src="./js/ACSOfficerNewApplicationForm.js"></script>
+    <script src="./js/DCSOfficerNewApplicationForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

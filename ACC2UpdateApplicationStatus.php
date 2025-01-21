@@ -66,11 +66,11 @@ $stmt->close();
 if ($status == 1) {
     
     // Set app_status based on offi_cat
-    $app_status = 220; 
+    $app_status = 260; 
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, ACS_Aprv_RM = ?, ACS_time_stamp = NOW(), ACS_user_id = ?, DCS_Reject_RM = NULL WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, ACC2_Aprv_RM = ?, ACC2_time_stamp = NOW(), ACC2_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
@@ -88,10 +88,10 @@ if ($status == 2 && !empty($comment)) {
     // Update application status and rejection reason
 
     // Set app_status based on offi_cat
-    $status = 201;
+    $status = 241;
     
     
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, ACS_Reject_RM = ?, ACS_time_stamp = NOW(), ACS_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, ACC2_Reject_RM = ?, ACC2_time_stamp = NOW(), ACC2_user_id = ? WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
