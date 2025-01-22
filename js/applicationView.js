@@ -144,3 +144,7 @@ function printPage() {
 function logout() {
     window.location.href = 'index.html';
 }
+
+function trackApplication() {
+    window.location.href = 'trackApplication.php';
+}

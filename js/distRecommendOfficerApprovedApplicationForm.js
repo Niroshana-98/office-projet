@@ -87,10 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     remarkOfficeHeadDiv.style.display = "none";
                 } else {
                     document.getElementById("remarkOffiHead").value = data.Office_head_Aprv_RM;
-                    document.getElementById("offiHeadName").value = data.office_head_name;
-                    document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
-                    document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
                 }
+
+                document.getElementById("offiHeadName").value = data.office_head_name;
+                document.getElementById("offiHeadDesi").value = data.offiHeadDesignation;
+                document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
 
                 //District Check Officer Details
                 const remarkDistChkOfficerDiv = document.getElementById("remarkDistChkOfficerDiv");
