@@ -16,7 +16,7 @@ $nic = $_SESSION['nic'];
 
 $stmt = $conn->prepare("
     SELECT
-        a.app_no, a.offi_cat
+        a.app_no, a.offi_cat, a.app_status
     FROM
         application a
     WHERE
@@ -25,7 +25,7 @@ $stmt = $conn->prepare("
 
 $stmt->bind_param("s", $nic);
 $stmt->execute();
-$stmt->bind_result($appNo, $offi_cat);
+$stmt->bind_result($appNo, $offi_cat, $app_status);
 
 $stmt->fetch();
 $stmt->close();
@@ -34,7 +34,8 @@ if ($appNo) {
     echo json_encode([
         'success' => true, 
         'app_no' => $appNo,
-        'offi_cat' => $offi_cat
+        'offi_cat' => $offi_cat,
+        'app_status' => $app_status
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
