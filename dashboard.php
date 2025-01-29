@@ -166,11 +166,11 @@
 
                     <!--Fieldset 3-->
                     <fieldset>
-                        <h3 class="fs-title">උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර:</h3>
+                        <h3 class="fs-title">උපාධි / ඩිප්ලෝමා පිලිබඳ විස්තර:</h3>
                         <h2 class="steps">Step 3 - 4</h2>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
+                                <h5 for="ball">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="university" name="university" placeholder="">
                                 </div>
@@ -178,13 +178,13 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6">
-                                <h5 for="ball">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</h5>
+                                <h5 for="ball">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="digree" name="digree" placeholder="">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
-                                <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</h5>
+                                <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උදෘත අංකය</h5>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" id="eno" name="eno" placeholder="">
                                 </div>
@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
+                                    <h5 for="ball">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="universityName1" name="universityName1" placeholder="">
                                     </div>
@@ -254,16 +254,17 @@
                                         <input type="date" class="form-control" id="csDate1" name="csDate1" placeholder="">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
-                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" id="loan1" name="loan1" placeholder="">
-                                    </div>
-                                </div>
+                                
                                 <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="cFees1" name="cFees1" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදන ප්‍රමාණය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="loan1" name="loan1" placeholder="">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -285,7 +286,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <h5 for="ball">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
+                                    <h5 for="ball">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</h5>
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="universityName2" name="universityName2" placeholder="">
                                     </div>
@@ -299,17 +300,18 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</h5>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" id="loan2" name="loan2" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
                                     <h5 for="ball">පාඨමාලා ගාස්තුව</h5>
                                     <div class="mb-3">
                                         <input type="text" class="form-control" id="cFees2" name="cFees2" placeholder="">
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-4">
+                                    <h5 for="ball">රජය මඟින් ලබාගත් ප්‍රතිපාදන ප්‍රමාණය</h5>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" id="loan2" name="loan2" placeholder="">
+                                    </div>
+                                </div>
+                                
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
                                         <button id="removeCourseButton" class="btn btn-primary">-</button>
@@ -406,18 +408,18 @@
                             <table class="table table-bordered" style="border: 1px solid;">
                                 <thead>
                                     <tr>
-                                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3) උපාධි / ඩිප්ලෝමා පිළිබඳ විස්තර</h5></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</th>
+                                        <th scope="row" class="text-left">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</th>
                                         <td class="text-left" colspan="3" id="universityCell"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</th>
+                                        <th scope="row" class="text-left">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව</th>
                                         <td class="text-left" id="digreeCell"></td>
-                                        <th class="text-left">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</td>
+                                        <th class="text-left">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උදෘත අංකය</td>
                                         <td class="text-left" id="enoCell"></td>
                                     </tr>
                                     <tr>
@@ -443,7 +445,7 @@
                                 <table class="table table-bordered" style="border: 1px solid;">
                                     <thead>
                                         <tr>
-                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාධි / ඩිප්ලෝමා පිළිබඳ විස්තර</h5></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -452,15 +454,15 @@
                                             <td class="text-left" colspan="3" id="courseName1Cell"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                            <th scope="row" class="text-left">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
                                             <td class="text-left" id="universityName1Cell"></td>
                                             <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
                                             <td class="text-left" id="csDate1Cell"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                            <th scope="row" class="text-left">පාඨමාලා ගාස්තුව</th>
                                             <td class="text-left" id="loan1Cell"></td>
-                                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                            <th class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
                                             <td class="text-left" id="cFees1Cell"></td>
                                         </tr>
                                     </tbody>
@@ -474,7 +476,7 @@
                                 <table class="table table-bordered" style="border: 1px solid;">
                                     <thead>
                                         <tr>
-                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                            <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාධි / ඩිප්ලෝමා පිළිබඳ විස්තර</h5></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -483,15 +485,15 @@
                                             <td class="text-left" colspan="3" id="courseName2Cell"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                            <th scope="row" class="text-left">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
                                             <td class="text-left" id="universityName2Cell"></td>
                                             <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
                                             <td class="text-left" id="csDate2Cell"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                            <th scope="row" class="text-left">පාඨමාලා ගාස්තුව</th>
                                             <td class="text-left" id="loan2Cell"></td>
-                                            <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                            <th class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
                                             <td class="text-left" id="cFees2Cell"></td>
                                         </tr>
                                     </tbody>

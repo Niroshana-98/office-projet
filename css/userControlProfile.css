@@ -1,0 +1,121 @@
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/* Profile container styles */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+}
+
+/* Profile card */
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    transform: scale(0.95);
+    animation: scaleUp 0.5s ease-in-out forwards;
+}
+
+/* Animation for profile card */
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Profile header */
+.profile-header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Profile body */
+.profile-body {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Profile row (each label-value pair) */
+.profile-row {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-row label {
+    font-weight: bold;
+    color: #333;
+    width: 40%;
+}
+
+.profile-row span {
+    font-size: 14px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for text */
+.profile-row span:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+/* Edit button */
+.edit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-card {
+        width: 90%;
+    }
+}

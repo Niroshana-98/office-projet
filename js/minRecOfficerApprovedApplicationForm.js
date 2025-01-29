@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("offiHeadDate").value = data.Office_head_time_stamp;
 
                 //Department Check Officer Details
-                const remarkDepChkOffiDiv = document.getElementById("remarkDepChkOffiDiv");
+                const remarkDepChkOffiDiv = document.getElementById("remarkDepChkOffiDiv"); 
 
                 if(!data.Dep_Chk_Offi_Aprv_RM) {
                     remarkDepChkOffiDiv.style.display = "none";
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("depChkOffiDate").value = data.Dep_Chk_Offi_time_stamp;
 
                 //Department Recommend Officer Details
-                const remarkDepRecOffiDiv = document.getElementById("remarkRecChkOffiDiv");
+                const remarkDepRecOffiDiv = document.getElementById("remarkDepRecOffiDiv");
 
                 if(!data.Dep_Rec_Offi_Aprv_RM) {
                     remarkDepRecOffiDiv.style.display = "none";

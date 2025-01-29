@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             //Department Recommend Officer Details
-            const remarkDepRecOffiDiv = document.getElementById("remarkRecChkOffiDiv");
+            const remarkDepRecOffiDiv = document.getElementById("remarkDepRecOffiDiv");
 
             if(!data.Dep_Rec_Offi_Aprv_RM) {
                 remarkDepRecOffiDiv.style.display = "none";

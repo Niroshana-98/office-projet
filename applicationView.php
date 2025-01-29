@@ -121,18 +121,18 @@
             <table class="table table-bordered" style="border: 1px solid;">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                        <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3) උපාධි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</th>
+                        <th scope="row" class="text-left">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</th>
                         <td class="text-left" colspan="3"><input type="text" name="ins_name" id="ins_name" disabled></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="text-left">පශ්චාත් උපාදිය/ ඩිප්ලෝමාව</th>
+                        <th scope="row" class="text-left">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව</th>
                         <td class="text-left"><input type="text" name="course_name" id="course_name" disabled></td>
-                        <th class="text-left">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උ අංකය</td>
+                        <th class="text-left">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උදෘත අංකය</td>
                         <td class="text-left"><input type="text" name="service_minite_no" id="service_minite_no" disabled></td>
                     </tr>
                     <tr>
@@ -144,7 +144,7 @@
                     <tr>
                         <th scope="row" class="text-left">ප්‍රතිපාදනයේ ප්‍රමාණය</th>
                         <td class="text-left"><input type="text" name="course_fee" id="course_fee" disabled></td>
-                        <th class="text-left">මීට පෙර සේවා ව්‍යස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</td>
+                        <th class="text-left">මීට පෙර සේවා ව්‍යවවස්ථාවට අදාල වෙනත් පාඨමාලා ගාස්තු ලබාගෙන</td>
                         <td class="text-left"><input type="text" name="before_recieved" id="before_recieved" disabled></td>
                     </tr>
                 </tbody>
@@ -158,7 +158,7 @@
                     <table class="table table-bordered" style="border: 1px solid;">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.1) උපාධිධි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,15 +167,15 @@
                                 <td class="text-left" colspan="3"><input type="text" id="bf_01course_name" name="bf_01course_name" disabled></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                <th scope="row" class="text-left">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
                                 <td class="text-left"><input type="text" name="bf_01ins_name" id="bf_01ins_name" disabled></td>
                                 <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
                                 <td class="text-left"><input type="text" name="bf_01start_date" id="bf_01start_date" disabled></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                <th scope="row" class="text-left">පාඨමාලා ගාස්තුව</th>
                                 <td class="text-left"><input type="text" id="bf_01gov_paid" name="bf_01gov_paid" disabled></td>
-                                <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                <th class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය ප්‍රමාණය</th>
                                 <td class="text-left"><input type="text" id="bf_01full_course_fee" name="bf_01full_course_fee" disabled></td>
                             </tr>
                         </tbody>
@@ -188,7 +188,7 @@
                     <table class="table table-bordered" style="border: 1px solid;">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාදි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
+                                <th scope="col" colspan="4" class="text-left"><h5 class="table-head">3.2) උපාධි / ඩිප්ලෝමා පිලිබඳ විස්තර</h5></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -197,15 +197,15 @@
                                 <td class="text-left" colspan="3"><input type="text" id="bf_02course_name" name="bf_02course_name" disabled></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-left">පශ්චාත් උපාදි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
+                                <th scope="row" class="text-left">පශ්චාත් උපාධි/ ඩිප්ලෝමා පාඨමාලාව ලබාගත් ආයතනය</th>
                                 <td class="text-left"><input type="text" name="bf_02ins_name" id="bf_02ins_name" disabled></td>
                                 <th class="text-left">පාඨමාලාව ආරම්භ කල දිනය</td>
                                 <td class="text-left"><input type="text" name="bf_02start_date" id="bf_02start_date" disabled></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
+                                <th scope="row" class="text-left">පාඨමාලා ගාස්තුව</th>
                                 <td class="text-left"><input type="text" id="bf_02gov_paid" name="bf_02gov_paid" disabled></td>
-                                <th class="text-left">පාඨමාලා ගාස්තුව</th>
+                                <th class="text-left">රජය මඟින් ලබාගත් ප්‍රතිපාදනය</th>
                                 <td class="text-left"><input type="text" id="bf_02full_course_fee" name="bf_02full_course_fee" disabled></td>
                             </tr>
                         </tbody>
@@ -230,7 +230,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</td>
+                        <td>අදාල සේවා ව්‍යවවස්ථාවේ උදෘතයන්</td>
                         <td>
                             <button class="action-btn" data-doc="up_service_minite" id="viewButton_2">
                                 View
@@ -275,7 +275,7 @@
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td>පාථමාලාව අවසන් කළ බවට සහතිකය</td>
+                        <td>පාඨමාලාව අවසන් කළ බවට සහතිකය</td>
                         <td>
                             <button class="action-btn" data-doc="up_course_complete" id="viewButton_7">
                                 View

@@ -25,7 +25,7 @@ $stmt = $conn->prepare("
         a.bf_01full_course_fee, a.bf_02course_name, a.bf_02ins_name, a.bf_02start_date, 
         a.bf_02gov_paid, a.bf_02full_course_fee, a.up_porva_anu, a.up_service_minite, 
         a.up_app_letter_confirm, a.up_attach_sp, a.up_course_selected, a.up_campus_confirm, 
-        a.up_course_complete, a.up_pay_recept, a.up_other
+        a.up_course_complete, a.up_pay_recept, a.up_other, a.Subject_Reject_RM
     FROM 
         application a
     LEFT JOIN 
@@ -61,7 +61,7 @@ $stmt->bind_result(
     $bf_01full_course_fee, $bf_02course_name, $bf_02ins_name, $bf_02start_date, 
     $bf_02gov_paid, $bf_02full_course_fee, $up_porva_anu, $up_service_minite, 
     $up_app_letter_confirm, $up_attach_sp, $up_course_selected, $up_campus_confirm, 
-    $up_course_complete, $up_pay_recept, $up_other
+    $up_course_complete, $up_pay_recept, $up_other, $Subject_Reject_RM
 );
 $stmt->fetch();
 $stmt->close();
@@ -110,7 +110,8 @@ if ($appNo) {
         'up_campus_confirm' => $up_campus_confirm,
         'up_course_complete' => $up_course_complete,
         'up_pay_recept' => $up_pay_recept,
-        'up_other' => $up_other
+        'up_other' => $up_other,
+        'Subject_Reject_RM' => $Subject_Reject_RM
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);
