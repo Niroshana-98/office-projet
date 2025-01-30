@@ -283,11 +283,7 @@ h3 {
 /* Container Styling */
 .container {
   max-width: 1200px;
-<<<<<<< HEAD
   margin: 10px auto;
-=======
-  margin: 100px auto;
->>>>>>> a9f0049510bcfd786a1a8db1582169be47b7ed5a
   padding: 20px;
   background: #ffffff;
   border-radius: 12px;

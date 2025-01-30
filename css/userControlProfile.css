@@ -16,7 +16,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 600px;
+    width: 900px;
+    max-width: 100%
 }
 
 /* Profile card */
@@ -24,8 +25,8 @@ body {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    width: 80%;
+    max-width: 800px;
     overflow: hidden;
     transform: scale(0.95);
     animation: scaleUp 0.5s ease-in-out forwards;

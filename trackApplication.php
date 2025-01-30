@@ -17,11 +17,7 @@
       <span class="arrow">&larr;</span> Back
     </button>
 
-<<<<<<< HEAD
     <div class="container" style="margin-top: 10px; margin-bottom: 100px;">
-=======
-    <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
->>>>>>> a9f0049510bcfd786a1a8db1582169be47b7ed5a
       <h1 id = "name_eng">Hi,</h1>
       <div class="row">
         <div class="progress" id="progress1">
