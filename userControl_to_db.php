@@ -53,7 +53,7 @@ $approvedAppQuery = "
     SELECT COUNT(*) AS count 
     FROM users
     WHERE users.offi_id = ? 
-    AND users.status IN (10, 18)
+    AND users.status IN (10, 18, 26, 30, 38, 42, 50, 54)
 ";
 
 $approvedAppStmt = $conn->prepare($approvedAppQuery);

@@ -57,7 +57,7 @@
                     </a>
                     <a href="./userControl.php" class="nav_link" target="content-frame">
                         <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">My Application</span>
+                        <span class="nav_name">User Management</span>
                     </a>
                 </div>
             </div>

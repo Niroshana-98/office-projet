@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Page</title>
+    <title>User Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/applicationPage.css">
 </head>
 <body>
     <div class="container mt-4">
-        <h2>Application Page</h2>
-        <p>Welcome to the Application Page! Here you can manage user applications and view details.</p>
+        <h2>User Account</h2>
+        <p>Welcome to the User Account Page! Here you can manage users and view details.</p>
 
         <div class="search-bar">
-            <label for="searchInput" class="sr-only">Search Applications:</label>
+            <label for="searchInput" class="sr-only">Search Users:</label>
             <div class="search-bar-container">
                 <span class="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -24,7 +24,7 @@
                     type="text" 
                     id="searchInput" 
                     class="search-bar-input" 
-                    placeholder="Search by Application ID, Name, or Position">
+                    placeholder="Search by User ID, Name, or NIC">
             </div>
         </div>
         

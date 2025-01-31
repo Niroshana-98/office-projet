@@ -41,7 +41,7 @@
                             <span class="officers-count"></span> Active Officers
                         </h5>
                         <p class="card-text">View and manage the appointed officer details.</p>
-                        <a href="./approvedUserList.php" class="btn modern-btn">View Officers</a>
+                        <a href="./userControlOfficerList.php" class="btn modern-btn">View Officers</a>
                     </div>
                 </div>
             </div>
