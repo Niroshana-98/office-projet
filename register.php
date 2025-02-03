@@ -21,7 +21,7 @@
             </a>
             <div class="navbar-text mx-auto">Chief Secretariat Southern Province</div>
         </div>
-    </nav>
+    </nav> 
 
 
     <div class="form-container">

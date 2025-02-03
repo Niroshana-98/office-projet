@@ -98,6 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 86:
                     $redirect_url = './ACC2.php';
                     break;
+                case 100:
+                    $redirect_url = './admin.php';
+                    break;
                 default:
                     echo json_encode([
                         'status' => 'error',
