@@ -62,23 +62,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Fetch offices and handle dropdowns
-    const officeDropdown = document.getElementById('office');
+    const officeDropdown = document.getElementById("office");
     if (officeDropdown) {
         fetchOffices();
 
         function fetchOffices() {
-            fetch('register_to_db.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'action=fetchOffices',
+            fetch("register_to_db.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "action=fetchOffices",
             })
-                .then(response => response.text())
-                .then(data => officeDropdown.innerHTML += data);
+                .then((response) => response.json()) // Expect JSON response
+                .then((data) => {
+                    officeDropdown.innerHTML = '<option value="">Select an office</option>'; // Default option
+                    data.forEach((office) => {
+                        const option = document.createElement("option");
+                        option.value = office.offi_id;
+                        option.textContent = office.offi_name;
+                        officeDropdown.appendChild(option);
+                    });
+
+                    // Initialize Select2 after populating options
+                    $("#office").select2({
+                        theme: "bootstrap-5",
+                        placeholder: "Search or select an office",
+                        allowClear: true,
+                        width: "100%", // Ensures full-width
+                    });
+                })
+                .catch((error) => console.error("Error fetching offices:", error));
         }
 
-        officeDropdown.addEventListener('change', function () {
+        officeDropdown.addEventListener("change", function () {
             const office_id = this.value;
-            if (office_id !== '') {
+            if (office_id !== "") {
                 fetchGrades(office_id);
             }
         });

@@ -17,14 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($action === 'fetchOffices') {
             $query = "SELECT offi_id, offi_name FROM office";
             $result = mysqli_query($conn, $query);
+
+            $offices = array();
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<option value="'.$row['offi_id'].'">'.$row['offi_name'].'</option>';
+                $offices[] = $row;
             }
+
+            echo json_encode($offices); // Return JSON response
             exit;
         }
     }
 }
-
+ 
 // Handle registration
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];

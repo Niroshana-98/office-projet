@@ -9,8 +9,8 @@
     </head>
     <body>
         <div class="container mt-4">
-            <h2>Officer Account</h2>
-            <p>Welcome to the Officer Account Page! Here you can manage users and view details.</p>
+            <h2>Chief Secretariat Officer Account</h2>
+            <p>Welcome to the CS Officer Account Page! Here you can manage users and view details.</p>
 
             <div class="search-bar">
                 <label for="searchInput" class="sr-only">Search Officers:</label>
@@ -30,12 +30,14 @@
             
             <table class="table table-striped mt-3">
                 <thead>
-                    <tr>
-                        <th>Officer ID</th> 
+                    <tr> 
                         <th>Name</th>
                         <th>NIC</th>
+                        <th>Office</th>
+                        <th>Designation</th>
                         <th>Position</th>
-                        <th>View</th>
+                        <th>Status</th>
+                        <th>View</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +47,6 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="./js/userControlOfficerList.js"></script>
+        <script src="./js/adminOfficerList.js"></script>
     </body>
 </html>

@@ -3,7 +3,6 @@ fetch("adminDashboard_to_db.php")
     .then(data => {
         console.log("Fetched Data:", data); 
         if (data.success) {
-            document.querySelector(".cs-count").innerText = data.total_csOfficers;
             document.querySelector(".officerHead-count").innerText = data.total_officeHeads;
             document.querySelector(".users-count").innerText = data.total_users;
         } else {

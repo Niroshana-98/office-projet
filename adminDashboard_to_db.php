@@ -29,29 +29,12 @@ if (!$userOffiId) {
 }
 
 // Initialize counts
-$totalCSOffiCount = $totalOffiHeadCount = $totalUserCount = 0;
-
-// Count rows where app_status = 150 (new applications)
-$csOffiCountQuery = "
-    SELECT COUNT(*) AS count 
-    FROM users
-    WHERE users.offi_id = ? 
-    AND users.status IN (62, 66, 70, 74, 78, 82, 86) 
-";
-
-$csOffiCountStmt = $conn->prepare($csOffiCountQuery);
-$csOffiCountStmt->bind_param('i', $userOffiId);
-$csOffiCountStmt->execute();
-$csOffiCountStmt->bind_result($totalCSOffiCount);
-$csOffiCountStmt->fetch();
-$csOffiCountStmt->close();
-$response['total_csOfficers'] = $totalCSOffiCount;
-
+$totalOffiHeadCount = $totalUserCount = 0;
 
 $officeHeadCountQuery = "
     SELECT COUNT(*) AS count 
     FROM users
-    WHERE users.status IN (22, 34, 46, 58)
+    WHERE users.status IN (22, 34, 46, 58, 62, 66, 70, 74, 78, 82, 86)
 ";
 
 $officeHeadCountStmt = $conn->prepare($officeHeadCountQuery);

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let applicationsData = []; // To store fetched data for filtering
 
     // Fetch data from the server
-    fetch('userControlOfficerList_to_db.php')
+    fetch('adminOfficerList_to_db.php') 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (tableBody) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="text-center text-danger">Failed to load Users List. Please try again later.</td>
+                        <td colspan="7" class="text-center text-danger">Failed to load Users List. Please try again later.</td>
                     </tr>
                 `;
             }
@@ -41,10 +41,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const row = document.createElement('tr');
 
                 row.innerHTML = `
-                    <td>${app.user_id}</td>
                     <td>${app.name}</td>
                     <td>${app.nic || 'N/A'}</td>
+                    <td>${app.offi_name}</td>
+                    <td>${app.desi}</td>
                     <td>${getStatusLabel(app.status)}</td>
+                    <td>${getStatusLabels(app.status)}</td>
                     <td>
                         <button class="btn btn-primary view-button" onclick="viewApplication(${app.user_id})">
                             View
@@ -57,22 +59,30 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="5" class="text-center">No new Users found.</td>
+                    <td colspan="7" class="text-center">No new Users found.</td>
                 </tr>
             `;
         }
     }
 
     function getStatusLabel(status) {
-        if (status == 10) return "Subject Officer";
-        if (status == 18) return "Office Recomond Officer";
-        if (status == 26) return "Dist Check Officer";
-        if (status == 30) return "Dist Recomond Officer";
-        if (status == 38) return "Dep Check Officer";
-        if (status == 42) return "Dep Recomond Officer";
-        if (status == 50) return "Ministry Check Officer";
-        if (status == 54) return "Ministry Recomond Officer";
+        if (status == 22) return "Office Head";
+        if (status == 34) return " District Office Head";
+        if (status == 46) return "Department Head";
+        if (status == 58) return "Ministry Head";
+        if (status == 62) return "CS Check Officer";
+        if (status == 66) return "AO";
+        if (status == 70) return "ACS";
+        if (status == 74) return "DCS";
+        if (status == 78) return "CS";
+        if (status == 82) return "Accountant 1";
+        if (status == 86) return "Accountant 2";
         return "Unknown"; // Default if no match
+    }
+
+    function getStatusLabels(status){
+        if(status == 62 || status == 66) return "Verified";
+        return "Unknown";
     }
 
     // Search functionality
@@ -82,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
         const filteredData = applicationsData.filter(app => {
             return (
-                (app.user_id && app.user_id.toString().includes(searchTerm)) ||
                 (app.name && app.name.toLowerCase().includes(searchTerm)) ||
                 (app.nic && app.nic.toLowerCase().includes(searchTerm))
             );
@@ -104,7 +113,7 @@ function viewApplication(user_id) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `userControlOfficerListForm.php?user_id=${user_id}`;
+            window.location.href = `csOfficersListForm.php?user_id=${user_id}`;
         } else {
             alert('Error setting session');
         }

@@ -34,23 +34,26 @@ if ($stmt) {
     exit;
 }
 
-// Step 2: Fetch applications where c_w_p matches admin offi_id and app_status = 150 
+// Step 2: Fetch users along with office name
 $usersQuery = "
-    SELECT 
-        user_id, 
-        name, 
-        nic,
-        status 
+    SELECT  
+        users.name, 
+        users.nic,
+        users.offi_id,
+        office.offi_name, 
+        users.desi,
+        users.status 
     FROM 
         users 
+    INNER JOIN 
+        office ON users.offi_id = office.offi_id
     WHERE 
-        users.offi_id = ? 
-        AND users.status IN (10, 18, 26, 30, 38, 42, 50, 54) 
+        users.status IN (22, 34, 46, 58, 62, 66, 70, 74, 78, 82, 86)
 ";
+
 $stmt = $conn->prepare($usersQuery);
 
 if ($stmt) {
-    $stmt->bind_param("i", $admin_offi_id); // Bind admin offi_id parameter
     $stmt->execute();
     $result = $stmt->get_result();
 

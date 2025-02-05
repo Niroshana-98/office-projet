@@ -18,14 +18,14 @@
             <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
                 <div class="card modern-card">
                     <div class="card-header all-cs-header">
-                        <i class="fas fa-user-tie card-icon"></i> C.S Officers
+                        <i class="fas fa-user-tie card-icon"></i> Create New Account
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <span class="cs-count"></span> Total C.S Officers
+                            <span class="cs-count"></span> Create New Account
                         </h5>
-                        <p class="card-text">Browse all c.s officer profiles and manage access.</p>
-                        <a href="./userControlList.php" class="btn modern-btn">Manage C.S Officers</a>
+                        <p class="card-text">Register a new CS account and manage user access.</p>
+                        <a href="./adminCreateNewAcc.php" class="btn modern-btn">Create Account</a>
                     </div>
                 </div>
             </div>
@@ -34,14 +34,14 @@
             <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
                 <div class="card modern-card">
                     <div class="card-header appointed-officers-header">
-                        <i class="fas fa-user-tie card-icon"></i> Heads of Office
+                        <i class="fas fa-user-tie card-icon"></i> View Officer Account
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <span class="officerHead-count"></span> Total Office Head
+                            <span class="officerHead-count"></span> Total Office Head 
                         </h5>
                         <p class="card-text">View and manage the appointed office head details.</p>
-                        <a href="./userControlOfficerList.php" class="btn modern-btn">Manage Office Head</a>
+                        <a href="./adminOfficerList.php" class="btn modern-btn">Manage Office Head</a>
                     </div>
                 </div>
             </div>

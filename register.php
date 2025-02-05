@@ -9,7 +9,11 @@
     <link href="./css/mediaquaries.css" rel="stylesheet">-->
     <link href="./css/register.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-5-theme/1.3.0/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -54,7 +58,7 @@
                     <option value="" selected>Open this select menu</option>
                 </select>
                 <input type="hidden" name="offices" value="">
-            </div>
+            </div> 
             <div class="mb-3">
                 <h5 for="inputPassword" class="form-label">මුරපදය</h5>
                 <div style="position: relative;">
@@ -94,7 +98,5 @@
     </section>
     
     <script src="./js/register.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </body>
 </html>
