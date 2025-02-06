@@ -47,6 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 case 18:
                     $redirect_url = './officeRecommondOfficer.php';
                     break;
+                case 19:
+                case 31:
+                case 43:
+                case 55:
+                case 59:
+                case 63:
+                case 67:
+                case 71:
+                case 75:
+                case 79:
+                case 83:
+                    $redirect_url = './adminOfficerTempory.php';
+                    break;
                 case 22:
                     $redirect_url = './OfficeHead.php';
                     break;

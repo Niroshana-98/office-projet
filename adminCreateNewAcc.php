@@ -35,15 +35,15 @@
                     <option value="">Select Position</option>
                     <option value="position1">Office Head</option>
                     <option value="position2">District Office Head</option>
-                    <option value="position2">Department Head</option>
-                    <option value="position2">Ministry Head</option>
-                    <option value="position2">CS Check Officer</option>
-                    <option value="position2">AO</option>
-                    <option value="position2">ACS</option>
-                    <option value="position2">DCS</option>
-                    <option value="position2">CS</option>
-                    <option value="position2">Accountant 1</option>
-                    <option value="position2">Accountant 2</option>
+                    <option value="position3">Department Head</option>
+                    <option value="position4">Ministry Head</option>
+                    <option value="position5">CS Check Officer</option>
+                    <option value="position6">AO</option>
+                    <option value="position7">ACS</option>
+                    <option value="position8">DCS</option>
+                    <option value="position9">CS</option>
+                    <option value="position10">Accountant 1</option>
+                    <option value="position11">Accountant 2</option>
                 </select>
             </div>
             <button type="submit" class="btn">Create Officer</button>
