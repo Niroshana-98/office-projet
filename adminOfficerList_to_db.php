@@ -36,7 +36,8 @@ if ($stmt) {
 
 // Step 2: Fetch users along with office name
 $usersQuery = "
-    SELECT  
+    SELECT 
+        users.user_id, 
         users.name, 
         users.nic,
         users.offi_id,
