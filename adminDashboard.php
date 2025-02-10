@@ -56,7 +56,7 @@
                             <span class="users-count"></span> Total All Users
                         </h5>
                         <p class="card-text">View and manage the appointed all user details.</p>
-                        <a href="./userControlOfficerList.php" class="btn modern-btn">Manage All Users</a>
+                        <a href="./adminUserAccountList.php" class="btn modern-btn">Manage All Users</a>
                     </div>
                 </div>
             </div>

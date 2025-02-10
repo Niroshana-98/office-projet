@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             applicationsData = data; 
             renderTable(data); 
         })
-        .catch(error => {
+        .catch(error => { 
             console.error('Error fetching data:', error);
             const tableBody = document.querySelector('.table tbody');
             if (tableBody) {
@@ -34,22 +34,22 @@ document.addEventListener("DOMContentLoaded", function () {
         
             tableBody.innerHTML = '';
         
-            // Sort data to bring "To Activate" rows to the top
             data.sort((a, b) => {
-                const statusA = getStatusLabels(a.status);
-                const statusB = getStatusLabels(b.status);
+                const statusA = getStatusLabels(a.status).text;
+                const statusB = getStatusLabels(b.status).text;
         
                 if (statusA === "To Activate" && statusB !== "To Activate") {
-                    return -1; // Move "To Activate" to the top
+                    return -1;
                 } else if (statusA !== "To Activate" && statusB === "To Activate") {
-                    return 1; // Keep others below
+                    return 1;
                 }
-                return 0; // Keep order for other statuses
+                return 0;
             });
         
-            // Render the sorted data in the table
             if (Array.isArray(data) && data.length > 0) {
                 data.forEach(app => {
+                    const statusInfo = getStatusLabels(app.status);
+        
                     const row = document.createElement('tr');
         
                     row.innerHTML = `
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${app.offi_name}</td>
                         <td>${app.desi}</td>
                         <td>${getStatusLabel(app.status)}</td>
-                        <td>${getStatusLabels(app.status)}</td>
+                        <td style="color: ${statusInfo.color}; font-weight: bold;">${statusInfo.text}</td>
                         <td>
                             <button class="btn btn-primary view-button" onclick="viewApplication(${app.user_id})">
                                 View
@@ -75,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     </tr>
                 `;
             }
-        }     
+        }
+           
         
 
     function getStatusLabel(status) {
@@ -93,13 +94,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return "Unknown"; // Default if no match
     }
 
-    function getStatusLabels(status){
-        if(status == 22 || status == 34 || status == 46 || status == 58 || status == 62 || status == 66 || status == 70 || status == 74 || status == 78 || status == 82 || status == 86) return "Activated";
-        if(status == 21 || status == 33 || status == 45 || status == 57 || status == 61 || status == 65 || status == 69 || status == 73 || status == 77 || status == 81 || status == 85) return "To Activate";
-        if(status == 20 || status == 32 || status == 44 || status == 56 || status == 60 || status == 64 || status == 68 || status == 72 || status == 76 || status == 80 || status == 84) return "Not Activate";
-        if(status == 19 || status == 31 || status == 43 || status == 55 || status == 59 || status == 63 || status == 67 || status == 71 || status == 75 || status == 79 || status == 83) return "No Insert Data";
-        return "Unknown";
+    function getStatusLabels(status) {
+        if (status == 22 || status == 34 || status == 46 || status == 58 || status == 62 || status == 66 || status == 70 || status == 74 || status == 78 || status == 82 || status == 86) {
+            return { text: "Activated", color: "green" };
+        }
+        if (status == 21 || status == 33 || status == 45 || status == 57 || status == 61 || status == 65 || status == 69 || status == 73 || status == 77 || status == 81 || status == 85) {
+            return { text: "To Activate", color: "orange" };
+        }
+        if (status == 20 || status == 32 || status == 44 || status == 56 || status == 60 || status == 64 || status == 68 || status == 72 || status == 76 || status == 80 || status == 84) {
+            return { text: "Not Activate", color: "red" };
+        }
+        if (status == 19 || status == 31 || status == 43 || status == 55 || status == 59 || status == 63 || status == 67 || status == 71 || status == 75 || status == 79 || status == 83) {
+            return { text: "No Insert Data", color: "gray" };
+        }
+        return { text: "Unknown", color: "black" };
     }
+    
 
     // Search functionality
     const searchInput = document.getElementById('searchInput');
@@ -117,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
 });
-/*
+
 function viewApplication(user_id) {
     fetch('setSessionUserId.php', {
         method: 'POST',
@@ -129,10 +139,10 @@ function viewApplication(user_id) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = `csOfficersListForm.php?user_id=${user_id}`;
+            window.location.href = `adminOfficerListForm.php?user_id=${user_id}`;
         } else {
             alert('Error setting session');
         }
     })
     .catch(error => console.error('Error setting session:', error));
-}*/
+}
