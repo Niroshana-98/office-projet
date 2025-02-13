@@ -24,7 +24,7 @@
                         <h5 class="card-title">
                             <span class="cs-count"></span> Create New Account
                         </h5>
-                        <p class="card-text">Register a new CS account and manage user access.</p>
+                        <p class="card-text">Register a new Officer account and manage user access.</p>
                         <a href="./adminCreateNewAcc.php" class="btn modern-btn">Create Account</a>
                     </div>
                 </div>

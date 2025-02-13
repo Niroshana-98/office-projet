@@ -73,7 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return (
                 (app.user_id && app.user_id.toString().includes(searchTerm)) ||
                 (app.name && app.name.toLowerCase().includes(searchTerm)) ||
-                (app.nic && app.nic.toLowerCase().includes(searchTerm))
+                (app.nic && app.nic.toLowerCase().includes(searchTerm)) ||
+                (app.desi_name && app.desi_name.toLowerCase().includes(searchTerm)) ||
+                (app.offi_name && app.offi_name.toLowerCase().includes(searchTerm))
             );
         });
     

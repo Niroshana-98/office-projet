@@ -24,7 +24,7 @@
                     type="text" 
                     id="searchInput" 
                     class="search-bar-input" 
-                    placeholder="Search by User ID, Name, or NIC">
+                    placeholder="Search by Officers Name, NIC, Office or Designation">
             </div>
         </div>
         

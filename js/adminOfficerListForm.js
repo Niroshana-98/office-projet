@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     activateUserAccount(nic, status);
                 });
             }
+
+            document.getElementById("editProfileBtn").addEventListener("click", function () {
+                updateUserStatus(data.nic);
+            });
+
         } else {
             console.error(data.error);
         }
@@ -92,4 +97,22 @@ function activateUserAccount(nic, currentStatus) {
         }
     })
     .catch(error => console.error("Error activating account:", error));
+}
+
+function updateUserStatus(nic) {
+    fetch("userControlOfficerUpdateStatus.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "nic=" + encodeURIComponent(nic),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("User status updated successfully!");
+            window.location.href = `adminOfficerList.php?user_id=${user_id}`;
+        } else {
+            alert("Error: " + data.error);
+        }
+    })
+    .catch(error => console.error("Error updating user status:", error));
 }

@@ -47,7 +47,7 @@
         <nav class="nav">
             <div>
                 <a href="./officeHead.php" class="nav_logo">
-                <i class='bx bx-home'></i>
+                <i class='bx bx-home' style="font-size: 20px;"></i>
                     <span class="nav_logo-name">Home</span>
                 </a>
                 <div class="nav_list">
@@ -58,6 +58,10 @@
                     <a href="./userControl.php" class="nav_link" target="content-frame">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">User Management</span>
+                    </a>
+                    <a href="./officerApplicationUpload.php" class="nav_link" target="content-frame">
+                        <i class='bx bx-spreadsheet' style="font-size: 20px;"></i>
+                        <span class="nav_name">My Application</span>
                     </a>
                 </div>
             </div>

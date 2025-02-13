@@ -119,7 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const filteredData = applicationsData.filter(app => {
             return (
                 (app.name && app.name.toLowerCase().includes(searchTerm)) ||
-                (app.nic && app.nic.toLowerCase().includes(searchTerm))
+                (app.nic && app.nic.toLowerCase().includes(searchTerm)) ||
+                (app.offi_name && app.offi_name.toLowerCase().includes(searchTerm)) ||
+                (app.desi && app.desi.toLowerCase().includes(searchTerm))
             );
         });
     
