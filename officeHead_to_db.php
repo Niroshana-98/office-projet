@@ -31,22 +31,34 @@ if (isset($_SESSION['nic'])) {
         } else {
             $offi_name = 'Unknown';
         }
-
         $office_stmt->close();
+
+        // Fetch application status
+        $app_query = "SELECT app_status FROM application WHERE nic = ?";
+        $app_stmt = $conn->prepare($app_query);
+        $app_stmt->bind_param("s", $user_id);
+        $app_stmt->execute();
+        $app_result = $app_stmt->get_result();
+
+        if ($app_result->num_rows > 0) {
+            $appData = $app_result->fetch_assoc();
+            $app_status = $appData['app_status'];
+        } else {
+            $app_status = 0; // No application found
+        }
+        $app_stmt->close();
 
         // Prepare response data
         echo json_encode(array(
             'name' => $name,
-            'offi_name' => $offi_name
+            'offi_name' => $offi_name,
+            'app_status' => $app_status
         ));
     } else {
-        // User not found
         echo json_encode(array('error' => 'User not found'));
     }
-
     $stmt->close();
 } else {
-    // User not logged in
     echo json_encode(array('error' => 'Not logged in'));
 }
 ?>

@@ -14,7 +14,7 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <h3 id="heading"> සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</h3>
-                <form class="msform" id="application" action="./dashboard_to_db.php" method="POST">
+                <form class="msform" id="application" action="./officerApplication_to_db.php" method="POST">
                     <!-- Progress Bar-->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Personal</strong></li>
@@ -524,7 +524,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <script src="./js/dashboard.js"></script>
+        <script src="./js/officerApplication.js"></script>
         <script src="./js/register.js"></script>
     </body>
 </html>

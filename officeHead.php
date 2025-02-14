@@ -59,7 +59,7 @@
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">User Management</span>
                     </a>
-                    <a href="./officerApplicationUpload.php" class="nav_link" target="content-frame">
+                    <a href="./officerApplication.php" class="nav_link" id="my-application-link" target="content-frame">
                         <i class='bx bx-spreadsheet' style="font-size: 20px;"></i>
                         <span class="nav_name">My Application</span>
                     </a>
