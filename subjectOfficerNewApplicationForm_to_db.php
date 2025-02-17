@@ -25,9 +25,11 @@ $stmt = $conn->prepare("
         a.up_porva_anu, a.up_service_minite, a.up_app_letter_confirm, a.up_attach_sp, a.up_course_selected, 
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
-        o.offi_id, o.offi_name, a.created,
-        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Reject_RM
-    FROM 
+        o.offi_id, o.offi_name, a.created, a.offi_cat,
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Reject_RM,
+        a.Dist_Rec_Offi_time_stamp, u3.name AS dist_recommend_officer_name, u3.desi AS distRecDesignation, a.Dist_Rec_Offi_Reject_RM,
+        a.Dep_Rec_Offi_time_stamp, u4.name AS dep_recommend_officer_name, u4.desi AS depRecDesignation, a.Dep_Rec_Offi_Reject_RM,
+        a.Min_Rec_Offi_time_stamp, u5.name AS min_recommend_officer_name, u5.desi AS minRecDesignation, a.Min_Rec_Offi_Reject_RM
         application a
     LEFT JOIN 
         service s 
@@ -53,6 +55,18 @@ $stmt = $conn->prepare("
         users u2
     ON
         a.office_Rec_user_id = u2.user_id
+    LEFT JOIN
+        users u3
+    ON
+        a.Dist_Rec_Offi_user_id = u3.user_id
+    LEFT JOIN
+        users u4
+    ON
+        a.Dep_Rec_Offi_user_id = u4.user_id
+    LEFT JOIN
+        users u5
+    ON
+        a.Min_Rec_Offi_user_id = u5.user_id
     WHERE a.app_no = ? 
 ");
 
@@ -66,8 +80,11 @@ $stmt->bind_result(
     $bf_02course_name, $bf_02ins_name, $bf_02start_date, $bf_02gov_paid, $bf_02full_course_fee, 
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
-    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, 
-    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM 
+    $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $offi_cat,
+    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM,
+    $Dist_Rec_Offi_time_stamp, $dist_recommend_officer_name, $distRecDesignation, $Dist_Rec_Offi_Reject_RM,
+    $Dep_Rec_Offi_time_stamp, $dep_recommend_officer_name, $depRecDesignation, $Dep_Rec_Offi_Reject_RM,
+    $Min_Rec_Offi_time_stamp, $min_recommend_officer_name, $minRecDesignation, $Min_Rec_Offi_Reject_RM
 );
 
 $stmt->fetch();
@@ -77,6 +94,7 @@ if ($appNo) {
     echo json_encode([
         'success' => true,
         'created' => $created,
+        'offi_cat' => $offi_cat,
         'app_no' => $appNo,
         'name_si' => $nameSi,
         'name_full' => $nameFull,
@@ -122,7 +140,19 @@ if ($appNo) {
         'office_Rec_time_stamp' => $office_Rec_time_stamp,
         'recommend_officer_name' => $recommend_officer_name,
         'recDesignation' => $recDesignation,
-        'office_Rec_Reject_RM' => $office_Rec_Reject_RM
+        'office_Rec_Reject_RM' => $office_Rec_Reject_RM,
+        'Dist_Rec_Offi_time_stamp' => $Dist_Rec_Offi_time_stamp,
+        'dist_recommend_officer_name' => $dist_recommend_officer_name,
+        'distRecDesignation' => $distRecDesignation,
+        'Dist_Rec_Offi_Reject_RM' => $Dist_Rec_Offi_Reject_RM,
+        'Dep_Rec_Offi_time_stamp' => $Dep_Rec_Offi_time_stamp,
+        'dep_recommend_officer_name' => $dep_recommend_officer_name,
+        'depRecDesignation' => $depRecDesignation,
+        'Dep_Rec_Offi_Reject_RM' => $Dep_Rec_Offi_Reject_RM,
+        'Min_Rec_Offi_time_stamp' => $Min_Rec_Offi_time_stamp,
+        'min_recommend_officer_name' => $min_recommend_officer_name,
+        'minRecDesignation' => $minRecDesignation,
+        'Min_Rec_Offi_Reject_RM' => $Min_Rec_Offi_Reject_RM
 
     ]);
 } else {

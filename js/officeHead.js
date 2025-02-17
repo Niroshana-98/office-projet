@@ -43,7 +43,7 @@ function fetchUserDetails() {
         .then(response => response.json())  
         .then(data => {
             if (data.name && data.offi_name) {
-                document.getElementById('user-name').textContent = data.name;
+                document.getElementById('user-name').textContent = data.name; 
                 document.getElementById('user-work-place').textContent = data.offi_name;
 
                 // Update My Application link based on app_status

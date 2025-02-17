@@ -36,15 +36,48 @@ document.addEventListener("DOMContentLoaded", function () {
             const rejectByRecDiv = document.getElementById("rejectBySub");
             const appliHR = document.getElementById("appliHR");
 
-            if (!data.office_Rec_Reject_RM) {
-                rejectByRecDiv.style.display = "none";
-                appliHR.style.display = "none";
-            } else {
-                document.getElementById("rejectRec").value = data.office_Rec_Reject_RM;
-                document.getElementById("recName").value = data.recommend_officer_name;
-                document.getElementById("recDesi").value = data.recDesignation;
-                document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
+            if(data.offi_cat === 2){
+                if (!data.Min_Rec_Offi_Reject_RM) { 
+                    rejectByRecDiv.style.display = "none";
+                    appliHR.style.display = "none";
+                } else {
+                    document.getElementById("rejectRec").value = data.Min_Rec_Offi_Reject_RM;
+                    document.getElementById("recName").value = data.min_recommend_officer_name;
+                    document.getElementById("recDesi").value = data.minRecDesignation;
+                    document.getElementById("recommendOfficerDate").value = data.Min_Rec_Offi_time_stamp;
+                }
+            }else if(data.offi_cat === 3){
+                if (!data.Dep_Rec_Offi_Reject_RM) { 
+                    rejectByRecDiv.style.display = "none";
+                    appliHR.style.display = "none";
+                } else {
+                    document.getElementById("rejectRec").value = data.Dep_Rec_Offi_Reject_RM;
+                    document.getElementById("recName").value = data.dep_recommend_officer_name;
+                    document.getElementById("recDesi").value = data.depRecDesignation;
+                    document.getElementById("recommendOfficerDate").value = data.$Dep_Rec_Offi_time_stamp;
+                }
+            }else if(data.offi_cat === 4){
+                if (!data.Dist_Rec_Offi_Reject_RM) { 
+                    rejectByRecDiv.style.display = "none";
+                    appliHR.style.display = "none";
+                } else {
+                    document.getElementById("rejectRec").value = data.Dist_Rec_Offi_Reject_RM;
+                    document.getElementById("recName").value = data.dist_recommend_officer_name;
+                    document.getElementById("recDesi").value = data.distRecDesignation;
+                    document.getElementById("recommendOfficerDate").value = data.Dist_Rec_Offi_time_stamp;
+                }
+            } else{
+                if (!data.office_Rec_Reject_RM) { 
+                    rejectByRecDiv.style.display = "none";
+                    appliHR.style.display = "none";
+                } else {
+                    document.getElementById("rejectRec").value = data.office_Rec_Reject_RM;
+                    document.getElementById("recName").value = data.recommend_officer_name;
+                    document.getElementById("recDesi").value = data.recDesignation;
+                    document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
+                }
             }
+            
 
             // Show additional fieldsets if course information is available
             document.getElementById("nextFieldsetTableContainer").style.display = data.bf_01course_name ? 'block' : 'none';

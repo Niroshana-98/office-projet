@@ -55,12 +55,10 @@
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <!--
-                    <a href="application.html" class="nav_link" target="content-frame">
-                        <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">Users</span>
+                    <a href="./officerApplication.php" class="nav_link" id="my-application-link" target="content-frame">
+                        <i class='bx bx-spreadsheet' style="font-size: 20px;"></i>
+                        <span class="nav_name">My Application</span> 
                     </a>
--->
                 </div>
             </div>
             <a href="#" class="nav_link" id="logout-link">

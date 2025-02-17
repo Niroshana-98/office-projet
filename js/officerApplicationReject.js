@@ -1,9 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("officeRecommondOfficerApprovedApplicationForm_to_db.php")
-        .then(response => response.json())
+    fetch("officerApplicationReject_to_db.php")
+        .then(response => response.json()) // Parse the JSON from the response
         .then(data => {
             if (data.success) {
-                
+
+                const rejectSpan = document.getElementById("rejectMessage");
+                if (data.office_Rec_Reject_RM) {
+                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.office_Rec_Reject_RM}`;
+                } else {
+                    rejectSpan.innerText = "No rejection information available.";
+                }
+
+                // Fill form fields with data
                 document.getElementById("appNoDisplay").innerText = data.app_no;
                 document.getElementById("name_si").value = data.name_si;
                 document.getElementById("name_full").value = data.name_full;
@@ -13,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("tel_land").value = data.tel_land;
                 document.getElementById("tel_mob").value = data.tel_mob;
                 document.getElementById("email_pri").value = data.email_pri;
-                document.getElementById("service").value = data.service;
+                document.getElementById("service").value = data.service_name;
                 document.getElementById("grade").value = data.grade;
                 document.getElementById("upp_status").value = data.upp_status;
                 document.getElementById("desi").value = data.desi;
@@ -28,45 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("course_fee").value = data.course_fee;
                 document.getElementById("before_recieved").value = data.before_recieved;
 
-                //Applicate Details
-                document.getElementById("applicateName").value = data.name_si;
-                document.getElementById("applicateDesi").value = data.desi;
-                document.getElementById("applicateDate").value = data.created;
-
-                //Subject Officer Details
-                const remarkDiv = document.getElementById("remark");
-                const applicate = document.getElementById("applicate");
-                const subjectOfficer = document.getElementById("subjectOfficer");
-                
-                if(!data.subject_officer_name){
-                    applicate.style.display = "none";
-                    subjectOfficer.style.display = "none";
-                }
-
-                if (!data.Subject_Aprv_Rm) {
-                    remarkDiv.style.display = "none";
-                } else {
-                    document.getElementById("Remark").value = data.Subject_Aprv_Rm;
-                }
-                
-                document.getElementById("subDesi").value = data.designation;
-                document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
-                document.getElementById("subName").value = data.subject_officer_name;
-
-                //Recommend Officer Details
-                const remarkRecDiv = document.getElementById("remarkRec");
-
-                if (!data.office_Rec_Aprv_RM) {
-                    remarkRecDiv.style.display = "none";
-                } else {
-                    document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
-                }
-                
-                document.getElementById("recName").value = data.recommend_officer_name;
-                document.getElementById("recDesi").value = data.recDesignation;
-                document.getElementById("recommendOfficerDate").value = data.office_Rec_time_stamp;
-                
-
                 // Show additional fieldsets if course information is available
                 if (data.bf_01course_name) {
                     document.getElementById("bf_01course_name").value = data.bf_01course_name;
@@ -77,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("nextFieldsetTableContainer").style.display = 'block';
                 } else {
                     document.getElementById("nextFieldsetTableContainer").style.display = 'none';
-                } 
+                }
 
                 if (data.bf_02course_name) {
                     document.getElementById("bf_02course_name").value = data.bf_02course_name;
@@ -89,7 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     document.getElementById("nextFieldsetTableContainers").style.display = 'none';
                 }
-                
+
+                // Display document function
                 function displayDocument(containerId, filePath) {
                     const container = document.getElementById(containerId);
 
@@ -149,23 +119,165 @@ document.addEventListener("DOMContentLoaded", function () {
                     viewButtons.forEach(button => {
                         const buttonElement = document.getElementById(button.id);
                         if (buttonElement) {
-                            if (button.filePath) {
+                            // Enable button only if the filePath is valid
+                            if (button.filePath && button.filePath.trim() !== "") {
                                 buttonElement.disabled = false;
                                 buttonElement.addEventListener("click", function () {
-                                    window.open(button.filePath, "_blank", "width=auto,height=auto,scrollbars=yes");
+                                    openDocumentInNewWindow(button.filePath);
                                 });
                             } else {
                                 buttonElement.disabled = true;
-                                buttonElement.title = "Document not available";
                             }
                         }
                     });
                 }
 
                 setupViewButtons();
+
             } else {
                 console.error(data.error);
             }
         })
         .catch(error => console.error("Error fetching application data:", error));
 });
+
+
+document.getElementById("updateButton").addEventListener("click", function () {
+    const fields = [
+        "address_pri", "tel_mob", "date_att_sp", "ins_name", "course_name", "service_minite_no",
+        "course_start_date", "course_end_date", "course_fee",
+        "bf_01course_name", "bf_01ins_name", "bf_01start_date", "bf_01gov_paid", "bf_01full_course_fee",
+        "bf_02course_name", "bf_02ins_name", "bf_02start_date", "bf_02gov_paid", "bf_02full_course_fee"
+    ];
+
+    let postData = `nic=${encodeURIComponent(document.getElementById("nic").value)}`;
+    fields.forEach(field => {
+        const value = document.getElementById(field)?.value || "";
+        postData += `&${field}=${encodeURIComponent(value)}`;
+    });
+
+    if (postData.includes("nic=")) {        
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "officerApplicationReject_update.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert("Update successful!");
+                        window.location.href = "officerApplicationView.php"; 
+                    } else {
+                        console.error("Update failed:", response);
+                        alert("Update failed: " + (response.error || "Unknown error"));
+                    }
+                } catch (e) {
+                    console.error("Error parsing JSON:", xhr.responseText);
+                    alert("Invalid server response.");
+                }
+            } else {
+                console.error("Request failed. Status:", xhr.status);
+                alert("Server error. Please try again.");
+            }
+        };     
+
+        xhr.send(postData);
+    } else {
+        alert("Please enter valid data.");
+    }
+    
+});
+
+
+const uploadFields = [
+    { inputId: "up_porva_anu", buttonId: "uploadButton" },
+    { inputId: "up_service_minite", buttonId: "uploadButton_2" },
+    { inputId: "up_app_letter_confirm", buttonId: "uploadButton_3" },
+    { inputId: "up_attach_sp", buttonId: "uploadButton_4" },
+    { inputId: "up_course_selected", buttonId: "uploadButton_5" },
+    { inputId: "up_campus_confirm", buttonId: "uploadButton_6" },
+    { inputId: "up_course_complete", buttonId: "uploadButton_7" },
+    { inputId: "up_pay_recept", buttonId: "uploadButton_8" },
+    { inputId: "up_other", buttonId: "uploadButton_9" }
+];
+
+uploadFields.forEach(field => {
+    const fileInput = document.getElementById(field.inputId);
+    const uploadButton = document.getElementById(field.buttonId);
+
+    fileInput.addEventListener("change", function () {
+        if (this.files && this.files.length > 0) {
+            uploadButton.disabled = false;
+        } else {
+            uploadButton.disabled = true;
+        }
+    });
+});
+
+
+// General function to handle file uploads
+function handleFileUpload(fileInputId, uploadButtonId, viewButtonId, uploadUrl) {
+    document.getElementById(uploadButtonId).addEventListener('click', function() {
+        const fileInput = document.getElementById(fileInputId);
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please select a file to upload.");
+            return;
+        }
+
+        const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
+        if (!allowedTypes.includes(file.type)) {
+            alert("Only PDF, PNG, and JPG files are allowed.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append(fileInputId, file);
+
+        fetch(uploadUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("File uploaded successfully.");
+
+                // Hide the upload button and input
+                document.getElementById(uploadButtonId).style.display = 'none';
+                document.getElementById(fileInputId).style.display = 'none';
+
+                // Enable the View button
+                const viewButton = document.getElementById(viewButtonId);
+                viewButton.style.display = 'inline-block';
+                viewButton.disabled = false;
+
+                // Set up the view button to open the file
+                viewButton.addEventListener('click', function() {
+                    window.open(data.filePath, '_blank');
+                });
+            } else {
+                alert(data.error || "File upload failed.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred during the upload.");
+        });
+    });
+}
+
+
+handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', 'rejectApplicationUpload_to_db.php');
+handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', 'rejectApplicationUpload_to_db.php');
+
+

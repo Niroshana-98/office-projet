@@ -23,7 +23,7 @@ if (isset($_SESSION['nic'])) {
         $office_stmt = $conn->prepare("SELECT offi_name FROM office WHERE offi_id = ?");
         $office_stmt->bind_param("i", $offi_id);
         $office_stmt->execute();
-        $office_result = $office_stmt->get_result(); 
+        $office_result = $office_stmt->get_result();  
 
         if ($office_result->num_rows > 0) {
             $officeData = $office_result->fetch_assoc();

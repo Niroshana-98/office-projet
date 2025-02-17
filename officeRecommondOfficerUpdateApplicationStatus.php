@@ -91,19 +91,46 @@ if ($status == 1) {
 
 // Handle application rejection
 if ($status == 2 && !empty($comment)) {
-    // Update application status and rejection reason
-    
-
-    $status =3 ;
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, office_Rec_Reject_RM = ?, office_Rec_time_stamp = NOW(), office_Rec_user_id = ? WHERE app_no = ?");
+    // Change application status to 3 (rejected)
+    $status = 3;
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, office_Rec_Reject_RM = ?, office_Rec_time_stamp = NOW(), office_Rec_user_id = ?, Office_head_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
-
+    
     if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Application rejected successfully']);
+        // Retrieve the user's NIC from the application table
+        $stmt = $conn->prepare("SELECT nic FROM application WHERE app_no = ?");
+        $stmt->bind_param("i", $app_no);
+        $stmt->execute();
+        $stmt->bind_result($user_nic);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($user_nic) {
+            // Retrieve the user's current status from the users table
+            $stmt = $conn->prepare("SELECT status FROM users WHERE nic = ?");
+            $stmt->bind_param("s", $user_nic);
+            $stmt->execute();
+            $stmt->bind_result($current_status);
+            $stmt->fetch();
+            $stmt->close();
+
+            // If the user's current status is 10, update it to 5
+            if ($current_status == 10) {
+                $stmt = $conn->prepare("UPDATE application SET app_status = 4 WHERE nic = ?");
+                $stmt->bind_param("s", $user_nic);
+                $stmt->execute();
+                $stmt->close();
+
+                echo json_encode(['success' => true, 'message' => 'Application rejected successfully']);
+                exit;
+            }
+        }
+
+        echo json_encode(['success' => true, 'message' => 'Application rejected successfully, but no user status update was needed']);
     } else {
         echo json_encode(['success' => false, 'error' => 'Failed to update rejection details']);
     }
-    $stmt->close();
+    
     exit;
 }
 

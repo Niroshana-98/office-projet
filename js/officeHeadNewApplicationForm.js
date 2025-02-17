@@ -36,6 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Subject Officer Details
             const remarkDiv = document.getElementById("remark");
+            const applicate = document.getElementById("applicate");
+            const subjectOfficer = document.getElementById("subjectOfficer");
+            const subjectOfficerHR = document.getElementById("subjectOfficerHR");
+            const officeRecommendOfficer = document.getElementById("officeRecommendOfficer");
+
+            if(!data.subject_officer_name){
+                applicate.style.display = "none";
+                subjectOfficer.style.display = "none";
+            }
+
+            if(!data.recommend_officer_name){
+                applicate.style.display = "none";
+                subjectOfficer.style.display = "none";
+                subjectOfficerHR.style.display = "none";
+                officeRecommendOfficer.style.display = "none";
+            }
 
             if (!data.Subject_Aprv_Rm) {
                 remarkDiv.style.display = "none";
