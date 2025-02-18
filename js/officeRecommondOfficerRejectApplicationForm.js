@@ -35,14 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateDate").value = data.created; 
 
             const remarkDiv = document.getElementById("remark");
-            const applicate = document.getElementById("applicate");
-            const subjectOfficer = document.getElementById("subjectOfficer");
-
-            if(!data.subject_officer_name){
-                applicate.style.display = "none";
-                subjectOfficer.style.display = "none";
-            }
-
+           
             if (!data.Subject_Aprv_Rm) {
                 remarkDiv.style.display = "none";
             } else {

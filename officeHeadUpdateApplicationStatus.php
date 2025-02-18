@@ -62,14 +62,13 @@ if ($result->num_rows > 0) {
 $stmt->close();
 
 
-// Handle application approval
 if ($status == 1) {
     
     // Set app_status based on offi_cat
     if ($offi_cat == 6) {
-        $app_status = 124; // Approved status for offi_cat = 6
+        $app_status = 124; 
     } elseif ($offi_cat == 5) {
-        $app_status = 134; // Approved status for offi_cat = 5
+        $app_status = 134;
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
@@ -91,30 +90,55 @@ if ($status == 1) {
 
 // Handle application rejection
 if ($status == 2 && !empty($comment)) {
-    // Update application status and rejection reason
 
-    // Set app_status based on offi_cat
-    if ($offi_cat == 6) {
-        $status = 151; // Approved status for offi_cat = 6
-    } elseif ($offi_cat == 5) {
-        $status = 141; // Approved status for offi_cat = 5
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
-        exit();
-    }
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ?, Dist_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
-    $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
-
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Application rejected successfully']);
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Failed to update rejection details']);
-    }
+    // Retrieve the user's NIC from the application table
+    $stmt = $conn->prepare("SELECT nic FROM application WHERE app_no = ?");
+    $stmt->bind_param("i", $app_no);
+    $stmt->execute();
+    $stmt->bind_result($user_nic);
+    $stmt->fetch();
     $stmt->close();
+
+    if ($user_nic) {
+        // Retrieve the user's status from the users table
+        $stmt = $conn->prepare("SELECT status FROM users WHERE nic = ?");
+        $stmt->bind_param("s", $user_nic);
+        $stmt->execute();
+        $stmt->bind_result($user_status);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Set app_status based on conditions
+        if ($user_status == 18) {
+            $status = 4;  
+        } elseif ($offi_cat == 6) {
+            $status = 151;
+        } elseif ($offi_cat == 5) {
+            $status = 141;
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
+            exit();
+        }
+
+        // Update application status
+        $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Reject_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ?, Dist_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
+        $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true, 'message' => 'Application status updated successfully']);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Failed to update rejection details']);
+        }
+
+        $stmt->close();
+    } else {
+        echo json_encode(['success' => false, 'error' => 'User NIC not found']);
+    }
+
     exit;
 }
 
-// Default response for invalid status
+
 echo json_encode(['success' => false, 'error' => 'Invalid status value']);
 exit;
 ?>

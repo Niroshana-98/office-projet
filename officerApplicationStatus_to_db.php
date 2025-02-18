@@ -20,54 +20,11 @@ if (isset($_SESSION['nic'])) {
         $stmtOffice = $conn->prepare("SELECT offi_cat FROM office WHERE offi_id = ?");
         $stmtOffice->bind_param("i", $offi_id);
         $stmtOffice->execute();
-        $stmtOffice->bind_result($offi_cat);
+        $stmtOffice->bind_result($offi_cat); 
         $stmtOffice->fetch();
         $stmtOffice->close();
 
-        // Determine app_status based on status and offi_cat conditions
-        if ($status == 10 && $offi_cat == 6) {
-            $newAppStatus = 150;
-        } elseif ($status == 10 && $offi_cat == 5) {
-            $newAppStatus = 140;
-        } elseif ($status == 10 && $offi_cat == 4) {
-            $newAppStatus = 130;
-        } elseif ($status == 10 && $offi_cat == 3) {
-            $newAppStatus = 120;
-        } elseif ($status == 10 && $offi_cat == 2) {
-            $newAppStatus = 110;
-        } elseif ($status == 10 && $offi_cat == 1) {
-            $newAppStatus = 100;
-        } elseif ($status == 18 && $offi_cat == 5) {
-            $newAppStatus = 144;
-        } elseif ($status == 18 && $offi_cat == 6) {
-            $newAppStatus = 154;
-        } elseif ($status == 22 && $offi_cat == 5) {
-            $newAppStatus = 134;
-        } elseif ($status == 22 && $offi_cat == 6) {
-            $newAppStatus = 124;
-        } elseif ($status == 26 && $offi_cat == 4) {
-            $newAppStatus = 130;
-        } elseif ($status == 30 && $offi_cat == 4) {
-            $newAppStatus = 138;
-        } elseif ($status == 34 && $offi_cat == 4) {
-            $newAppStatus = 124;
-        } elseif ($status == 38 && $offi_cat == 3) {
-            $newAppStatus = 120;
-        } elseif ($status == 42 && $offi_cat == 3) {
-            $newAppStatus = 128;
-        } elseif ($status == 46 && $offi_cat == 3) {
-            $newAppStatus = 114;
-        } elseif ($status == 50 && $offi_cat == 2) {
-            $newAppStatus = 110;
-        } elseif ($status == 54 && $offi_cat == 2) {
-            $newAppStatus = 118;
-        } elseif ($status == 58 && $offi_cat == 2) {
-            $newAppStatus = 100;
-        } else {
-            $response['error'] = 'No matching conditions for status and offi_cat.';
-            echo json_encode($response);
-            exit;
-        }
+        $newAppStatus = 2;
 
         // Update application table with new app_status
         $stmtApp = $conn->prepare("UPDATE application SET app_status = ?, created = NOW() WHERE nic = ?");

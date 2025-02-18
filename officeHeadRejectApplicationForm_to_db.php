@@ -62,7 +62,7 @@ $stmt = $conn->prepare("
     LEFT JOIN
         users u3
     ON
-        a.office_Rec_user_id = u3.user_id
+        a.office_head_user_id = u3.user_id
     WHERE 
         a.app_no = ?
 ");

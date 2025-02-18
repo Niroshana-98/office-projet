@@ -5,7 +5,12 @@ var steps = $("fieldset").length;
 
 setProgressBar(current);
 
-$(".next").click(function() {
+$(".next").click(function () {
+    // Validate fields first
+    if (!validateFields()) {
+        return; // Stop execution if validation fails
+    }
+
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
 
@@ -14,24 +19,24 @@ $(".next").click(function() {
 
     // Show the next fieldset
     next_fs.show();
-    // Hide the current fieldset with style
-    current_fs.animate({opacity: 0}, {
-        step: function(now) {
-            // For making fieldset appear animation
-            opacity = 1 - now;
 
+    // Hide the current fieldset with animation
+    current_fs.animate({ opacity: 0 }, {
+        step: function (now) {
+            opacity = 1 - now;
             current_fs.css({
                 'display': 'none',
                 'position': 'relative'
             });
-            next_fs.css({'opacity': opacity});
+            next_fs.css({ 'opacity': opacity });
         },
         duration: 500
     });
+
     setProgressBar(++current);
 });
 
-$(".previous").click(function() {
+$(".previous").click(function () {
     current_fs = $(this).parent();
     previous_fs = $(this).parent().prev();
 
@@ -41,20 +46,19 @@ $(".previous").click(function() {
     // Show the previous fieldset
     previous_fs.show();
 
-    // Hide the current fieldset with style
-    current_fs.animate({opacity: 0}, {
-        step: function(now) {
-            // For making fieldset appear animation
+    // Hide the current fieldset with animation
+    current_fs.animate({ opacity: 0 }, {
+        step: function (now) {
             opacity = 1 - now;
-
             current_fs.css({
                 'display': 'none',
                 'position': 'relative'
             });
-            previous_fs.css({'opacity': opacity});
+            previous_fs.css({ 'opacity': opacity });
         },
         duration: 500
     });
+
     setProgressBar(--current);
 });
 
@@ -64,9 +68,29 @@ function setProgressBar(curStep) {
     $(".progress-bar").css("width", percent + "%");
 }
 
-$(".submit").click(function() {
+$(".submit").click(function () {
     return false;
 });
+
+function validateFields() {
+    let isValid = true;
+    let requiredFields = document.querySelectorAll(".required-field");
+
+    requiredFields.forEach(field => {
+        if (field.value.trim() === "") {
+            isValid = false;
+            field.style.border = "2px solid red"; // Highlight empty fields
+        } else {
+            field.style.border = "1px solid #ced4da"; // Reset border if filled
+        }
+    });
+
+    if (!isValid) {
+        alert("Please fill in all required fields.");
+    }
+
+    return isValid; // Return true if valid, false if invalid
+}
 
 
 // Fetch user and ministry data when the page loads

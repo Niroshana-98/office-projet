@@ -302,10 +302,6 @@
         <hr id="appliHR">
 
         <div id="rejectBySub">
-            <span>
-            පෞද්ගලික ලිපිගොනුව අනුව පරීක්ෂා කර බලා අයදුම්කරු විසින් ඇතුළත් කර ඇති තොරතුරු නිවැරදි බව තහවුරු කරමි/නොකරමි
-            </span>
-
             <div id="remarkRec">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">

@@ -5,7 +5,7 @@ include 'connect.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-header('Content-Type: application/json'); 
+header('Content-Type: application/json');  
 
 if (!isset($_SESSION['app_no'])) {
     echo json_encode(['success' => false, 'error' => 'Application number not found in session']);
@@ -30,6 +30,7 @@ $stmt = $conn->prepare("
         a.Dist_Rec_Offi_time_stamp, u3.name AS dist_recommend_officer_name, u3.desi AS distRecDesignation, a.Dist_Rec_Offi_Reject_RM,
         a.Dep_Rec_Offi_time_stamp, u4.name AS dep_recommend_officer_name, u4.desi AS depRecDesignation, a.Dep_Rec_Offi_Reject_RM,
         a.Min_Rec_Offi_time_stamp, u5.name AS min_recommend_officer_name, u5.desi AS minRecDesignation, a.Min_Rec_Offi_Reject_RM
+    FROM
         application a
     LEFT JOIN 
         service s 

@@ -34,19 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateDate").value = data.created; 
 
             const remarkDiv = document.getElementById("remark");
-            const subjectOfficer = document.getElementById("subjectOfficer");
-            const applicate = document.getElementById("applicate");
-
-            if(!data.subject_officer_name){
-                subjectOfficer.style.display = "none";
-                applicate.style.display = "none";
-            }
-            if (!data.Subject_Aprv_Rm) {
-                remarkDiv.style.display = "none";
-            } else {
-                document.getElementById("Remark").value = data.Subject_Aprv_Rm;
-            }
-            
+                        
             document.getElementById("subDesi").value = data.designation;
             document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
             document.getElementById("subName").value = data.subject_officer_name; 
