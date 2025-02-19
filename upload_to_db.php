@@ -14,10 +14,10 @@ if (!isset($_SESSION['nic'])) {
 $nic = $_SESSION['nic'];
 
 $appNo = null;
-$stmt = $conn->prepare("SELECT app_no FROM application WHERE nic = ?");
+$stmt = $conn->prepare("SELECT app_no, reason FROM application WHERE nic = ?");
 $stmt->bind_param("s", $nic);
 $stmt->execute();
-$stmt->bind_result($appNo);
+$stmt->bind_result($appNo, $reason);
 $stmt->fetch();
 $stmt->close();
 
@@ -46,7 +46,7 @@ function handleFileUpload($fileKey, $uploadDir, $dbColumn, $conn, $appNo) {
         case 'up_service_minite':
             $newFileName = "service_minite_$appNo.$fileExtension";
             break;
-        case 'up_app_letter_confirm':
+        case 'up_app_letter_confirm': 
             $newFileName = "app_letter_confirm_$appNo.$fileExtension";
             break;
         case 'up_attach_sp':

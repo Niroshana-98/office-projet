@@ -17,7 +17,7 @@ $app_no = $_SESSION['app_no'];
 // Updated query to join with the corresponding tables to get names
 $stmt = $conn->prepare("
     SELECT 
-        a.app_no, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, a.tel_mob, a.email_pri, 
+        a.app_no, a.reason, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, a.tel_mob, a.email_pri, 
         a.service, a.grade, a.upp_status, a.desi, a.c_w_p, a.min, a.date_att_sp, a.ins_name, a.course_name, 
         a.service_minite_no, a.course_start_date, a.course_end_date, a.course_fee, a.before_recieved, 
         a.bf_01course_name, a.bf_01ins_name, a.bf_01start_date, a.bf_01gov_paid, a.bf_01full_course_fee, 
@@ -65,7 +65,7 @@ $stmt = $conn->prepare("
 $stmt->bind_param("s", $app_no);
 $stmt->execute();
 $stmt->bind_result(
-    $appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
+    $appNo, $reason, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
     $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, 
     $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, 
     $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, 
@@ -85,6 +85,7 @@ if ($appNo) {
         'success' => true,
         'created' => $created,
         'app_no' => $appNo,
+        'reason' => $reason,
         'name_si' => $nameSi,
         'name_full' => $nameFull,
         'name_eng' => $nameEng,

@@ -192,8 +192,3 @@ document.getElementById("Documents-btn").addEventListener("click", function() {
     });
 });
 
-
-
-
-
-

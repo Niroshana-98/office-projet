@@ -303,3 +303,22 @@ button:not([disabled]):hover {
     border: none;
 }
 
+#recommendSection {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    display: none;
+}
+
+#recommendSection span {
+    margin-right: 10px;
+    font-size: 1rem; 
+}
+
+#recommendSection select {
+    width: auto;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-size: 1rem; 
+}
+

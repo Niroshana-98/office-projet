@@ -12,14 +12,14 @@ if (!isset($_SESSION['nic'])) {
     exit;
 }
 
-$nic = $_SESSION['nic'];
+$nic = $_SESSION['nic']; 
 
 // Adjust SQL query to join with the service table to fetch service_name
 $stmt = $conn->prepare("
     SELECT 
-        a.app_no, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, 
+        a.app_no, a.reason, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, 
         a.tel_mob, a.email_pri, s.service_name, g.grade_name, a.upp_status, d.desi_name, 
-        o.offi_name, m.min_name, a.date_att_sp, a.ins_name, a.course_name, a.service_minite_no, 
+        o.offi_name, m.min_name, a.date_att_sp, a.ins_name, a.course_name, a.service_minite_no,  
         a.course_start_date, a.course_end_date, a.course_fee, a.before_recieved, 
         a.bf_01course_name, a.bf_01ins_name, a.bf_01start_date, a.bf_01gov_paid, 
         a.bf_01full_course_fee, a.bf_02course_name, a.bf_02ins_name, a.bf_02start_date, 
@@ -54,7 +54,7 @@ $stmt = $conn->prepare("
 $stmt->bind_param("s", $nic);
 $stmt->execute();
 $stmt->bind_result(
-    $appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
+    $appNo, $reason, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
     $serviceName, $gradeName, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, 
     $course_name, $service_minite_no, $course_start_date, $course_end_date, $course_fee, 
     $before_recieved, $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, 
@@ -70,6 +70,7 @@ if ($appNo) {
     echo json_encode([
         'success' => true, 
         'app_no' => $appNo,
+        'reason' => $reason,
         'name_si' => $nameSi,
         'name_full' => $nameFull,
         'name_eng' => $nameEng,

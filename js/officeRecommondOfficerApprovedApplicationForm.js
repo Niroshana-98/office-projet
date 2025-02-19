@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+
+                if(data.reason === 1){
+                    document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම";
+                }else if(data.reason === 2){
+                    document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම";
+                }
                 
                 document.getElementById("appNoDisplay").innerText = data.app_no;
                 document.getElementById("name_si").value = data.name_si;

@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+
+            if(data.reason === 1){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම";
+            }else if(data.reason === 2){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම";
+            }
+
             document.getElementById("appNoDisplay").innerText = data.app_no; 
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
@@ -34,10 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("applicateDate").value = data.created; 
 
             const remarkDiv = document.getElementById("remark");
-                        
+
+            if (!data.Subject_Aprv_Rm) {
+                remarkDiv.style.display = "none";
+            } else {
+                document.getElementById("Remark").value = data.Subject_Aprv_Rm;
+            }
+            
             document.getElementById("subDesi").value = data.designation;
             document.getElementById("subjectOfficerDate").value = data.Subject_time_stamp;
-            document.getElementById("subName").value = data.subject_officer_name; 
+            document.getElementById("subName").value = data.subject_officer_name;
 
             //Reject Office Head Details
             const rejectByOffiHeadDiv = document.getElementById("rejectByOffiHead");
@@ -45,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!data.Office_head_Reject_RM) {
                 rejectByOffiHeadDiv.style.display = "none";
-                rejectHR.style.display = "none";
+                rejectHR.style.display = "none"; 
             } else {
                 document.getElementById("rejectOffiHead").value = data.Office_head_Reject_RM;
                 document.getElementById("offiHeadName").value = data.office_head_name;
@@ -162,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function updateAppStatus(status, comment = '', nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
+        const recommendation = document.getElementById('recommendSelect').value;
     
         if (!appNo) {
             console.error("Application number is missing.");
@@ -172,7 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
             app_no: appNo,
             status: status,
             comment: comment,
-            nic: nic
+            nic: nic,
+            office_Rec_Recommend: recommendation
         };
     
         fetch('officeRecommondOfficerUpdateApplicationStatus.php', {
@@ -180,11 +195,11 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-        .then(response => response.text())  // Get the raw response text
+        .then(response => response.text()) 
         .then(text => {
-            console.log(text); // Log the raw response to see what's returned
+            console.log(text); 
             try {
-                const data = JSON.parse(text); // Parse as JSON
+                const data = JSON.parse(text); 
                 if (data.success) {
                     alert(data.message);
                     window.location.href = 'officeRecommondOfficerNewApplication.php';
@@ -209,6 +224,7 @@ const approveButton = document.getElementById('approveButton');
 const rejectButton = document.getElementById('rejectButton');
 const commentSection = document.getElementById('commentSection');
 const commentSectionA = document.getElementById('commentSectionA');
+const recommendSection = document.getElementById('recommendSection');
 
 approvalSelect.addEventListener('change', function() {
     if (approvalSelect.value === "1") {
@@ -216,15 +232,18 @@ approvalSelect.addEventListener('change', function() {
         commentSectionA.style.display = "block";
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
+        recommendSection.style.display = 'block';
     } else if (approvalSelect.value === "2") {
         approveButton.style.display = "none";
         commentSectionA.style.display = "none";
         rejectButton.style.display = "block";
-        commentSection.style.display = 'block'; 
+        commentSection.style.display = 'block';
+        recommendSection.style.display = 'none'; 
     } else {
         approveButton.style.display = "none";
         commentSectionA.style.display = 'none';
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
+        recommendSection.style.display = 'none';
     }
 });
