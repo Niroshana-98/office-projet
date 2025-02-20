@@ -180,7 +180,7 @@ document.getElementById("Documents-btn").addEventListener("click", function() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = "applicationView.php";
+            window.location.href = "officerApplicationView.php";
         } else {
             console.error("Error updating status:", data.error);
             alert("Failed to update status. Please try again.");

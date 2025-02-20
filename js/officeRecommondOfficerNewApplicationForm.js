@@ -150,14 +150,24 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".approve-btn").addEventListener("click", function() {
         const comment = document.getElementById("commentsA").value.trim();
         const nic = document.getElementById("nic").value.trim();
+        const recommendSelect = document.getElementById("recommendSelect");
+        const recommendation = recommendSelect.value.trim();
     
         // Ensure that the comment is entered for rejection
         if (status == 1 && !comment) {
             alert("Please provide a comment for the Approved.");
             return;
         }
+
+        if (!recommendation) {  
+            recommendSelect.classList.add("error");  // Add a red border (CSS required)
+            alert("කරුණාකර නිර්දේශය තෝරන්න!"); // Alert in Sinhala
+            return;
+        } else {
+            recommendSelect.classList.remove("error");
+        }
     
-        updateAppStatus(1, comment, nic);
+        updateAppStatus(1, comment, nic, recommendation);
     });
     
     document.querySelector(".reject-btn").addEventListener("click", function() {
@@ -175,11 +185,20 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function updateAppStatus(status, comment = '', nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
-        const recommendation = document.getElementById('recommendSelect').value;
+        const recommendSelect = document.getElementById('recommendSelect');
+        const recommendation = recommendSelect.value;
     
         if (!appNo) {
             console.error("Application number is missing.");
             return;
+        }
+
+        if (status === "1" && !recommendation) {  
+            recommendSelect.classList.add("error"); 
+            alert("කරුණාකර නිර්දේශය තෝරන්න!"); 
+            return; 
+        } else {
+            recommendSelect.classList.remove("error"); 
         }
     
         const data = {
@@ -218,8 +237,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
             
 });
-
 const approvalSelect = document.getElementById('approvalSelect');
+const recommendSelect = document.getElementById('recommendSelect');
 const approveButton = document.getElementById('approveButton');
 const rejectButton = document.getElementById('rejectButton');
 const commentSection = document.getElementById('commentSection');
@@ -247,3 +266,4 @@ approvalSelect.addEventListener('change', function() {
         recommendSection.style.display = 'none';
     }
 });
+

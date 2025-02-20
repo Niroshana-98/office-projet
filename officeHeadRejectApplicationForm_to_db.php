@@ -17,7 +17,7 @@ $app_no = $_SESSION['app_no'];
 // Updated query to join with the corresponding tables to get names
 $stmt = $conn->prepare("
     SELECT 
-        a.app_no, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, a.tel_mob, a.email_pri, 
+        a.app_no, a.reason, a.name_si, a.name_full, a.name_eng, a.nic, a.address_pri, a.tel_land, a.tel_mob, a.email_pri, 
         a.service, a.grade, a.upp_status, a.desi, a.c_w_p, a.min, a.date_att_sp, a.ins_name, a.course_name, 
         a.service_minite_no, a.course_start_date, a.course_end_date, a.course_fee, a.before_recieved, 
         a.bf_01course_name, a.bf_01ins_name, a.bf_01start_date, a.bf_01gov_paid, a.bf_01full_course_fee, 
@@ -27,7 +27,7 @@ $stmt = $conn->prepare("
         s.service_name, g.grade_name, d.desi_name, m.min_name,
         o.offi_id, o.offi_name, a.created,
         a.Subject_time_stamp, u1.name AS subject_officer_name, u1.desi AS designation,  a.Subject_Aprv_Rm,
-        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM,
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM, a.office_Rec_Recommend,
         a.Office_head_time_stamp, u3.name AS office_head_name, u3.desi AS offiHeadDesignation, a.Office_head_Reject_RM 
     FROM 
         application a
@@ -70,7 +70,7 @@ $stmt = $conn->prepare("
 $stmt->bind_param("s", $app_no);
 $stmt->execute();
 $stmt->bind_result(
-    $appNo, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
+    $appNo, $reason, $nameSi, $nameFull, $nameEng, $nic, $addressPri, $telLand, $telMob, $emailPri, 
     $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, 
     $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, 
     $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, 
@@ -79,7 +79,7 @@ $stmt->bind_result(
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $Subject_time_stamp,
     $subject_officer_name, $designation, $Subject_Aprv_Rm, $office_Rec_time_stamp,
-    $recommend_officer_name, $recDesignation, $office_Rec_Aprv_RM,
+    $recommend_officer_name, $recDesignation, $office_Rec_Aprv_RM, $office_Rec_Recommend,
     $Office_head_time_stamp, $office_head_name, $offiHeadDesignation, $Office_head_Reject_RM
 
 );
@@ -92,6 +92,7 @@ if ($appNo) {
     echo json_encode([
         'success' => true,
         'app_no' => $appNo,
+        'reason' => $reason,
         'name_si' => $nameSi,
         'name_full' => $nameFull,
         'name_eng' => $nameEng,
@@ -142,6 +143,7 @@ if ($appNo) {
         'recommend_officer_name' => $recommend_officer_name,
         'recDesignation' => $recDesignation,
         'office_Rec_Aprv_RM' => $office_Rec_Aprv_RM,
+        'office_Rec_Recommend' => $office_Rec_Recommend,
         'Office_head_time_stamp' => $Office_head_time_stamp,
         'office_head_name' => $office_head_name,
         'offiHeadDesignation' => $offiHeadDesignation,

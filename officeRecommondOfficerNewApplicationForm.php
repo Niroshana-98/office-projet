@@ -384,12 +384,12 @@
 
         <div id="recommendSection">
             <span>අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර </span>
-            <select class="form-selects" id="recommendSelect" >
+            <select class="form-selects" id="recommendSelect" required >
                 <option value="" selected>Open this select menu</option>
                 <option value="1">නිර්දේශ කරමි</option>
                 <option value="2">නිර්දේශ නොකරමි</option>
             </select>
-        </div>
+        </div> 
 
         <div class="button-container">
             <button class="btn approve-btn" id="approveButton" style="display: none;">Approve</button>

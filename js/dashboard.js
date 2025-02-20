@@ -372,5 +372,3 @@ document.getElementById('terms-checkbox-37').addEventListener('change', function
         submitButton.style.cursor = "not-allowed";  
     }
 });
-
-

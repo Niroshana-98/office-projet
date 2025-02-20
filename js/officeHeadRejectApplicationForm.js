@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+
+            if(data.reason === 1){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම";
+            }else if(data.reason === 2){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම";
+            }
+
             document.getElementById("appNoDisplay").innerText = data.app_no;
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
@@ -65,6 +72,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Recommend Officer Details
             const remarkRecDiv = document.getElementById("remarkRec");
+            const recommendationText = document.getElementById("offiRecRecommendation");
+
+            if (data.office_Rec_Recommend === 1) {
+                recommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                recommendationText.style.color = "green"; 
+            } else if (data.office_Rec_Recommend === 2) {
+                recommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                recommendationText.style.color = "red"; 
+            }
+            
 
             if (!data.office_Rec_Aprv_RM) {
                 remarkRecDiv.style.display = "none";

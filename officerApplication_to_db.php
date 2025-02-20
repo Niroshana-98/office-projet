@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect data from the POST request 
+    $reason = isset($_POST['reason']) ? $_POST['reason'] : null;
     $name_full = $_POST['fname'];
     $name_si = $_POST['iname'];
     $name_eng = $_POST['iename'];
@@ -170,17 +171,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Insert data into application table (including offi_cat and dist_offi_id)
         $stmts = $conn->prepare("INSERT INTO application (
-            name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, 
+            reason, name_full, name_si, name_eng, nic, address_pri, tel_land, tel_mob, email_pri, 
             service, grade, upp_status, desi, c_w_p, min, date_att_sp, ins_name, course_name, 
             service_minite_no, course_start_date, course_end_date, course_fee, before_recieved, 
             bf_01course_name, bf_01ins_name, bf_01start_date, bf_01gov_paid, bf_01full_course_fee, 
             bf_02course_name, bf_02ins_name, bf_02start_date, bf_02gov_paid, bf_02full_course_fee, created, 
             app_status, offi_cat, min_id, dep_id, dist_offi_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
         $stmts->bind_param(
-            "sssssiisssssssssssssissssiisssiiiiiiii", 
-            $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, 
+            "isssssiisssssssssssssissssiisssiiiiiiii", 
+            $reason, $name_full, $name_si, $name_eng, $nic, $address_pri, $tel_land, $tel_mob, $email_pri, 
             $service, $grade, $upp_status, $desi, $c_w_p, $min, $date_att_sp, $ins_name, $course_name, 
             $service_minite_no, $course_start_date, $course_end_date, $course_fee, $before_recieved, 
             $bf_01course_name, $bf_01ins_name, $bf_01start_date, $bf_01gov_paid, $bf_01full_course_fee, 

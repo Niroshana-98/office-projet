@@ -41,15 +41,15 @@
                         <li id="finish"><strong>View</strong></li>
                     </ul>
                     <!--Fieldset 1-->
-                    <fieldset>
-                    <div class="d-flex align-items-center gap-4">
-                        <h5 class="mb-0">ඔබ මෙම අයදුම්පත යොමුකරනු ලබන්නේ</h5>
-                        <select class="form-select required-field" id="reason" name="reason" style="width: 450px;" required>
-                            <option value="">Open this select menu</option>
-                            <option value="1">පූර්ව අනුමැතිය හා ප්‍රතිපාදන ඉල්ලුම් කිර්‍රිමට</option>
-                            <option value="2">පූර්ව අනුමැතිය ලබාගැනීමට</option>
-                        </select>
-                    </div>
+                    <fieldset> 
+                        <div class="d-flex align-items-center gap-4">
+                            <h5 class="mb-0">ඔබ මෙම අයදුම්පත යොමුකරනු ලබන්නේ</h5>
+                            <select class="form-select required-field" id="reason" name="reason" style="width: 450px;" required>
+                                <option value="">Open this select menu</option>
+                                <option value="1">පූර්ව අනුමැතිය හා ප්‍රතිපාදන ඉල්ලුම් කිර්‍රිමට</option>
+                                <option value="2">පූර්ව අනුමැතිය ලබාගැනීමට</option>
+                            </select>
+                        </div>
                         <h3 class="fs-title">Personal Details:</h3>
                         <h2 class="steps">Step 1 - 4</h2>
                         <div class="row">

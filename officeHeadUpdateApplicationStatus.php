@@ -43,7 +43,8 @@ if (!isset($data['app_no']) || !isset($data['status'])) {
 $app_no = $data['app_no'];
 $status = $data['status'];
 $comment = isset($data['comment']) ? $data['comment'] : '';
-$nic = isset($data['nic']) ? $data['nic'] : '';
+$nic = isset($data['nic']) ? $data['nic'] : ''; 
+$recommendation = isset($data['office_head_Recommend']) ? $data['office_head_Recommend'] : '';
 
 // Fetch offi_cat for the given app_no
 $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?");
@@ -75,8 +76,8 @@ if ($status == 1) {
     }
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Office_head_Aprv_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ?, Dist_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
-    $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, office_head_Recommend = ?, Office_head_Aprv_RM = ?, Office_head_time_stamp = NOW(), Office_head_user_id = ?, Dist_Chk_Offi_Reject_RM = NULL WHERE app_no = ?");
+    $stmt->bind_param("iisis", $app_status, $recommendation, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
@@ -109,9 +110,7 @@ if ($status == 2 && !empty($comment)) {
         $stmt->close();
 
         // Set app_status based on conditions
-        if ($user_status == 18) {
-            $status = 4;  
-        } elseif ($offi_cat == 6) {
+        if ($offi_cat == 6) {
             $status = 151;
         } elseif ($offi_cat == 5) {
             $status = 141;

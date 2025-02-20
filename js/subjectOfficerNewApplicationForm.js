@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("recommendOfficerDate").value = data.Dist_Rec_Offi_time_stamp;
                 }
             } else{
+
                 if (!data.office_Rec_Reject_RM) { 
                     rejectByRecDiv.style.display = "none";
                     appliHR.style.display = "none";

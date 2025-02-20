@@ -128,7 +128,7 @@ if ($status == 2 && !empty($comment)) {
             }
         }
 
-        echo json_encode(['success' => true, 'message' => 'Application rejected successfully, but no user status update was needed']);
+        echo json_encode(['success' => true, 'message' => 'Application rejected successfully.']);
     } else {
         echo json_encode(['success' => false, 'error' => 'Failed to update rejection details']);
     }

@@ -27,7 +27,7 @@ $stmt = $conn->prepare("
         s.service_name, g.grade_name, d.desi_name, m.min_name,
         o.offi_id, o.offi_name, a.created,
         a.Subject_time_stamp, u1.name AS subject_officer_name, u1.desi AS designation,  a.Subject_Aprv_Rm,
-        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM 
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Aprv_RM, a.office_Rec_Recommend 
     FROM 
         application a
     LEFT JOIN 
@@ -74,7 +74,7 @@ $stmt->bind_result(
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $Subject_time_stamp,
     $subject_officer_name, $designation, $Subject_Aprv_Rm, $office_Rec_time_stamp,
-    $recommend_officer_name, $recDesignation, $office_Rec_Aprv_RM 
+    $recommend_officer_name, $recDesignation, $office_Rec_Aprv_RM , $office_Rec_Recommend
 );
 
 $stmt->fetch();
@@ -135,7 +135,8 @@ if ($appNo) {
         'office_Rec_time_stamp' => $office_Rec_time_stamp,
         'recommend_officer_name' => $recommend_officer_name,
         'recDesignation' => $recDesignation,
-        'office_Rec_Aprv_RM' => $office_Rec_Aprv_RM
+        'office_Rec_Aprv_RM' => $office_Rec_Aprv_RM,
+        'office_Rec_Recommend' => $office_Rec_Recommend
     ]);
 } else {
     echo json_encode(['success' => false, 'error' => 'Application number not found']);

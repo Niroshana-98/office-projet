@@ -304,6 +304,9 @@
         <hr id="appliHR">
 
         <div id="rejectBySub">
+            <span id="rejectReaconRec">
+                
+            </span>
             <div id="remarkRec">
                 <div class="table-responsive">
                     <table class="table" id="tableApplicate">

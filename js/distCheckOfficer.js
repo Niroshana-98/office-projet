@@ -44,21 +44,7 @@ function fetchUserDetails() {
         .then(data => {
             if (data.name && data.offi_name) {
                 document.getElementById('user-name').textContent = data.name;
-                document.getElementById('user-work-place').textContent = data.offi_name;
-
-                // Update My Application link based on app_status
-                let appLink = document.getElementById("my-application-link");
-                
-                if (data.app_status === 0) {
-                    appLink.href = "./officerApplication.php";
-                } else if (data.app_status === 1) {
-                    appLink.href = "./officerApplicationUpload.php";
-                } else if(data.app_status === 4){
-                    appLink.href = "./officerApplicationReject.php"; 
-                } else{
-                    appLink.href = "./officerApplicationView.php"; 
-                }
-                
+                document.getElementById('user-work-place').textContent = data.offi_name;                
             } else {
                 console.error(data.error);
             }

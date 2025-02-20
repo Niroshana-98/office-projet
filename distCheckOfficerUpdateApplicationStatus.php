@@ -98,7 +98,7 @@ if ($status == 2 && !empty($comment)) {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Reject_RM = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Chk_Offi_Reject_RM = ?, Dist_Chk_Offi_time_stamp = NOW(), Dist_Chk_Offi_user_id = ?, Dist_Rec_Offi_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

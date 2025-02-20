@@ -26,7 +26,7 @@ $stmt = $conn->prepare("
         a.up_campus_confirm, a.up_course_complete, a.up_pay_recept, a.up_other,
         s.service_name, g.grade_name, d.desi_name, m.min_name,
         o.offi_id, o.offi_name, a.created, a.offi_cat,
-        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Reject_RM,
+        a.office_Rec_time_stamp, u2.name AS recommend_officer_name, u2.desi AS recDesignation, a.office_Rec_Reject_RM, a.office_Rec_Recommend,
         a.Dist_Rec_Offi_time_stamp, u3.name AS dist_recommend_officer_name, u3.desi AS distRecDesignation, a.Dist_Rec_Offi_Reject_RM,
         a.Dep_Rec_Offi_time_stamp, u4.name AS dep_recommend_officer_name, u4.desi AS depRecDesignation, a.Dep_Rec_Offi_Reject_RM,
         a.Min_Rec_Offi_time_stamp, u5.name AS min_recommend_officer_name, u5.desi AS minRecDesignation, a.Min_Rec_Offi_Reject_RM
@@ -82,7 +82,7 @@ $stmt->bind_result(
     $up_porva_anu, $up_service_minite, $up_app_letter_confirm, $up_attach_sp, $up_course_selected, 
     $up_campus_confirm, $up_course_complete, $up_pay_recept, $up_other, 
     $service_name, $grade_name, $desi_name, $min_name, $offi_id, $offi_name, $created, $offi_cat,
-    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM,
+    $office_Rec_time_stamp, $recommend_officer_name, $recDesignation, $office_Rec_Reject_RM, $office_Rec_Recommend,
     $Dist_Rec_Offi_time_stamp, $dist_recommend_officer_name, $distRecDesignation, $Dist_Rec_Offi_Reject_RM,
     $Dep_Rec_Offi_time_stamp, $dep_recommend_officer_name, $depRecDesignation, $Dep_Rec_Offi_Reject_RM,
     $Min_Rec_Offi_time_stamp, $min_recommend_officer_name, $minRecDesignation, $Min_Rec_Offi_Reject_RM
@@ -143,6 +143,7 @@ if ($appNo) {
         'recommend_officer_name' => $recommend_officer_name,
         'recDesignation' => $recDesignation,
         'office_Rec_Reject_RM' => $office_Rec_Reject_RM,
+        'office_Rec_Recommend' => $office_Rec_Recommend,
         'Dist_Rec_Offi_time_stamp' => $Dist_Rec_Offi_time_stamp,
         'dist_recommend_officer_name' => $dist_recommend_officer_name,
         'distRecDesignation' => $distRecDesignation,

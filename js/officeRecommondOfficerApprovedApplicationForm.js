@@ -55,8 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 //Recommend Officer Details
                 const remarkRecDiv = document.getElementById("remarkRec");
 
+                const recommendationText = document.getElementById("offiRecRecommendation");
+
+                if (data.office_Rec_Recommend === 1) {
+                    recommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    recommendationText.style.color = "green"; 
+                } else if (data.office_Rec_Recommend === 2) {
+                    recommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    recommendationText.style.color = "red"; 
+                }
+
                 if (!data.office_Rec_Aprv_RM) {
-                    remarkRecDiv.style.display = "none";
+                    remarkRecDiv.style.display = "none"; 
                 } else {
                     document.getElementById("RemarkRec").value = data.office_Rec_Aprv_RM;
                 }
