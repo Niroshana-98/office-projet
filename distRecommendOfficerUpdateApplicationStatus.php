@@ -19,7 +19,7 @@ if (!isset($_SESSION['nic'])) {
 }
 
 // Get the NIC from the session
-$nic = $_SESSION['nic'];
+$nic = $_SESSION['nic']; 
 
 // Fetch user_id for the logged-in NIC from the users table
 $stmt = $conn->prepare("SELECT user_id FROM users WHERE nic = ?");
@@ -44,6 +44,7 @@ $app_no = $data['app_no'];
 $status = $data['status'];
 $comment = isset($data['comment']) ? $data['comment'] : '';
 $nic = isset($data['nic']) ? $data['nic'] : '';
+$recommendation = isset($data['Dist_Rec_Offi_Recommend']) ? $data['Dist_Rec_Offi_Recommend'] : '';
 
 // Fetch offi_cat for the given app_no
 $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?"); 
@@ -70,8 +71,8 @@ if ($status == 1) {
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Aprv_Rm = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ?, Dist_offi_head_Reject_RM = NULL WHERE app_no = ?");
-    $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Recommend = ?, Dist_Rec_Offi_Aprv_Rm = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ?, Dist_offi_head_Reject_RM = NULL WHERE app_no = ?");
+    $stmt->bind_param("iisis", $app_status, $recommendation, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
@@ -96,7 +97,7 @@ if ($status == 2 && !empty($comment)) {
         echo json_encode(['success' => false, 'error' => 'Invalid offi_cat value']);
         exit();
     }
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Reject_RM = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dist_Rec_Offi_Reject_RM = ?, Dist_Rec_Offi_time_stamp = NOW(), Dist_Rec_Offi_user_id = ? , Dist_offi_head_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

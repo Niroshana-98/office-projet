@@ -304,7 +304,7 @@
         
         <div id = "subjectOfficerDiv">
             <span>
-                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+                පෞද්ගලික ලිපිගොනුව අනුව පරීක්ෂා කර බලා අයදුම්කරු විසින් ඇතුළත් කර ඇති තොරතුරු නිවැරදි බව තහවුරු කරමි.
             </span>
 
             <div id="remark">
@@ -334,8 +334,8 @@
         <hr id = "subjectOfficerHR">
         
         <div id ="offiRecOfficerDiv">
-            <span>
-                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            <span id="offiRecRecommendation">
+                
             </span>
 
             <div id="remarkRec">
@@ -365,8 +365,8 @@
         <hr id = "offiRecOfficerHR">
 
         <div id="offiHeadDiv">
-            <span>
-                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+            <span id="offiHeadRecommendation">
+                
             </span>
 
             <div id="remarkOfficeHead">
@@ -397,7 +397,7 @@
 
         <div id ="distChkOffiDiv">
             <span>
-                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+                ප්‍ර.ලේ.චක්‍රලේඛ 02/2023 අනුව අයදුම්කරු විසින් සියලු තොරුතුරු ඇතුළත් කර ඇති බවට තහවුරු කරමි
             </span>
 
             <div id="remarkDistChkOfficerDiv">
@@ -428,7 +428,7 @@
 
         <div id ="distOffiHeadDiv">
             <span>
-                උක්ත තොරතුරු සත්‍ය හා නිවැරදි බවත් මීට පෙර පශ්චාත් උපාධි / ඩිප්ලෝමා/පුහුණු පාඨමාලා සඳහා රජය මඟින් ප්‍රතිපාදන ලබා දී ඇති/නොමැති අතර ප්‍රධාන ලේකම් පරිපාලන චක්‍රලේඛ 02/2023 අනුව කටයුතු කිරිමට එකඟ වෙමි.
+                
             </span>
 
             <div id="rejectDistOffiHeadDiv">
@@ -473,6 +473,15 @@
             <label for="comments">ඉහත අංක දරණ තොරතුරු නිවරදි වේ:</label>
             <textarea id="commentsA" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
         </div>
+
+        <div id="recommendSection">
+            <span>අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර  </span>
+            <select class="form-selects" id="recommendSelect" required >
+                <option value="" selected>Open this select menu</option>
+                <option value="1">නිර්දේශ කරමි</option>
+                <option value="2">නිර්දේශ නොකරමි</option>
+            </select>
+        </div> 
 
         <div class="button-container">
             <button class="btn approve-btn" id="approveButton" style="display: none;">Approve</button>

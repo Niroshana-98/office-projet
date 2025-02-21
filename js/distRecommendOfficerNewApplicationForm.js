@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) { 
+
+            if(data.reason === 1){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම";
+            }else if(data.reason === 2){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම";
+            }
+
             document.getElementById("appNoDisplay").innerText = data.app_no; 
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
@@ -67,6 +74,15 @@ document.addEventListener("DOMContentLoaded", function () {
             } else{
                 //Recommend Officer Details
                 const remarkRecDiv = document.getElementById("remarkRec");
+                const recommendationText = document.getElementById("offiRecRecommendation");
+
+                if (data.office_Rec_Recommend === 1) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි";
+                    recommendationText.style.color = "green"; 
+                } else if (data.office_Rec_Recommend === 2) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි ";
+                    recommendationText.style.color = "red"; 
+                }
 
                 if (!data.office_Rec_Aprv_RM) {
                     remarkRecDiv.style.display = "none";
@@ -80,6 +96,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //Office head Details
                 const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+                const offiHeadRecommendationText = document.getElementById("offiHeadRecommendation");
+
+                if (data.office_head_Recommend === 1) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    offiHeadRecommendationText.style.color = "green"; 
+                } else if (data.office_head_Recommend === 2) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    offiHeadRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Office_head_Aprv_RM) {
                     remarkOfficeHeadDiv.style.display = "none";
@@ -205,14 +230,24 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".approve-btn").addEventListener("click", function() {
         const comment = document.getElementById("commentsA").value.trim();
         const nic = document.getElementById("nic").value.trim();
+        const recommendSelect = document.getElementById("recommendSelect");
+        const recommendation = recommendSelect.value.trim();
     
         // Ensure that the comment is entered for rejection
         if (status == 1 && !comment) {
             alert("Please provide a comment for the Approved.");
             return;
         }
+
+        if (!recommendation) {  
+            recommendSelect.classList.add("error");  // Add a red border (CSS required)
+            alert("කරුණාකර නිර්දේශය තෝරන්න!"); // Alert in Sinhala
+            return;
+        } else {
+            recommendSelect.classList.remove("error");
+        }
     
-        updateAppStatus(1, comment, nic);
+        updateAppStatus(1, comment, nic, recommendation);
     });
 
     document.querySelector(".reject-btn").addEventListener("click", function() {
@@ -229,17 +264,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     function updateAppStatus(status, comment = '' , nic = '') {
         const appNo = document.getElementById("appNoDisplay").innerText;
+        const recommendSelect = document.getElementById('recommendSelect');
+        const recommendation = recommendSelect.value;
         
         if (!appNo) {
             console.error("Application number is missing.");
             return;
         }
 
+        if (status === "1" && !recommendation) {  
+            recommendSelect.classList.add("error"); 
+            alert("කරුණාකර නිර්දේශය තෝරන්න!"); 
+            return; 
+        } else {
+            recommendSelect.classList.remove("error"); 
+        }
+
         const data = {
             app_no: appNo,
             status: status,
             comment: comment,
-            nic: nic 
+            nic: nic,
+            Dist_Rec_Offi_Recommend: recommendation 
         };
     
         fetch('distRecommendOfficerUpdateApplicationStatus.php', {
@@ -266,10 +312,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const approvalSelect = document.getElementById('approvalSelect');
+const recommendSelect = document.getElementById('recommendSelect');
 const approveButton = document.getElementById('approveButton');
 const rejectButton = document.getElementById('rejectButton');
 const commentSection = document.getElementById('commentSection');
 const commentSectionA = document.getElementById('commentSectionA');
+const recommendSection = document.getElementById('recommendSection');
 
 approvalSelect.addEventListener('change', function() {
     if (approvalSelect.value === "1") {
@@ -277,15 +325,18 @@ approvalSelect.addEventListener('change', function() {
         commentSectionA.style.display = "block";
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
+        recommendSection.style.display = 'block';
     } else if (approvalSelect.value === "2") {
         approveButton.style.display = "none";
         commentSectionA.style.display = "none";
         rejectButton.style.display = "block";
-        commentSection.style.display = 'block'; 
+        commentSection.style.display = 'block';
+        recommendSection.style.display = 'none'; 
     } else {
         approveButton.style.display = "none";
         commentSectionA.style.display = 'none';
         rejectButton.style.display = "none";
         commentSection.style.display = 'none'; 
+        recommendSection.style.display = 'none';
     }
 });
