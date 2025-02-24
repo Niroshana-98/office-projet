@@ -19,7 +19,7 @@
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
         </div>     
     </div> 
-    <div class="tableLayout"> 
+    <div class="tableLayout">  
         <div class="table-responsive">
             <table class="table small-table" id="dataTable">
                 <thead>

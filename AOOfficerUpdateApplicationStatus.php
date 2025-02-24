@@ -44,6 +44,7 @@ $app_no = $data['app_no'];
 $status = $data['status'];
 $comment = isset($data['comment']) ? $data['comment'] : '';
 $nic = isset($data['nic']) ? $data['nic'] : '';
+$recommendation = isset($data['AO_Recommend']) ? $data['AO_Recommend'] : '';
 
 // Fetch offi_cat for the given app_no
 $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?"); 
@@ -70,8 +71,8 @@ if ($status == 1) {
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, AO_Aprv_RM = ?, AO_time_stamp = NOW(), AO_user_id = ?, ACS_Reject_RM = NULL WHERE app_no = ?");
-    $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, AO_Recommend = ?, AO_Aprv_RM = ?, AO_time_stamp = NOW(), AO_user_id = ?, ACS_Reject_RM = NULL WHERE app_no = ?");
+    $stmt->bind_param("iisis", $app_status, $recommendation, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
@@ -91,7 +92,7 @@ if ($status == 2 && !empty($comment)) {
     $status = 101;
     
     
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, AO_Reject_RM = ?, AO_time_stamp = NOW(), AO_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, AO_Reject_RM = ?, AO_time_stamp = NOW(), AO_user_id = ?, ACS_Reject_RM = NULL  WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

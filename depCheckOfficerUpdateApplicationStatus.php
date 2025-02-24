@@ -96,7 +96,7 @@ if ($status == 2 && !empty($comment)) {
         $status = 155;
     }
 
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_Chk_Offi_Reject_RM = ?, Dep_Chk_Offi_time_stamp = NOW(), Dep_Chk_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Dep_Chk_Offi_Reject_RM = ?, Dep_Chk_Offi_time_stamp = NOW(), Dep_Chk_Offi_user_id = ?, Dep_Rec_Offi_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {

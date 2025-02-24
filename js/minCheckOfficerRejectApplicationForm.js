@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+
+            if(data.reason === 1){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම";
+            }else if(data.reason === 2){
+                document.getElementById("applicationType").innerText = "පූර්ව අනුමැතිය ලබා ගැනීම";
+            }
+
             document.getElementById("appNoDisplay").innerText = data.app_no;
             document.getElementById("name_si").value = data.name_si;
             document.getElementById("name_full").value = data.name_full;
@@ -90,6 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 offiHeadHR.style.display = "none";
 
                 const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
+                const distRecRecommendationText = document.getElementById("distRecRecommendation");
+
+                if (data.Dist_Rec_Offi_Recommend === 1) {
+                    distRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි.";
+                    distRecRecommendationText.style.color = "green"; 
+                } else if (data.Dist_Rec_Offi_Recommend === 2) {
+                    distRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි.";
+                    distRecRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Dist_Rec_Offi_Aprv_Rm){
                     remarkDistRecOfficerDiv.style.display = "none";
@@ -102,6 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
+                const distOffiHeadRecommendationText = document.getElementById("distOffiHeadRecommendation");
+
+                if (data.Dist_offi_head_Recommend === 1) {
+                    distOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    distOffiHeadRecommendationText.style.color = "green"; 
+                } else if (data.Dist_offi_head_Recommend === 2) {
+                    distOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    distOffiHeadRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
@@ -129,6 +154,15 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if(data.offi_cat === 5){
                 //Recommend Officer Details
                 const remarkRecDiv = document.getElementById("remarkRec");
+                const recommendationText = document.getElementById("offiRecRecommendation");
+
+                if (data.office_Rec_Recommend === 1) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි";
+                    recommendationText.style.color = "green"; 
+                } else if (data.office_Rec_Recommend === 2) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි ";
+                    recommendationText.style.color = "red"; 
+                }
 
                 if (!data.office_Rec_Aprv_RM) {
                     remarkRecDiv.style.display = "none";
@@ -142,6 +176,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //Office head Details
                 const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+                const offiHeadRecommendationText = document.getElementById("offiHeadRecommendation");
+
+                if (data.office_head_Recommend === 1) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    offiHeadRecommendationText.style.color = "green"; 
+                } else if (data.office_head_Recommend === 2) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    offiHeadRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Office_head_Aprv_RM) {
                     remarkOfficeHeadDiv.style.display = "none";
@@ -168,6 +211,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //District Recommend Officer Details
                 const remarkDistRecOfficerDiv = document.getElementById("remarkDistRecOfficerDiv");
+                const distRecRecommendationText = document.getElementById("distRecRecommendation");
+
+                if (data.Dist_Rec_Offi_Recommend === 1) {
+                    distRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි.";
+                    distRecRecommendationText.style.color = "green"; 
+                } else if (data.Dist_Rec_Offi_Recommend === 2) {
+                    distRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි.";
+                    distRecRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Dist_Rec_Offi_Aprv_Rm) {
                     remarkDistRecOfficerDiv.style.display = "none";
@@ -181,6 +233,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //District Office Head Details
                 const remarkDistOffiHeadDiv = document.getElementById("remarkDistOffiHeadDiv");
+                const distOffiHeadRecommendationText = document.getElementById("distOffiHeadRecommendation");
+
+                if (data.Dist_offi_head_Recommend === 1) {
+                    distOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    distOffiHeadRecommendationText.style.color = "green"; 
+                } else if (data.Dist_offi_head_Recommend === 2) {
+                    distOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    distOffiHeadRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Dist_offi_head_Aprv_RM) {
                     remarkDistOffiHeadDiv.style.display = "none";
@@ -216,6 +277,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //Recommend Officer Details
                 const remarkRecDiv = document.getElementById("remarkRec");
+                const recommendationText = document.getElementById("offiRecRecommendation");
+
+                if (data.office_Rec_Recommend === 1) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි";
+                    recommendationText.style.color = "green"; 
+                } else if (data.office_Rec_Recommend === 2) {
+                    recommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි ";
+                    recommendationText.style.color = "red"; 
+                }
 
                 if (!data.office_Rec_Aprv_RM) {
                     remarkRecDiv.style.display = "none";
@@ -229,6 +299,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //Office head Details
                 const remarkOfficeHeadDiv = document.getElementById("remarkOfficeHead");
+                const offiHeadRecommendationText = document.getElementById("offiHeadRecommendation");
+
+                if (data.office_head_Recommend === 1) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                    offiHeadRecommendationText.style.color = "green"; 
+                } else if (data.office_head_Recommend === 2) {
+                    offiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි.";
+                    offiHeadRecommendationText.style.color = "red"; 
+                }
 
                 if(!data.Office_head_Aprv_RM) {
                     remarkOfficeHeadDiv.style.display = "none";
@@ -255,7 +334,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             //Department Recommend Officer Details
-            const remarkDepRecOffiDiv = document.getElementById("remarkRecChkOffiDiv");
+            const remarkDepRecOffiDiv = document.getElementById("remarkDepRecOffiDiv");
+            const depOffiRecRecommendationText = document.getElementById("depOffiRecRecommendation");
+
+            if (data.Dep_Rec_Offi_Recommend === 1) {
+                depOffiRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ කරමි";
+                depOffiRecRecommendationText.style.color = "green"; 
+            } else if (data.Dep_Rec_Offi_Recommend === 2) {
+                depOffiRecRecommendationText.innerText = "අයදුම්කරු විසින් ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව ඇතුළත් කර ඇති තොරතුරු පරීක්ෂා කර නිර්දේශ නොකරමි";
+                depOffiRecRecommendationText.style.color = "red"; 
+            }
 
             if(!data.Dep_Rec_Offi_Aprv_RM) {
                 remarkDepRecOffiDiv.style.display = "none";
@@ -269,6 +357,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Department Head Details
             const remarkDepHeadDiv = document.getElementById("remarkDepHeadDiv");
+            const depOffiHeadRecommendationText = document.getElementById("depOffiHeadRecommendation");
+
+            if (data.Dep_head_Recommend === 1) {
+                depOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ කරමි";
+                depOffiHeadRecommendationText.style.color = "green"; 
+            } else if (data.Dep_head_Recommend === 2) {
+                depOffiHeadRecommendationText.innerText = "ප්‍ර.ලේ. චක්‍රලේඛ 02/2023 අනුව අයදුම්කරුගේ ඉල්ලීම නිර්දේශ නොකරමි";
+                depOffiHeadRecommendationText.style.color = "red"; 
+            }
 
             if(!data.Dep_head_Aprv_RM) {
                 remarkDepHeadDiv.style.display = "none";

@@ -43,7 +43,8 @@ if (!isset($data['app_no']) || !isset($data['status'])) {
 $app_no = $data['app_no'];
 $status = $data['status'];
 $comment = isset($data['comment']) ? $data['comment'] : '';
-$nic = isset($data['nic']) ? $data['nic'] : '';
+$nic = isset($data['nic']) ? $data['nic'] : ''; 
+$recommendation = isset($data['Min_Rec_Offi_Recommend']) ? $data['Min_Rec_Offi_Recommend'] : '';
 
 // Fetch offi_cat for the given app_no
 $stmt = $conn->prepare("SELECT offi_cat FROM application WHERE app_no = ?"); 
@@ -70,8 +71,8 @@ if ($status == 1) {
     
 
     // Update the application status
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Min_Rec_Offi_Aprv_RM = ?, Min_Rec_Offi_time_stamp = NOW(), Min_Rec_Offi_user_id = ?, Min_head_Reject_RM = NULL WHERE app_no = ?");
-    $stmt->bind_param("isis", $app_status, $comment, $user_id, $app_no);
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Min_Rec_Offi_Recommend = ?, Min_Rec_Offi_Aprv_RM = ?, Min_Rec_Offi_time_stamp = NOW(), Min_Rec_Offi_user_id = ?, Min_head_Reject_RM = NULL WHERE app_no = ?");
+    $stmt->bind_param("iisis", $app_status, $recommendation, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Application approved successfully', 'new_status' => $app_status]);
@@ -94,7 +95,7 @@ if ($status == 2 && !empty($comment)) {
         $status = 115;
     }
     
-    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Min_Rec_Offi_Reject_RM = ?, Min_Rec_Offi_time_stamp = NOW(), Min_Rec_Offi_user_id = ? WHERE app_no = ?");
+    $stmt = $conn->prepare("UPDATE application SET app_status = ?, Min_Rec_Offi_Reject_RM = ?, Min_Rec_Offi_time_stamp = NOW(), Min_Rec_Offi_user_id = ?, Min_head_Reject_RM = NULL WHERE app_no = ?");
     $stmt->bind_param("isis", $status, $comment, $user_id, $app_no);
 
     if ($stmt->execute()) {
