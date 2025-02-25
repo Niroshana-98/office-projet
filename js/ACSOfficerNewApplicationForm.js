@@ -767,7 +767,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching application data:", error));
 
-
+ 
     document.querySelector(".approve-btn").addEventListener("click", function() {
         const comment = document.getElementById("commentsA").value.trim();
         const nic = document.getElementById("nic").value.trim();

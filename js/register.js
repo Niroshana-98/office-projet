@@ -105,14 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInput = document.getElementById('name');
     if (nameInput) {
         nameInput.addEventListener('input', function () {
-            const regex = /^[\u0D80-\u0DFF]+$/; // Allow only Sinhala characters
-            if (this.value && !regex.test(this.value)) {
-                alert("Invalid input: Only Sinhala characters are allowed.");
-                this.value = this.value.replace(/[^\u0D80-\u0DFF]/g, ''); // Remove invalid characters
-            }
+            this.value = this.value.replace(/[^\u0D80-\u0DFF .]/g, ''); // Remove invalid characters
         });
     }
-
     const nicInput = document.getElementById('nic');
     if (nicInput) {
         nicInput.addEventListener('blur', function () {

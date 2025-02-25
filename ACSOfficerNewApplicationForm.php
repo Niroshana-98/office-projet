@@ -13,7 +13,7 @@
         <div class="logo">
             <img src="./images/logo.png" alt="Logo">
         </div>
-        <div>
+        <div> 
             <h4><b>දකුණු පළාත් ප්‍රධාන ලේකම් කාර්යාලය<b></h4>
             <h5><b>සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා <span id="applicationType"></span> සඳහා වන අයදුම්පත්‍රය</b></h5>
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
