@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
 
                 const rejectSpan = document.getElementById("rejectMessage");
-                if (data.office_Rec_Reject_RM) {
-                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.office_Rec_Reject_RM}`;
+                if (data.Subject_Reject_RM) {
+                    rejectSpan.innerText = `කරුණාකර සදහන් කර ඇති අංකයට අදාල තොරතුරු නැවත පුරවන්න: ${data.Subject_Reject_RM}`;
                 } else {
                     rejectSpan.innerText = "No rejection information available.";
                 }
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("course_fee").value = data.course_fee;
                 document.getElementById("before_recieved").value = data.before_recieved;
 
-                // Show additional fieldsets if course information is available
+                // Show additional fieldsets if course information is available 
                 if (data.bf_01course_name) {
                     document.getElementById("bf_01course_name").value = data.bf_01course_name;
                     document.getElementById("bf_01ins_name").value = data.bf_01ins_name;
@@ -150,7 +150,7 @@ document.getElementById("updateButton").addEventListener("click", function () {
         "bf_02course_name", "bf_02ins_name", "bf_02start_date", "bf_02gov_paid", "bf_02full_course_fee"
     ];
 
-    let postData = `nic=${encodeURIComponent(document.getElementById("nic").value)}`;
+    let postData = `nic=${encodeURIComponent(document.getElementById("nic").value)}`; 
     fields.forEach(field => {
         const value = document.getElementById(field)?.value || "";
         postData += `&${field}=${encodeURIComponent(value)}`;
@@ -163,24 +163,18 @@ document.getElementById("updateButton").addEventListener("click", function () {
 
         xhr.onload = function () {
             if (xhr.status === 200) {
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        alert("Update successful!");
-                        window.location.href = "officerApplicationView.php"; 
-                    } else {
-                        console.error("Update failed:", response);
-                        alert("Update failed: " + (response.error || "Unknown error"));
-                    }
-                } catch (e) {
-                    console.error("Error parsing JSON:", xhr.responseText);
-                    alert("Invalid server response.");
+                if (xhr.responseText.trim() === "success") {
+                    alert("Update successful!");
+                    window.location.href = "officerApplicationView.php"; 
+                } else {
+                    console.error("Update failed:", xhr.responseText);
+                    alert("Update failed: " + xhr.responseText);
                 }
             } else {
                 console.error("Request failed. Status:", xhr.status);
                 alert("Server error. Please try again.");
             }
-        };     
+        };
 
         xhr.send(postData);
     } else {
@@ -270,14 +264,12 @@ function handleFileUpload(fileInputId, uploadButtonId, viewButtonId, uploadUrl) 
 }
 
 
-handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', 'rejectApplicationUpload_to_db.php');
-handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', 'rejectApplicationUpload_to_db.php');
-
-
+handleFileUpload('up_porva_anu', 'uploadButton', 'viewButton', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_service_minite', 'uploadButton_2', 'viewButton_2', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_app_letter_confirm', 'uploadButton_3', 'viewButton_3', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_attach_sp', 'uploadButton_4', 'viewButton_4', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_course_selected', 'uploadButton_5', 'viewButton_5', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', 'officerApplicationRejectUpload_to_db.php');
+handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', 'officerApplicationRejectUpload_to_db.php');

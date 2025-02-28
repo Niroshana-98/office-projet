@@ -1,16 +1,4 @@
-<?php
-session_start();
 
-$nic = isset($_SESSION['nic']) ? $_SESSION['nic'] : null;
-
-$email = isset($_GET['email']) ? $_GET['email'] : null;
-
-if (!$nic && !$email) {
-    echo "<script>alert('Email or NIC is required. Please try again.'); window.location.href='index.html';</script>";
-    exit;
-}
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">

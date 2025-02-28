@@ -13,7 +13,7 @@
         <div class="logo">
             <img src="./images/logo.png" alt="Logo">
         </div>
-        <div>
+        <div> 
             <h4><b>දකුණු පළාත් ප්‍රධාන ලේකම් කාර්යාලය<b></h4>
             <h5><b>සේවා ව්‍යවස්ථාවේ අවශ්‍යතාවය මත පශ්චාත් උපාධි/ඩිප්ලෝමා පාඨමාලා සඳහා පූර්ව අනුමැතිය ලබා ගැනීම හා ප්‍රතිපාදන ඉල්ලුම් කිරීම සඳහා වන අයදුම්පත්‍රය</b></h5>
             <h6><b>අයදුම්පත් අංකය: <span id="appNoDisplay"></span></b></h6>
@@ -342,7 +342,7 @@
             </button>
         </div>
                
-    <script src="./js/officerApplicationReject.js"></script>
+    <script src="./js/officerApplicationReject.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

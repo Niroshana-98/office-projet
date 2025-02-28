@@ -100,7 +100,8 @@ body {
 }
 
 .text-sci h2 span{
-    font-size: 25px;
+    font-size: 23px;
+    font-weight: bold;
 }
 
 .text-sci p{
