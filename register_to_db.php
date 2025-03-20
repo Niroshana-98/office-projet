@@ -49,7 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $stmt->get_result(); 
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('A user with this NIC or email already exists.');</script>";
+        echo "<script>
+                alert('A user with this NIC or email already exists.');
+                window.location.href = 'register.php';
+            </script>";
+            exit;
     } else {
 
         //generate ramdom otp 

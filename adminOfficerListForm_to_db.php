@@ -31,7 +31,7 @@ $stmt->execute();
 $stmt->bind_result($user_id, $name, $nic, $email, $tel, $desi, $offi_cat, $status, $offi_name);
 $stmt->fetch();
 $stmt->close();
-
+ 
 
 echo json_encode([
     'success' => true,

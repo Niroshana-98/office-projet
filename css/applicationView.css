@@ -419,4 +419,44 @@ button {
       transform: scale3d(1, 1, 1);
     }
   }
+
+
+  .custom-select-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.custom-select-container:hover {
+    transform: translateY(-5px);
+}
+
+.form-select {
+    border-radius: 8px;
+    padding: 12px;
+    border: 2px solid #007bff;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    border-color: #0056b3;
+}
+
+h5 {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.reason{
+    margin-left: 25px;
+    margin-bottom: 50px;
+}
+
+.view-h5{
+    margin-left: 10px;
+}
   

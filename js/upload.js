@@ -153,24 +153,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.getElementById('terms-checkbox-37').addEventListener('change', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
     var submitButton = document.getElementById('Documents-btn');
+    var checkbox = document.getElementById('terms-checkbox-37');
 
-    if (this.checked) {
-        submitButton.disabled = false; 
-        submitButton.classList.add('enabled');
-        submitButton.style.cursor = "pointer"; 
-    } else {
-        submitButton.disabled = true; 
-        submitButton.classList.remove('enabled'); 
-        submitButton.style.cursor = "not-allowed"; 
-    }
+    // Initially keep the button disabled and set cursor to not-allowed
+    submitButton.disabled = true;
+    submitButton.classList.add("disabled"); // Add the disabled class for styling
+
+    // Listen for checkbox changes
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Enable button and change cursor to pointer
+            submitButton.disabled = false;
+            submitButton.classList.remove("disabled"); // Remove disabled class
+            submitButton.classList.add("enabled"); // Add enabled class for styling
+        } else {
+            // Disable button and set cursor to not-allowed
+            submitButton.disabled = true;
+            submitButton.classList.remove("enabled"); // Remove enabled class
+            submitButton.classList.add("disabled"); // Add disabled class
+        }
+    });
 });
 
 
-document.getElementById('Documents-btn').disabled = false;
-
 document.getElementById("Documents-btn").addEventListener("click", function() {
+
+    var submitButton = document.getElementById('Documents-btn');
+    var checkbox = document.getElementById('terms-checkbox-37');
+
+    // Initially keep the button disabled
+    submitButton.disabled = true;
+
+    // Listen for checkbox changes
+    checkbox.addEventListener('change', function() {
+        // If checkbox is checked, enable the button
+        submitButton.disabled = !this.checked;
+    });
+
     fetch("status.php", {
         method: "POST",
         headers: {
@@ -191,4 +213,39 @@ document.getElementById("Documents-btn").addEventListener("click", function() {
         alert("An error occurred. Please try again.");
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("uploadReasonGet_to_db.php") 
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let variable = data.reason; 
+                hideRows(variable);
+            } else {
+                console.error("Error:", data.error);
+            }
+        })
+        .catch(error => console.error("Fetch error:", error));
+
+    function hideRows(variable) {
+        const rows = document.querySelectorAll("table tr");
+
+        rows.forEach(row => {
+            row.style.display = "";
+        });
+
+        if (variable === 1) {
+            rows[0].style.display = "none"; 
+            rows[6].style.display = "none"; 
+
+
+        } else if (variable === 2) {
+            rows[0].style.display = "none";
+            rows[6].style.display = "none";
+            rows[7].style.display = "none";
+
+        }
+    }
+});
+
 

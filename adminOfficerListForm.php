@@ -47,7 +47,7 @@
                         <label>Position:</label>
                         <span id="position">Loading...</span>
                     </div>
-                </div>
+                </div> 
                 <div class="profile-footer" style="display: flex;">
                     <button id="delProfileBtn" class="del-btn">Delete Account</button>
                     <button id="editProfileBtn" class="edit-btn">Swap to Applicate Account</button>

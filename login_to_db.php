@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $redirect_url = './adminOfficerToBeActivate.php';
                     break;
                 case 22:
-                    $redirect_url = './OfficeHead.php';
+                    $redirect_url = './officeHead.php';
                     break;
                 case 26:
                     $redirect_url = './distCheckOfficer.php';

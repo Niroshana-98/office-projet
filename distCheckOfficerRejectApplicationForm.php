@@ -198,8 +198,8 @@
         <div class="tableLayouts">
             <table class="tables" id="documentsTable">
                 <tbody>
-                    <tr>
-                        <td>1</td>
+                    <tr class="hover-row">
+                        <td id = "upDoc1">UP_1</td>
                         <td>ප්‍රතිපාදන ඉල්ලීමක් නම් පූර්ව අනුමැතිය ලබා ගත් ලිපිය</td>
                         <td>
                             <button class="action-btn" data-doc="up_porva_anu" id="viewButton">
@@ -208,8 +208,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>අදාල සේවා ව්‍යස්ථාවේ උදෘතයන්</td>
+                        <td id = "upDoc2">UP_2</td>
+                        <td>අදාල සේවා ව්‍යවවස්ථාවේ උදෘතයන්</td>
                         <td>
                             <button class="action-btn" data-doc="up_service_minite" id="viewButton_2">
                                 View
@@ -217,7 +217,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>3</td>
+                        <td id = "upDoc3">UP_3</td>
                         <td>සේවය ස්ථීර කිරීමේ ලිපියේ සහතික කරන ලද පිටපත</td>
                         <td>
                             <button class="action-btn" data-doc="up_app_letter_confirm" id="viewButton_3">
@@ -226,7 +226,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>4</td>
+                        <td id = "upDoc4">UP_4</td>
                         <td>නිලධාරියා දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කරන ලද ලිපියේ සහතික කළ පිටපත</td>
                         <td>
                             <button class="action-btn" data-doc="up_attach_sp" id="viewButton_4">
@@ -235,7 +235,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>5</td>
+                        <td id = "upDoc5">UP_5</td>
                         <td>නිලධාරියා අදාල පාඨමාලාව සඳහා තෝරා ගත් බවට වන ලිපිය</td>
                         <td>
                             <button class="action-btn" data-doc="up_course_selected" id="viewButton_5">
@@ -244,7 +244,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>6</td>
+                        <td id = "upDoc6">UP_6</td>
                         <td>විශ්ව විද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව විසින් අනුමත කරන ලද විශ්ව විද්‍යාලයක බව සහතික කරන ලද ලිපිය</td>
                         <td>
                             <button class="action-btn" data-doc="up_campus_confirm" id="viewButton_6">
@@ -253,8 +253,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>7</td>
-                        <td>පාථමාලාව අවසන් කළ බවට සහතිකය</td>
+                        <td id = "upDoc7">UP_7</td>
+                        <td>පාඨමාලාව අවසන් කළ බවට සහතිකය</td>
                         <td>
                             <button class="action-btn" data-doc="up_course_complete" id="viewButton_7">
                                 View
@@ -262,7 +262,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>8</td>
+                        <td id = "upDoc8">UP_8</td>
                         <td>මුදල් ගෙවූ රිසිට්පත්</td>
                         <td>
                             <button class="action-btn" data-doc="up_pay_recept" id="viewButton_8">
@@ -271,7 +271,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>9</td>
+                        <td id = "upDoc9">UP_9</td>
                         <td>වෙනත් </td>
                         <td>
                             <button class="action-btn" data-doc="up_other" id="viewButton_9">

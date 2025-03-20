@@ -26,7 +26,7 @@ if (!$nic && !$email) {
         <h2 class="text-center mb-4">Application Status</h2>
         <p class="text-center">Manage user applications and view details by category.</p>
         
-        <div class="row">
+        <div class="row equal-height">
             <!-- New Applications Card -->
             <div class="col-md-4">
                 <div class="card mb-4">

@@ -47,8 +47,9 @@
                     <span id="position">Loading...</span>
                 </div>
             </div>
-            <div class="profile-footer">
-                <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
+            <div class="profile-footer" style="display: flex;">
+                <button id="delProfileBtn" class="del-btn">Delete Account</button>
+                <button id="editProfileBtn" class="edit-btn">Swap to Officer Account</button>
             </div>
         </div>
     </div>

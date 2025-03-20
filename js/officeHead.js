@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } 
     }
     
-    showNavbar('header-toggle','nav-bar','body-pd','header')
+    showNavbar('header-toggle','nav-bar','body-pd','header') 
     
     const linkColor = document.querySelectorAll('.nav_link')
     
@@ -39,7 +39,7 @@ setInterval(updateTime, 1000);
 updateTime();
 
 function fetchUserDetails() {
-    fetch('OfficeHead_to_db.php') 
+    fetch('officeHead_to_db.php') 
         .then(response => response.json())  
         .then(data => {
             if (data.name && data.offi_name) {

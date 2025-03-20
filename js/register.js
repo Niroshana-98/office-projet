@@ -156,14 +156,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('inputPassword');
     if (passwordInput) {
         passwordInput.addEventListener('blur', function () {
-            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+            const passwordPattern = /^[A-Za-z0-9]{8,}$/; // Allows only English letters & numbers, min 8 characters
             if (this.value && !passwordPattern.test(this.value)) {
-                alert("Invalid password. Password must contain:\n" +
-                    "- At least one uppercase letter\n" +
-                    "- At least one lowercase letter\n" +
-                    "- At least one number\n" +
-                    "- At least one special character\n" +
+                alert("Invalid password. Password must:\n" +
+                    "- Contain only English letters (A-Z, a-z) and numbers (0-9)\n" +
                     "- Be at least 8 characters long");
+                    this.value = "";
             }
         });
     }

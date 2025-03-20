@@ -68,11 +68,11 @@ if (!$nic && !$email) {
                     <a href="./CSecDashboard.php" class="nav_link active" target="content-frame">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
-                    </a>
-                    <a href="./Dashboard.php" class="nav_link" target="content-frame">
+                    </a><!--
+                    <a href="" class="nav_link" target="content-frame">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">My Application</span>
-                    </a>
+                    </a>-->
                 </div>
             </div>
             <a href="#" class="nav_link" id="logout-link">

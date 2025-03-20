@@ -154,3 +154,66 @@ function logout() {
 function trackApplication() {
     window.location.href = 'trackApplication.php';
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("uploadReasonGet_to_db.php") 
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let variable = data.reason; 
+                hideRows(variable);
+            } else {
+                console.error("Error:", data.error);
+            }
+        })
+        .catch(error => console.error("Fetch error:", error));
+
+    function hideRows(variable) {
+        const rows = document.querySelectorAll("#documentsTable tbody tr"); // Select only relevant table rows
+
+        // Ensure rows exist before modifying them
+        if (rows.length < 9) {
+            console.error("Error: Not enough rows in the table.");
+            return;
+        }
+
+        // Show all rows before hiding specific ones
+        rows.forEach(row => row.style.display = "");
+
+        const tdElement1 = document.getElementById("upDoc1");
+        const tdElement2 = document.getElementById("upDoc2");
+        const tdElement3 = document.getElementById("upDoc3");
+        const tdElement4 = document.getElementById("upDoc4");
+        const tdElement5 = document.getElementById("upDoc5");
+        const tdElement6 = document.getElementById("upDoc6");
+        const tdElement7 = document.getElementById("upDoc7");
+        const tdElement8 = document.getElementById("upDoc8");
+        const tdElement9 = document.getElementById("upDoc9");
+
+        if (variable === 1) {
+            rows[0].style.display = "none"; 
+            rows[6].style.display = "none"; 
+
+            tdElement2.textContent = "1";
+            tdElement3.textContent = "2";
+            tdElement4.textContent = "3";
+            tdElement5.textContent = "4";
+            tdElement6.textContent = "5";
+            tdElement8.textContent = "6";
+            tdElement9.textContent = "7";
+
+        } else if (variable === 2) {
+            rows[0].style.display = "none";
+            rows[6].style.display = "none";
+            rows[7].style.display = "none";
+
+            tdElement2.textContent = "1";
+            tdElement3.textContent = "2";
+            tdElement4.textContent = "3";
+            tdElement5.textContent = "4";
+            tdElement6.textContent = "5";
+            tdElement9.textContent = "7";
+        }
+    }
+});
+

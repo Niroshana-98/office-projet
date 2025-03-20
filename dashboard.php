@@ -1,3 +1,38 @@
+<?php
+session_start();
+include 'connect.php';
+
+$nic = isset($_SESSION['nic']) ? $_SESSION['nic'] : null;
+$email = isset($_GET['email']) ? $_GET['email'] : null;
+
+// If NIC is not set, redirect to index.html
+if (!$nic) {
+    echo "<script>alert('NIC is required. Please try again.'); window.location.href='index.html';</script>";
+    exit;
+}
+
+// Check if NIC exists and status is 2 in the database
+$stmt = $conn->prepare("SELECT status FROM users WHERE nic = ?");
+$stmt->bind_param("s", $nic);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "<script>alert('NIC not found. Please try again.'); window.location.href='index.html';</script>";
+    exit;
+}
+
+$row = $result->fetch_assoc();
+$status = $row['status'];
+
+if ($status != 2) {
+    echo "<script>alert('Access denied. Please contact support.'); window.location.href='index.html';</script>";
+    exit;
+}
+
+?>
+
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -108,7 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <input type="button" name="next" class="next action-button" value="Next" onclick="validateFields()"/>
+                        <input type="button" name="next" class="next action-button" value="Next" onclick="validateFields1()"/>
                     </fieldset>
 
                     <!--Fieldset 2-->
@@ -118,19 +153,19 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">නිලධාරියා අයත් සේවාව</h5>
-                                <select class="form-select" name="service" id="service">
+                                <select class="form-select required-fields" name="service" id="service" required>
                                     <option selected>Open this select menu</option>
                                 </select>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">නිලධාරියා අයත්වන ශ්‍රේණිය</h5>
-                                <select class="form-select" name="grade" id="grade">
+                                <select class="form-select required-fields" name="grade" id="grade" required>
                                     <option selected>Open this select menu</option>
                                 </select>
                             </div>
                             <div class="col-12 col-md-3">
                                 <h5 for="ball">පත්වීම ස්ථිරද? / නොමැතිද?</h5>
-                                <select class="form-select" aria-label="Default select example" name="permenant" id="permenant">
+                                <select class="form-select required-fields" aria-label="Default select example" name="permenant" id="permenant" required>
                                     <option selected>Open this select menu</option>
                                     <option value="ස්ථිරයි">ස්ථිරයි</option>
                                     <option value="ස්ථිර නැත">ස්ථිර නැත</option>
@@ -140,7 +175,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">තනතුර</h5>
-                                <select class="form-select" name="job" id="job">
+                                <select class="form-select required-fields" name="job" id="job" required>
                                     <option selected>Open this select menu</option>
                                 </select>
                             </div>
@@ -164,10 +199,10 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">දකුණු පළාත් සභාවට අන්තර්ග්‍රහණය කල දිනය</h5>
-                                <input type="date" class="form-control" id="includeDate" name="includeDate" placeholder="">
+                                <input type="date" class="form-control required-fields" id="includeDate" name="includeDate" placeholder="" required>
                             </div>
                         </div>
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <input type="button" name="next" class="next action-button" value="Next" onclick="validateFields2()"/>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
@@ -179,7 +214,7 @@
                             <div class="col-12 col-md-12">
                                 <h5 for="ball">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව පැවත්වෙන විශ්ව විද්‍යාලය/ ආයතනය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="university" name="university" placeholder="">
+                                    <input type="text" class="form-control required-fieldss" id="university" name="university" placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -187,13 +222,13 @@
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පශ්චාත් උපාධිය/ ඩිප්ලෝමාව</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="digree" name="digree" placeholder="">
+                                    <input type="text" class="form-control required-fieldss" id="digree" name="digree" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <h5 for="ball">පාඨමාලාව හැදෑරීමට අදාල සේවා ව්‍යවස්ථාවේ උදෘත අංකය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="eno" name="eno" placeholder="">
+                                    <input type="text" class="form-control required-fieldss" id="eno" name="eno" placeholder="" required>
                                 </div>
                             </div>
                         </div>
@@ -201,19 +236,19 @@
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව ආරම්භ කරනු ලැබූ දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="sDate" name="sDate" placeholder="">
+                                    <input type="date" class="form-control required-fieldss" id="sDate" name="sDate" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">පාඨමාලාව අවසන් වීමට නියමිත දිනය</h5>
                                 <div class="mb-3">
-                                    <input type="date" class="form-control" id="eDate" name="eDate" placeholder="">
+                                    <input type="date" class="form-control required-fieldss" id="eDate" name="eDate" placeholder="" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <h5 for="ball">ප්‍රතිපාදනයේ ප්‍රමාණය</h5>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="provision" name="provision" placeholder="">
+                                    <input type="text" class="form-control required-fieldss" id="provision" name="provision" placeholder="" required>
                                 </div>
                             </div>
                             <p>(පාඨමාලා ගාස්තුව රු.400,000.00 ට වඩා වැඩි වන්නේ නම් එම වැඩි වන මුදල පෞද්ගලිකව දරා ගත යුතුය.)</p>
@@ -328,7 +363,7 @@
                         </div>
                         <div id="courseDeatails"></div>
 
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <input type="button" name="next" class="next action-button" value="Next" onclick="validateFields3()"/>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 

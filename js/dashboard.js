@@ -6,13 +6,22 @@ var steps = $("fieldset").length;
 setProgressBar(current);
 
 $(".next").click(function () {
-    // Validate fields first
-    if (!validateFields()) {
-        return; // Stop execution if validation fails
-    }
+    let current_fs = $(this).parent();
+    let next_fs = $(this).parent().next();
 
-    current_fs = $(this).parent();
-    next_fs = $(this).parent().next();
+    if (current_fs.is(":nth-of-type(1)")) { 
+        if (!validateFields1()) {
+            return;
+        }
+    } else if (current_fs.is(":nth-of-type(2)")) { 
+        if (!validateFields2()) {
+            return;
+        }
+    } else if (current_fs.is(":nth-of-type(3)")) { 
+        if (!validateFields3()) {
+            return;
+        }
+    }
 
     // Add class active
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
@@ -72,15 +81,61 @@ $(".submit").click(function () {
     return false;
 });
 
-function validateFields() {
+function validateFields1() {
     let isValid = true;
     let requiredFields = document.querySelectorAll(".required-field");
 
     requiredFields.forEach(field => {
-        if (field.value.trim() === "") {
+        if (field.value.trim() === ""|| field.value === "Open this select menu") {
+            $(this).addClass("is-invalid");
             isValid = false;
             field.style.border = "2px solid red"; // Highlight empty fields
         } else {
+            $(this).removeClass("is-invalid");
+            field.style.border = "1px solid #ced4da"; // Reset border if filled
+        }
+    });
+
+    if (!isValid) {
+        alert("Please fill in all required fields.");
+    }
+
+    return isValid; // Return true if valid, false if invalid
+}
+
+function validateFields2() {
+    let isValid = true;
+    let requiredFields = document.querySelectorAll(".required-fields");
+
+    requiredFields.forEach(field => {
+        if (field.value.trim() === ""|| field.value === "Open this select menu") {
+            $(this).addClass("is-invalid");
+            isValid = false;
+            field.style.border = "2px solid red";
+        } else {
+            $(this).removeClass("is-invalid");
+            field.style.border = "1px solid #ced4da"; // Reset border if filled
+        }
+    });
+
+    if (!isValid) {
+        alert("Please fill in all required fields.");
+    }
+
+    return isValid; // Return true if valid, false if invalid
+}
+
+function validateFields3() {
+    let isValid = true;
+    let requiredFields = document.querySelectorAll(".required-fieldss");
+
+    requiredFields.forEach(field => {
+        if (field.value.trim() === ""|| field.value === "Open this select menu") {
+            $(this).addClass("is-invalid");
+            isValid = false;
+            field.style.border = "2px solid red";
+        } else {
+            $(this).removeClass("is-invalid");
             field.style.border = "1px solid #ced4da"; // Reset border if filled
         }
     });

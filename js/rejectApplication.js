@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("updateButton").addEventListener("click", function () {
     const fields = [
-        "address_pri", "tel_mob", "date_att_sp", "ins_name", "course_name", "service_minite_no",
+        "reason", "address_pri", "tel_mob", "date_att_sp", "ins_name", "course_name", "service_minite_no",
         "course_start_date", "course_end_date", "course_fee",
         "bf_01course_name", "bf_01ins_name", "bf_01start_date", "bf_01gov_paid", "bf_01full_course_fee",
         "bf_02course_name", "bf_02ins_name", "bf_02start_date", "bf_02gov_paid", "bf_02full_course_fee"
@@ -273,5 +273,27 @@ handleFileUpload('up_campus_confirm', 'uploadButton_6', 'viewButton_6', 'rejectA
 handleFileUpload('up_course_complete', 'uploadButton_7', 'viewButton_7', 'rejectApplicationUpload_to_db.php');
 handleFileUpload('up_pay_recept', 'uploadButton_8', 'viewButton_8', 'rejectApplicationUpload_to_db.php');
 handleFileUpload('up_other', 'uploadButton_9', 'viewButton_9', 'rejectApplicationUpload_to_db.php');
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const reasonSelect = document.getElementById("reason");
+    const tableRows = document.querySelectorAll("#documentsTable tbody tr");
+
+    reasonSelect.addEventListener("change", function () {
+        // Show all rows first
+        tableRows.forEach(row => row.style.display = "");
+
+        if (this.value === "1") {
+            // Hide 1st and 2nd row
+            tableRows[0].style.display = "none";
+            tableRows[6].style.display = "none";
+        } else if (this.value === "2") {
+            // Hide 5th row (index 4 because index starts from 0)
+            tableRows[0].style.display = "none";
+            tableRows[6].style.display = "none";
+            tableRows[7].style.display = "none";
+        }
+    });
+});
 
 

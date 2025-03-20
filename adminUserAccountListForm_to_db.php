@@ -17,7 +17,7 @@ $user_id = $_SESSION['user_id'];
 // Fetch user details along with designation and office category
 $stmt = $conn->prepare("
     SELECT 
-        u.user_id, u.name, u.nic, u.email, u.tel, u.desi, d.desi_name, o.offi_name, u.status
+        u.user_id, u.name, u.nic, u.email, u.tel, u.desi, d.desi_name, o.offi_name, u.status, u.temp_status
     FROM 
         users u
     LEFT JOIN 
@@ -25,14 +25,14 @@ $stmt = $conn->prepare("
     LEFT JOIN
         desi d ON a.desi = d.desi_id
     LEFT JOIN 
-        office o ON u.offi_id = o.offi_id 
+        office o ON u.offi_id = o.offi_id  
     WHERE 
         u.user_id = ?
 ");
 
 $stmt->bind_param("s", $user_id);
 $stmt->execute();
-$stmt->bind_result($user_id, $name, $nic, $email, $tel, $desi, $desi_name, $offi_name, $status);
+$stmt->bind_result($user_id, $name, $nic, $email, $tel, $desi, $desi_name, $offi_name, $status, $temp_status);
 $stmt->fetch();
 $stmt->close();
 
@@ -46,6 +46,7 @@ echo json_encode([
     'desi' => $desi,
     'desi_name' => $desi_name,
     'offi_name' => $offi_name,
-    'status' => $status
+    'status' => $status,
+    'temp_status' => $temp_status
 ]);
 ?>

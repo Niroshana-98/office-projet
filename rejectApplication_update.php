@@ -5,7 +5,7 @@ require 'connect.php';
 $nic = isset($_SESSION['nic']) ? mysqli_real_escape_string($conn, $_SESSION['nic']) : '';
 
 $fields = [
-    'address_pri', 'tel_mob', 'date_att_sp', 'ins_name', 'course_name', 'service_minite_no',
+    'reason', 'address_pri', 'tel_mob', 'date_att_sp', 'ins_name', 'course_name', 'service_minite_no',
     'course_start_date', 'course_end_date', 'course_fee',
     'bf_01course_name', 'bf_01ins_name', 'bf_01start_date', 'bf_01gov_paid', 'bf_01full_course_fee',
     'bf_02course_name', 'bf_02ins_name', 'bf_02start_date', 'bf_02gov_paid', 'bf_02full_course_fee'
@@ -20,7 +20,7 @@ if ($nic) {
     // Update application table
     $sql = "
     UPDATE application 
-    SET address_pri = ?, tel_mob = ?, date_att_sp = ?, ins_name = ?, course_name = ?, service_minite_no = ?, 
+    SET reason = ?, address_pri = ?, tel_mob = ?, date_att_sp = ?, ins_name = ?, course_name = ?, service_minite_no = ?, 
         course_start_date = ?, course_end_date = ?, course_fee = ?, 
         bf_01course_name = ?, bf_01ins_name = ?, bf_01start_date = ?, bf_01gov_paid = ?, bf_01full_course_fee = ?, 
         bf_02course_name = ?, bf_02ins_name = ?, bf_02start_date = ?, bf_02gov_paid = ?, bf_02full_course_fee = ? 
@@ -28,8 +28,8 @@ if ($nic) {
     $stmt = $conn->prepare($sql);
 
     $stmt->bind_param(
-        "ssssssssssssssssssss", 
-        $data['address_pri'], $data['tel_mob'], $data['date_att_sp'], $data['ins_name'], $data['course_name'], 
+        "issssssssssssssssssss", 
+        $data['reason'], $data['address_pri'], $data['tel_mob'], $data['date_att_sp'], $data['ins_name'], $data['course_name'], 
         $data['service_minite_no'], $data['course_start_date'], $data['course_end_date'], $data['course_fee'],
         $data['bf_01course_name'], $data['bf_01ins_name'], $data['bf_01start_date'], 
         $data['bf_01gov_paid'], $data['bf_01full_course_fee'], $data['bf_02course_name'], $data['bf_02ins_name'], 

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("position").value = data.status;
 
             const position = data.status;
+            const tempStatus = data.temp_status;
 
             if(position == 1 || position == 2 || position == 3 || position == 4 || position == 5){
                 document.getElementById("desi").innerText = data.desi_name;
@@ -21,64 +22,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("desi").innerText = data.desi;
             }
 
-            if(position == 1){
-                document.getElementById("position").innerText = "Register User";
-            } else if(position == 2){
-                document.getElementById("position").innerText = "Verify User";
-            } else if(position == 3 || position == 4){
-                document.getElementById("position").innerText = "Applicant";
-            } else if(position == 5){
-                document.getElementById("position").innerText = "Reject Applicant";
-            } else if(position == 10){
-                document.getElementById("position").innerText = "Subject Officer";
-            } else if(position == 18){
-                document.getElementById("position").innerText = "Office Recommend Officer";
-            } else if(position == 26){
-                document.getElementById("position").innerText = "District Check Officer";
-            } else if(position == 30){
-                document.getElementById("position").innerText = "District Recommend Officer";
-            } else if(position == 38){
-                document.getElementById("position").innerText = "Department Check Officer";
-            } else if(position == 42){
-                document.getElementById("position").innerText = "Department Recommend Officer";
-            } else if(position == 50){
-                document.getElementById("position").innerText = "Ministry Check Officer";
-            } else if(position == 42){
-                document.getElementById("position").innerText = "Ministry Recommend Officer";
+            // Display position name based on status
+            const positionMap = {
+                1: "Register User",
+                2: "Verify User",
+                3: "Applicant",
+                4: "Applicant",
+                5: "Reject Applicant",
+                10: "Subject Officer",
+                18: "Office Recommend Officer",
+                26: "District Check Officer",
+                30: "District Recommend Officer",
+                38: "Department Check Officer",
+                42: "Department Recommend Officer",
+                50: "Ministry Check Officer"
+            };
+
+            document.getElementById("position").innerText = positionMap[position] || "Not Found";
+
+            // Show the "Swap to Officer Account" button only if temp_status has a value
+            const editBtn = document.getElementById("editProfileBtn");
+            if (tempStatus) {
+                editBtn.style.display = "block";  // Show button
             } else {
-                document.getElementById("position").innerText = "Not Found";
+                editBtn.style.display = "none";   // Hide button
             }
-            
+
+            // Handle button click
+            editBtn.addEventListener("click", function () {
+                fetch("adminUserSwap_to_db.php", {
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ user_id: data.user_id })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert("Account updated successfully!");
+                        window.location.href = "adminUserAccountList.php"; // Reload page to reflect changes
+                    } else {
+                        alert("Error: " + result.error);
+                    }
+                })
+                .catch(error => console.error("Error updating user status:", error));
+            });
         } else {
             console.error(data.error);
         }
     })
     .catch(error => console.error("Error fetching user data:", error));
-
-    document.querySelector(".edit-btn").addEventListener("click", function () {
-        const desiSelect = document.querySelector(".form-select");
-        const desi_id = desiSelect.value;
-
-        const positionSelect = document.getElementById("position");
-        const position = positionSelect.value;
-
-        fetch("userControlUpdateStatus.php", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ desi_id, position }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Profile updated successfully!");
-                window.location.href = "userControlList.php";
-            } else {
-                alert("Error: " + data.error);
-            }
-        })
-        .catch(error => console.error("Error updating profile:", error));
-    });
 });

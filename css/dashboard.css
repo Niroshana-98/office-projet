@@ -316,14 +316,13 @@ input[type="date"]{
   }
   
   .checkbox-wrapper-37 .checkbox-svg {
-    width: 30px;
+    width: 20px;
     height: 30px;
   }
   
   .checkbox-wrapper-37 .checkbox-box { 
     fill: rgb(122, 120, 120);
     stroke: #000000;
-    stroke-width: 10px;
     stroke-dasharray: 800;
     stroke-dashoffset: 800;
     transition: stroke-dashoffset 0.6s ease-in;
@@ -344,8 +343,70 @@ input[type="date"]{
     input[type="checkbox"]:checked
     + .terms-label
     .checkbox-tick {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 0; 
   }
+
+  .Documents-btn:disabled {
+    cursor: not-allowed;
+  }
+  
+  .Documents-btn.enabled {
+    cursor: pointer;
+  }
+  
+  
+  .checkbox-wrapper-37 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-svg {
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .checkbox-box {
+    fill: blue;
+    stroke: #ddd;
+    stroke-width: 10;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+  }
+  
+  .checkbox-tick {
+    stroke: #4caf50; 
+    stroke-width: 15;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+  }
+  
+  #terms-checkbox-37:checked + .terms-label .checkbox-box {
+    stroke: #4caf50; 
+    fill: #4caf50; 
+  }
+  
+  #terms-checkbox-37:checked + .terms-label .checkbox-tick {
+    opacity: 1; 
+  }
+  
+  .terms-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    margin-left: 10px;
+  }
+  
+  .Documents-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .Documents-btn.enabled {
+    cursor: pointer;
+    opacity: 1;
+  }
+  
   
 /* Submit Button */
 #submitButton{

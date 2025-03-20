@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           console.log(appStatus);
 
-          const appStatusesCS = [100, 101, 200, 201, 210, 211, 220, 221, 230, 231, 240, 241, 250];
+          const appStatusesCS = [100, 101, 200, 201, 210, 211, 220, 221, 230, 231];
 
           const office = document.getElementById("step1");
           const distOffi = document.getElementById("step2");
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
               distOffi.classList.add("background-4");
               department.classList.add("background-4");
               ministry.classList.add("background-4");
-              cs.style.classList.add("background-4");
+              cs.classList.add("background-4");
 
               setTimeout(() => {
                 updateProgressBar('progress1', 100);

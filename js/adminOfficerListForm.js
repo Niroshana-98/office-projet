@@ -100,7 +100,7 @@ function activateUserAccount(nic, currentStatus) {
 }
 
 function updateUserStatus(nic) {
-    fetch("userControlOfficerUpdateStatus.php", {
+    fetch("adminOfficerSwap_to_db.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: "nic=" + encodeURIComponent(nic),
@@ -116,3 +116,30 @@ function updateUserStatus(nic) {
     })
     .catch(error => console.error("Error updating user status:", error));
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("delProfileBtn").addEventListener("click", function () {
+        if (confirm("Are you sure you want to delete this account permanently?")) {
+            deleteAdmin();
+        }
+    });
+});
+
+function deleteAdmin() {
+    fetch("adminOfficerDelete.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Officer deleted successfully!");
+            window.location.href = "adminOfficerList.php"; // Redirect after deletion
+        } else {
+            alert("Error: " + data.error);
+        }
+    })
+    .catch(error => console.error("Error deleting user:", error));
+}
+

@@ -779,3 +779,42 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching application data:", error));
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("uploadReasonGetOfficer_to_db.php") 
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let variable = data.reason; 
+                hideRows(variable);
+            } else {
+                console.error("Error:", data.error);
+            }
+        })
+        .catch(error => console.error("Fetch error:", error));
+
+    function hideRows(variable) {
+        const rows = document.querySelectorAll("#documentsTable tbody tr"); // Select only relevant table rows
+
+        // Ensure rows exist before modifying them
+        if (rows.length < 9) {
+            console.error("Error: Not enough rows in the table.");
+            return;
+        }
+
+        // Show all rows before hiding specific ones
+        rows.forEach(row => row.style.display = "");
+
+        if (variable === 1) {
+            rows[0].style.display = "none"; 
+            rows[6].style.display = "none"; 
+
+
+        } else if (variable === 2) {
+            rows[0].style.display = "none";
+            rows[6].style.display = "none";
+            rows[7].style.display = "none";
+
+        }
+    }
+});

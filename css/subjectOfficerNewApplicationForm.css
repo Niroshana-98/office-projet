@@ -306,35 +306,35 @@ button:not([disabled]):hover {
 #recommendSection {
     display: flex;
     align-items: center;
-    gap: 12px; /* Adds space between elements */
-    padding: 12px 16px; /* Provides inner spacing */
-    background: #f8f9fa; /* Light background for contrast */
-    border-radius: 8px; /* Soft rounded edges */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for depth */
-    display: none; /* Keep hidden initially */
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f8f9fa; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    display: none; 
 }
 
 #recommendSection span {
     font-size: 1rem;
-    font-weight: 600; /* Slightly bold for emphasis */
-    color: #333; /* Dark gray for readability */
-    white-space: nowrap; /* Prevents text wrapping */
+    font-weight: 600; 
+    color: #333; 
+    white-space: nowrap;
 }
 
 #recommendSection select {
     width: auto;
-    padding: 8px 12px; /* Comfortable padding */
+    padding: 8px 12px; 
     font-size: 1rem;
-    border: 1px solid #ccc; /* Subtle border */
-    border-radius: 6px; /* Rounded corners */
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
     background: #fff;
-    cursor: pointer; /* Indicates interactivity */
-    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    cursor: pointer; 
+    transition: all 0.3s ease-in-out;
 }
 
 #recommendSection select:focus {
-    border-color: #007bff; /* Highlighted border */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Soft glow effect */
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
     outline: none;
 }
 
