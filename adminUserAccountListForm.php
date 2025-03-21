@@ -48,6 +48,7 @@
                 </div>
             </div>
             <div class="profile-footer" style="display: flex;">
+                <button id="delApplicationBtn" class="del-appBtn">Delete Application</button>
                 <button id="delProfileBtn" class="del-btn">Delete Account</button>
                 <button id="editProfileBtn" class="edit-btn">Swap to Officer Account</button>
             </div>

@@ -40,6 +40,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("position").innerText = positionMap[position] || "Not Found";
 
+             // Handle Delete Application
+             document.getElementById("delApplicationBtn").addEventListener("click", function () {
+                if (confirm("Are you sure you want to delete your application?")) {
+                    fetch("adminUserApplicationDelete_to_db.php", {
+                        method: "POST",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert("Application deleted successfully!");
+                            location.reload();
+                        } else {
+                            alert("Error: " + result.error);
+                        }
+                    })
+                    .catch(error => console.error("Error deleting application:", error));
+                }
+            });
+
+            // Handle Delete Account
+            document.getElementById("delProfileBtn").addEventListener("click", function () {
+                if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                    fetch("adminUserDelete_to_db.php", {
+                        method: "POST",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert("Account deleted successfully!");
+                            window.location.href = "adminUserAccountList.php";
+                        } else {
+                            alert("Error: " + result.error);
+                        }
+                    })
+                    .catch(error => console.error("Error deleting account:", error));
+                }
+            });
+
             // Show the "Swap to Officer Account" button only if temp_status has a value
             const editBtn = document.getElementById("editProfileBtn");
             if (tempStatus) {
@@ -69,6 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => console.error("Error updating user status:", error));
             });
+
+
+            
         } else {
             console.error(data.error);
         }

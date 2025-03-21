@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2024 at 10:40 AM
+-- Generation Time: Mar 21, 2025 at 02:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `application` (
   `app_no` int(11) NOT NULL,
+  `reason` int(1) DEFAULT NULL,
   `name_full` varchar(255) NOT NULL,
   `name_si` varchar(255) DEFAULT NULL,
   `name_eng` varchar(255) DEFAULT NULL,
@@ -80,53 +81,106 @@ CREATE TABLE `application` (
   `Subject_Reject_RM` varchar(255) NOT NULL,
   `Subject_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `Subject_user_id` int(11) NOT NULL,
+  `office_Rec_Aprv_RM` varchar(255) NOT NULL,
+  `office_Rec_Reject_RM` varchar(255) NOT NULL,
+  `office_Rec_time_stamp` timestamp NULL DEFAULT current_timestamp(),
+  `office_Rec_user_id` int(11) NOT NULL,
+  `office_Rec_Recommend` int(1) NOT NULL,
   `Office_head_Aprv_RM` varchar(255) NOT NULL,
   `Office_head_Reject_RM` varchar(255) NOT NULL,
-  `Office_head_time_stamp` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
+  `Office_head_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `Office_head_user_id` int(11) NOT NULL,
+  `office_head_Recommend` int(1) NOT NULL,
+  `Dist_Chk_Offi_Aprv_Rm` varchar(255) NOT NULL,
+  `Dist_Chk_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Dist_Chk_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Dist_Chk_Offi_user_id` int(11) NOT NULL,
+  `Dist_Rec_Offi_Aprv_Rm` varchar(255) NOT NULL,
+  `Dist_Rec_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Dist_Rec_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Dist_Rec_Offi_user_id` int(11) NOT NULL,
+  `Dist_Rec_Offi_Recommend` int(1) NOT NULL,
   `Dist_offi_head_Aprv_RM` varchar(255) NOT NULL,
   `Dist_offi_head_Reject_RM` varchar(255) NOT NULL,
   `Dist_offi_head_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `Dist_offi_head_user_id` int(11) NOT NULL,
+  `Dist_offi_head_Recommend` int(1) NOT NULL,
+  `Dep_Chk_Offi_Aprv_RM` varchar(255) NOT NULL,
+  `Dep_Chk_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Dep_Chk_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Dep_Chk_Offi_user_id` int(11) NOT NULL,
+  `Dep_Rec_Offi_Aprv_RM` varchar(255) NOT NULL,
+  `Dep_Rec_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Dep_Rec_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Dep_Rec_Offi_user_id` int(11) NOT NULL,
+  `Dep_Rec_Offi_Recommend` int(1) NOT NULL,
   `Dep_head_Aprv_RM` varchar(255) NOT NULL,
   `Dep_head_Reject_RM` varchar(255) NOT NULL,
-  `Dep_head_time_stamp` int(11) NOT NULL DEFAULT current_timestamp(),
+  `Dep_head_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `Dep_head_user_id` int(11) NOT NULL,
+  `Dep_head_Recommend` int(1) NOT NULL,
+  `Min_Chk_Offi_Aprv_RM` varchar(255) NOT NULL,
+  `Min_Chk_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Min_Chk_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Min_Chk_Offi_user_id` int(11) NOT NULL,
+  `Min_Rec_Offi_Aprv_RM` varchar(255) NOT NULL,
+  `Min_Rec_Offi_Reject_RM` varchar(255) NOT NULL,
+  `Min_Rec_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Min_Rec_Offi_user_id` int(11) NOT NULL,
+  `Min_Rec_Offi_Recommend` int(1) NOT NULL,
   `Min_head_Aprv_RM` varchar(255) NOT NULL,
   `Min_head_Reject_RM` varchar(255) NOT NULL,
   `Min_head_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `Min_head_user_id` int(11) NOT NULL,
-  `Chief_Head_Aprv_RM` varchar(255) NOT NULL,
-  `Chief_Head_Reject_RM` varchar(255) DEFAULT NULL,
-  `Chief_Head_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Chief_Head_user_id` int(11) NOT NULL
+  `Min_head_Recommend` int(1) NOT NULL,
+  `CS_Chk_Offi_Aprv_RM` varchar(255) NOT NULL,
+  `CS_Chk_Offi_Reject_RM` varchar(255) NOT NULL,
+  `CS_Chk_Offi_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `CS_Chk_Offi_user_id` int(11) NOT NULL,
+  `AO_Aprv_RM` varchar(255) NOT NULL,
+  `AO_Reject_RM` varchar(255) NOT NULL,
+  `AO_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `AO_user_id` int(11) NOT NULL,
+  `AO_Recommend` int(1) NOT NULL,
+  `ACS_Aprv_RM` varchar(255) NOT NULL,
+  `ACS_Reject_RM` varchar(255) NOT NULL,
+  `ACS_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ACS_user_id` int(11) NOT NULL,
+  `ACS_Recommend` int(1) NOT NULL,
+  `DCS_Aprv_RM` varchar(255) NOT NULL,
+  `DCS_Reject_RM` varchar(255) NOT NULL,
+  `DCS_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `DCS_user_id` int(11) NOT NULL,
+  `DCS_Recommend` int(1) NOT NULL,
+  `CS_Aprv_RM` varchar(255) NOT NULL,
+  `CS_Reject_RM` varchar(255) NOT NULL,
+  `CS_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `CS_user_id` int(11) NOT NULL,
+  `ACC1_Aprv_RM` varchar(255) NOT NULL,
+  `ACC1_Reject_RM` varchar(255) NOT NULL,
+  `ACC1_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ACC1_user_id` int(11) NOT NULL,
+  `ACC2_Aprv_RM` varchar(255) NOT NULL,
+  `ACC2_Reject_RM` varchar(255) NOT NULL,
+  `ACC2_time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ACC2_user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`app_no`, `name_full`, `name_si`, `name_eng`, `nic`, `address_pri`, `tel_land`, `tel_mob`, `email_pri`, `service`, `grade`, `upp_status`, `desi`, `c_w_p`, `min`, `date_att_sp`, `ins_name`, `course_name`, `service_minite_no`, `course_start_date`, `course_end_date`, `course_fee`, `before_recieved`, `bf_01course_name`, `bf_01ins_name`, `bf_01start_date`, `bf_01gov_paid`, `bf_01full_course_fee`, `bf_02course_name`, `bf_02ins_name`, `bf_02start_date`, `bf_02gov_paid`, `bf_02full_course_fee`, `up_porva_anu`, `up_service_minite`, `up_app_letter_confirm`, `up_attach_sp`, `up_course_selected`, `up_campus_confirm`, `up_course_complete`, `up_pay_recept`, `up_other`, `created`, `app_status`, `offi_cat`, `min_id`, `dep_id`, `dist_offi_id`, `Subject_Aprv_Rm`, `Subject_Reject_RM`, `Subject_time_stamp`, `Subject_user_id`, `Office_head_Aprv_RM`, `Office_head_Reject_RM`, `Office_head_time_stamp`, `Office_head_user_id`, `Dist_offi_head_Aprv_RM`, `Dist_offi_head_Reject_RM`, `Dist_offi_head_time_stamp`, `Dist_offi_head_user_id`, `Dep_head_Aprv_RM`, `Dep_head_Reject_RM`, `Dep_head_time_stamp`, `Dep_head_user_id`, `Min_head_Aprv_RM`, `Min_head_Reject_RM`, `Min_head_time_stamp`, `Min_head_user_id`, `Chief_Head_Aprv_RM`, `Chief_Head_Reject_RM`, `Chief_Head_time_stamp`, `Chief_Head_user_id`) VALUES
-(21, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'Pasindu Niroshana', 'T.P.N.De Silva', '982972681V', '415/2', '717720219', '717720219', 'niroshanthirimadura1@gmail.com', 11, 34, 'ස්ථිරයි', 79, 51, 13, '2024-11-19', 'University Of Ruhuna', 'Computer Science', '12', '0000-00-00', '2024-11-19', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_21.PNG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-10 08:21:23', 111, 5, 12, 3, 1, 'Approved', '', '2024-12-09 03:37:32', 4, 'Approved', '0', '2024-12-10 06:00:48.000000', 2, 'Approved', 'Rejected', '2024-12-10 06:32:11', 7, 'Approved', 'Rejected', 2147483647, 13, 'Approved', 'Rejected', '2024-12-10 08:08:20', 16, 'Approved', 'Rejected', '2024-12-10 08:21:23', 19),
-(32, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'Pasindu Niroshana', 'Pasindu Niroshana', '982972682V', '415/2', '717720219', '717720219', 'niroshanthirimadura2@gmail.com', 10, 33, 'ස්ථිරයි', 77, 33, 13, '2024-12-08', 'University Of Ruhuna', 'Computer Science', '12', '0000-00-00', '0000-00-00', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_32.PNG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-10 08:29:27', 111, 4, 12, 3, 1, 'Approved', 'Rejected', '2024-12-10 06:02:20', 9, '', '', '2024-12-03 03:38:00.363824', 0, 'Approved', 'Rejected', '2024-12-10 06:32:23', 7, 'Approved', 'Rejected', 2147483647, 13, 'Approved', 'Rejected', '2024-12-10 08:08:31', 16, '', 'Rejected', '2024-12-10 08:29:27', 19),
-(33, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'Pasindu Niroshana', 'Pasindu Niroshana', '982972683V', '415/2', '717720219', '717720219', 'niroshanthirimadura3@gmail.com', 6, 21, 'ස්ථිරයි', 56, 34, 11, '2024-12-08', 'University Of Ruhuna', 'Computer Science', '12', '0000-00-00', '0000-00-00', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_33.PNG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-10 08:29:37', 111, 4, 12, 3, 2, 'Approved', 'Rejected', '2024-12-10 06:36:05', 10, '', '', '2024-12-03 06:42:19.739845', 0, 'Approved', 'Reject', '2024-12-10 06:38:36', 12, 'Approved', '', 2147483647, 13, 'Approved', 'Rejected', '2024-12-10 08:08:40', 16, '', 'Rejected', '2024-12-10 08:29:37', 19),
-(34, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'Pasindu Niroshana', 'Pasindu Niroshana', '982972684V', '415/2', '717720219', '717720219', 'niroshanthirimadura4@gmail.com', 1, 2, 'ස්ථිරයි', 10, 12, 12, '2024-12-08', 'University Of Ruhuna', 'Computer Science', '12', '2024-12-16', '2024-12-31', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_34.PNG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-10 08:29:49', 111, 2, 12, 0, 0, 'Approved', '', '2024-12-10 08:07:55', 15, '', '', '2024-12-05 06:30:51.608900', 0, '', '', '2024-12-05 06:30:51', 0, '', '', 2147483647, 0, 'Approved', 'Rejected', '2024-12-10 08:08:50', 16, '', 'Rejected', '2024-12-10 08:29:49', 19),
-(35, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'Pasindu Niroshana', 'Pasindu Niroshana', '982972685V', '415/2', '717720219', '717720219', 'niroshanthirimadura5@gmail.com', 1, 2, 'ස්ථිරයි', 14, 4, 11, '0000-00-00', 'University Of Ruhuna', 'Computer Science', '12', '0000-00-00', '0000-00-00', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_35.PNG', 'uploads/up_service_minite/up_service_minite_35.png', NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/up_other/up_other_35.png', '2024-12-19 18:56:43', 2, 1, 4, 0, 0, 'Rejected', 'Rejected', '2024-12-19 18:55:18', 18, '', '', '2024-12-05 08:32:23.446029', 0, '', '', '2024-12-05 08:32:23', 0, '', '', 2147483647, 0, '', '', '2024-12-05 08:32:23', 0, '', 'Rejected', '2024-12-10 08:31:03', 19),
-(47, 'දිල්මි කාවින්ද්‍යා වීරප්පෙරුම', 'D.K.A.Weerapperuma', 'D.K.A.Weerapperuma', '996534120V', 'බද්දේගම', '0', '764607826', 'kavindyadilmi09@gmail.com', 1, 5, 'ස්ථිරයි', 2, 80, 12, '2020-03-05', 'කොළඹ විශ්ව විද්‍යාලය', 'රාජ්‍ය පරිපාලනය', '2.3', '2025-01-20', '2026-01-20', 200000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_47.jpg', 'uploads/up_service_minite/service_minite_47.jpg', 'uploads/up_app_letter_confirm/app_letter_confirm_47.jpg', 'uploads/up_attach_sp/attach_sp_47.jpg', 'uploads/up_course_selected/course_selected_47.jpg', NULL, NULL, NULL, '', '2024-12-20 09:02:09', 100, 5, 12, 3, 2, '', '', '2024-12-20 08:56:56', 28, 'test', '', '2024-12-20 08:58:27.000000', 29, '', '', '2024-12-20 09:00:34', 31, 'test', 'test reject', 2147483647, 33, '', '', '2024-12-20 09:02:09', 35, '', NULL, '2024-12-20 08:29:18', 0),
-(48, 'දුෂාන්ත නුවන්ප්‍රිය පනංගල ', 'D.N.Panangala', 'D.N.Panangala', '822491898V', 'වංචාවල , ගාල්ල .', '91222222', '714498048', 'dunupa@gmail.com', 1, 2, 'ස්ථිරයි', 8, 49, 13, '2024-12-02', 'UoM', 'MSc', 'tr/23/09', '2024-12-02', '2026-10-20', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_48.png', NULL, 'uploads/up_app_letter_confirm/app_letter_confirm_48.pdf', NULL, NULL, NULL, NULL, NULL, '', '2024-12-20 08:55:16', 110, 6, 13, 6, 0, 'Approved', '', '2024-12-20 08:45:31', 23, 'ok', '2,4', '2024-12-20 08:46:55.000000', 22, '', '', '2024-12-20 08:38:40', 0, '', '', 2147483647, 25, '', '1,23,4', '2024-12-20 08:54:47', 27, '', NULL, '2024-12-20 08:38:40', 0),
-(49, 'අඅඅඅඅඅඅ ප්‍රබෝධා', 'A.Prabodha', 'A.Prabodha', '960000050V', 'කලේගාන, ගාල්ල', '914944012', '719001002', 'spcsrecruitment.inq@gmail.com', 4, 15, 'ස්ථිරයි', 38, 49, 13, '2024-08-20', 'කොළඹ විශ්වවිද්‍යාලය', 'අධ්‍යාපන කළමනාකරණය පිළිබඳ පශ්චාත් උපාධිය', '7-1', '2024-12-25', '2025-12-31', 200.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_49.jpg', 'uploads/up_service_minite/service_minite_49.jpg', 'uploads/up_app_letter_confirm/app_letter_confirm_49.jpg', 'uploads/up_attach_sp/attach_sp_49.jpg', 'uploads/up_course_selected/course_selected_49.jpg', 'uploads/up_campus_confirm/campus_confirm_49.jpg', NULL, NULL, '', '2024-12-20 10:02:06', 2, 6, 13, 6, 0, '', '', '2024-12-20 09:51:10', 0, '', '', '2024-12-20 09:51:10.418374', 0, '', '', '2024-12-20 09:51:10', 0, '', '', 2147483647, 0, '', '', '2024-12-20 09:51:10', 0, '', NULL, '2024-12-20 09:51:10', 0),
-(50, 'හේවාවසම් බෙන්තොටගේ තිසාරා සන්දීපනී', 'එච්.බී.තිසාරා සන්දීපනී', 'H.B.Thisara Sandeepanie', '997860128V', 'ඌරල, වදුරඹ', '914944012', '701914446', 's22004074@ousl.lk', 4, 15, 'ස්ථිරයි', 43, 47, 13, '1976-09-20', 'කොළඹ විශ්ව විද්‍යාලය', 'මානව සම්පත් කළමනාකරණය', '7-1', '2024-12-11', '2026-12-20', 0.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_50.jpg', 'uploads/up_service_minite/service_minite_50.png', 'uploads/up_app_letter_confirm/app_letter_confirm_50.jpg', 'uploads/up_attach_sp/attach_sp_50.jpg', 'uploads/up_course_selected/course_selected_50.jpg', 'uploads/up_campus_confirm/campus_confirm_50.png', 'uploads/up_course_complete/course_complete_50.jpg', 'uploads/up_pay_recept/pay_recept_50.jpg', 'uploads/up_other/other_50.jpg', '2024-12-20 10:03:18', 2, 6, 13, 6, 0, '', '', '2024-12-20 09:52:21', 0, '', '', '2024-12-20 09:52:21.801983', 0, '', '', '2024-12-20 09:52:21', 0, '', '', 2147483647, 0, '', '', '2024-12-20 09:52:21', 0, '', NULL, '2024-12-20 09:52:21', 0),
-(51, 'මහදුරගේ චතුරිකා දේශානි', 'එම්.ඩී.සී. දේශානි', 'M.D.C. Deshani', '847513900V', 'මේඛලා, කදුරුපේ පාර, බූස්ස.', '0', '772838452', 'dchathurika84@gmail.com', 1, 1, 'ස්ථිරයි', 4, 8, 8, '2010-02-10', 'විවෘත විශ්වවිද්‍යාලය', 'කළමනාකරණවේදී', '5', '2023-06-20', '2024-12-03', 52000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_51.JPG', 'uploads/up_service_minite/service_minite_51.JPG', 'uploads/up_app_letter_confirm/app_letter_confirm_51.JPG', 'uploads/up_attach_sp/attach_sp_51.JPG', 'uploads/up_course_selected/course_selected_51.JPG', NULL, NULL, NULL, '', '2024-12-20 10:01:01', 2, 2, 8, 0, 0, '', '', '2024-12-20 09:59:55', 0, '', '', '2024-12-20 09:59:55.035888', 0, '', '', '2024-12-20 09:59:55', 0, '', '', 2147483647, 0, '', '', '2024-12-20 09:59:55', 0, '', NULL, '2024-12-20 09:59:55', 0),
-(52, '', 'ජී.වයි.සී.මාලනි', '', '198782010074', '', '0', '707965044', 'gycmalani@gmail.com', 1, 4, 'Open this select menu', 2, 8, 8, '2010-01-01', 'රුහුණ විශ්ව විද්‍යාලය', 'ආර්ථික විද්‍යා පශ්චාත් උපාධිය', '10.01', '2025-01-01', '2027-01-01', 200000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-20 10:03:26', 2, 2, 8, 0, 0, '', '', '2024-12-20 10:01:07', 0, '', '', '2024-12-20 10:01:07.854363', 0, '', '', '2024-12-20 10:01:07', 0, '', '', 2147483647, 0, '', '', '2024-12-20 10:01:07', 0, '', NULL, '2024-12-20 10:01:07', 0),
-(53, 'සේනානායක දාසිලි ලියනගේ දිවාන්', 'එස්.ඩී.එල්.දිවාන්', 'එස්.ඩී.එල්.දිවාන්', '198533002040', 'නෙළුව', '788738585', '788738585', 'divansenanayake@gmail.com', 4, 14, 'ස්ථිරයි', 37, 13, 13, '2023-02-20', 'කොළඹ විශ්ව විද්‍යාලය', 'රාජ්‍ය පරිපාලනය', '2.3', '2024-12-02', '2025-01-21', 200000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_53.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-20 10:16:59', 2, 2, 13, 0, 0, '', '', '2024-12-20 10:15:56', 0, '', '', '2024-12-20 10:15:56.224560', 0, '', '', '2024-12-20 10:15:56', 0, '', '', 2147483647, 0, '', '', '2024-12-20 10:15:56', 0, '', NULL, '2024-12-20 10:15:56', 0),
-(54, 'සේනානායක දාසිලි ලියනගේ දිවාන්', 'ඒ.පී.තිසරා', 'A.P.Thisara', '990000000V', 'නෙළුව', '0', '752030700', 'ahub2920@gmail.com', 8, 27, 'ස්ථිරයි', 72, 12, 12, '2024-07-24', 'කොළඹ විශ්ව විද්‍යාලය', 'රාජ්‍ය පරිපාලනය', '2.3', '2024-12-27', '2025-10-24', 200000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_54.jpg', 'uploads/up_service_minite/service_minite_54.jpg', NULL, NULL, NULL, NULL, 'uploads/up_course_complete/course_complete_54.jpg', NULL, '', '2024-12-24 08:04:04', 2, 2, 12, 0, 0, '', '', '2024-12-24 08:03:05', 0, '', '', '2024-12-24 08:03:05.013269', 0, '', '', '2024-12-24 08:03:05', 0, '', '', 2147483647, 0, '', '', '2024-12-24 08:03:05', 0, '', NULL, '2024-12-24 08:03:05', 0),
-(55, 'ජීනසේන ලෝයල් මහතා', 'ජී.එල්.මහතා', 'G.L.Mahatha', '197500000000', 'Kaluwella, Galle', '4949494900', '712345678', 'spcsfor.schol@gmail.com', 3, 11, 'ස්ථිරයි', 32, 5, 5, '2015-12-25', 'Open University', 'Master of Project Management', '12-2', '2025-01-01', '2027-12-31', 300000.00, 'ඇත', 'Diploma in Management', 'University of Colombo', '2024-06-01', 0.00, 35000.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_55.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-24 08:14:50', 2, 2, 5, 0, 0, '', '', '2024-12-24 08:13:43', 0, '', '', '2024-12-24 08:13:43.051385', 0, '', '', '2024-12-24 08:13:43', 0, '', '', 2147483647, 0, '', '', '2024-12-24 08:13:43', 0, '', NULL, '2024-12-24 08:13:43', 0),
-(56, 'ගීගන වතුර චන්දීපන් මාලනී', 'ජී.වයි.සී.මාලනි', 'G.Y.C.MALANI', '878202245V', 'වල්පිට දකුණ,බලගොඩ,පෝද්දල', '0', '707965044', 'deniroshansilva@gmail.com', 4, 14, 'ස්ථිරයි', 39, 49, 13, '2010-01-01', 'රුහුණ විශ්ව විද්‍යාලය', 'ආර්ථික විද්‍යා පශ්චාත් උපාධිය', '10.01', '2025-01-01', '2027-01-01', 200000.00, 'ඇත', 'රාජ්‍ය මූල්‍ය කළ.පශ්චාත් උපාධිය', 'ශ්‍රී ජයවර්ධනපුර විශ්ව විද්‍යාලය', '2017-10-20', 100000.00, 300000.00, '', '', '0000-00-00', 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-24 09:31:18', 2, 6, 13, 6, 0, '', '', '2024-12-24 09:30:16', 0, '', '', '2024-12-24 09:30:16.304607', 0, '', '', '2024-12-24 09:30:16', 0, '', '', 2147483647, 0, '', '', '2024-12-24 09:30:16', 0, '', NULL, '2024-12-24 09:30:16', 0),
-(57, 'හේවාවසම් බෙන්තොටගේ හංසි තත්සරණි', 'එච්.බී.හංසි තත්සරණි', 'H.B.Hansi Thathsarani', '997860148V', 'ඌරල, වදුරඹ', '764071408', '764071408', 'wakatic731@kelenson.com', 5, 19, 'ස්ථිරයි', 52, 19, 6, '2023-08-24', 'කොළඹ විශ්ව විද්‍යාලය', 'මානව සම්පත් කළමනාකරණය', '7-2', '2024-12-05', '2026-07-24', 0.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_57.jpg', 'uploads/up_service_minite/service_minite_57.jpg', 'uploads/up_app_letter_confirm/app_letter_confirm_57.jpg', NULL, NULL, NULL, NULL, NULL, '', '2024-12-24 09:43:26', 2, 3, 12, 3, 0, '', '', '2024-12-24 09:35:00', 0, '', '', '2024-12-24 09:35:00.621726', 0, '', '', '2024-12-24 09:35:00', 0, '', '', 2147483647, 0, '', '', '2024-12-24 09:35:00', 0, '', NULL, '2024-12-24 09:35:00', 0),
-(58, 'සේනානායක දාසිලි ලියනගේ දිවාන්', 'ඒ.පෙරේරා', 'A.P.Thisara', '200500000000', 'නෙළුව', '716411443', '716411443', 'sitica4420@mowline.com', 2, 7, 'ස්ථිරයි', 24, 17, 7, '2018-10-29', 'කොළඹ විශ්ව විද්‍යාලය', 'රාජ්‍ය පරිපාලනය', '2.3', '2024-12-28', '2024-12-27', 200000.00, 'ඇත', 'කළමනාකරණ ඩිප්ලෝමාව', 'විවෘත විශ්ව විද්‍යලය', '2025-01-03', 25000.00, 50000.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_58.jpg', NULL, NULL, 'uploads/up_attach_sp/attach_sp_58.jpg', NULL, NULL, NULL, NULL, '', '2024-12-24 09:42:17', 2, 3, 4, 1, 0, '', '', '2024-12-24 09:37:18', 0, '', '', '2024-12-24 09:37:18.878139', 0, '', '', '2024-12-24 09:37:18', 0, '', '', 2147483647, 0, '', '', '2024-12-24 09:37:18', 0, '', NULL, '2024-12-24 09:37:18', 0),
-(60, 'හේවාවසම් බෙන්තොටගේ හංසි තත්සරණි', 'එච්.බී.හංසි තත්සරණි', 'H.B.Hansi Thathsarani', '997860138V', 'ඌරල, වදුරඹ', '701914446', '772545687', 'dewihap963@matmayer.com', 1, 3, 'ස්ථිරයි', 11, 31, 16, '2022-05-27', 'කොළඹ විශ්ව විද්‍යාලය', 'මානව සම්පත් කළමනාකරණය', '7-1', '2023-12-27', '2026-05-27', 0.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-27 04:34:39', 1, 3, 16, 15, 0, '', '', '2024-12-27 04:34:39', 0, '', '', '2024-12-27 04:34:39.887630', 0, '', '', '2024-12-27 04:34:39', 0, '', '', 2147483647, 0, '', '', '2024-12-27 04:34:39', 0, '', NULL, '2024-12-27 04:34:39', 0),
-(61, 'Pasindu Niroshana', 'පසිදු නිරොශන', 'T.P. Niroshana', '982972680V', 'Boossa, Galle', '763903736', '763903736', 'niroshanthirimadura@gmail.com', 4, 14, 'ස්ථිරයි', 38, 49, 13, '2024-12-10', 'University of Ruhuna', 'Computer Scince', '22-13-15', '2024-12-02', '2027-06-15', 300000.00, 'ඇත', 'BED', 'UOK', '2024-12-09', 100000.00, 300000.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/up_porva_anu_61.png', NULL, NULL, NULL, 'uploads/up_course_selected/course_selected_61.png', NULL, NULL, NULL, '', '2024-12-27 06:30:16', 100, 6, 13, 6, 0, '', '10203', '2024-12-27 06:21:20', 23, '', 'abc', '2024-12-27 06:22:48.000000', 22, '', '', '2024-12-27 05:21:09', 0, '', '', 2147483647, 25, '', '', '2024-12-27 06:30:16', 27, '', NULL, '2024-12-27 05:21:09', 0),
-(62, 'මහදුරගේ චතුරිකා ', 'එම්.ඩී.සී. චතුරිකා', 'M.D.C.Chathurika', '812343900V', 'මේඛලා, කදුරුපේ පාර, බූස්ස.', '772838451', '772838450', 'spvacancies.cs@gmail.com', 11, 34, 'ස්ථිරයි', 79, 6, 6, '2020-02-27', 'technology', 'civil', '211', '2022-06-20', '2023-07-24', 52000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2024-12-27 09:11:32', 2, 2, 6, 0, 0, '', '', '2024-12-27 09:11:16', 0, '', '', '2024-12-27 09:11:16.981783', 0, '', '', '2024-12-27 09:11:16', 0, '', '', 2147483647, 0, '', '', '2024-12-27 09:11:16', 0, '', NULL, '2024-12-27 09:11:16', 0);
+INSERT INTO `application` (`app_no`, `reason`, `name_full`, `name_si`, `name_eng`, `nic`, `address_pri`, `tel_land`, `tel_mob`, `email_pri`, `service`, `grade`, `upp_status`, `desi`, `c_w_p`, `min`, `date_att_sp`, `ins_name`, `course_name`, `service_minite_no`, `course_start_date`, `course_end_date`, `course_fee`, `before_recieved`, `bf_01course_name`, `bf_01ins_name`, `bf_01start_date`, `bf_01gov_paid`, `bf_01full_course_fee`, `bf_02course_name`, `bf_02ins_name`, `bf_02start_date`, `bf_02gov_paid`, `bf_02full_course_fee`, `up_porva_anu`, `up_service_minite`, `up_app_letter_confirm`, `up_attach_sp`, `up_course_selected`, `up_campus_confirm`, `up_course_complete`, `up_pay_recept`, `up_other`, `created`, `app_status`, `offi_cat`, `min_id`, `dep_id`, `dist_offi_id`, `Subject_Aprv_Rm`, `Subject_Reject_RM`, `Subject_time_stamp`, `Subject_user_id`, `office_Rec_Aprv_RM`, `office_Rec_Reject_RM`, `office_Rec_time_stamp`, `office_Rec_user_id`, `office_Rec_Recommend`, `Office_head_Aprv_RM`, `Office_head_Reject_RM`, `Office_head_time_stamp`, `Office_head_user_id`, `office_head_Recommend`, `Dist_Chk_Offi_Aprv_Rm`, `Dist_Chk_Offi_Reject_RM`, `Dist_Chk_Offi_time_stamp`, `Dist_Chk_Offi_user_id`, `Dist_Rec_Offi_Aprv_Rm`, `Dist_Rec_Offi_Reject_RM`, `Dist_Rec_Offi_time_stamp`, `Dist_Rec_Offi_user_id`, `Dist_Rec_Offi_Recommend`, `Dist_offi_head_Aprv_RM`, `Dist_offi_head_Reject_RM`, `Dist_offi_head_time_stamp`, `Dist_offi_head_user_id`, `Dist_offi_head_Recommend`, `Dep_Chk_Offi_Aprv_RM`, `Dep_Chk_Offi_Reject_RM`, `Dep_Chk_Offi_time_stamp`, `Dep_Chk_Offi_user_id`, `Dep_Rec_Offi_Aprv_RM`, `Dep_Rec_Offi_Reject_RM`, `Dep_Rec_Offi_time_stamp`, `Dep_Rec_Offi_user_id`, `Dep_Rec_Offi_Recommend`, `Dep_head_Aprv_RM`, `Dep_head_Reject_RM`, `Dep_head_time_stamp`, `Dep_head_user_id`, `Dep_head_Recommend`, `Min_Chk_Offi_Aprv_RM`, `Min_Chk_Offi_Reject_RM`, `Min_Chk_Offi_time_stamp`, `Min_Chk_Offi_user_id`, `Min_Rec_Offi_Aprv_RM`, `Min_Rec_Offi_Reject_RM`, `Min_Rec_Offi_time_stamp`, `Min_Rec_Offi_user_id`, `Min_Rec_Offi_Recommend`, `Min_head_Aprv_RM`, `Min_head_Reject_RM`, `Min_head_time_stamp`, `Min_head_user_id`, `Min_head_Recommend`, `CS_Chk_Offi_Aprv_RM`, `CS_Chk_Offi_Reject_RM`, `CS_Chk_Offi_time_stamp`, `CS_Chk_Offi_user_id`, `AO_Aprv_RM`, `AO_Reject_RM`, `AO_time_stamp`, `AO_user_id`, `AO_Recommend`, `ACS_Aprv_RM`, `ACS_Reject_RM`, `ACS_time_stamp`, `ACS_user_id`, `ACS_Recommend`, `DCS_Aprv_RM`, `DCS_Reject_RM`, `DCS_time_stamp`, `DCS_user_id`, `DCS_Recommend`, `CS_Aprv_RM`, `CS_Reject_RM`, `CS_time_stamp`, `CS_user_id`, `ACC1_Aprv_RM`, `ACC1_Reject_RM`, `ACC1_time_stamp`, `ACC1_user_id`, `ACC2_Aprv_RM`, `ACC2_Reject_RM`, `ACC2_time_stamp`, `ACC2_user_id`) VALUES
+(1, 1, 'Dilmi Kavindya Amarasiri Weerapperuma', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'D.K.A.Weerapperuma', '996534120V', 'akuratiya, Baddegama', '0', '764607826', 'kavindyadilmi09@gmail.com', 1, 5, 'ස්ථිරයි', 19, 33, 12, '2021-10-16', 'කොළඹ විශ්ව විද්‍යාලය', 'කළමනාකරණවෙදි', '5.2', '2024-01-16', '2026-10-16', 220000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_1.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-03-20 01:54:10', 260, 4, 12, 3, 1, 'Approved By Subject Officer', '', '2025-01-16 09:22:41', 2, '', '', '2025-01-16 05:06:04', 0, 0, '', '', '2025-01-16 05:06:04', 0, 0, '', '', '2025-01-16 05:06:04', 0, 'Approved By District Recommend Officer', 'Reject By District Recommend Officer', '2025-01-16 09:41:44', 8, 0, '', '', '2025-01-17 03:34:46', 9, 0, 'Approved By Department Check Officer', '', '2025-01-17 06:31:36', 10, 'Approved By Department Recommend Officer', '', '2025-01-17 08:41:09', 11, 0, '', '', '2025-01-18 06:17:13', 12, 0, '', '', '2025-01-18 10:59:49', 13, 'Reject By Ministry Recommend Officer', '', '2025-01-18 11:32:35', 14, 0, 'Approved By Ministry Head', '', '2025-01-20 04:23:30', 15, 0, 'Approved By CS Check Officer', '', '2025-01-20 07:42:41', 16, 'Approved By CS AO Officer', '', '2025-01-20 09:57:11', 37, 0, 'Approved By CS ACS Officer', '', '2025-01-21 04:48:04', 38, 0, '', '', '2025-01-21 06:07:18', 39, 0, 'Approved By CS', '', '2025-01-21 08:42:03', 40, 'Approved By ACC 1', '', '2025-01-21 09:45:10', 41, 'Approved By ACC 2', '', '2025-01-21 09:52:08', 42),
+(2, 2, 'කාරියවසම් මහේෂ්', 'කාරියවසම් මයා ', 'K.Mahesh', '197500000000', 'අංක 2, ගාල්ල', '711234567', '711234567', 'spcsrecruitment.inq@gmail.com', 1, 2, 'ස්ථිරයි', 15, 50, 12, '2018-01-01', 'University of Colombo', 'Master of Management', '127', '2024-12-01', '2025-01-31', 135000.00, 'ඇත', 'diploma in management', '', '2023-01-15', 0.00, 25000.00, '', '', '0000-00-00', 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-03-20 02:15:14', 140, 5, 12, 3, 1, 'Approved By Subject Officer', '', '2025-01-16 08:22:03', 1, 'Approved By Recommend Officer', '', '2025-01-16 08:49:06', 5, 0, 'Approved By Office Head', '', '2025-01-16 08:53:27', 6, 0, 'Approved By District Check Officer', '', '2025-01-16 08:59:16', 7, 'Approved By District Recommend Officer', '', '2025-01-16 09:42:02', 8, 0, 'Approved By District Head', '', '2025-01-17 03:35:34', 9, 0, 'Approved By Department Check Officer', '', '2025-01-17 06:33:08', 10, 'Approved By Department Recommend Officer', '', '2025-01-17 08:41:18', 11, 0, 'Approved By Department Head', '', '2025-01-18 06:17:32', 12, 0, 'Approved By Ministry Check Officer', '', '2025-01-18 11:00:19', 13, '', '', '2025-01-18 11:32:44', 14, 0, 'Approved By Ministry Head', '', '2025-01-20 04:23:41', 15, 0, '', '', '2025-01-20 07:44:07', 16, '', '', '2025-01-20 10:01:11', 37, 0, '', '', '2025-01-21 04:48:12', 38, 0, '', '', '2025-01-21 06:07:38', 39, 0, 'Approved By CS', '', '2025-01-21 08:42:14', 40, '', '', '2025-01-21 09:45:21', 41, '', '', '2025-01-21 09:52:15', 42),
+(3, 1, 'Dilmi Kavindya Amarasiri Weerapperuma', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'D.K.A.Weerapperuma', '996534121V', 'akuratiya, Baddegama', '0', '764607826', 'ahub2920@gmail.com', 2, 9, 'ස්ථිරයි', 30, 19, 12, '2025-01-16', 'කොළඹ විශ්ව විද්‍යාලය', 'කළමනාකරණවෙදි', '5.2', '0000-00-00', '2025-01-16', 220000.00, 'ඇත', 'කළමනාකරණවේදි ඩිප්ලොමා', 'විවෘත විශ්ව විද්‍යලය', '2025-01-16', 30000.00, 120000.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_3.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-02-25 07:58:44', 240, 3, 12, 3, 0, 'Approved By Subject Officer', '', '2025-01-16 08:02:45', 3, '', '', '2025-01-16 05:19:32', 0, 0, '', '', '2025-01-16 05:19:32', 0, 0, '', '', '2025-01-16 05:19:32', 0, '', '', '2025-01-16 05:19:32', 0, 0, '', '', '2025-01-16 05:19:32', 0, 0, '', '', '2025-01-16 05:19:32', 0, 'Approved By Department Recommend Officer', '', '2025-01-17 08:41:26', 11, 0, '', '', '2025-01-18 06:17:40', 12, 0, '', '', '2025-01-18 11:00:27', 13, '', '', '2025-02-23 10:25:11', 14, 1, '', '', '2025-02-23 12:57:13', 15, 1, '', '', '2025-02-24 04:18:17', 16, '', '', '2025-02-24 08:07:59', 37, 1, '', '', '2025-02-25 03:12:41', 38, 1, '', '', '2025-02-25 04:58:37', 39, 1, '', '', '2025-02-25 07:58:44', 40, 'Approved By ACC 1', '', '2025-01-21 09:45:30', 41, 'Approved By ACC 2', '', '2025-01-21 09:52:24', 42),
+(4, 1, 'Dilmi Kavindya Amarasiri Weerapperuma', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'D.K.A.Weerapperuma', '996534123V', 'akuratiya, Baddegama', '0', '764607826', 'imacreation61@gmail.com', 3, 11, 'ස්ථිරයි', 32, 12, 12, '2025-01-16', 'කොළඹ විශ්ව විද්‍යාලය', 'කළමනාකරණවෙදි', '5.2', '2025-01-16', '2025-01-16', 220000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_4.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-02-19 03:19:18', 260, 2, 12, 0, 0, 'Approved By Subject Officer', '', '2025-01-16 08:03:19', 4, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, 0, '', '', '2025-01-16 05:44:08', 0, '', '', '2025-01-18 11:33:03', 14, 0, '', '', '2025-01-20 04:24:00', 15, 0, '', '', '2025-01-20 07:44:46', 16, '', '', '2025-01-20 10:01:53', 37, 0, 'Approved By CS ACS Officer', '', '2025-01-21 04:48:30', 38, 0, '', '', '2025-01-21 06:08:11', 39, 0, 'Approved By CS', '', '2025-01-21 08:42:32', 40, 'Approved By ACC 1', '', '2025-01-21 09:45:39', 41, 'Approved By ACC 2', '', '2025-01-21 09:52:33', 42),
+(5, 2, 'Dilmi Kavindya Amarasiri Weerapperuma', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'D.K.A.Weerapperuma', '996534124V', 'akuratiya, Baddegama', '764607826', '764607826', 'usedemo627@gmail.com', 4, 13, 'ස්ථිරයි', 39, 39, 13, '2025-01-16', 'කොළඹ විශ්ව විද්‍යාලය', 'කළමනාකරණවෙදි', '5.2', '2025-01-16', '2025-01-16', 220000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_5.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-02-19 03:19:22', 105, 6, 13, 6, 0, 'Approved By Subject Officer', '', '2025-01-16 08:04:14', 25, 'Approved By Recommend Officer', '', '2025-01-16 08:48:02', 28, 0, '', '', '2025-01-18 02:17:00', 29, 0, '', '', '2025-01-16 05:47:53', 0, '', '', '2025-01-16 05:47:53', 0, 0, '', '', '2025-01-16 05:47:53', 0, 0, 'Approved By Department Check Officer', '', '2025-01-18 04:29:54', 30, 'Approved By Department Recommend Officer', '', '2025-01-18 05:32:54', 32, 0, 'Approved By Department Head', '', '2025-01-18 05:54:52', 33, 0, 'Approved By Ministry Check Officer', '', '2025-01-18 11:47:50', 34, 'Approved By Ministry Recommend Officer', '', '2025-01-18 12:00:10', 35, 0, '', '', '2025-01-20 04:20:34', 36, 0, 'Approved By CS Check Officer', '', '2025-01-20 07:44:56', 16, 'Approved By CS AO Officer', '', '2025-01-20 10:02:05', 37, 0, '', '', '2025-01-21 04:48:38', 38, 0, 'Approved By CS DCS Officer', '', '2025-01-21 06:08:22', 39, 0, 'Approved By CS', '', '2025-01-21 08:42:44', 40, '', '', '2025-01-21 09:45:46', 41, '', '', '2025-01-21 09:52:40', 42),
+(6, 1, 'Dilmi Kavindya Amarasiri Weerapperuma', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'D.K.A.Weerapperuma', '996534125V', 'akuratiya, Baddegama', '0', '764607826', 'imalshakmp@gmail.com', 4, 13, 'ස්ථිරයි', 36, 22, 13, '2025-01-16', 'කොළඹ විශ්ව විද්‍යාලය', 'කළමනාකරණවෙදි', '5.2', '2025-01-16', '2025-01-16', 220000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_6.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-02-19 03:19:26', 260, 3, 13, 6, 0, '', '', '2025-01-18 04:30:22', 26, '', '', '2025-01-16 05:51:54', 0, 0, '', '', '2025-01-16 05:51:54', 0, 0, '', '', '2025-01-16 05:51:54', 0, '', '', '2025-01-16 05:51:54', 0, 0, '', '', '2025-01-16 05:51:54', 0, 0, '', '', '2025-01-16 05:51:54', 0, 'Approved Department Department Recommend Officer', '', '2025-01-18 05:34:04', 32, 0, '', '', '2025-01-18 05:55:01', 33, 0, '', '', '2025-01-18 11:47:57', 34, '', '', '2025-01-18 12:00:16', 35, 0, 'Approved By Ministry Head', '', '2025-01-20 04:21:09', 36, 0, '', '', '2025-01-20 07:45:03', 16, '', '', '2025-01-20 10:02:11', 37, 0, 'Approved By CS ACS Officer', '', '2025-01-21 04:48:47', 38, 0, 'Approved By CS DCS Officer', '', '2025-01-21 06:08:30', 39, 0, '', '', '2025-01-21 08:42:50', 40, 'Approved By ACC 1', '', '2025-01-21 09:45:53', 41, 'Approved By ACC 2', '', '2025-01-21 09:52:49', 42),
+(13, 2, 'Dushantha Nuwanpriya Panangala', 'ටී.පී.එන්. ද සිල්වා', 'T.P.N.De Silva', 'GML_REC', 'Boossa, Galle', '714498048', '763903736', 'niroshanthirimadura4@gmail.com', 6, 21, 'ස්ථිරයි', 55, 50, 12, '2025-02-02', 'University of Colombo', 'Msc', '2011/12/05 NO 12', '2025-02-03', '2025-02-28', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_13.png', NULL, NULL, NULL, 'uploads/up_course_selected/course_selected_13.png', NULL, NULL, NULL, '', '2025-02-25 07:58:56', 240, 5, 12, 3, 1, 'Approved', '', '2025-02-20 04:39:51', 1, 'Approved', '', '2025-02-20 05:48:41', 5, 1, 'Approved', '', '2025-02-20 09:27:15', 6, 1, 'Aprroved', '', '2025-02-20 09:27:41', 7, '', '', '2025-02-21 08:22:52', 8, 1, '', '', '2025-02-21 08:23:18', 9, 1, '', '', '2025-02-22 13:39:24', 10, '', '', '2025-02-22 13:39:50', 11, 2, '', '', '2025-02-22 14:20:36', 12, 1, '', '', '2025-02-23 05:55:57', 13, 'Approved', '', '2025-02-23 10:24:26', 14, 1, '', '', '2025-02-24 05:39:31', 15, 1, '', '', '2025-02-24 05:40:03', 16, '', '', '2025-02-24 08:08:08', 37, 2, '', '', '2025-02-25 06:15:06', 38, 1, '', '', '2025-02-25 06:15:30', 39, 1, 'Approved', '', '2025-02-25 07:58:56', 40, '', '', '2025-02-18 04:44:48', 0, '', '', '2025-02-18 04:44:48', 0),
+(15, 1, 'Dushantha Nuwanpriya Panangala', 'ටී.පී.එන්. ද සිල්වා', 'D.N.Panangala', 'GML_OFF', 'Wanchawala, Galle', '715615399', '763903736', 'niroshanthirimadura5@gmail.com', 6, 21, 'ස්ථිරයි', 56, 50, 12, '2025-02-09', 'University of Colombo', 'Msc', '2011/12/05 NO 12', '2025-02-06', '2025-02-28', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_15.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-02-25 07:59:08', 221, 5, 12, 3, 1, 'Approved', '', '2025-02-20 04:46:38', 1, '', '', '2025-02-20 04:47:04', 5, 1, '', '', '2025-02-20 05:49:19', 6, 1, 'Approved', '', '2025-02-21 04:56:26', 7, 'Approved', '', '2025-02-21 04:57:11', 8, 1, '', '', '2025-02-22 12:18:31', 9, 1, '', '', '2025-02-22 12:19:00', 10, '', '', '2025-02-22 12:28:10', 11, 2, '', '', '2025-02-23 10:22:52', 12, 1, 'Approved', '', '2025-02-23 11:57:50', 13, '', '', '2025-02-23 14:17:06', 14, 1, '', '', '2025-02-24 03:15:52', 15, 1, '', '', '2025-02-24 04:18:34', 16, '', '', '2025-02-25 04:05:55', 37, 1, '', '', '2025-02-25 04:06:17', 38, 2, '', '', '2025-02-25 04:58:28', 39, 1, '', 'Reject', '2025-02-25 07:59:08', 40, '', '', '2025-02-20 04:45:44', 0, '', '', '2025-02-20 04:45:44', 0),
+(16, 2, 'තිරිමාදුර පසිදු නිරෝශන ද සිල්වා', 'ටී.පී.එන්. ද සිල්වා', 'T.P.N.De Silva', 'ACLG_REC', 'Wanchawala, Galle', '715615399', '763903736', 'niroshanthirimadura@gmail.com\n', 7, 23, 'ස්ථිරයි', 61, 33, 12, '2025-02-02', 'University of Colombo', '', '2011/12/05 NO 12', '2025-02-01', '2025-02-28', 400000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, 'uploads/up_porva_anu/porva_anu_16.png', NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/up_pay_recept/pay_recept_16.png', '', '2025-03-21 12:19:59', 240, 4, 12, 3, 1, 'Approved', '', '2025-02-20 09:57:43', 2, '', '', '2025-02-20 09:54:35', 0, 0, '', '', '2025-02-20 09:54:35', 0, 0, '', '', '2025-02-20 09:54:35', 0, 'Approved', '', '2025-02-21 03:57:01', 8, 1, '', '', '2025-02-22 04:20:21', 9, 1, '', '', '2025-02-22 04:25:46', 10, '', '', '2025-02-23 05:42:25', 11, 1, '', '', '2025-02-23 05:43:18', 12, 1, '', '', '2025-02-23 05:56:25', 13, '', '', '2025-02-23 10:24:57', 14, 2, '', '', '2025-02-23 12:58:40', 15, 2, '', '', '2025-02-24 09:37:03', 16, '', '', '2025-02-24 09:37:47', 37, 1, '', '', '2025-02-25 03:13:12', 38, 1, '', '', '2025-02-25 04:59:01', 39, 2, '', '', '2025-03-21 12:19:59', 40, '', '', '2025-02-20 09:54:35', 0, '', '', '2025-02-20 09:54:35', 0),
+(17, 2, 'තිරිමාදුර පසිඳු නිරෝශන ද සිල්වා', 'ඩී.කේ.ඒ.වීරප්පෙරුම', 'T.P.N. De Silva', '996534126V', '415/2, Idamtota, Ambalangoda', '764930627', '764607826', 'deniroshansilva@gmail.com', 3, 11, 'ස්ථිරයි', 32, 13, 13, '2025-03-17', 'University of Ruhuna', 'Computer Science', '14', '2025-03-10', '2025-03-28', 500000.00, 'නැත', '', '', '0000-00-00', 0.00, 0.00, '', '', '0000-00-00', 0.00, 0.00, NULL, 'uploads/up_service_minite/service_minite_17.png', 'uploads/up_app_letter_confirm/up_app_letter_confirm_17.png', 'uploads/up_attach_sp/attach_sp_17.png', NULL, NULL, NULL, NULL, '', '2025-03-17 05:29:45', 2, 2, 13, 0, 0, 'Reject', 'Reject', '2025-03-17 04:16:49', 27, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-17 04:15:23', 35, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-13 12:03:21', 0, '', '', '2025-03-13 12:03:21', 0);
 
 -- --------------------------------------------------------
 
@@ -263,7 +317,10 @@ INSERT INTO `desi` (`desi_id`, `desi_name`, `service_id`) VALUES
 (82, 'Agriculture Instructor (Special)\r\n', 11),
 (83, 'Livestock  Development Instructor', 11),
 (84, 'Public Health Field Officer', 11),
-(85, 'Assistant Secretary', 1);
+(85, 'Assistant Chief Secretary', 1),
+(86, 'Assistant Secretary', 1),
+(87, 'Management Service Officer', 12),
+(88, 'Development Officer', 13);
 
 -- --------------------------------------------------------
 
@@ -321,37 +378,39 @@ INSERT INTO `grade` (`grade_id`, `grade_name`, `service_id`) VALUES
 (1, 'Special', 1),
 (2, 'I', 1),
 (3, 'II', 1),
-(4, 'III/II', 1),
 (5, 'III', 1),
 (6, 'Special', 2),
 (7, 'I', 2),
-(8, 'III/II', 2),
+(8, 'II', 2),
 (9, 'III', 2),
 (10, 'Special', 3),
 (11, 'I', 3),
-(12, 'III/II', 3),
+(12, 'II', 3),
 (13, 'I', 4),
 (14, 'II', 4),
-(15, 'III/II', 4),
+(15, 'III', 4),
 (16, 'Special', 5),
 (17, 'I', 5),
 (18, 'II', 5),
-(19, 'III/II', 5),
+(19, 'III', 5),
 (20, 'I', 6),
 (21, 'II', 6),
-(22, 'III/II', 6),
+(22, 'III', 6),
 (23, 'I', 7),
 (24, 'II', 7),
-(25, 'III/II', 7),
+(25, 'III', 7),
 (26, 'Admin I', 8),
 (27, 'Admin II', 8),
 (28, 'Special', 8),
 (29, 'I', 8),
-(30, 'II/I', 8),
-(31, 'Prelim/II/I', 8),
-(32, 'III/II', 9),
-(33, 'III/II', 10),
-(34, 'Special', 11);
+(30, 'II', 8),
+(31, 'Prelim', 8),
+(32, 'II', 9),
+(33, 'II', 10),
+(34, 'Special', 11),
+(35, 'III', 3),
+(36, 'III', 9),
+(37, 'III', 10);
 
 -- --------------------------------------------------------
 
@@ -372,7 +431,7 @@ INSERT INTO `ministry` (`min_id`, `min_name`) VALUES
 (1, 'Governor\'s Secretariat'),
 (2, 'Council Secretariat '),
 (3, 'Provincial Public Service Commission'),
-(4, 'Chief Secretary\'s Office'),
+(4, 'Chief Secretary\'s Office - Deputy Chief Secretary (Admin)'),
 (5, 'Chief Secretary\'s Office - Deputy Chief Secretary (Planning)'),
 (6, 'Chief Secretary\'s Office - Deputy Chief Secretary (Engineering)'),
 (7, 'Chief Secretary\'s Office - Deputy Chief Secretary (Finance) '),
@@ -409,7 +468,7 @@ INSERT INTO `office` (`offi_id`, `offi_name`, `offi_cat`, `min_id`, `dep_id`, `d
 (1, 'Governor\'s Secretariat', 2, 1, 0, 0),
 (2, 'Council Secretariat ', 2, 2, 0, 0),
 (3, 'Provincial Public Service Commission', 2, 3, 0, 0),
-(4, 'Chief Secretary\'s Office', 1, 4, 0, 0),
+(4, 'Chief Secretary\'s Office - Deputy Chief Secretary (Admin)', 2, 4, 0, 0),
 (5, 'Chief Secretary\'s Office - Deputy Chief Secretary (Planning)', 2, 5, 0, 0),
 (6, 'Chief Secretary\'s Office - Deputy Chief Secretary (Engineering)', 2, 6, 0, 0),
 (7, 'Chief Secretary\'s Office - Deputy Chief Secretary (Finance) ', 2, 7, 0, 0),
@@ -531,7 +590,9 @@ INSERT INTO `service` (`service_Id`, `service_name`) VALUES
 (8, 'ශ්‍රී ලං.ආයුර්.වෛ.සේ. SLAyMS'),
 (9, 'ශ්‍රී ලං.වා.වි.සේ. SLArchS'),
 (10, 'ශ්‍රී ලං.වි.සේ. SLSS'),
-(11, 'ශ්‍රී ලං.තා.සේ. SLTS');
+(11, 'ශ්‍රී ලං.තා.සේ. SLTS'),
+(12, 'MSO'),
+(13, 'DO');
 
 -- --------------------------------------------------------
 
@@ -546,84 +607,62 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `tel` varchar(10) NOT NULL,
   `offi_id` int(3) NOT NULL,
+  `desi` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `otp` varchar(6) DEFAULT NULL,
-  `status` varchar(2) DEFAULT '1'
+  `status` varchar(3) DEFAULT '1',
+  `temp_status` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `nic`, `email`, `tel`, `offi_id`, `password`, `otp`, `status`) VALUES
-(1, 'Subject Officer 1', '1234', 'subjectofficer@gmail.com', '0911234567', 39, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(2, 'Office Head 1', '12345', 'officehead@gmail.com', '0911234567', 51, '202cb962ac59075b964b07152d234b70', '256375', '12'),
-(3, 'Office Head 2', '12345A', 'officehead1@gmail.com', '0911234567', 39, '202cb962ac59075b964b07152d234b70', '256377', '12'),
-(4, 'Subject Officer 2', '1234A', 'subjectofficer1@gmail.com', '0911234567', 51, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(6, 'Pasindu Niroshana', '982972681V', 'niroshanthirimadura1@gmail.com', '0717720219', 51, '2884e86b6d3e8a29539360c97faf8bd7', '991544', '4'),
-(7, 'District Officer', '123456', 'districtofficer@gmail.com', '0911234567', 33, '202cb962ac59075b964b07152d234b70', '256374', '14'),
-(8, 'Pasindu Niroshana', '982972682V', 'niroshanthirimadura2@gmail.com', '0717720219', 33, '2884e86b6d3e8a29539360c97faf8bd7', '991545', '4'),
-(9, 'Subject Officer 3', '1234B', 'subjectofficer3@gmail.com', '0911234567', 33, '202cb962ac59075b964b07152d234b70', '256376', '11'),
-(10, 'Subject Officer 4', '1234C', 'subjectofficer4@gmail.com', '0911234567', 34, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(11, 'Pasindu Niroshana', '982972683V', 'niroshanthirimadura3@gmail.com', '0717720219', 34, '2884e86b6d3e8a29539360c97faf8bd7', '991542', '4'),
-(12, 'District Officer Matara', '123456A', 'districtofficer@gmail.com', '0911234567', 34, '202cb962ac59075b964b07152d234b70', '256375', '14'),
-(13, 'Local Goverment Department Head', '1234567', 'departmenthead@gmail.com', '0911234567', 19, '202cb962ac59075b964b07152d234b70', '256375', '16'),
-(14, 'Pasindu Niroshana', '982972684V', 'niroshanthirimadura4@gmail.com', '0717720219', 12, '2884e86b6d3e8a29539360c97faf8bd7', '991544', '4'),
-(15, 'Subject Officer 4', '1234D', 'subjectofficer5@gmail.com', '0911234567', 12, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(16, 'Chief Ministry', '12345678', 'ministrythead@gmail.com', '0911234567', 12, '202cb962ac59075b964b07152d234b70', '256374', '18'),
-(17, 'Pasindu Niroshana', '982972685V', 'niroshanthirimadura5@gmail.com', '0717720219', 4, '2884e86b6d3e8a29539360c97faf8bd7', '991547', '4'),
-(18, 'Subject Officer 5', '1234E', 'subjectofficer6@gmail.com', '0911234567', 4, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(19, 'Chief Secretariat', '123456789', 'chiefsecetary@gmail.com', '0911234567', 4, '202cb962ac59075b964b07152d234b70', '254374', '20'),
-(20, 'Pasindu Niroshana', '982972686V', 'niroshanthirimadura6@gmail.com', '0717720219', 4, '2884e86b6d3e8a29539360c97faf8bd7', '991547', '2'),
-(22, 'Galla EDU DIR', 'GLEDZ', 'subjectofficer6@gmail.com', '0911234567', 49, '202cb962ac59075b964b07152d234b70', '256374', '12'),
-(23, 'Galle EDU Subject', 'GLEDZ_SUB', 'subjectofficer6@gmail.com', '0911234567', 49, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(24, 'PDE Subject', 'PDE_SUB', 'subjectofficer6@gmail.com', '0911234567', 22, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(25, 'Provincial Educatiion Dir', 'PDE', 'subjectofficer6@gmail.com', '0911234567', 22, '202cb962ac59075b964b07152d234b70', '256374', '16'),
-(26, 'MOE Subject', 'MOE_SUB', 'subjectofficer6@gmail.com', '0911234567', 13, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(27, 'MOE SEC', 'MOE', 'subjectofficer6@gmail.com', '0911234567', 13, '202cb962ac59075b964b07152d234b70', '256374', '18'),
-(28, 'HKPS Subject', 'HKPS_SUB', 'subjectofficer6@gmail.com', '0911234567', 80, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(29, 'HKPS SEC', 'HKPS', 'subjectofficer6@gmail.com', '0911234567', 80, '202cb962ac59075b964b07152d234b70', '256374', '12'),
-(30, 'AC Matara Subject', 'ACMT_SUB', 'subjectofficer6@gmail.com', '0911234567', 34, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(31, 'AC Matara Dir', 'ACMT', 'subjectofficer6@gmail.com', '0911234567', 34, '202cb962ac59075b964b07152d234b70', '256374', '14'),
-(32, 'DLC Subject', 'DLC_SUB', 'subjectofficer6@gmail.com', '0911234567', 19, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(33, 'DLC Dir', 'DLC', 'subjectofficer6@gmail.com', '0911234567', 19, '202cb962ac59075b964b07152d234b70', '256374', '16'),
-(34, 'CM Subject', 'CM_SUB', 'subjectofficer6@gmail.com', '0911234567', 12, '202cb962ac59075b964b07152d234b70', '256374', '11'),
-(35, 'CM Dir', 'CM', 'subjectofficer6@gmail.com', '0911234567', 12, '202cb962ac59075b964b07152d234b70', '256374', '18'),
-(36, 'D.N.Panangala', '822491898V', 'dunupa@gmail.com', '0714498048', 49, '202cb962ac59075b964b07152d234b70', '492624', '4'),
-(37, 'D.K.A.Weerapperuma', '996534120V', 'kavindyadilmi09@gmail.com', '0764607826', 80, '578a3c7234647950fd26ca793ef77600', '380612', '4'),
-(38, 'එම්.ඩී.සී. දේශානි', '847513900V', 'dchathurika84@gmail.com', '0772838452', 8, '4833e5878c00295d78d83e6083e38745', '330235', '4'),
-(39, 'එච්.බී.තිසාරා සන්දීපනී', '997860128V', 's22004074@ousl.lk', '0701914446', 47, '48e5ef2649ddb6f12a6e6e8eda05b5df', '799708', '4'),
-(40, 'ජී.වයි.සී.මාලනි', '198782010074', 'gycmalani@gmail.com', '0707965044', 8, 'b9a16a170f99dba8431fb943c32735e5', '787476', '4'),
-(41, 'A.Prabodha', '960000050V', 'spcsrecruitment.inq@gmail.com', '0719001002', 49, '40f4b7443fd6bb014bc148ce7bf18317', '675631', '4'),
-(42, 'Niroshana', '982974680V', 'niroshanathirimadura@gmail.com', '0763903736', 15, '2884e86b6d3e8a29539360c97faf8bd7', '756102', '1'),
-(43, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'anjananeda@gmail.com', '0716411443', 13, '6426d602470779d5a4bbc909469eecf6', '623726', '2'),
-(44, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'kavindyadilmi09@gmail.com', '0716411443', 13, '6426d602470779d5a4bbc909469eecf6', '171770', '1'),
-(45, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'kavindyadilmi09@gmail.com', '0716411443', 13, '6426d602470779d5a4bbc909469eecf6', '914443', '1'),
-(46, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'divansenanayake@gmail.com', '0716411443', 13, '6426d602470779d5a4bbc909469eecf6', '732852', '2'),
-(47, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'anjananeda@gmail.com', '0716411443', 12, '6426d602470779d5a4bbc909469eecf6', '512469', '2'),
-(48, 'එම්.ඩී.සී. දේශානි', '837513900V', 'spcomtraining.cs@gmail.com', '0772838452', 6, '4833e5878c00295d78d83e6083e38745', '201290', '2'),
-(49, 'එම්.ඩී.සී. දේශානි', '837513900V', 'spcomtraining.cs@gmail.com', '0772838452', 6, '4833e5878c00295d78d83e6083e38745', '725518', '2'),
-(50, 'priyangika sudarshani', '190000000000', 'priyangikasudarshani06@gmail.c', '0701234567', 71, '0b1c8bc395a9588a79cd3c191c22a6b4', '638205', '1'),
-(51, 'එම්.ඩී.සී. දේශානි', '837513900V', 'spcomtraining.cs@gmail.com', '0772838452', 6, '948d16620c304b05f12c4be469dc0c0b', '713679', '1'),
-(52, 'එස්.ඩී.එල්.ලලිත්', '857492692v', 'anjananeda@gmail.com', '0716411443', 12, '698d51a19d8a121ce581499d7b701668', '391299', '1'),
-(53, 'එම්.ඩී.සී. දේශානි', '827513900V', 'spcomtraining.cs@gmail.com', '0772838452', 6, '3db4f2c3dbd5b50337736be50b9d69cd', '173179', '1'),
-(56, 'එස්.ඩී.එල්.දිවාන්', '198533002040', 'divansenanayake@gmail.com', '0788738585', 13, '698d51a19d8a121ce581499d7b701668', '412600', '4'),
-(57, 'P\'Sudarshani', '190000000000', 'hirushaimantha@gmail.com', '0711234567', 71, '0b1c8bc395a9588a79cd3c191c22a6b4', '507600', '2'),
-(58, 'එම්.ඩී.සී. දේශානි', '817513900V', 'spcomtraining.cs@gmail.com', '0772838452', 6, 'a63884a8e03dbd92b4b35e049a6a87aa', '150879', '1'),
-(71, 'T.A.Samanmalee', '962972680V', 'anuradhasamanmalee1996@gmail.com', '0763903736', 5, '2884e86b6d3e8a29539360c97faf8bd7', '777651', '2'),
-(73, 'ඒ.පී.තිසරා', '990000000V', 'ahub2920@gmail.com', '0752030700', 12, '202cb962ac59075b964b07152d234b70', '955942', '4'),
-(75, 'ජී.එල්.මහතා', '197500000000', 'spcsfor.schol@gmail.com', '0712345678', 5, 'ae62277411503eaeca3f3e7daf1d9b5a', '956225', '4'),
-(76, 'ජී.වයි.සී.මාලනි', '878202244V', 'chandimalani@yahoo.com', '0707965044', 49, 'b9a16a170f99dba8431fb943c32735e5', '144960', '1'),
-(77, 'එච්.බී.හංසි තත්සරණි', '997860125V', 'cadreinfo.cs@gmail.com', '0701914446', 19, '81dc9bdb52d04dc20036dbd8313ed055', '468031', '1'),
-(78, 'ජී.වයි.සී.මාලනි', '878202245V', 'deniroshansilva@gmail.com', '0707965044', 49, 'b9a16a170f99dba8431fb943c32735e5', '328485', '4'),
-(79, 'එච්.බී.හංසි තත්සරණි', '997860148V', 'wakatic731@kelenson.com', '0764071408', 19, 'e10adc3949ba59abbe56e057f20f883e', '248710', '4'),
-(80, 'ඒ.පෙරේරා', '200500000000', 'sitica4420@mowline.com', '0716411443', 17, '202cb962ac59075b964b07152d234b70', '738843', '4'),
-(81, 'කේ.ජී.ගයා සුරංගි', '875303597v', 'gaya.surangi7@gmailcom', '0715121906', 8, '8b50e0c82631759859dad79c553152c4', '760658', '1'),
-(82, 'සි.ිසිාටස', '960000000V', 'juydozefyi@gufum.com', '0716411443', 16, '250cf8b51c773f3f8dc8b4be867a9a02', '162589', '2'),
-(83, 'කේ.ජී.ගයා සුරංගි', '875303598V', 'gaya.surangi7@gmail.com', '0715121906', 8, '8b50e0c82631759859dad79c553152c4', '748131', '2'),
-(84, 'එච්.බී.හංසි තත්සරණි', '997860138V', 'dewihap963@matmayer.com', '0772545687', 31, '86163c9222cac15c964c88abfc96f340', '213626', '3'),
-(85, 'පසිදු නිරොශන', '982972680V', 'niroshanthirimadura@gmail.com', '0763903736', 49, '2884e86b6d3e8a29539360c97faf8bd7', '195059', '4'),
-(86, 'එම්.ඩී.සී. චතුරිකා', '812343900V', 'spvacancies.cs@gmail.com', '0772838450', 6, '9f06b76a6552ccff3336981cbc20d218', '469738', '4');
+INSERT INTO `users` (`user_id`, `name`, `nic`, `email`, `tel`, `offi_id`, `desi`, `password`, `otp`, `status`, `temp_status`) VALUES
+(1, 'ටී.පී.එන්. ද සිල්වා', 'GML_SUB', 'niroshanthirimadura@gmail.com', '0763903736', 50, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '325946', '10', ''),
+(2, 'ටී.පී.එන්. ද සිල්වා', 'ACLG_SUB', 'niroshanthirimadura1@gmail.com', '0763903736', 33, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(3, 'ටී.පී.එන්. ද සිල්වා', 'DOLG_SUB', 'niroshanthirimadura2@gmail.com', '0763903736', 19, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(4, 'ටී.පී.එන්. ද සිල්වා', 'CM_SUB', 'niroshanthirimadura3@gmail.com', '0763903736', 12, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(5, 'ටී.පී.එන්. ද සිල්වා', 'GML_REC', 'niroshanthirimadura4@gmail.com', '0763903736', 50, 'Office Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '18', ''),
+(6, 'ටී.පී.එන්. ද සිල්වා', 'GML_OFF', 'niroshanthirimadura5@gmail.com', '0763903736', 50, 'Office Head', '202cb962ac59075b964b07152d234b70', '196908', '22', ''),
+(7, 'ටී.පී.එන්. ද සිල්වා', 'ACLG_CHK', 'niroshanthirimadura6@gmail.com', '0763903736', 33, 'District Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '26', ''),
+(8, 'ටී.පී.එන්. ද සිල්වා', 'ACLG_REC', 'niroshanthirimadura@gmail.com\n', '0763903736', 33, 'District Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '30', ''),
+(9, 'ටී.පී.එන්. ද සිල්වා', 'ACLG_OFF', 'niroshanthirimadura8@gmail.com', '0763903736', 33, 'District Office Head', '202cb962ac59075b964b07152d234b70', '196908', '34', ''),
+(10, 'ටී.පී.එන්. ද සිල්වා', 'DOLG_CHK', 'niroshanthirimadura9@gmail.com', '0763903736', 19, 'Department Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '38', ''),
+(11, 'ටී.පී.එන්. ද සිල්වා', 'DOLG_REC', 'niroshanthirimadura10@gmail.com', '0763903736', 19, 'Department Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '42', ''),
+(12, 'ටී.පී.එන්. ද සිල්වා', 'DOLG_OFF', 'niroshanthirimadura11@gmail.com', '0763903736', 19, 'Department Office Head', '202cb962ac59075b964b07152d234b70', '196908', '46', ''),
+(13, 'ටී.පී.එන්. ද සිල්වා', 'CM_CHK', 'niroshanthirimadura12@gmail.com', '0763903736', 12, 'Ministry Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '50', ''),
+(14, 'ටී.පී.එන්. ද සිල්වා', 'CM_REC', 'niroshanthirimadura13@gmail.com', '0763903736', 12, 'Ministry Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '54', ''),
+(15, 'ටී.පී.එන්. ද සිල්වා', 'CM_OFF', 'niroshanthirimadura14@gmail.com', '0763903736', 12, 'Ministry Office Head', '202cb962ac59075b964b07152d234b70', '196908', '58', ''),
+(16, 'ටී.පී.එන්. ද සිල්වා', 'CS_CHK', 'niroshanthirimadura15@gmail.com', '0763903736', 4, 'CS Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '62', ''),
+(17, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534120V', 'kavindyadilmi09@gmail.com', '0764607826', 33, '', '202cb962ac59075b964b07152d234b70', '999652', '4', ''),
+(18, 'කාරියවසම් මයා ', '197500000000', 'spcsrecruitment.inq@gmail.com', '0711234567', 50, 'Director', '202cb962ac59075b964b07152d234b70', '814789', '4', ''),
+(19, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534121V', 'ahub2920@gmail.com', '0764607826', 19, '', '202cb962ac59075b964b07152d234b70', '987373', '4', ''),
+(20, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534122V', 's22004074@ousl.lk', '0764607826', 12, '', 'd6dca697346c252d0e6116bd85e12ab8', '966857', '4', ''),
+(21, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534123V', 'imacreation61@gmail.com', '0764607826', 12, '', '202cb962ac59075b964b07152d234b70', '145140', '4', ''),
+(22, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534124V', 'usedemo627@gmail.com', '0764607826', 39, '', '202cb962ac59075b964b07152d234b70', '310390', '4', ''),
+(23, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534125V', 'imalshakmp@gmail.com', '0764607826', 22, '', 'd6dca697346c252d0e6116bd85e12ab8', '815458', '4', ''),
+(24, 'ඩී.කේ.ඒ.වීරප්පෙරුම', '996534126V', 'deniroshansilva@gmail.com', '0764607826', 13, '', '202cb962ac59075b964b07152d234b70', '323690', '4', ''),
+(25, 'ටී.පී.එන්. ද සිල්වා', 'ZEO_SUB', 'niroshanthirimadura16@gmail.com', '0763903736', 39, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(26, 'ටී.පී.එන්. ද සිල්වා', 'DPE_SUB', 'niroshanthirimadura17@gmail.com', '0763903736', 22, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(27, 'ටී.පී.එන්. ද සිල්වා', 'MOE_SUB', 'niroshanthirimadura18@gmail.com', '0763903736', 13, 'Subject Officer', '202cb962ac59075b964b07152d234b70', '196908', '10', ''),
+(28, 'ටී.පී.එන්. ද සිල්වා', 'ZEO_REC', 'niroshanthirimadura19@gmail.com', '0763903736', 39, 'Office Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '18', ''),
+(29, 'ටී.පී.එන්. ද සිල්වා', 'ZEO_OFF', 'niroshanthirimadura20@gmail.com', '0763903736', 39, 'Office Head', '202cb962ac59075b964b07152d234b70', '196908', '22', ''),
+(30, 'ටී.පී.එන්. ද සිල්වා', 'DPE_CHK', 'niroshanthirimadura21@gmail.com', '0763903736', 22, 'Department Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '38', ''),
+(32, 'ටී.පී.එන්. ද සිල්වා', 'DPE_REC', 'niroshanthirimadura23@gmail.com', '0763903736', 22, 'Department Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '42', ''),
+(33, 'ටී.පී.එන්. ද සිල්වා', 'DPE_OFF', 'niroshanthirimadura24@gmail.com', '0763903736', 22, 'Department Office Head', '202cb962ac59075b964b07152d234b70', '196908', '46', ''),
+(34, 'ටී.පී.එන්. ද සිල්වා', 'MOE_CHK', 'niroshanthirimadura25@gmail.com', '0763903736', 13, 'Ministry Check Officer', '202cb962ac59075b964b07152d234b70', '196908', '50', ''),
+(35, 'ටී.පී.එන්. ද සිල්වා', 'MOE_REC', 'niroshanthirimadura26@gmail.com', '0763903736', 13, 'Ministry Recommend Officer', '202cb962ac59075b964b07152d234b70', '196908', '54', ''),
+(36, 'ටී.පී.එන්. ද සිල්වා', 'MOE_OFF', 'niroshanthirimadura27@gmail.com', '0763903736', 13, 'Ministry Office Head', '202cb962ac59075b964b07152d234b70', '196908', '58', ''),
+(37, 'ටී.පී.එන්. ද සිල්වා', 'CS_AO', 'niroshanthirimadura16@gmail.com', '0763903736', 4, 'CS AO Officer', '202cb962ac59075b964b07152d234b70', '196908', '66', ''),
+(38, 'ටී.පී.එන්. ද සිල්වා', 'CS_ACS', 'niroshanthirimadura17@gmail.com', '0763903736', 4, 'CS ACS Officer', '202cb962ac59075b964b07152d234b70', '196908', '70', ''),
+(39, 'ටී.පී.එන්. ද සිල්වා', 'CS_DCS', 'niroshanthirimadura18@gmail.com', '0763903736', 4, 'CS DCS Officer', '202cb962ac59075b964b07152d234b70', '196908', '74', ''),
+(40, 'ටී.පී.එන්. ද සිල්ව', 'CS', 'niroshanthirimadura19@gmail.com', '0763903736', 4, 'CS', '202cb962ac59075b964b07152d234b70', '196908', '78', ''),
+(41, 'ටී.පී.එන්. ද සිල්ව', 'ACC1', 'niroshanthirimadura20@gmail.com', '0763903736', 4, 'Accountant 1', '202cb962ac59075b964b07152d234b70', '196908', '82', ''),
+(42, 'ටී.පී.එන්. ද සිල්වා', 'ACC2', 'niroshanthirimadura21@gmail.com', '0763903736', 4, 'Accountant 2', '202cb962ac59075b964b07152d234b70', '196908', '86', ''),
+(44, 'ටී.පී.එන්. ද සිල්වා', 'ADMIN', 'desilva.niroshana98@gmail.com', '0763903736', 4, 'Super Admin', '202cb962ac59075b964b07152d234b70', '526318', '100', ''),
+(48, 'ටීපීඑන්දසිල්වා', '982971680V', 'anuradhasamanmalee1996@gmail.com', '0763903736', 4, 'Municipal Commissioner', '202cb962ac59075b964b07152d234b70', '476633', '58', ''),
+(50, 'ටී.පී.එන්. ද සිල්වා', 'CS_DCSs', 'niroshanthirimadura48@gmail.com', '0763903736', 4, 'CS DCS Officer', '202cb962ac59075b964b07152d234b70', '196908', '74', '');
 
 --
 -- Indexes for dumped tables
@@ -703,13 +742,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
-  MODIFY `app_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `app_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Constraints for dumped tables
